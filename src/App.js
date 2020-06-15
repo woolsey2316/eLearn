@@ -1,25 +1,29 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import './assets/sass/app.scss'
+
+import { RegisterPage } from './RegisterPage'
+import { LoginPage } from './LoginPage'
+import { HomePage } from './HomePage';
+
+import { PrivateRoute } from './components'
+
+// const Register = lazy(() => import("./RegisterPage"));
+// const Login = lazy(() => import("./LoginPage"));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+      <Switch>
+        <PrivateRoute exact path="/" component={HomePage} />
+        <Route exact path="/Register" component={RegisterPage} />
+        <Route exact path="/login" component={LoginPage} />
+      </Switch>
+      </div>
+    </Router>
   );
 }
 
