@@ -1,7 +1,7 @@
 import React from 'react';
 
 import RegisterForm from './RegisterForm';
-import RegisterInfo from './RegisterInfo';
+import { RegisterInfo } from './RegisterInfo';
 
 function RegisterPage() {
     return (

@@ -13,76 +13,78 @@ export const userService = {
   delete: _delete
 };
 
-function login(email, password) {
+async function login(email, password) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password })
   };
 
-  return fetch(`${process.env.REACT_APP_API_URL}/auth/login`, requestOptions)
-    .then(handleResponse)
-    .then(user => {
-      // store user details and jwt token in local storage to keep user logged in between page refreshes
-      localStorage.setItem('user', JSON.stringify(user));
-
-      return user;
-    });
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/login`, requestOptions);
+  const user = await handleResponse(response);
+  // store user details and jwt token in local storage to keep user logged in between page refreshes
+  localStorage.setItem('user', JSON.stringify(user));
+  return user;
 }
 
-function logout() {
+async function logout() {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
   };
-  return fetch(`${process.env.REACT_APP_API_URL}/auth/sign-out`, requestOptions)
-    .then(handleResponse)
-    .then(user => {
-      // remove user from local storage to log user out
-      localStorage.removeItem('user');
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/sign-out`, requestOptions);
+  const user = await handleResponse(response);
+  // remove user from local storage to log user out
+  localStorage.removeItem('user');
+  return user;
 
-      return user;
-    });
-  
 }
 
-function getById(id) {
+async function getById(id) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   };
 
-  return fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, requestOptions).then(handleResponse);
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, requestOptions);
+  return handleResponse(response);
 }
 
-function register(user) {
+async function register(user) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(user)
   };
 
-  return fetch(`${process.env.REACT_APP_API_URL}/auth/sign-up`, requestOptions).then(handleResponse);
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/sign-up`, requestOptions)
+    .then( response => {
+      return response.text();
+    })
+  console.log(`%cerror registering : ${JSON.stringify(response)}`,"color: orange");
+  return handleRegisterResponse(response);
 }
 
-function update(user) {
+async function update(user) {
   const requestOptions = {
     method: 'PUT',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
     body: JSON.stringify(user)
   };
 
-  return fetch(`${process.env.REACT_APP_API_URL}/users/${user.id}`, requestOptions).then(handleResponse);
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${user.id}`, requestOptions);
+  return handleResponse(response);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
+async function _delete(id) {
     const requestOptions = {
         method: 'DELETE',
         headers: authHeader()
     };
 
-    return fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, requestOptions).then(handleResponse);
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, requestOptions);
+  return handleResponse(response);
 }
 
 /* 
@@ -93,7 +95,9 @@ function _delete(id) {
 function handleResponse(response) {
   return response.text().then(text => {
     const data = text && JSON.parse(text);
+    
     if (!response.ok) {
+      console.log(`%cresponse: ${JSON.stringify(response)}`)
       if (response.status === 401) {
         // auto logout if 401 response returned from api
         logout();
@@ -104,7 +108,42 @@ function handleResponse(response) {
       const error = (data && data.message) || response.statusText;
       return Promise.reject(error);
     }
-
+    window.location.reload(true);
+    console.log('trying to get to /home')
     return data;
+    
   });
+}
+
+function handleRegisterResponse(response) {
+  console.log(`%cresponse from email registration request: ${response}`,"color: red")
+  console.log("got here")
+  return response.text().then(text => {
+    const data = text && JSON.parse(text);
+    console.log("got here")
+    
+    if (!response.ok) {
+      
+      if (response.status === 401) {
+        // auto logout if 401 response returned from api
+        logout();
+        // forces a reload after user object is deleted
+        window.location.reload(true);
+      }
+      if (response.status === 409) {
+        // auto logout if 409 response returned from api
+        logout();
+        // forces a reload after user object is deleted
+        window.location.reload(true);
+      }
+      const error = (data && data.message) || response.statusText;
+      console.log(`%cerror: ${error}`,"color: red")
+      return Promise.reject(error);
+    }
+    window.location.reload(true);
+    console.log('trying to get to /home')
+    return data;
+    
+  });
+  
 }

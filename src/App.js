@@ -1,8 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
-import './assets/sass/app.scss'
+import './assets/dist/css/app.css'
+import './index.css'
+
+import { history } from './helpers/history'
 
 import { RegisterPage } from './RegisterPage'
 import { LoginPage } from './LoginPage'
@@ -15,14 +18,12 @@ import { PrivateRoute } from './components'
 
 function App() {
   return (
-    <Router>
-      <div className="App">
+    <Router history={history}>
       <Switch>
-        <PrivateRoute exact path="/" component={HomePage} />
-        <Route exact path="/Register" component={RegisterPage} />
-        <Route exact path="/login" component={LoginPage} />
+        <PrivateRoute exact path="/" component={HomePage}/>
+        <Route exact path="/Register" component={RegisterPage}/>
+        <Route exact path="/login" component={LoginPage}/>
       </Switch>
-      </div>
     </Router>
   );
 }

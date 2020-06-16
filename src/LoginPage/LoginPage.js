@@ -2,64 +2,31 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import LoginForm from './LoginForm'
+import { RegisterInfo } from '../RegisterPage'
+
 import { userActions } from '../actions';
 
 function LoginPage() {
-  const [inputs, setInputs] = useState({
-    email: '',
-    password: ''
-  });
-  const [submitted, setSubmitted] = useState(false);
-  const { email, password } = inputs;
-  const loggingIn = useSelector(state => state.authentication.loggingIn);
-  const dispatch = useDispatch();
-
   // reset login status
-  useEffect(() => { 
-    dispatch(userActions.logout());
-  }, []);
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setInputs(inputs => ({ ...inputs, [name]: value }));
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    setSubmitted(true);
-    if (email && password) {
-      dispatch(userActions.login(email, password));
-    }
-  }
-
+  const dispatch = useDispatch();
+  /*
+    useEffect(() => { 
+      dispatch(userActions.logout());
+    }, []);
+  */
   return (
-      <div className="col-lg-8 offset-lg-2">
-        <h2>Login</h2>
-        <form name="form" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Email</label>
-            <input type="text" name="email" value={email} onChange={handleChange} className={'form-control' + (submitted && !email ? ' is-invalid' : '')} />
-            {submitted && !email &&
-              <div className="invalid-feedback">Email is required</div>
-            }
-          </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input type="password" name="password" value={password} onChange={handleChange} className={'form-control' + (submitted && !password ? ' is-invalid' : '')} />
-            {submitted && !password &&
-              <div className="invalid-feedback">Password is required</div>
-            }
-          </div>
-          <div className="form-group">
-            <Link to="/" className="btn btn-primary">
-              {loggingIn && <span className="spinner-border spinner-border-sm mr-1"></span>}
-              Login
-            </Link>
-            <Link to="/Register" className="btn btn-link">Register</Link>
-          </div>
-        </form>
-      </div>
+      <div className="login">
+        <div className="container sm:px-10">
+            <div className="block xl:grid grid-cols-2 gap-4">
+                <RegisterInfo/>
+                <LoginForm/>
+            </div>
+        </div>
+        {/*
+        <script src="dist/js/app.js"></script>
+        */}
+    </div>
   );
 }
 

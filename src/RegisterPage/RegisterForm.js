@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { userActions } from '../actions';
 
-import '../assets/sass/app.scss'
+import '../assets/dist/css/app.css'
 
 export default () => {
   const [user, setUser] = useState({
@@ -19,29 +19,29 @@ const registering = useSelector(state => state.registration.registering);
 const dispatch = useDispatch();
 
 // Always logs out current user before loading signup form page
+/*
 useEffect(() => {
   dispatch(userActions.logout());
 }, [dispatch]);
+*/
 
 function handleChange(e) {
   const { name, value } = e.target;
-  console.log(e.target.value)
-  console.log('name: ' + name)
-  console.log('value: ' + value)
   setUser(user => ({ ...user, [name]: value }));
 }
 
 function handleSubmit(e) {
   e.preventDefault();
-  console.log({user})
+  console.log(`%cuser details: ${JSON.stringify(user)}`,"color:green")
+  console.log()
 
   setSubmitted(true);
-  if (user.fullName && user.lastName && user.email && user.password) {
+  if (user.fullName && user.confirmPassword && user.email && user.password) {
     dispatch(userActions.register(user));
   }
 }
   return (
-    <form name="form" onSubmit={handleSubmit}>
+    <form style={{margin:"auto"}} name="form" onSubmit={handleSubmit}>
       <div className="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
         <div className="my-auto mx-auto xl:ml-20 bg-white xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
           <h2 className="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left">

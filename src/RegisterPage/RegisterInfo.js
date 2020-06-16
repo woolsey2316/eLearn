@@ -1,8 +1,8 @@
 import React from 'react'
-import logo from '../assets/images/logo.svg'
-import illustration from '../assets/images/illustration.svg'
+import logo from '../assets/dist/images/logo.svg'
+import illustration from '../assets/dist/images/illustration.svg'
 
-export default () => {
+function RegisterInfo() {
   return (
     <div className="hidden xl:flex flex-col min-h-screen">
       <a href="" className="-intro-x flex items-center pt-5">
@@ -21,3 +21,5 @@ export default () => {
   </div>
   )
 }
+
+export { RegisterInfo }

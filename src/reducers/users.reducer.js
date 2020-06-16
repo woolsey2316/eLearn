@@ -23,7 +23,7 @@ export function users(state = {}, action) {
             const {deleting, ...userCopy } = user
             return {...userCopy, deleteError: action.error }
           }
-          
+
           return user
         })
       }
