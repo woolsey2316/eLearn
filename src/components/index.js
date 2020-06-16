@@ -1,1 +1,5 @@
 export { PrivateRoute } from './PrivateRoute'
+export { Breadcrumb } from './Breadcrumb'
+export { Logo } from './Logo'
+export { Search } from './Search'
+export { ChangePasswordForm } from './ChangePasswordForm'

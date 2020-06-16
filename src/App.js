@@ -10,6 +10,8 @@ import { history } from './helpers/history'
 import { RegisterPage } from './RegisterPage'
 import { LoginPage } from './LoginPage'
 import { HomePage } from './HomePage';
+import { ChangePassword } from './Pages/sidemenu';
+import { Profile } from './Pages';
 
 import { PrivateRoute } from './components'
 
@@ -21,6 +23,8 @@ function App() {
     <Router history={history}>
       <Switch>
         <PrivateRoute exact path="/" component={HomePage}/>
+        <PrivateRoute exact path="/Profile" component={Profile}/>
+        <PrivateRoute exact path="/Profile/ChangePassword" component={ChangePassword}/>
         <Route exact path="/Register" component={RegisterPage}/>
         <Route exact path="/login" component={LoginPage}/>
       </Switch>

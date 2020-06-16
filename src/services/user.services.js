@@ -9,6 +9,7 @@ export const userService = {
   logout,
   register,
   getById,
+  changePassword,
   update,
   delete: _delete
 };
@@ -61,7 +62,20 @@ async function register(user) {
     .then( response => {
       return response.text();
     })
-  console.log(`%cerror registering : ${JSON.stringify(response)}`,"color: orange");
+  return handleRegisterResponse(response);
+}
+
+async function changePassword(user) {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(user)
+  };
+
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/reset-pass`, requestOptions)
+    .then( response => {
+      return response.text();
+    })
   return handleRegisterResponse(response);
 }
 

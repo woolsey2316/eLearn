@@ -14,7 +14,6 @@ function HomePage() {
 
   return (
     <div className="app">
-
         <div className="mobile-menu md:hidden">
             <div className="mobile-menu-bar">
                 <a href="" className="flex mr-auto">
