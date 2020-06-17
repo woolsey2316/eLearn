@@ -1,10 +1,9 @@
 import feather from 'feather-icons'
+;(function () {
+  'use strict'
 
-(function() { 
-    "use strict";
-        
-    // Feather Icons
-    feather.replace({
-        'stroke-width': 1.5
-    })
+  // Feather Icons
+  feather.replace({
+    'stroke-width': 1.5,
+  })
 })()

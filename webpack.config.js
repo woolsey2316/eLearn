@@ -1,4 +1,4 @@
-const Dotenv = require('dotenv-webpack');
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   module: {
@@ -10,18 +10,13 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-              plugins: [
-                require('tailwindcss'),
-                require('autoprefixer'),
-              ],
+              plugins: [require('tailwindcss'), require('autoprefixer')],
             },
           },
-          'style-loader'
+          'style-loader',
         ],
-      }
-    ]
+      },
+    ],
   },
-  plugins: [
-    new Dotenv()
-  ]
+  plugins: [new Dotenv()],
 }

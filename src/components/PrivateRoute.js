@@ -9,10 +9,16 @@ import { Route, Redirect } from 'react-router-dom'
   data from the server api becuase a jwt token is necessary.
 */
 export const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-    localStorage.getItem('user')
-      ? <Component {...props} />
-      : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
-
-  )} />
+  <Route
+    {...rest}
+    render={(props) =>
+      localStorage.getItem('user') ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{ pathname: '/login', state: { from: props.location } }}
+        />
+      )
+    }
+  />
 )

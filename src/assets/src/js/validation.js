@@ -1,9 +1,8 @@
 import validate from 'jquery-validation'
+;(function ($) {
+  'use strict'
 
-(function($) { 
-    "use strict";
-        
-    $('.validate-form').each(function() {
-        $(this).validate()
-    })
+  $('.validate-form').each(function () {
+    $(this).validate()
+  })
 })($)

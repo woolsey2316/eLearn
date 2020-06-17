@@ -1,18 +1,18 @@
-(function($) { 
-    "use strict";
-        
-    // Show modal
-    $('#programmatically-show-modal').on('click', function() {
-        $('#programmatically-modal').modal('show')
-    })
+;(function ($) {
+  'use strict'
 
-    // Hide modal
-    $('#programmatically-hide-modal').on('click', function() {
-        $('#programmatically-modal').modal('hide')
-    })
+  // Show modal
+  $('#programmatically-show-modal').on('click', function () {
+    $('#programmatically-modal').modal('show')
+  })
 
-    // Toggle modal
-    $('#programmatically-toggle-modal').on('click', function() {
-        $('#programmatically-modal').modal('toggle')
-    })
+  // Hide modal
+  $('#programmatically-hide-modal').on('click', function () {
+    $('#programmatically-modal').modal('hide')
+  })
+
+  // Toggle modal
+  $('#programmatically-toggle-modal').on('click', function () {
+    $('#programmatically-modal').modal('toggle')
+  })
 })($)

@@ -1,4 +1,4 @@
-import { userConstants } from '../constants';
+import { userConstants } from '../constants'
 /*
   this reducer manages the state related to login/ logout. After login,
   a user object and isLoggedIn flag (true) are both stored under 'authentication' 
@@ -6,25 +6,25 @@ import { userConstants } from '../constants';
   There is also an intermediate logging in state between login request and success/failure
   made just for loading animations. 
 */
-let user = JSON.parse(localStorage.getItem('user'));
-const initialState = user ? { loggedIn: true, user } : {};
+let user = JSON.parse(localStorage.getItem('user'))
+const initialState = user ? { loggedIn: true, user } : {}
 
 export function authentication(state = initialState, action) {
   switch (action.type) {
     case userConstants.LOGIN_REQUEST:
       return {
         loggingIn: true,
-        user: action.user
-      };
+        user: action.user,
+      }
     case userConstants.LOGIN_SUCCESS:
       return {
         loggedIn: true,
-        user: action.user
-      };
+        user: action.user,
+      }
     case userConstants.LOGIN_FAILURE:
-      return {};
+      return {}
     case userConstants.LOGOUT:
-      return {};
+      return {}
     default:
       return state
   }

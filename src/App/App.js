@@ -17,7 +17,7 @@ export default () => {
     history.listen((location, action) => {
       dispatch(alertActions.clear())
     })
-  },[])
+  }, [])
 
   return (
     <div className="jumbotron">

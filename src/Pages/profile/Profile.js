@@ -1,679 +1,522 @@
 import React from 'react'
-import { MobileMenu } from './MobileMenu'
+import { MobileMenu } from '../../components/MobileMenu'
 import { TopBar } from './TopBar'
 import { TopMenu } from './TopMenu'
 
+import { SideMenu } from '../../components'
+
+import * as Icon from 'react-feather'
+
+import { ProfileOptions } from './ProfileOptions'
+
+import profile4 from '../../assets/dist/images/profile-4.jpg'
+import profile12 from '../../assets/dist/images/profile-12.jpg'
+import profile3 from '../../assets/dist/images/profile-3.jpg'
+import preview7 from '../../assets/dist/images/preview-7.jpg'
+import preview14 from '../../assets/dist/images/preview-14.jpg'
+import preview8 from '../../assets/dist/images/preview-8.jpg'
+import preview13 from '../../assets/dist/images/preview-13.jpg'
+import profile7 from '../../assets/dist/images/profile-7.jpg'
+import profile14 from '../../assets/dist/images/profile-14.jpg'
+import profile1 from '../../assets/dist/images/profile-1.jpg'
+import profile2 from '../../assets/dist/images/profile-2.jpg'
+import preview3 from '../../assets/dist/images/preview-3.jpg'
+import preview12 from '../../assets/dist/images/preview-12.jpg'
+import profile6 from '../../assets/dist/images/profile-6.jpg'
+
 function Profile() {
   return (
-    <body class="app">
-        <MobileMenu/>
-        <TopBar/>
-        <TopMenu/>
+    <div className="app">
+      <MobileMenu />
+      <div className="flex">
+        <SideMenu />
+
         {/*<!-- BEGIN: Content -->*/}
-        <div class="content">
-            <div class="intro-y flex items-center mt-8">
-                <h2 class="text-lg font-medium mr-auto">
-                    Profile Layout
-                </h2>
+        <div className="content">
+          {/*<!-- BEGIN: Top Bar -->*/}
+          <div className="top-bar">
+            {/*<!-- BEGIN: Breadcrumb -->*/}
+            <div className="-intro-x breadcrumb mr-auto hidden sm:flex">
+              {' '}
+              <a href="" className="">
+                Application
+              </a>{' '}
+              <Icon.ChevronRight className="breadcrumb__icon" />{' '}
+              <a href="" className="breadcrumb--active">
+                Dashboard
+              </a>{' '}
             </div>
-            {/*<!-- BEGIN: Profile Info -->*/}
-            <div class="intro-y box px-5 pt-5 mt-5">
-                <div class="flex flex-col lg:flex-row border-b border-gray-200 pb-5 -mx-5">
-                    <div class="flex flex-1 px-5 items-center justify-center lg:justify-start">
-                        <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative">
-                            <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="dist/images/profile-11.jpg"/>
-                        </div>
-                        <div class="ml-5">
-                            <div class="w-24 sm:w-40 truncate sm:whitespace-normal font-medium text-lg">Robert De Niro</div>
-                            <div class="text-gray-600">Software Engineer</div>
-                        </div>
+            {/*<!-- END: Breadcrumb -->*/}
+            {/*<!-- BEGIN: Search -->*/}
+            <div className="intro-x relative mr-3 sm:mr-6">
+              <div className="search hidden sm:block">
+                <input
+                  type="text"
+                  className="search__input input placeholder-theme-13"
+                  placeholder="Search..."
+                />
+                <Icon.Search className="search__icon" />
+              </div>
+              <a className="notification sm:hidden" href="">
+                {' '}
+                <Icon.Search className="notification__icon" />{' '}
+              </a>
+              <div className="search-result">
+                <div className="search-result__content">
+                  <div className="search-result__content__title">Pages</div>
+                  <div className="mb-5">
+                    <a href="" className="flex items-center">
+                      <div className="w-8 h-8 bg-theme-18 text-theme-9 flex items-center justify-center rounded-full">
+                        {' '}
+                        <i className="w-4 h-4" data-feather="inbox"></i>{' '}
+                      </div>
+                      <div className="ml-3">Mail Settings</div>
+                    </a>
+                    <a href="" className="flex items-center mt-2">
+                      <div className="w-8 h-8 bg-theme-17 text-theme-11 flex items-center justify-center rounded-full">
+                        {' '}
+                        <i className="w-4 h-4" data-feather="users"></i>{' '}
+                      </div>
+                      <div className="ml-3">Users & Permissions</div>
+                    </a>
+                    <a href="" className="flex items-center mt-2">
+                      <div className="w-8 h-8 bg-theme-14 text-theme-10 flex items-center justify-center rounded-full">
+                        {' '}
+                        <i
+                          className="w-4 h-4"
+                          data-feather="credit-card"
+                        ></i>{' '}
+                      </div>
+                      <div className="ml-3">Transactions Report</div>
+                    </a>
+                  </div>
+                  <div className="search-result__content__title">Users</div>
+                  <div className="mb-5">
+                    <a href="" className="flex items-center mt-2">
+                      <div className="w-8 h-8 image-fit">
+                        <img
+                          alt="Midone Tailwind HTML Admin Template"
+                          className="rounded-full"
+                          src={profile4}
+                        />
+                      </div>
+                      <div className="ml-3">Angelina Jolie</div>
+                      <div className="ml-auto w-48 truncate text-gray-600 text-xs text-right">
+                        angelinajolie@left4code.com
+                      </div>
+                    </a>
+                    <a href="" className="flex items-center mt-2">
+                      <div className="w-8 h-8 image-fit">
+                        <img
+                          alt="Midone Tailwind HTML Admin Template"
+                          className="rounded-full"
+                          src={profile12}
+                        />
+                      </div>
+                      <div className="ml-3">Johnny Depp</div>
+                      <div className="ml-auto w-48 truncate text-gray-600 text-xs text-right">
+                        johnnydepp@left4code.com
+                      </div>
+                    </a>
+                    <a href="" className="flex items-center mt-2">
+                      <div className="w-8 h-8 image-fit">
+                        <img
+                          alt="Midone Tailwind HTML Admin Template"
+                          className="rounded-full"
+                          src={profile12}
+                        />
+                      </div>
+                      <div className="ml-3">Johnny Depp</div>
+                      <div className="ml-auto w-48 truncate text-gray-600 text-xs text-right">
+                        johnnydepp@left4code.com
+                      </div>
+                    </a>
+                    <a href="" className="flex items-center mt-2">
+                      <div className="w-8 h-8 image-fit">
+                        <img
+                          alt="Midone Tailwind HTML Admin Template"
+                          className="rounded-full"
+                          src={profile3}
+                        />
+                      </div>
+                      <div className="ml-3">Johnny Depp</div>
+                      <div className="ml-auto w-48 truncate text-gray-600 text-xs text-right">
+                        johnnydepp@left4code.com
+                      </div>
+                    </a>
+                  </div>
+                  <div className="search-result__content__title">Products</div>
+                  <a href="" className="flex items-center mt-2">
+                    <div className="w-8 h-8 image-fit">
+                      <img
+                        alt="Midone Tailwind HTML Admin Template"
+                        className="rounded-full"
+                        src={preview7}
+                      />
                     </div>
-                    <div class="flex mt-6 lg:mt-0 items-center lg:items-start flex-1 flex-col justify-center text-gray-600 px-5 border-l border-r border-gray-200 border-t lg:border-t-0 pt-5 lg:pt-0">
-                        <div class="truncate sm:whitespace-normal flex items-center"> <i data-feather="mail" class="w-4 h-4 mr-2"></i> robertdeniro@left4code.com </div>
-                        <div class="truncate sm:whitespace-normal flex items-center mt-3"> <i data-feather="instagram" class="w-4 h-4 mr-2"></i> Instagram Robert De Niro </div>
-                        <div class="truncate sm:whitespace-normal flex items-center mt-3"> <i data-feather="twitter" class="w-4 h-4 mr-2"></i> Twitter Robert De Niro </div>
+                    <div className="ml-3">Samsung Galaxy S20 Ultra</div>
+                    <div className="ml-auto w-48 truncate text-gray-600 text-xs text-right">
+                      Smartphone &amp; Tablet
                     </div>
-                    <div class="mt-6 lg:mt-0 flex-1 flex items-center justify-center px-5 border-t lg:border-0 border-gray-200 pt-5 lg:pt-0">
-                        <div class="text-center rounded-md w-20 py-3">
-                            <div class="font-semibold text-theme-1 text-lg">201</div>
-                            <div class="text-gray-600">Orders</div>
-                        </div>
-                        <div class="text-center rounded-md w-20 py-3">
-                            <div class="font-semibold text-theme-1 text-lg">1k</div>
-                            <div class="text-gray-600">Purchases</div>
-                        </div>
-                        <div class="text-center rounded-md w-20 py-3">
-                            <div class="font-semibold text-theme-1 text-lg">492</div>
-                            <div class="text-gray-600">Reviews</div>
-                        </div>
+                  </a>
+                  <a href="" className="flex items-center mt-2">
+                    <div className="w-8 h-8 image-fit">
+                      <img
+                        alt="Midone Tailwind HTML Admin Template"
+                        className="rounded-full"
+                        src={preview14}
+                      />
                     </div>
+                    <div className="ml-3">Samsung Galaxy S20 Ultra</div>
+                    <div className="ml-auto w-48 truncate text-gray-600 text-xs text-right">
+                      Smartphone &amp; Tablet
+                    </div>
+                  </a>
+                  <a href="" className="flex items-center mt-2">
+                    <div className="w-8 h-8 image-fit">
+                      <img
+                        alt="Midone Tailwind HTML Admin Template"
+                        className="rounded-full"
+                        src={preview8}
+                      />
+                    </div>
+                    <div className="ml-3">Dell XPS 13</div>
+                    <div className="ml-auto w-48 truncate text-gray-600 text-xs text-right">
+                      PC &amp; Laptop
+                    </div>
+                  </a>
+                  <a href="" className="flex items-center mt-2">
+                    <div className="w-8 h-8 image-fit">
+                      <img
+                        alt="Midone Tailwind HTML Admin Template"
+                        className="rounded-full"
+                        src={preview13}
+                      />
+                    </div>
+                    <div className="ml-3">Nikon Z6</div>
+                    <div className="ml-auto w-48 truncate text-gray-600 text-xs text-right">
+                      Photography
+                    </div>
+                  </a>
                 </div>
-                <div class="nav-tabs flex flex-col sm:flex-row justify-center lg:justify-start">
-                    <a data-toggle="tab" data-target="#profile" href="javascript:;" class="py-4 sm:mr-8 flex items-center active"> <i class="w-4 h-4 mr-2" data-feather="user"></i> Profile </a>
-                    <a data-toggle="tab" data-target="#account" href="javascript:;" class="py-4 sm:mr-8 flex items-center"> <i class="w-4 h-4 mr-2" data-feather="shield"></i> Account </a>
-                    <a data-toggle="tab" data-target="#change-password" href="javascript:;" class="py-4 sm:mr-8 flex items-center"> <i class="w-4 h-4 mr-2" data-feather="lock"></i> Change Password </a>
-                    <a data-toggle="tab" data-target="#settings" href="javascript:;" class="py-4 sm:mr-8 flex items-center"> <i class="w-4 h-4 mr-2" data-feather="settings"></i> Settings </a>
-                </div>
+              </div>
             </div>
-            {/*<!-- END: Profile Info -->*/}
-            <div class="tab-content mt-5">
-                <div class="tab-content__pane active" id="profile">
-                    <div class="grid grid-cols-12 gap-6">
-                        {/*<!-- BEGIN: Latest Uploads -->*/}
-                        <div class="intro-y box col-span-12 lg:col-span-6">
-                            <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
-                                <h2 class="font-medium text-base mr-auto">
-                                    Latest Uploads
-                                </h2>
-                                <div class="dropdown relative ml-auto sm:hidden">
-                                    <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"> <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i> </a>
-                                    <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-10">
-                                        <div class="dropdown-box__content box p-2"> <a href="javascript:;" class="block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">All Files</a> </div>
-                                    </div>
-                                </div>
-                                <button class="button border text-gray-700 hidden sm:flex">All Files</button>
-                            </div>
-                            <div class="p-5">
-                                <div class="flex items-center">
-                                    <div class="file"> <a href="" class="w-12 file__icon file__icon--directory"></a> </div>
-                                    <div class="ml-4">
-                                        <a class="font-medium" href="">Documentation</a> 
-                                        <div class="text-gray-600 text-xs">40 KB</div>
-                                    </div>
-                                    <div class="dropdown relative ml-auto">
-                                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"> <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i> </a>
-                                        <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                                            <div class="dropdown-box__content box p-2">
-                                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> <i data-feather="users" class="w-4 h-4 mr-2"></i> Share File </a>
-                                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex items-center mt-5">
-                                    <div class="file">
-                                        <a href="" class="w-12 file__icon file__icon--file">
-                                            <div class="file__icon__file-name text-xs">MP3</div>
-                                        </a>
-                                    </div>
-                                    <div class="ml-4">
-                                        <a class="font-medium" href="">Celine Dion - Ashes</a> 
-                                        <div class="text-gray-600 text-xs">40 KB</div>
-                                    </div>
-                                    <div class="dropdown relative ml-auto">
-                                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"> <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i> </a>
-                                        <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                                            <div class="dropdown-box__content box p-2">
-                                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> <i data-feather="users" class="w-4 h-4 mr-2"></i> Share File </a>
-                                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex items-center mt-5">
-                                    <div class="file"> <a href="" class="w-12 file__icon file__icon--empty-directory"></a> </div>
-                                    <div class="ml-4">
-                                        <a class="font-medium" href="">Resources</a> 
-                                        <div class="text-gray-600 text-xs">0 KB</div>
-                                    </div>
-                                    <div class="dropdown relative ml-auto">
-                                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"> <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i> </a>
-                                        <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                                            <div class="dropdown-box__content box p-2">
-                                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> <i data-feather="users" class="w-4 h-4 mr-2"></i> Share File </a>
-                                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/*<!-- END: Latest Uploads -->*/}
-                        {/*<!-- BEGIN: Work In Progress -->*/}
-                        <div class="intro-y box col-span-12 lg:col-span-6">
-                            <div class="flex items-center px-5 py-5 sm:py-0 border-b border-gray-200">
-                                <h2 class="font-medium text-base mr-auto">
-                                    Work In Progress
-                                </h2>
-                                <div class="dropdown relative ml-auto sm:hidden">
-                                    <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"> <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i> </a>
-                                    <div class="nav-tabs dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                                        <div class="dropdown-box__content box p-2"> <a href="javascript:;" data-toggle="tab" data-target="#new" class="block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">New</a> <a href="javascript:;" data-toggle="tab" data-target="#last-week" class="block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">Last Week</a> </div>
-                                    </div>
-                                </div>
-                                <div class="nav-tabs ml-auto hidden sm:flex"> <a data-toggle="tab" data-target="#work-in-progress-new" href="javascript:;" class="py-5 ml-6 active">New</a> <a data-toggle="tab" data-target="#work-in-progress-last-week" href="javascript:;" class="py-5 ml-6">Last Week</a> </div>
-                            </div>
-                            <div class="p-5">
-                                <div class="tab-content">
-                                    <div class="tab-content__pane active" id="work-in-progress-new">
-                                        <div>
-                                            <div class="flex">
-                                                <div class="text-gray-700 mr-auto">Pending Tasks</div>
-                                                <div class="font-medium">20%</div>
-                                            </div>
-                                            <div class="w-full h-1 mt-2 bg-gray-400 rounded-full">
-                                                <div class="w-1/2 h-full bg-theme-1 rounded-full"></div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-5">
-                                            <div class="flex">
-                                                <div class="text-gray-700 mr-auto">Completed Tasks</div>
-                                                <div class="font-medium">2 / <span class="text-gray-600">20</span></div>
-                                            </div>
-                                            <div class="w-full h-1 mt-2 bg-gray-400 rounded-full">
-                                                <div class="w-1/4 h-full bg-theme-1 rounded-full"></div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-5">
-                                            <div class="flex">
-                                                <div class="text-gray-700 mr-auto">Tasks In Progress</div>
-                                                <div class="font-medium">42</div>
-                                            </div>
-                                            <div class="w-full h-1 mt-2 bg-gray-400 rounded-full">
-                                                <div class="w-3/4 h-full bg-theme-1 rounded-full"></div>
-                                            </div>
-                                        </div>
-                                        <a href="" class="button w-40 mx-auto justify-center block bg-gray-200 text-gray-600 mt-5">View More Details</a> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/*<!-- END: Work In Progress -->*/}
-                        {/*<!-- BEGIN: Daily Sales -->*/}
-                        <div class="intro-y box col-span-12 lg:col-span-6">
-                            <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
-                                <h2 class="font-medium text-base mr-auto">
-                                    Daily Sales
-                                </h2>
-                                <div class="dropdown relative ml-auto sm:hidden">
-                                    <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"> <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i> </a>
-                                    <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                                        <div class="dropdown-box__content box p-2">
-                                            <a href="javascript:;" class="flex items-center p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> <i data-feather="file" class="w-4 h-4 mr-2"></i> Download Excel </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="button border relative flex items-center text-gray-700 hidden sm:flex"> <i data-feather="file" class="w-4 h-4 mr-2"></i> Download Excel </button>
-                            </div>
-                            <div class="p-5">
-                                <div class="relative flex items-center">
-                                    <div class="w-12 h-12 flex-none image-fit">
-                                        <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="dist/images/profile-11.jpg"/>
-                                    </div>
-                                    <div class="ml-4 mr-auto">
-                                        <a href="" class="font-medium">Robert De Niro</a> 
-                                        <div class="text-gray-600 mr-5 sm:mr-5">Bootstrap 4 HTML Admin Template</div>
-                                    </div>
-                                    <div class="font-medium text-gray-700">+$19</div>
-                                </div>
-                                <div class="relative flex items-center mt-5">
-                                    <div class="w-12 h-12 flex-none image-fit">
-                                        <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="dist/images/profile-9.jpg"/>
-                                    </div>
-                                    <div class="ml-4 mr-auto">
-                                        <a href="" class="font-medium">Al Pacino</a> 
-                                        <div class="text-gray-600 mr-5 sm:mr-5">Tailwind HTML Admin Template</div>
-                                    </div>
-                                    <div class="font-medium text-gray-700">+$25</div>
-                                </div>
-                                <div class="relative flex items-center mt-5">
-                                    <div class="w-12 h-12 flex-none image-fit">
-                                        <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="dist/images/profile-12.jpg"/>
-                                    </div>
-                                    <div class="ml-4 mr-auto">
-                                        <a href="" class="font-medium">Robert De Niro</a> 
-                                        <div class="text-gray-600 mr-5 sm:mr-5">Vuejs HTML Admin Template</div>
-                                    </div>
-                                    <div class="font-medium text-gray-700">+$21</div>
-                                </div>
-                            </div>
-                        </div>
-                        {/*<!-- END: Daily Sales -->*/}
-                        {/*<!-- BEGIN: Latest Tasks -->*/}
-                        <div class="intro-y box col-span-12 lg:col-span-6">
-                            <div class="flex items-center px-5 py-5 sm:py-0 border-b border-gray-200">
-                                <h2 class="font-medium text-base mr-auto">
-                                    Latest Tasks
-                                </h2>
-                                <div class="dropdown relative ml-auto sm:hidden">
-                                    <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"> <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i> </a>
-                                    <div class="nav-tabs dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                                        <div class="dropdown-box__content box p-2"> <a href="javascript:;" data-toggle="tab" data-target="#new" class="block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">New</a> <a href="javascript:;" data-toggle="tab" data-target="#last-week" class="block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">Last Week</a> </div>
-                                    </div>
-                                </div>
-                                <div class="nav-tabs ml-auto hidden sm:flex"> <a data-toggle="tab" data-target="#latest-tasks-new" href="javascript:;" class="py-5 ml-6 active">New</a> <a data-toggle="tab" data-target="#latest-tasks-last-week" href="javascript:;" class="py-5 ml-6">Last Week</a> </div>
-                            </div>
-                            <div class="p-5">
-                                <div class="tab-content">
-                                    <div class="tab-content__pane active" id="latest-tasks-new">
-                                        <div class="flex items-center">
-                                            <div class="border-l-2 border-theme-1 pl-4">
-                                                <a href="" class="font-medium">Create New Campaign</a> 
-                                                <div class="text-gray-600">10:00 AM</div>
-                                            </div>
-                                            <input class="input input--switch ml-auto border" type="checkbox"/>
-                                        </div>
-                                        <div class="flex items-center mt-5">
-                                            <div class="border-l-2 border-theme-1 pl-4">
-                                                <a href="" class="font-medium">Meeting With Client</a> 
-                                                <div class="text-gray-600">02:00 PM</div>
-                                            </div>
-                                            <input class="input input--switch ml-auto border" type="checkbox"/>
-                                        </div>
-                                        <div class="flex items-center mt-5">
-                                            <div class="border-l-2 border-theme-1 pl-4">
-                                                <a href="" class="font-medium">Create New Repository</a> 
-                                                <div class="text-gray-600">04:00 PM</div>
-                                            </div>
-                                            <input class="input input--switch ml-auto border" type="checkbox"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/*<!-- END: Latest Tasks -->*/}
-                        {/*<!-- BEGIN: New Products -->*/}
-                        <div class="intro-y box col-span-12">
-                            <div class="flex items-center px-5 py-3 border-b border-gray-200">
-                                <h2 class="font-medium text-base mr-auto">
-                                    New Products
-                                </h2>
-                                <button data-carousel="new-products" data-target="prev" class="slick-navigator button px-2 border text-white relative flex items-center text-gray-700 mr-2"> <i data-feather="chevron-left" class="w-4 h-4"></i> </button>
-                                <button data-carousel="new-products" data-target="next" class="slick-navigator button px-2 border text-white relative flex items-center text-gray-700"> <i data-feather="chevron-right" class="w-4 h-4"></i> </button>
-                            </div>
-                            <div class="slick-carousel py-5" id="new-products">
-                                <div class="px-5">
-                                    <div class="flex flex-col lg:flex-row items-center pb-5">
-                                        <div class="flex flex-col sm:flex-row items-center pr-5 lg:border-r border-gray-200">
-                                            <div class="sm:mr-5">
-                                                <div class="w-20 h-20 image-fit">
-                                                    <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="dist/images/preview-4.jpg"/>
-                                                </div>
-                                            </div>
-                                            <div class="mr-auto text-center sm:text-left mt-3 sm:mt-0">
-                                                <a href="" class="font-medium text-lg">Samsung Galaxy S20 Ultra</a> 
-                                                <div class="text-gray-600 mt-1 sm:mt-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500</div>
-                                            </div>
-                                        </div>
-                                        <div class="w-full lg:w-auto mt-6 lg:mt-0 pt-4 lg:pt-0 flex-1 flex items-center justify-center px-5 border-t lg:border-t-0 border-gray-200">
-                                            <div class="text-center rounded-md w-20 py-3">
-                                                <div class="font-semibold text-theme-1 text-lg">123</div>
-                                                <div class="text-gray-600">Orders</div>
-                                            </div>
-                                            <div class="text-center rounded-md w-20 py-3">
-                                                <div class="font-semibold text-theme-1 text-lg">60k</div>
-                                                <div class="text-gray-600">Purchases</div>
-                                            </div>
-                                            <div class="text-center rounded-md w-20 py-3">
-                                                <div class="font-semibold text-theme-1 text-lg">123</div>
-                                                <div class="text-gray-600">Reviews</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-center border-t border-gray-200 pt-5">
-                                        <div class="w-full sm:w-auto flex justify-center sm:justify-start items-center border-b sm:border-b-0 border-gray-200 pb-5 sm:pb-0">
-                                            <div class="px-3 py-2 bg-theme-14 text-theme-10 rounded font-medium mr-3">18 August 2021</div>
-                                            <div class="text-gray-600">Date of Release</div>
-                                        </div>
-                                        <div class="flex sm:ml-auto mt-5 sm:mt-0">
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-auto">Preview</button>
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-2">Details</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="px-5">
-                                    <div class="flex flex-col lg:flex-row items-center pb-5">
-                                        <div class="flex flex-col sm:flex-row items-center pr-5 lg:border-r border-gray-200">
-                                            <div class="sm:mr-5">
-                                                <div class="w-20 h-20 image-fit">
-                                                    <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="dist/images/preview-14.jpg"/>
-                                                </div>
-                                            </div>
-                                            <div class="mr-auto text-center sm:text-left mt-3 sm:mt-0">
-                                                <a href="" class="font-medium text-lg">Apple MacBook Pro 13</a> 
-                                                <div class="text-gray-600 mt-1 sm:mt-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500</div>
-                                            </div>
-                                        </div>
-                                        <div class="w-full lg:w-auto mt-6 lg:mt-0 pt-4 lg:pt-0 flex-1 flex items-center justify-center px-5 border-t lg:border-t-0 border-gray-200">
-                                            <div class="text-center rounded-md w-20 py-3">
-                                                <div class="font-semibold text-theme-1 text-lg">45</div>
-                                                <div class="text-gray-600">Orders</div>
-                                            </div>
-                                            <div class="text-center rounded-md w-20 py-3">
-                                                <div class="font-semibold text-theme-1 text-lg">193k</div>
-                                                <div class="text-gray-600">Purchases</div>
-                                            </div>
-                                            <div class="text-center rounded-md w-20 py-3">
-                                                <div class="font-semibold text-theme-1 text-lg">45</div>
-                                                <div class="text-gray-600">Reviews</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-center border-t border-gray-200 pt-5">
-                                        <div class="w-full sm:w-auto flex justify-center sm:justify-start items-center border-b sm:border-b-0 border-gray-200 pb-5 sm:pb-0">
-                                            <div class="px-3 py-2 bg-theme-14 text-theme-10 rounded font-medium mr-3">1 June 2020</div>
-                                            <div class="text-gray-600">Date of Release</div>
-                                        </div>
-                                        <div class="flex sm:ml-auto mt-5 sm:mt-0">
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-auto">Preview</button>
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-2">Details</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="px-5">
-                                    <div class="flex flex-col lg:flex-row items-center pb-5">
-                                        <div class="flex flex-col sm:flex-row items-center pr-5 lg:border-r border-gray-200">
-                                            <div class="sm:mr-5">
-                                                <div class="w-20 h-20 image-fit">
-                                                    <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="dist/images/preview-15.jpg"/>
-                                                </div>
-                                            </div>
-                                            <div class="mr-auto text-center sm:text-left mt-3 sm:mt-0">
-                                                <a href="" class="font-medium text-lg">Nike Tanjun</a> 
-                                                <div class="text-gray-600 mt-1 sm:mt-0">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 20</div>
-                                            </div>
-                                        </div>
-                                        <div class="w-full lg:w-auto mt-6 lg:mt-0 pt-4 lg:pt-0 flex-1 flex items-center justify-center px-5 border-t lg:border-t-0 border-gray-200">
-                                            <div class="text-center rounded-md w-20 py-3">
-                                                <div class="font-semibold text-theme-1 text-lg">32</div>
-                                                <div class="text-gray-600">Orders</div>
-                                            </div>
-                                            <div class="text-center rounded-md w-20 py-3">
-                                                <div class="font-semibold text-theme-1 text-lg">22k</div>
-                                                <div class="text-gray-600">Purchases</div>
-                                            </div>
-                                            <div class="text-center rounded-md w-20 py-3">
-                                                <div class="font-semibold text-theme-1 text-lg">32</div>
-                                                <div class="text-gray-600">Reviews</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-center border-t border-gray-200 pt-5">
-                                        <div class="w-full sm:w-auto flex justify-center sm:justify-start items-center border-b sm:border-b-0 border-gray-200 pb-5 sm:pb-0">
-                                            <div class="px-3 py-2 bg-theme-14 text-theme-10 rounded font-medium mr-3">17 February 2021</div>
-                                            <div class="text-gray-600">Date of Release</div>
-                                        </div>
-                                        <div class="flex sm:ml-auto mt-5 sm:mt-0">
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-auto">Preview</button>
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-2">Details</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="px-5">
-                                    <div class="flex flex-col lg:flex-row items-center pb-5">
-                                        <div class="flex flex-col sm:flex-row items-center pr-5 lg:border-r border-gray-200">
-                                            <div class="sm:mr-5">
-                                                <div class="w-20 h-20 image-fit">
-                                                    <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="dist/images/preview-4.jpg"/>
-                                                </div>
-                                            </div>
-                                            <div class="mr-auto text-center sm:text-left mt-3 sm:mt-0">
-                                                <a href="" class="font-medium text-lg">Sony Master Series A9G</a> 
-                                                <div class="text-gray-600 mt-1 sm:mt-0">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 20</div>
-                                            </div>
-                                        </div>
-                                        <div class="w-full lg:w-auto mt-6 lg:mt-0 pt-4 lg:pt-0 flex-1 flex items-center justify-center px-5 border-t lg:border-t-0 border-gray-200">
-                                            <div class="text-center rounded-md w-20 py-3">
-                                                <div class="font-semibold text-theme-1 text-lg">81</div>
-                                                <div class="text-gray-600">Orders</div>
-                                            </div>
-                                            <div class="text-center rounded-md w-20 py-3">
-                                                <div class="font-semibold text-theme-1 text-lg">75k</div>
-                                                <div class="text-gray-600">Purchases</div>
-                                            </div>
-                                            <div class="text-center rounded-md w-20 py-3">
-                                                <div class="font-semibold text-theme-1 text-lg">81</div>
-                                                <div class="text-gray-600">Reviews</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-center border-t border-gray-200 pt-5">
-                                        <div class="w-full sm:w-auto flex justify-center sm:justify-start items-center border-b sm:border-b-0 border-gray-200 pb-5 sm:pb-0">
-                                            <div class="px-3 py-2 bg-theme-14 text-theme-10 rounded font-medium mr-3">18 October 2021</div>
-                                            <div class="text-gray-600">Date of Release</div>
-                                        </div>
-                                        <div class="flex sm:ml-auto mt-5 sm:mt-0">
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-auto">Preview</button>
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-2">Details</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="px-5">
-                                    <div class="flex flex-col lg:flex-row items-center pb-5">
-                                        <div class="flex flex-col sm:flex-row items-center pr-5 lg:border-r border-gray-200">
-                                            <div class="sm:mr-5">
-                                                <div class="w-20 h-20 image-fit">
-                                                    <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="dist/images/preview-9.jpg"/>
-                                                </div>
-                                            </div>
-                                            <div class="mr-auto text-center sm:text-left mt-3 sm:mt-0">
-                                                <a href="" class="font-medium text-lg">Samsung Q90 QLED TV</a> 
-                                                <div class="text-gray-600 mt-1 sm:mt-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500</div>
-                                            </div>
-                                        </div>
-                                        <div class="w-full lg:w-auto mt-6 lg:mt-0 pt-4 lg:pt-0 flex-1 flex items-center justify-center px-5 border-t lg:border-t-0 border-gray-200">
-                                            <div class="text-center rounded-md w-20 py-3">
-                                                <div class="font-semibold text-theme-1 text-lg">99</div>
-                                                <div class="text-gray-600">Orders</div>
-                                            </div>
-                                            <div class="text-center rounded-md w-20 py-3">
-                                                <div class="font-semibold text-theme-1 text-lg">50k</div>
-                                                <div class="text-gray-600">Purchases</div>
-                                            </div>
-                                            <div class="text-center rounded-md w-20 py-3">
-                                                <div class="font-semibold text-theme-1 text-lg">99</div>
-                                                <div class="text-gray-600">Reviews</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-center border-t border-gray-200 pt-5">
-                                        <div class="w-full sm:w-auto flex justify-center sm:justify-start items-center border-b sm:border-b-0 border-gray-200 pb-5 sm:pb-0">
-                                            <div class="px-3 py-2 bg-theme-14 text-theme-10 rounded font-medium mr-3">26 April 2022</div>
-                                            <div class="text-gray-600">Date of Release</div>
-                                        </div>
-                                        <div class="flex sm:ml-auto mt-5 sm:mt-0">
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-auto">Preview</button>
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-2">Details</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/*<!-- END: New Products -->*/}
-                        {/*<!-- BEGIN: New Authors -->*/}
-                        <div class="intro-y box col-span-12">
-                            <div class="flex items-center px-5 py-3 border-b border-gray-200">
-                                <h2 class="font-medium text-base mr-auto">
-                                    New Authors
-                                </h2>
-                                <button data-carousel="new-authors" data-target="prev" class="slick-navigator button px-2 border text-white relative flex items-center text-gray-700 mr-2"> <i data-feather="chevron-left" class="w-4 h-4"></i> </button>
-                                <button data-carousel="new-authors" data-target="next" class="slick-navigator button px-2 border text-white relative flex items-center text-gray-700"> <i data-feather="chevron-right" class="w-4 h-4"></i> </button>
-                            </div>
-                            <div class="slick-carousel py-5" id="new-authors">
-                                <div class="px-5">
-                                    <div class="flex flex-col lg:flex-row items-center pb-5">
-                                        <div class="flex-1 flex flex-col sm:flex-row items-center pr-5 lg:border-r border-gray-200">
-                                            <div class="sm:mr-5">
-                                                <div class="w-20 h-20 image-fit">
-                                                    <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="dist/images/profile-11.jpg"/>
-                                                </div>
-                                            </div>
-                                            <div class="mr-auto text-center sm:text-left mt-3 sm:mt-0">
-                                                <a href="" class="font-medium text-lg">Robert De Niro</a> 
-                                                <div class="text-gray-600 mt-1 sm:mt-0">Software Engineer</div>
-                                            </div>
-                                        </div>
-                                        <div class="w-full lg:w-auto mt-6 lg:mt-0 pt-4 lg:pt-0 flex-1 flex flex-col justify-center items-center lg:items-start px-5 border-t lg:border-t-0 border-gray-200">
-                                            <div class="flex items-center">
-                                                <a href="" class="w-8 h-8 rounded-full flex items-center justify-center border mr-2 text-gray-500"> <i class="w-3 h-3 fill-current" data-feather="facebook"></i> </a>
-                                                robertdeniro@left4code.com 
-                                            </div>
-                                            <div class="flex items-center mt-2">
-                                                <a href="" class="w-8 h-8 rounded-full flex items-center justify-center border mr-2 text-gray-500"> <i class="w-3 h-3 fill-current" data-feather="twitter"></i> </a>
-                                                Robert De Niro 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-center border-t border-gray-200 pt-5">
-                                        <div class="w-full sm:w-auto flex justify-center sm:justify-start items-center border-b sm:border-b-0 border-gray-200 pb-5 sm:pb-0">
-                                            <div class="px-3 py-2 bg-theme-14 text-theme-10 rounded font-medium mr-3">18 August 2021</div>
-                                            <div class="text-gray-600">Joined Date</div>
-                                        </div>
-                                        <div class="flex sm:ml-auto mt-5 sm:mt-0">
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-auto">Message</button>
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-2">Profile</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="px-5">
-                                    <div class="flex flex-col lg:flex-row items-center pb-5">
-                                        <div class="flex-1 flex flex-col sm:flex-row items-center pr-5 lg:border-r border-gray-200">
-                                            <div class="sm:mr-5">
-                                                <div class="w-20 h-20 image-fit">
-                                                    <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="dist/images/profile-9.jpg"/>
-                                                </div>
-                                            </div>
-                                            <div class="mr-auto text-center sm:text-left mt-3 sm:mt-0">
-                                                <a href="" class="font-medium text-lg">Al Pacino</a> 
-                                                <div class="text-gray-600 mt-1 sm:mt-0">Software Engineer</div>
-                                            </div>
-                                        </div>
-                                        <div class="w-full lg:w-auto mt-6 lg:mt-0 pt-4 lg:pt-0 flex-1 flex flex-col justify-center items-center lg:items-start px-5 border-t lg:border-t-0 border-gray-200">
-                                            <div class="flex items-center">
-                                                <a href="" class="w-8 h-8 rounded-full flex items-center justify-center border mr-2 text-gray-500"> <i class="w-3 h-3 fill-current" data-feather="facebook"></i> </a>
-                                                alpacino@left4code.com 
-                                            </div>
-                                            <div class="flex items-center mt-2">
-                                                <a href="" class="w-8 h-8 rounded-full flex items-center justify-center border mr-2 text-gray-500"> <i class="w-3 h-3 fill-current" data-feather="twitter"></i> </a>
-                                                Al Pacino 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-center border-t border-gray-200 pt-5">
-                                        <div class="w-full sm:w-auto flex justify-center sm:justify-start items-center border-b sm:border-b-0 border-gray-200 pb-5 sm:pb-0">
-                                            <div class="px-3 py-2 bg-theme-14 text-theme-10 rounded font-medium mr-3">1 June 2020</div>
-                                            <div class="text-gray-600">Joined Date</div>
-                                        </div>
-                                        <div class="flex sm:ml-auto mt-5 sm:mt-0">
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-auto">Message</button>
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-2">Profile</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="px-5">
-                                    <div class="flex flex-col lg:flex-row items-center pb-5">
-                                        <div class="flex-1 flex flex-col sm:flex-row items-center pr-5 lg:border-r border-gray-200">
-                                            <div class="sm:mr-5">
-                                                <div class="w-20 h-20 image-fit">
-                                                    <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="dist/images/profile-12.jpg"/>
-                                                </div>
-                                            </div>
-                                            <div class="mr-auto text-center sm:text-left mt-3 sm:mt-0">
-                                                <a href="" class="font-medium text-lg">Robert De Niro</a> 
-                                                <div class="text-gray-600 mt-1 sm:mt-0">Backend Engineer</div>
-                                            </div>
-                                        </div>
-                                        <div class="w-full lg:w-auto mt-6 lg:mt-0 pt-4 lg:pt-0 flex-1 flex flex-col justify-center items-center lg:items-start px-5 border-t lg:border-t-0 border-gray-200">
-                                            <div class="flex items-center">
-                                                <a href="" class="w-8 h-8 rounded-full flex items-center justify-center border mr-2 text-gray-500"> <i class="w-3 h-3 fill-current" data-feather="facebook"></i> </a>
-                                                robertdeniro@left4code.com 
-                                            </div>
-                                            <div class="flex items-center mt-2">
-                                                <a href="" class="w-8 h-8 rounded-full flex items-center justify-center border mr-2 text-gray-500"> <i class="w-3 h-3 fill-current" data-feather="twitter"></i> </a>
-                                                Robert De Niro 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-center border-t border-gray-200 pt-5">
-                                        <div class="w-full sm:w-auto flex justify-center sm:justify-start items-center border-b sm:border-b-0 border-gray-200 pb-5 sm:pb-0">
-                                            <div class="px-3 py-2 bg-theme-14 text-theme-10 rounded font-medium mr-3">17 February 2021</div>
-                                            <div class="text-gray-600">Joined Date</div>
-                                        </div>
-                                        <div class="flex sm:ml-auto mt-5 sm:mt-0">
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-auto">Message</button>
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-2">Profile</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="px-5">
-                                    <div class="flex flex-col lg:flex-row items-center pb-5">
-                                        <div class="flex-1 flex flex-col sm:flex-row items-center pr-5 lg:border-r border-gray-200">
-                                            <div class="sm:mr-5">
-                                                <div class="w-20 h-20 image-fit">
-                                                    <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="dist/images/profile-13.jpg"/>
-                                                </div>
-                                            </div>
-                                            <div class="mr-auto text-center sm:text-left mt-3 sm:mt-0">
-                                                <a href="" class="font-medium text-lg">Brad Pitt</a> 
-                                                <div class="text-gray-600 mt-1 sm:mt-0">Software Engineer</div>
-                                            </div>
-                                        </div>
-                                        <div class="w-full lg:w-auto mt-6 lg:mt-0 pt-4 lg:pt-0 flex-1 flex flex-col justify-center items-center lg:items-start px-5 border-t lg:border-t-0 border-gray-200">
-                                            <div class="flex items-center">
-                                                <a href="" class="w-8 h-8 rounded-full flex items-center justify-center border mr-2 text-gray-500"> <i class="w-3 h-3 fill-current" data-feather="facebook"></i> </a>
-                                                bradpitt@left4code.com 
-                                            </div>
-                                            <div class="flex items-center mt-2">
-                                                <a href="" class="w-8 h-8 rounded-full flex items-center justify-center border mr-2 text-gray-500"> <i class="w-3 h-3 fill-current" data-feather="twitter"></i> </a>
-                                                Brad Pitt 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-center border-t border-gray-200 pt-5">
-                                        <div class="w-full sm:w-auto flex justify-center sm:justify-start items-center border-b sm:border-b-0 border-gray-200 pb-5 sm:pb-0">
-                                            <div class="px-3 py-2 bg-theme-14 text-theme-10 rounded font-medium mr-3">18 October 2021</div>
-                                            <div class="text-gray-600">Joined Date</div>
-                                        </div>
-                                        <div class="flex sm:ml-auto mt-5 sm:mt-0">
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-auto">Message</button>
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-2">Profile</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="px-5">
-                                    <div class="flex flex-col lg:flex-row items-center pb-5">
-                                        <div class="flex-1 flex flex-col sm:flex-row items-center pr-5 lg:border-r border-gray-200">
-                                            <div class="sm:mr-5">
-                                                <div class="w-20 h-20 image-fit">
-                                                    <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="dist/images/profile-15.jpg"/>
-                                                </div>
-                                            </div>
-                                            <div class="mr-auto text-center sm:text-left mt-3 sm:mt-0">
-                                                <a href="" class="font-medium text-lg">Al Pacino</a> 
-                                                <div class="text-gray-600 mt-1 sm:mt-0">Software Engineer</div>
-                                            </div>
-                                        </div>
-                                        <div class="w-full lg:w-auto mt-6 lg:mt-0 pt-4 lg:pt-0 flex-1 flex flex-col justify-center items-center lg:items-start px-5 border-t lg:border-t-0 border-gray-200">
-                                            <div class="flex items-center">
-                                                <a href="" class="w-8 h-8 rounded-full flex items-center justify-center border mr-2 text-gray-500"> <i class="w-3 h-3 fill-current" data-feather="facebook"></i> </a>
-                                                alpacino@left4code.com 
-                                            </div>
-                                            <div class="flex items-center mt-2">
-                                                <a href="" class="w-8 h-8 rounded-full flex items-center justify-center border mr-2 text-gray-500"> <i class="w-3 h-3 fill-current" data-feather="twitter"></i> </a>
-                                                Al Pacino 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-center border-t border-gray-200 pt-5">
-                                        <div class="w-full sm:w-auto flex justify-center sm:justify-start items-center border-b sm:border-b-0 border-gray-200 pb-5 sm:pb-0">
-                                            <div class="px-3 py-2 bg-theme-14 text-theme-10 rounded font-medium mr-3">26 April 2022</div>
-                                            <div class="text-gray-600">Joined Date</div>
-                                        </div>
-                                        <div class="flex sm:ml-auto mt-5 sm:mt-0">
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-auto">Message</button>
-                                            <button class="button w-20 justify-center block bg-gray-200 text-gray-600 ml-2">Profile</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/*<!-- END: New Authors -->*/}
+            {/*<!-- END: Search -->*/}
+            {/*<!-- BEGIN: Notifications -->*/}
+            <div className="intro-x dropdown relative mr-auto sm:mr-6">
+              <div className="dropdown-toggle notification notification--bullet cursor-pointer">
+                {' '}
+                <Icon.Bell className="notification__icon" />{' '}
+              </div>
+              <div className="notification-content dropdown-box mt-8 absolute top-0 left-0 sm:left-auto sm:right-0 z-20 -ml-10 sm:ml-0">
+                <div className="notification-content__box dropdown-box__content box">
+                  <div className="notification-content__title">
+                    Notifications
+                  </div>
+                  <div className="cursor-pointer relative flex items-center ">
+                    <div className="w-12 h-12 flex-none image-fit mr-1">
+                      <img
+                        alt="Midone Tailwind HTML Admin Template"
+                        className="rounded-full"
+                        src={profile4}
+                      />
+                      <div className="w-3 h-3 bg-theme-9 absolute right-0 bottom-0 rounded-full border-2 border-white"></div>
                     </div>
+                    <div className="ml-2 overflow-hidden">
+                      <div className="flex items-center">
+                        <a
+                          href="javascript:;"
+                          className="font-medium truncate mr-5"
+                        >
+                          Angelina Jolie
+                        </a>
+                        <div className="text-xs text-gray-500 ml-auto whitespace-no-wrap">
+                          01:10 PM
+                        </div>
+                      </div>
+                      <div className="w-full truncate text-gray-600">
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the
+                        industry&#039;s standard dummy text ever since the 1500
+                      </div>
+                    </div>
+                  </div>
+                  <div className="cursor-pointer relative flex items-center mt-5">
+                    <div className="w-12 h-12 flex-none image-fit mr-1">
+                      <img
+                        alt="Midone Tailwind HTML Admin Template"
+                        className="rounded-full"
+                        src={profile12}
+                      />
+                      <div className="w-3 h-3 bg-theme-9 absolute right-0 bottom-0 rounded-full border-2 border-white"></div>
+                    </div>
+                    <div className="ml-2 overflow-hidden">
+                      <div className="flex items-center">
+                        <a
+                          href="javascript:;"
+                          className="font-medium truncate mr-5"
+                        >
+                          Johnny Depp
+                        </a>
+                        <div className="text-xs text-gray-500 ml-auto whitespace-no-wrap">
+                          05:09 AM
+                        </div>
+                      </div>
+                      <div className="w-full truncate text-gray-600">
+                        Contrary to popular belief, Lorem Ipsum is not simply
+                        random text. It has roots in a piece of classical Latin
+                        literature from 45 BC, making it over 20
+                      </div>
+                    </div>
+                  </div>
+                  <div className="cursor-pointer relative flex items-center mt-5">
+                    <div className="w-12 h-12 flex-none image-fit mr-1">
+                      <img
+                        alt="Midone Tailwind HTML Admin Template"
+                        className="rounded-full"
+                        src={profile12}
+                      />
+                      <div className="w-3 h-3 bg-theme-9 absolute right-0 bottom-0 rounded-full border-2 border-white"></div>
+                    </div>
+                    <div className="ml-2 overflow-hidden">
+                      <div className="flex items-center">
+                        <a
+                          href="javascript:;"
+                          className="font-medium truncate mr-5"
+                        >
+                          Johnny Depp
+                        </a>
+                        <div className="text-xs text-gray-500 ml-auto whitespace-no-wrap">
+                          01:10 PM
+                        </div>
+                      </div>
+                      <div className="w-full truncate text-gray-600">
+                        There are many variations of passages of Lorem Ipsum
+                        available, but the majority have suffered alteration in
+                        some form, by injected humour, or randomi
+                      </div>
+                    </div>
+                  </div>
+                  <div className="cursor-pointer relative flex items-center mt-5">
+                    <div className="w-12 h-12 flex-none image-fit mr-1">
+                      <img
+                        alt="Midone Tailwind HTML Admin Template"
+                        className="rounded-full"
+                        src={profile3}
+                      />
+                      <div className="w-3 h-3 bg-theme-9 absolute right-0 bottom-0 rounded-full border-2 border-white"></div>
+                    </div>
+                    <div className="ml-2 overflow-hidden">
+                      <div className="flex items-center">
+                        <a
+                          href="javascript:;"
+                          className="font-medium truncate mr-5"
+                        >
+                          Johnny Depp
+                        </a>
+                        <div className="text-xs text-gray-500 ml-auto whitespace-no-wrap">
+                          06:05 AM
+                        </div>
+                      </div>
+                      <div className="w-full truncate text-gray-600">
+                        There are many variations of passages of Lorem Ipsum
+                        available, but the majority have suffered alteration in
+                        some form, by injected humour, or randomi
+                      </div>
+                    </div>
+                  </div>
+                  <div className="cursor-pointer relative flex items-center mt-5">
+                    <div className="w-12 h-12 flex-none image-fit mr-1">
+                      <img
+                        alt="Midone Tailwind HTML Admin Template"
+                        className="rounded-full"
+                        src={profile7}
+                      />
+                      <div className="w-3 h-3 bg-theme-9 absolute right-0 bottom-0 rounded-full border-2 border-white"></div>
+                    </div>
+                    <div className="ml-2 overflow-hidden">
+                      <div className="flex items-center">
+                        <a
+                          href="javascript:;"
+                          className="font-medium truncate mr-5"
+                        >
+                          Kate Winslet
+                        </a>
+                        <div className="text-xs text-gray-500 ml-auto whitespace-no-wrap">
+                          01:10 PM
+                        </div>
+                      </div>
+                      <div className="w-full truncate text-gray-600">
+                        It is a long established fact that a reader will be
+                        distracted by the readable content of a page when
+                        looking at its layout. The point of using Lorem{' '}
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+            {/*<!-- END: Notifications -->*/}
+            {/*<!-- BEGIN: Account Menu -->*/}
+            <div className="intro-x dropdown w-8 h-8 relative">
+              <div className="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in">
+                <img alt="Midone Tailwind HTML Admin Template" src={profile3} />
+              </div>
+              <div className="dropdown-box mt-10 absolute w-56 top-0 right-0 z-20">
+                <div className="dropdown-box__content box bg-theme-38 text-white">
+                  <div className="p-4 border-b border-theme-40">
+                    <div className="font-medium">Angelina Jolie</div>
+                    <div className="text-xs text-theme-41">DevOps Engineer</div>
+                  </div>
+                  <div className="p-2">
+                    <a
+                      href=""
+                      className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
+                    >
+                      {' '}
+                      <Icon.User className="w-4 h-4 mr-2" /> Profile{' '}
+                    </a>
+                    <a
+                      href=""
+                      className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
+                    >
+                      {' '}
+                      <Icon.Edit className="w-4 h-4 mr-2" /> Add Account{' '}
+                    </a>
+                    <a
+                      href=""
+                      className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
+                    >
+                      {' '}
+                      <Icon.Lock className="w-4 h-4 mr-2" /> Reset Password{' '}
+                    </a>
+                    <a
+                      href=""
+                      className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
+                    >
+                      {' '}
+                      <Icon.HelpCircle className="w-4 h-4 mr-2" /> Help{' '}
+                    </a>
+                  </div>
+                  <div className="p-2 border-t border-theme-40">
+                    <a
+                      href=""
+                      className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
+                    >
+                      {' '}
+                      <Icon.ToggleRight className="w-4 h-4 mr-2" /> Logout{' '}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/*<!-- END: Account Menu -->*/}
+          </div>
+          {/*<!-- END: Top Bar -->*/}
+          <div className="intro-y flex items-center mt-8">
+            <h2 className="text-lg font-medium mr-auto">Profile Layout</h2>
+          </div>
+          {/*<!-- BEGIN: Profile Info -->*/}
+          <div className="intro-y box px-5 pt-5 mt-5">
+            <div className="flex flex-col lg:flex-row border-b border-gray-200 pb-5 -mx-5">
+              <div className="flex flex-1 px-5 items-center justify-center lg:justify-start">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative">
+                  <img
+                    alt="Midone Tailwind HTML Admin Template"
+                    className="rounded-full"
+                    src={profile14}
+                  />
+                </div>
+                <div className="ml-5">
+                  <div className="w-24 sm:w-40 truncate sm:whitespace-normal font-medium text-lg">
+                    Kevin Spacey
+                  </div>
+                  <div className="text-gray-600">Frontend Engineer</div>
+                </div>
+              </div>
+              <div className="flex mt-6 lg:mt-0 items-center lg:items-start flex-1 flex-col justify-center text-gray-600 px-5 border-l border-r border-gray-200 border-t lg:border-t-0 pt-5 lg:pt-0">
+                <div className="truncate sm:whitespace-normal flex items-center">
+                  {' '}
+                  <Icon.Mail className="w-4 h-4 mr-2" />{' '}
+                  kevinspacey@left4code.com{' '}
+                </div>
+                <div className="truncate sm:whitespace-normal flex items-center mt-3">
+                  {' '}
+                  <Icon.Instagram className="w-4 h-4 mr-2" /> Instagram Kevin
+                  Spacey{' '}
+                </div>
+                <div className="truncate sm:whitespace-normal flex items-center mt-3">
+                  {' '}
+                  <Icon.Twitter className="w-4 h-4 mr-2" /> Twitter Kevin Spacey{' '}
+                </div>
+              </div>
+              <div className="mt-6 lg:mt-0 flex-1 flex items-center justify-center px-5 border-t lg:border-0 border-gray-200 pt-5 lg:pt-0">
+                <div className="text-center rounded-md w-20 py-3">
+                  <div className="font-semibold text-theme-1 text-lg">201</div>
+                  <div className="text-gray-600">Orders</div>
+                </div>
+                <div className="text-center rounded-md w-20 py-3">
+                  <div className="font-semibold text-theme-1 text-lg">1k</div>
+                  <div className="text-gray-600">Purchases</div>
+                </div>
+                <div className="text-center rounded-md w-20 py-3">
+                  <div className="font-semibold text-theme-1 text-lg">492</div>
+                  <div className="text-gray-600">Reviews</div>
+                </div>
+              </div>
+            </div>
+            <div className="nav-tabs flex flex-col sm:flex-row justify-center lg:justify-start">
+              <a
+                data-toggle="tab"
+                data-target="#profile"
+                href="javascript:;"
+                className="py-4 sm:mr-8 flex items-center active"
+              >
+                {' '}
+                <i className="w-4 h-4 mr-2" data-feather="user"></i> Update
+                Profile{' '}
+              </a>
+              <a
+                data-toggle="tab"
+                data-target="#change-password"
+                href="javascript:;"
+                className="py-4 sm:mr-8 flex items-center"
+              >
+                {' '}
+                <i className="w-4 h-4 mr-2" data-feather="lock"></i> Change
+                Password{' '}
+              </a>
+              <a
+                data-toggle="tab"
+                data-target="#settings"
+                href="javascript:;"
+                className="py-4 sm:mr-8 flex items-center"
+              >
+                {' '}
+                <i className="w-4 h-4 mr-2" data-feather="settings"></i>{' '}
+                Settings{' '}
+              </a>
+            </div>
+          </div>
+          {/*<!-- END: Profile Info -->*/}
+          <div className="tab-content mt-5">
+            <div className="tab-content__pane active" id="profile">
+              <div className="grid grid-cols-12 gap-6">
+                {/*<!-- BEGIN: Latest Uploads -->*/}
+
+                {/*<!-- END: Latest Uploads -->*/}
+                {/*<!-- BEGIN: Work In Progress -->*/}
+
+                {/*<!-- END: Daily Sales -->*/}
+                {/*<!-- BEGIN: Latest Tasks -->*/}
+              </div>
+            </div>
+          </div>
+          <ProfileOptions />
         </div>
         {/*<!-- END: Content -->*/}
-    </body>
+      </div>
+    </div>
   )
 }
 

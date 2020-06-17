@@ -5,7 +5,7 @@ module.exports = {
     position: ['responsive', 'hover'],
     padding: ['responsive', 'last'],
     margin: ['responsive', 'last'],
-    borderWidth: ['responsive', 'last']
+    borderWidth: ['responsive', 'last'],
   },
   theme: {
     extend: {
@@ -50,27 +50,27 @@ module.exports = {
           37: '#c7d2ff',
           38: '#15329A',
           40: '#203FAD',
-          41: '#BBC8FD'
-        }
+          41: '#BBC8FD',
+        },
       },
       fontFamily: {
-        'roboto': ['Roboto']
+        roboto: ['Roboto'],
       },
       container: {
-        center: true
+        center: true,
       },
       maxWidth: {
         '1/4': '25%',
         '1/2': '50%',
-        '3/4': '75%'
+        '3/4': '75%',
       },
       screens: {
-        'sm': '640px',
-        'md': '768px',
-        'lg': '1024px',
-        'xl': '1280px',
-        'xxl': '1600px'
-      }
-    }
-  }
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        xxl: '1600px',
+      },
+    },
+  },
 }

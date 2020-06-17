@@ -1,9 +1,9 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
 
-import { store } from './helpers/store';
-import App from './App';
+import { store } from './helpers/store'
+import App from './App'
 
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
@@ -16,7 +16,7 @@ configureFakeBackend();
 
 render(
   <Provider store={store}>
-    <App/>
+    <App />
   </Provider>,
   document.getElementById('root')
-);
+)

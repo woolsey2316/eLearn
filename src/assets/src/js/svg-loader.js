@@ -1,12 +1,17 @@
-(function($) { 
-    "use strict";
-        
-    $(`[data-loading-icon]`).each(function() {
-        let color = $(this).data('color') !== undefined ? $(this).data('color') : $('body').css('color')
-        let classAttr = $(this).attr('class') !== undefined ? $(this).attr('class') : ''
-        let icons = [{
-            name: 'audio',
-            svg: `
+;(function ($) {
+  'use strict'
+
+  $(`[data-loading-icon]`).each(function () {
+    let color =
+      $(this).data('color') !== undefined
+        ? $(this).data('color')
+        : $('body').css('color')
+    let classAttr =
+      $(this).attr('class') !== undefined ? $(this).attr('class') : ''
+    let icons = [
+      {
+        name: 'audio',
+        svg: `
                 <svg width="15" viewBox="0 0 55 80" xmlns="http://www.w3.org/2000/svg" fill="${color}" class="${classAttr}">
                     <g transform="matrix(1 0 0 -1 0 80)">
                         <rect width="10" height="20" rx="3">
@@ -35,10 +40,11 @@
                         </rect>
                     </g>
                 </svg>
-            `
-        }, {
-            name: 'ball-triangle',
-            svg: `
+            `,
+      },
+      {
+        name: 'ball-triangle',
+        svg: `
                 <svg width="20" viewBox="0 0 57 57" xmlns="http://www.w3.org/2000/svg" class="${classAttr}">
                     <g fill="none" fill-rule="evenodd">
                         <g transform="translate(1 1)">
@@ -84,10 +90,11 @@
                         </g>
                     </g>
                 </svg>
-            `
-        }, {
-            name: 'bars',
-            svg: `
+            `,
+      },
+      {
+        name: 'bars',
+        svg: `
                 <svg width="20" viewBox="0 0 135 140" xmlns="http://www.w3.org/2000/svg" fill="${color}" class="${classAttr}">
                     <rect y="10" width="15" height="120" rx="6">
                         <animate attributeName="height"
@@ -140,10 +147,11 @@
                             repeatCount="indefinite" />
                     </rect>
                 </svg>
-            `
-        }, {
-            name: 'circles',
-            svg: `
+            `,
+      },
+      {
+        name: 'circles',
+        svg: `
                 <svg width="20" viewBox="0 0 135 135" xmlns="http://www.w3.org/2000/svg" fill="${color}" class="${classAttr}">
                     <path d="M67.447 58c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10zm9.448 9.447c0 5.523 4.477 10 10 10 5.522 0 10-4.477 10-10s-4.478-10-10-10c-5.523 0-10 4.477-10 10zm-9.448 9.448c-5.523 0-10 4.477-10 10 0 5.522 4.477 10 10 10s10-4.478 10-10c0-5.523-4.477-10-10-10zM58 67.447c0-5.523-4.477-10-10-10s-10 4.477-10 10 4.477 10 10 10 10-4.477 10-10z">
                         <animateTransform
@@ -164,10 +172,11 @@
                             repeatCount="indefinite"/>
                     </path>
                 </svg>
-            `
-        }, {
-            name: 'grid',
-            svg: `
+            `,
+      },
+      {
+        name: 'grid',
+        svg: `
                 <svg width="20" viewBox="0 0 105 105" xmlns="http://www.w3.org/2000/svg" fill="${color}" class="${classAttr}">
                     <circle cx="12.5" cy="12.5" r="12.5">
                         <animate attributeName="fill-opacity"
@@ -224,10 +233,11 @@
                         repeatCount="indefinite" />
                     </circle>
                 </svg>
-            `
-        }, {
-            name: 'hearts',
-            svg: `
+            `,
+      },
+      {
+        name: 'hearts',
+        svg: `
                 <svg width="30" viewBox="0 0 140 64" xmlns="http://www.w3.org/2000/svg" fill="${color}" class="${classAttr}">
                     <path d="M30.262 57.02L7.195 40.723c-5.84-3.976-7.56-12.06-3.842-18.063 3.715-6 11.467-7.65 17.306-3.68l4.52 3.76 2.6-5.274c3.717-6.002 11.47-7.65 17.305-3.68 5.84 3.97 7.56 12.054 3.842 18.062L34.49 56.118c-.897 1.512-2.793 1.915-4.228.9z" fill-opacity=".5">
                         <animate attributeName="fill-opacity"
@@ -245,10 +255,11 @@
                     </path>
                     <path d="M67.408 57.834l-23.01-24.98c-5.864-6.15-5.864-16.108 0-22.248 5.86-6.14 15.37-6.14 21.234 0L70 16.168l4.368-5.562c5.863-6.14 15.375-6.14 21.235 0 5.863 6.14 5.863 16.098 0 22.247l-23.007 24.98c-1.43 1.556-3.757 1.556-5.188 0z" />
                 </svg>
-            `
-        }, {
-            name: 'oval',
-            svg: `
+            `,
+      },
+      {
+        name: 'oval',
+        svg: `
                 <svg width="25" viewBox="-2 -2 42 42" xmlns="http://www.w3.org/2000/svg" stroke="${color}" class="${classAttr}">
                     <g fill="none" fill-rule="evenodd">
                         <g transform="translate(1 1)" stroke-width="4">
@@ -265,10 +276,11 @@
                         </g>
                     </g>
                 </svg>
-            `
-        }, {
-            name: 'puff',
-            svg: `
+            `,
+      },
+      {
+        name: 'puff',
+        svg: `
                 <svg width="25" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="${color}" class="${classAttr}">
                     <g fill="none" fill-rule="evenodd" stroke-width="4">
                         <circle cx="22" cy="22" r="1">
@@ -305,10 +317,11 @@
                         </circle>
                     </g>
                 </svg>
-            `
-        }, {
-            name: 'rings',
-            svg: `
+            `,
+      },
+      {
+        name: 'rings',
+        svg: `
                 <svg width="30" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="${color}" class="${classAttr}">
                     <g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="3">
                         <circle cx="22" cy="22" r="6" stroke-opacity="0">
@@ -350,10 +363,11 @@
                         </circle>
                     </g>
                 </svg>
-            `
-        }, {
-            name: 'spinning-circles',
-            svg: `
+            `,
+      },
+      {
+        name: 'spinning-circles',
+        svg: `
                 <svg width="20" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg" class="${classAttr}">
                     <g fill="none" fill-rule="evenodd">
                         <g transform="translate(2 1)" stroke="${color}" stroke-width="1.5">
@@ -408,10 +422,11 @@
                         </g>
                     </g>
                 </svg>
-            `
-        }, {
-            name: 'tail-spin',
-            svg: `
+            `,
+      },
+      {
+        name: 'tail-spin',
+        svg: `
                 <svg width="20" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" class="${classAttr}">
                     <defs>
                         <linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
@@ -443,10 +458,11 @@
                         </g>
                     </g>
                 </svg>
-            `
-        }, {
-            name: 'three-dots',
-            svg: `
+            `,
+      },
+      {
+        name: 'three-dots',
+        svg: `
                 <svg width="25" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="${color}" class="${classAttr}">
                     <circle cx="15" cy="15" r="15">
                         <animate attributeName="r" from="15" to="15"
@@ -479,13 +495,14 @@
                                 repeatCount="indefinite" />
                     </circle>
                 </svg>
-            `
-        }]
+            `,
+      },
+    ]
 
-        icons.forEach(icon => {
-            if ($(this).data('loading-icon') == icon.name) {
-                $(this).replaceWith(icon.svg)
-            }
-        })
+    icons.forEach((icon) => {
+      if ($(this).data('loading-icon') == icon.name) {
+        $(this).replaceWith(icon.svg)
+      }
     })
+  })
 })($)
