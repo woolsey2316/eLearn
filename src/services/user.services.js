@@ -69,9 +69,7 @@ async function register(user) {
   const response = await fetch(
     `${process.env.REACT_APP_API_URL}/auth/sign-up`,
     requestOptions
-  ).then((response) => {
-    return response.text()
-  })
+  )
   return handleRegisterResponse(response)
 }
 
@@ -140,7 +138,6 @@ function handleResponse(response) {
       const error = (data && data.message) || response.statusText
       return Promise.reject(error)
     }
-    console.log('trying to get to /home')
     return data
   })
 }
@@ -150,10 +147,8 @@ function handleRegisterResponse(response) {
     `%cresponse from email registration request: ${response}`,
     'color: red'
   )
-  console.log('got here')
   return response.text().then((text) => {
     const data = text && JSON.parse(text)
-    console.log('got here')
 
     if (!response.ok) {
       if (response.status === 401) {
@@ -173,7 +168,6 @@ function handleRegisterResponse(response) {
       return Promise.reject(error)
     }
     window.location.reload(true)
-    console.log('trying to get to /home')
     return data
   })
 }

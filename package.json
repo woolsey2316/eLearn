@@ -22,7 +22,8 @@
     "redux-thunk": "^2.3.0",
     "select2": "^4.0.13",
     "slick-carousel": "^1.8.1",
-    "tooltipster": "^4.2.8"
+    "tooltipster": "^4.2.8",
+    "zxcvbn": "^4.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
