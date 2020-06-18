@@ -24,6 +24,8 @@ function login(email, password) {
     userService.login(email, password).then(
       (user) => {
         dispatch(success(user))
+        // API request to retrieve all user info from server, eg. profile image
+        dispatch(getCurrentUserInfo(user))
         history.push('/')
         window.location.reload()
       },
@@ -78,11 +80,40 @@ function register(user) {
   }
 }
 
+function getCurrentUserInfo(user) {
+  return dispatch => {
+    dispatch(request(user))
+
+    userService.getCurrentUserInfo(user).then(
+      (userInfo) => {
+        user = { ...user, userInfo }
+        dispatch(success())
+        history.push('/login')
+        dispatch(alertActions.success('Successfully fetched User info'))
+      },
+      (error) => {
+        dispatch(failure(error.toString()))
+        dispatch(alertActions.error(error.toString()))
+      }
+    )
+  }
+
+  function request(user) {
+    return { type: userConstants.USER_INFO_REQUEST, user }
+  }
+  function success(user) {
+    return { type: userConstants.USER_INFO_SUCCESS, user }
+  }
+  function failure(error) {
+    return { type: userConstants.USER_INFO_FAILURE, error }
+  }
+}
+
 function resetPassword(user) {
   return (dispatch) => {
     dispatch(request(user))
 
-    userService.register(user).then(
+    userService.changePassword(user).then(
       (user) => {
         dispatch(success())
         dispatch(alertActions.success('password change successful'))
@@ -95,13 +126,13 @@ function resetPassword(user) {
   }
 
   function request(user) {
-    return { type: userConstants.CHANGEPASSWORD_REQUEST, user }
+    return { type: userConstants.CHANGE_PASSWORD_REQUEST, user }
   }
   function success(user) {
-    return { type: userConstants.CHANGEPASSWORD_SUCCESS, user }
+    return { type: userConstants.CHANGE_PASSWORD_SUCCESS, user }
   }
   function failure(error) {
-    return { type: userConstants.CHANGEPASSWORD_FAILURE, error }
+    return { type: userConstants.CHANGE_PASSWORD_FAILURE, error }
   }
 }
 

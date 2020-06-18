@@ -8,7 +8,8 @@ export const userService = {
   login,
   logout,
   register,
-  getById,
+  //getById,
+  getCurrentUserInfo,
   changePassword,
   update,
   delete: _delete,
@@ -46,6 +47,7 @@ async function logout() {
   return user
 }
 
+/*
 async function getById(id) {
   const requestOptions = {
     method: 'GET',
@@ -54,6 +56,24 @@ async function getById(id) {
 
   const response = await fetch(
     `${process.env.REACT_APP_API_URL}/users/${id}`,
+    requestOptions
+  )
+  return handleResponse(response)
+}
+*/
+/* 
+  fetches all information related to the current logged in user
+  address, roles, profile image etc
+  */
+async function getCurrentUserInfo(user) {
+  const requestOptions = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(user),
+  }
+
+  const response = await fetch(
+    `${process.env.REACT_APP_API_URL}/users/current`,
     requestOptions
   )
   return handleResponse(response)

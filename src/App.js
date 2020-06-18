@@ -14,6 +14,7 @@ import { ChangePassword } from './Pages/sidemenu'
 import { Profile } from './Pages'
 import { UpdateProfile } from './Pages/profile'
 import { ExamResults } from './Pages/ExamResults'
+import { ExamPage } from './Pages/Exam'
 
 import { PrivateRoute } from './components'
 
@@ -37,6 +38,7 @@ function App() {
           component={UpdateProfile}
         />
         <PrivateRoute exact path="/Grades" component={ExamResults} />
+        <PrivateRoute exact path="/Exams" component={ExamPage} />
         <Route exact path="/Register" component={RegisterPage} />
         <Route exact path="/login" component={LoginPage} />
       </Switch>
