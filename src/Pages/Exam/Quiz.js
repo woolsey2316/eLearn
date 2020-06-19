@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Question } from './Question';
 import { AnswerOption } from './AnswerOption';
 
 function Quiz(props) {
+
   function renderAnswerOptions(key) {
     return (
       <AnswerOption
         key={key}
         answerContent={key}
-        answer={props.answer}
         questionId={props.questionId}
-        onAnswerSelected={props.onAnswerSelected}
-        setUserAnswer={props.setUserAnswer}
+        getUserAnswer={props.getUserAnswer}
+        selectedOption={props.selectedOption}
       />
     );
   }
 
   return (
-      <div className="items-center p-5 border-b border-gray-200" key={props.questionId}>
+      <div className="items-center p-5 border-b border-gray-200">
         <div className="text-base mr-auto"> 
           Question <span>{props.questionId+1}</span> of <span>{props.questionTotal}</span>
         </div>
@@ -36,7 +36,7 @@ Quiz.propTypes = {
   question: PropTypes.string.isRequired,
   questionId: PropTypes.number.isRequired,
   questionTotal: PropTypes.number.isRequired,
-  onAnswerSelected: PropTypes.func.isRequired
+  getUserAnswer: PropTypes.func.isRequired
 };
 
 export default Quiz;

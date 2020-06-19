@@ -83,6 +83,22 @@ function SideMenu() {
                 <div className="side-menu__title"> Change Password</div>
               </a>
             </li>
+            <li>
+              <a
+                href="/login"
+                className={
+                  window.location.pathname === '/profile/changepassword'
+                    ? 'side-menu side-menu--active'
+                    : 'side-menu'
+                }
+              >
+                <div className="side-menu__icon">
+                  {' '}
+                  <Icon.LogOut />{' '}
+                </div>
+                <div className="side-menu__title"> Change Password</div>
+              </a>
+            </li>
           </ul>
         </li>
         <li>
