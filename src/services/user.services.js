@@ -164,7 +164,7 @@ function handleResponse(response) {
 
 function handleRegisterResponse(response) {
   console.log(
-    `%cresponse from email registration request: ${response}`,
+    `%cresponse from email registration request: ${response.statusText}`,
     'color: red'
   )
   return response.text().then((text) => {

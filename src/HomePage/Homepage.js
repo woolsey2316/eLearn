@@ -1,12 +1,9 @@
-import React, { userEffect, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-
-import { userActions } from '../actions'
+import React from 'react'
 
 import * as Icon from 'react-feather'
 
 import { SideMenu } from '../components'
+import { Breadcrumb } from '../components'
 
 import '../assets/dist/css/app.css'
 
@@ -21,21 +18,11 @@ import profile8 from '../assets/dist/images/profile-8.jpg'
 import profile13 from '../assets/dist/images/profile-13.jpg'
 import profile1 from '../assets/dist/images/profile-1.jpg'
 import profile7 from '../assets/dist/images/profile-7.jpg'
-import preview10 from '../assets/dist/images/preview-10.jpg'
-import preview13 from '../assets/dist/images/preview-13.jpg'
-import preview9 from '../assets/dist/images/preview-9.jpg'
-import preview4 from '../assets/dist/images/preview-4.jpg'
-import preview6 from '../assets/dist/images/preview-6.jpg'
-import preview12 from '../assets/dist/images/preview-12.jpg'
-import preview14 from '../assets/dist/images/preview-14.jpg'
-import preview15 from '../assets/dist/images/preview-15.jpg'
-import preview3 from '../assets/dist/images/preview-3.jpg'
 import profile4 from '../assets/dist/images/profile-4.jpg'
-import preview8 from '../assets/dist/images/preview-8.jpg'
-import preview11 from '../assets/dist/images/preview-11.jpg'
 import profile11 from '../assets/dist/images/profile-11.jpg'
+import { ProfileOptions } from '../Pages/profile'
 
-function HomePage() {
+function HomePage(props) {
   /*
   const access_token = useSelector(state => state.authentication.user.token.access_token)
   const refresh_token = useSelector(state => state.authentication.user.token.refresh_token)
@@ -773,20 +760,11 @@ function HomePage() {
       </div>
 
       <div className="flex">
-        <SideMenu />
+        <SideMenu open={props.open} />
 
         <div className="content">
           <div className="top-bar">
-            <div className="-intro-x breadcrumb mr-auto hidden sm:flex">
-              {' '}
-              <a href="" className="">
-                Application
-              </a>{' '}
-              <Icon.ChevronRight className="breadcrumb__icon" />{' '}
-              <a href="" className="breadcrumb--active">
-                Dashboard
-              </a>{' '}
-            </div>
+            <Breadcrumb/>
 
             <div className="intro-x relative mr-3 sm:mr-6">
               <div className="search hidden sm:block">

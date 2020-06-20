@@ -2,6 +2,7 @@ import React from 'react'
 import { MobileMenu } from '../../components/MobileMenu'
 import { TopBar } from './TopBar'
 import { TopMenu } from './TopMenu'
+import { Breadcrumb } from '../../components'
 
 import { SideMenu } from '../../components'
 
@@ -36,16 +37,7 @@ function Profile() {
           {/*<!-- BEGIN: Top Bar -->*/}
           <div className="top-bar">
             {/*<!-- BEGIN: Breadcrumb -->*/}
-            <div className="-intro-x breadcrumb mr-auto hidden sm:flex">
-              {' '}
-              <a href="" className="">
-                Application
-              </a>{' '}
-              <Icon.ChevronRight className="breadcrumb__icon" />{' '}
-              <a href="" className="breadcrumb--active">
-                Dashboard
-              </a>{' '}
-            </div>
+            <Breadcrumb/>
             {/*<!-- END: Breadcrumb -->*/}
             {/*<!-- BEGIN: Search -->*/}
             <div className="intro-x relative mr-3 sm:mr-6">

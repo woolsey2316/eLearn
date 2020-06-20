@@ -1,9 +1,10 @@
 import React from 'react'
+import Modal from 'react-modal'
 import * as Icon from 'react-feather'
 
 import logo from '../assets/dist/images/logo.svg'
 
-function SideMenu() {
+function SideMenu(props) {
   return (
     <nav style={{ paddingLeft: '2.3em' }} className="side-nav">
       <a href="" className="intro-x flex items-center pl-5 pt-4">
@@ -21,7 +22,7 @@ function SideMenu() {
       <ul>
         <li>
           <a
-            href="/"
+            href="/student/"
             className={
               window.location.pathname === '/'
                 ? 'side-menu side-menu--active'
@@ -37,7 +38,7 @@ function SideMenu() {
         </li>
         <li>
           <a
-            href="/profile"
+            href="/student/profile"
             className={
               window.location.pathname.includes('/profile')
                 ? 'side-menu side-menu--active'
@@ -50,60 +51,10 @@ function SideMenu() {
             </div>
             <div className="side-menu__title"> Profile</div>
           </a>
-          <ul className="">
-            <li>
-              <a
-                href="/profile/preferences"
-                className={
-                  window.location.pathname === '/profile/preferences'
-                    ? 'side-menu side-menu--active'
-                    : 'side-menu'
-                }
-              >
-                <div className="side-menu__icon">
-                  {' '}
-                  <Icon.Sliders />{' '}
-                </div>
-                <div className="side-menu__title"> Preferences </div>
-              </a>
-            </li>
-            <li>
-              <a
-                href="/profile/changepassword"
-                className={
-                  window.location.pathname === '/profile/changepassword'
-                    ? 'side-menu side-menu--active'
-                    : 'side-menu'
-                }
-              >
-                <div className="side-menu__icon">
-                  {' '}
-                  <Icon.Activity />{' '}
-                </div>
-                <div className="side-menu__title"> Change Password</div>
-              </a>
-            </li>
-            <li>
-              <a
-                href="/login"
-                className={
-                  window.location.pathname === '/profile/changepassword'
-                    ? 'side-menu side-menu--active'
-                    : 'side-menu'
-                }
-              >
-                <div className="side-menu__icon">
-                  {' '}
-                  <Icon.LogOut />{' '}
-                </div>
-                <div className="side-menu__title"> Change Password</div>
-              </a>
-            </li>
-          </ul>
         </li>
         <li>
           <a
-            href="/grades"
+            href="/student/grades"
             className={
               window.location.pathname === '/grades'
                 ? 'side-menu side-menu--active'
@@ -119,7 +70,7 @@ function SideMenu() {
         </li>
         <li>
           <a
-            href="/enrolled_courses"
+            href="/student/exam_list"
             className={
               window.location.pathname === '/enrolled_courses'
                 ? 'side-menu side-menu--active'
@@ -130,12 +81,12 @@ function SideMenu() {
               {' '}
               <Icon.HardDrive />{' '}
             </div>
-            <div className="side-menu__title"> Enrolled Courses </div>
+            <div className="side-menu__title"> Exam List </div>
           </a>
         </li>
         <li>
           <a
-            href="/exams"
+            href="/student/exams"
             className={
               window.location.pathname === '/exams'
                 ? 'side-menu side-menu--active'
@@ -148,6 +99,23 @@ function SideMenu() {
             </div>
             <div className="side-menu__title"> Exams </div>
           </a>
+        </li>
+        <li>
+          <button
+            onClick={props.open}
+            href="/login"
+            className={
+              window.location.pathname === '/profile/changepassword'
+                ? 'side-menu side-menu--active'
+                : 'side-menu'
+            }
+          >
+            <div className="side-menu__icon">
+              {' '}
+              <Icon.LogOut />{' '}
+            </div>
+            <div className="side-menu__title"> Logout </div>
+          </button>
         </li>
       </ul>
     </nav>

@@ -8,9 +8,12 @@ export default () => {
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
+    //remember me option
+    isChecked: false,
   })
+  const [forgotPassword, setForgotPassword] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-  const { email, password } = inputs
+  const { email, password, isChecked } = inputs
   const dispatch = useDispatch()
 
   function handleChange(e) {
@@ -18,14 +21,28 @@ export default () => {
     setInputs((inputs) => ({ ...inputs, [name]: value }))
   }
 
+  function onChangeCheckbox(event) {
+    setInputs({
+      isChecked: event.target.checked
+    })
+  }
+
   function handleSubmit(e) {
     e.preventDefault()
+    console.log(`%cemail : ${email}, password: ${password}`,'color: blue,font-weight:bold')
 
     setSubmitted(true)
     if (email && password) {
-      // Dispatches a login action, if successful 'history' object puts url = '/' as
-      // most recent path and redirects current URL.
+      // Dispatches a login action, if successful redirects current URL
+      // to Home page.
       dispatch(userActions.login(email, password))
+    } else if (email && !password) {
+      dispatch(userActions.resetPassword(email, password))
+    }
+    if (isChecked && email !== "") {
+      localStorage.email = email
+      localStorage.password = password
+      localStorage.checkbox = isChecked
     }
   }
   return (
@@ -52,6 +69,7 @@ export default () => {
             {submitted && !email && (
               <div className="invalid-feedback">Email is required</div>
             )}
+            {!forgotPassword && 
             <input
               style={{ padding: '0.75em 1em' }}
               type="password"
@@ -61,30 +79,42 @@ export default () => {
               value={password}
               onChange={handleChange}
             />
+            }
             {submitted && !password && (
               <div className="invalid-feedback">Password is required</div>
             )}
           </div>
           <div className="intro-x flex text-gray-700 text-xs sm:text-sm mt-4">
             <div className="flex items-center mr-auto">
-              <input
-                type="checkbox"
-                className="input border mr-2"
-                id="remember-me"
-              />
-              <label
-                className="cursor-pointer select-none"
-                htmlFor="remember-me"
-              >
-                Remember me
-              </label>
+            {!forgotPassword && 
+              <div>
+                <input
+                  type="checkbox"
+                  className="input border mr-2"
+                  id="remember-me"
+                  onChange={onChangeCheckbox}
+                  checked={isChecked}
+                />
+                <label
+                  className="cursor-pointer select-none"
+                  htmlFor="remember-me"
+                >
+                  Remember me
+                </label>
+              </div>
+            }
             </div>
-            <a href="">Forgot Password?</a>
+            <h4 style={{cursor:"pointer"}} onClick={() => setForgotPassword(!forgotPassword)}>Forgot Password?</h4>
           </div>
           <div className="intro-x mt-5 xl:mt-8 text-center xl:text-left">
-            <button className="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3">
+            {!forgotPassword && <button className="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3">
               Login
             </button>
+            }
+            {forgotPassword && <button className="button button--lg w-full xl:w-40 text-white bg-theme-1 xl:mr-3">
+              Request Password
+            </button>
+            }
             <Link
               to="/Register"
               className="button button--lg w-full xl:w-32 text-gray-700 border border-gray-300 mt-3 xl:mt-0"
@@ -93,17 +123,6 @@ export default () => {
             </Link>
           </div>
         </form>
-        <div className="intro-x mt-10 xl:mt-24 text-gray-700 text-center xl:text-left">
-          By signin up, you agree to our
-          <br />
-          <a className="text-theme-1" href="">
-            Terms and Conditions
-          </a>{' '}
-          &{' '}
-          <a className="text-theme-1" href="">
-            Privacy Policy
-          </a>
-        </div>
       </div>
     </div>
   )

@@ -1,18 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 class AnswerOption extends React.Component {
   constructor(props) {
     super(props)
-    this.state={
+    this.state = {
       checked: false,
     }
-    
   }
-  
+
   render() {
     return (
-      <div className="flex items-center text-gray-700 mt-2"> 
+      <div className="flex items-center text-gray-700 mt-2">
         <li>
           <input
             type="checkbox"
@@ -26,7 +25,7 @@ class AnswerOption extends React.Component {
           </label>
         </li>
       </div>
-    );
+    )
   }
 }
 
@@ -34,6 +33,6 @@ AnswerOption.propTypes = {
   answerContent: PropTypes.string.isRequired,
   selectedOption: PropTypes.string.isRequired,
   getUserAnswer: PropTypes.func.isRequired,
-};
+}
 
-export { AnswerOption };
+export { AnswerOption }

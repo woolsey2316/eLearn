@@ -4,6 +4,7 @@ import * as Icon from 'react-feather'
 
 import { SideMenu } from '../../components'
 import { MobileMenu } from '../../components'
+import { Breadcrumb } from '../../components'
 
 import { CourseDropdown } from '../../components'
 
@@ -32,16 +33,7 @@ function ExamResults() {
           {/*<!-- BEGIN: Top Bar -->*/}
           <div class="top-bar">
             {/*<!-- BEGIN: Breadcrumb -->*/}
-            <div class="-intro-x breadcrumb mr-auto hidden sm:flex">
-              {' '}
-              <a href="" class="">
-                Application
-              </a>{' '}
-              <Icon.ChevronRight class="breadcrumb__icon" />{' '}
-              <a href="" class="breadcrumb--active">
-                Dashboard
-              </a>{' '}
-            </div>
+            <Breadcrumb/>
             {/*<!-- END: Breadcrumb -->*/}
             {/*<!-- BEGIN: Search -->*/}
             <div class="intro-x relative mr-3 sm:mr-6">
