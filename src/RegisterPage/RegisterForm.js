@@ -68,7 +68,7 @@ useEffect(() => {
     const { name, value } = e.target
     setUser((user) => ({
       ...user,
-      [name]: value
+      [name]: value,
     }))
   }
 
@@ -138,47 +138,62 @@ useEffect(() => {
             )}
             <div className="intro-x w-full grid grid-cols-12 gap-4 h-1 mt-3">
               <div
-                className={evaluatePasswordScore() > 0 ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}` :`col-span-3 h-full rounded bg-gray-200`}
+                className={
+                  evaluatePasswordScore() > 0
+                    ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}`
+                    : `col-span-3 h-full rounded bg-gray-200`
+                }
               ></div>
               <div
-                className={evaluatePasswordScore() > 1 ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}` :`col-span-3 h-full rounded bg-gray-200`}
+                className={
+                  evaluatePasswordScore() > 1
+                    ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}`
+                    : `col-span-3 h-full rounded bg-gray-200`
+                }
               ></div>
               <div
-                className={evaluatePasswordScore() > 2 ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}` :`col-span-3 h-full rounded bg-gray-200`}
+                className={
+                  evaluatePasswordScore() > 2
+                    ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}`
+                    : `col-span-3 h-full rounded bg-gray-200`
+                }
               ></div>
               <div
-                className={evaluatePasswordScore() > 3 ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}` :`col-span-3 h-full rounded bg-gray-200`}
+                className={
+                  evaluatePasswordScore() > 3
+                    ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}`
+                    : `col-span-3 h-full rounded bg-gray-200`
+                }
               ></div>
             </div>
             <label className={`text-${passwordStrengthColour()} mt-2`}>
               {passwordQuality()}
             </label>
             <div className="flex">
-            <h4
-              onClick={() => showPasswordAdvice(!passwordAdvice)}
-              style={{cursor:"pointer"}}
-              className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm"
-            >
-              What is a secure password?
-            </h4>
-            
+              <h4
+                onClick={() => showPasswordAdvice(!passwordAdvice)}
+                style={{ cursor: 'pointer' }}
+                className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm"
+              >
+                What is a secure password?
+              </h4>
             </div>
-            { passwordAdvice && 
+            {passwordAdvice && (
               <div className="ml-4">
                 <h3 className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm">
-                - Make it long
+                  - Make it long
                 </h3>
                 <h3 className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm">
-                - Use a mix of characters
+                  - Use a mix of characters
                 </h3>
                 <h3 className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm">
-                - Avoid common substitutions
+                  - Avoid common substitutions
                 </h3>
                 <h3 className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm">
-                - Don’t use memorable keyboard paths
+                  - Don’t use memorable keyboard paths
                 </h3>
               </div>
-            }
+            )}
             <input
               type="password"
               name="confirmPassword"
@@ -191,9 +206,12 @@ useEffect(() => {
                 Confirmed Password is required
               </div>
             )) ||
-              (user.password !== user.confirmPassword && user.confirmPassword && (
-                <div className="text-theme-6 mt-2">Passwords do not match</div>
-              ))}
+              (user.password !== user.confirmPassword &&
+                user.confirmPassword && (
+                  <div className="text-theme-6 mt-2">
+                    Passwords do not match
+                  </div>
+                ))}
           </div>
           <div className="intro-x mt-5 xl:mt-8 text-center xl:text-left">
             <button className="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3">

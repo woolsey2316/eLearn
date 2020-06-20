@@ -112,14 +112,7 @@ function ProfileOptions() {
               </a>
             </div>
 
-            <div className="p-5 border-t flex">
-              <button
-                type="button"
-                className="button button--sm block bg-theme-1 text-white"
-              >
-                Log out
-              </button>
-            </div>
+            
           </div>
         </div>
         {/*<!-- END: Profile Menu -->*/}

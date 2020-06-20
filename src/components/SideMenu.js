@@ -1,12 +1,11 @@
 import React from 'react'
-import Modal from 'react-modal'
 import * as Icon from 'react-feather'
 
 import logo from '../assets/dist/images/logo.svg'
 
 function SideMenu(props) {
   return (
-    <nav style={{ paddingLeft: '2.3em' }} className="side-nav">
+    <nav style={{paddingLeft: "2.3em"}} className="side-nav">
       <a href="" className="intro-x flex items-center pl-5 pt-4">
         <img
           alt="Midone Tailwind HTML Admin Template"

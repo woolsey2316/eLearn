@@ -1,5 +1,9 @@
 import React from 'react'
 
+import logo from '../assets/dist/images/logo.svg'
+
+import * as Icon from 'react-feather'
+
 function MobileMenu() {
   return (
     <div className="mobile-menu md:hidden">
@@ -8,23 +12,18 @@ function MobileMenu() {
           <img
             alt="Midone Tailwind HTML Admin Template"
             className="w-6"
-            src="dist/images/logo.svg"
+            src={logo}
           />
         </a>
         <a href="javascript:;" id="mobile-menu-toggler">
-          {' '}
-          <i
-            data-feather="bar-chart-2"
-            className="w-8 h-8 text-white transform -rotate-90"
-          ></i>{' '}
+          <Icon.BarChart2 className="w-8 h-8 text-white transform -rotate-90" />
         </a>
       </div>
       <ul className="border-t border-theme-24 py-5 hidden">
         <li>
           <a href="index.html" className="menu">
             <div className="menu__icon">
-              {' '}
-              <i data-feather="home"></i>{' '}
+              <i data-feather="home"></i>
             </div>
             <div className="menu__title"> Dashboard </div>
           </a>
@@ -32,24 +31,18 @@ function MobileMenu() {
         <li>
           <a href="javascript:;" className="menu">
             <div className="menu__icon">
-              {' '}
-              <i data-feather="box"></i>{' '}
+              <i data-feather="box"></i>
             </div>
             <div className="menu__title">
-              {' '}
-              Menu Layout{' '}
-              <i
-                data-feather="chevron-down"
-                className="menu__sub-icon"
-              ></i>{' '}
+              Menu Layout
+              <i data-feather="chevron-down" className="menu__sub-icon"></i>
             </div>
           </a>
           <ul className="">
             <li>
               <a href="index.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Side Menu </div>
               </a>
@@ -57,8 +50,7 @@ function MobileMenu() {
             <li>
               <a href="simple-menu-dashboard.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Simple Menu </div>
               </a>
@@ -66,8 +58,7 @@ function MobileMenu() {
             <li>
               <a href="top-menu-dashboard.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Top Menu </div>
               </a>
@@ -77,8 +68,7 @@ function MobileMenu() {
         <li>
           <a href="side-menu-inbox.html" className="menu">
             <div className="menu__icon">
-              {' '}
-              <i data-feather="inbox"></i>{' '}
+              <i data-feather="inbox"></i>
             </div>
             <div className="menu__title"> Inbox </div>
           </a>
@@ -86,8 +76,7 @@ function MobileMenu() {
         <li>
           <a href="side-menu-file-manager.html" className="menu">
             <div className="menu__icon">
-              {' '}
-              <i data-feather="hard-drive"></i>{' '}
+              <i data-feather="hard-drive"></i>
             </div>
             <div className="menu__title"> File Manager </div>
           </a>
@@ -95,8 +84,7 @@ function MobileMenu() {
         <li>
           <a href="side-menu-point-of-sale.html" className="menu">
             <div className="menu__icon">
-              {' '}
-              <i data-feather="credit-card"></i>{' '}
+              <i data-feather="credit-card"></i>
             </div>
             <div className="menu__title"> Point of Sale </div>
           </a>
@@ -104,8 +92,7 @@ function MobileMenu() {
         <li>
           <a href="side-menu-chat.html" className="menu">
             <div className="menu__icon">
-              {' '}
-              <i data-feather="message-square"></i>{' '}
+              <i data-feather="message-square"></i>
             </div>
             <div className="menu__title"> Chat </div>
           </a>
@@ -113,8 +100,7 @@ function MobileMenu() {
         <li>
           <a href="side-menu-post.html" className="menu">
             <div className="menu__icon">
-              {' '}
-              <i data-feather="file-text"></i>{' '}
+              <i data-feather="file-text"></i>
             </div>
             <div className="menu__title"> Post </div>
           </a>
@@ -123,24 +109,18 @@ function MobileMenu() {
         <li>
           <a href="javascript:;" className="menu">
             <div className="menu__icon">
-              {' '}
-              <i data-feather="edit"></i>{' '}
+              <i data-feather="edit"></i>
             </div>
             <div className="menu__title">
-              {' '}
-              Crud{' '}
-              <i
-                data-feather="chevron-down"
-                className="menu__sub-icon"
-              ></i>{' '}
+              Crud
+              <i data-feather="chevron-down" className="menu__sub-icon"></i>
             </div>
           </a>
           <ul className="">
             <li>
               <a href="side-menu-crud-data-list.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Data List </div>
               </a>
@@ -148,8 +128,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-crud-form.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Form </div>
               </a>
@@ -159,24 +138,18 @@ function MobileMenu() {
         <li>
           <a href="javascript:;" className="menu">
             <div className="menu__icon">
-              {' '}
-              <i data-feather="users"></i>{' '}
+              <i data-feather="users"></i>
             </div>
             <div className="menu__title">
-              {' '}
-              Users{' '}
-              <i
-                data-feather="chevron-down"
-                className="menu__sub-icon"
-              ></i>{' '}
+              Users
+              <i data-feather="chevron-down" className="menu__sub-icon"></i>
             </div>
           </a>
           <ul className="">
             <li>
               <a href="side-menu-users-layout-1.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Layout 1 </div>
               </a>
@@ -184,8 +157,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-users-layout-2.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Layout 2 </div>
               </a>
@@ -193,8 +165,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-users-layout-3.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Layout 3 </div>
               </a>
@@ -204,24 +175,18 @@ function MobileMenu() {
         <li>
           <a href="javascript:;" className="menu">
             <div className="menu__icon">
-              {' '}
-              <i data-feather="trello"></i>{' '}
+              <i data-feather="trello"></i>
             </div>
             <div className="menu__title">
-              {' '}
-              Profile{' '}
-              <i
-                data-feather="chevron-down"
-                className="menu__sub-icon"
-              ></i>{' '}
+              Profile
+              <i data-feather="chevron-down" className="menu__sub-icon"></i>
             </div>
           </a>
           <ul className="">
             <li>
               <a href="side-menu-profile-overview-1.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Overview 1 </div>
               </a>
@@ -229,8 +194,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-profile-overview-2.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Overview 2 </div>
               </a>
@@ -238,8 +202,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-profile-overview-3.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Overview 3 </div>
               </a>
@@ -249,40 +212,29 @@ function MobileMenu() {
         <li>
           <a href="javascript:;" className="menu">
             <div className="menu__icon">
-              {' '}
-              <i data-feather="layout"></i>{' '}
+              <i data-feather="layout"></i>
             </div>
             <div className="menu__title">
-              {' '}
-              Pages{' '}
-              <i
-                data-feather="chevron-down"
-                className="menu__sub-icon"
-              ></i>{' '}
+              Pages
+              <i data-feather="chevron-down" className="menu__sub-icon"></i>
             </div>
           </a>
           <ul className="">
             <li>
               <a href="javascript:;" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title">
-                  {' '}
-                  Wizards{' '}
-                  <i
-                    data-feather="chevron-down"
-                    className="menu__sub-icon"
-                  ></i>{' '}
+                  Wizards
+                  <i data-feather="chevron-down" className="menu__sub-icon"></i>
                 </div>
               </a>
               <ul className="">
                 <li>
                   <a href="side-menu-wizard-layout-1.html" className="menu">
                     <div className="menu__icon">
-                      {' '}
-                      <i data-feather="zap"></i>{' '}
+                      <i data-feather="zap"></i>
                     </div>
                     <div className="menu__title">Layout 1</div>
                   </a>
@@ -290,8 +242,7 @@ function MobileMenu() {
                 <li>
                   <a href="side-menu-wizard-layout-2.html" className="menu">
                     <div className="menu__icon">
-                      {' '}
-                      <i data-feather="zap"></i>{' '}
+                      <i data-feather="zap"></i>
                     </div>
                     <div className="menu__title">Layout 2</div>
                   </a>
@@ -299,8 +250,7 @@ function MobileMenu() {
                 <li>
                   <a href="side-menu-wizard-layout-3.html" className="menu">
                     <div className="menu__icon">
-                      {' '}
-                      <i data-feather="zap"></i>{' '}
+                      <i data-feather="zap"></i>
                     </div>
                     <div className="menu__title">Layout 3</div>
                   </a>
@@ -310,24 +260,18 @@ function MobileMenu() {
             <li>
               <a href="javascript:;" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title">
-                  {' '}
-                  Blog{' '}
-                  <i
-                    data-feather="chevron-down"
-                    className="menu__sub-icon"
-                  ></i>{' '}
+                  Blog
+                  <i data-feather="chevron-down" className="menu__sub-icon"></i>
                 </div>
               </a>
               <ul className="">
                 <li>
                   <a href="side-menu-blog-layout-1.html" className="menu">
                     <div className="menu__icon">
-                      {' '}
-                      <i data-feather="zap"></i>{' '}
+                      <i data-feather="zap"></i>
                     </div>
                     <div className="menu__title">Layout 1</div>
                   </a>
@@ -335,8 +279,7 @@ function MobileMenu() {
                 <li>
                   <a href="side-menu-blog-layout-2.html" className="menu">
                     <div className="menu__icon">
-                      {' '}
-                      <i data-feather="zap"></i>{' '}
+                      <i data-feather="zap"></i>
                     </div>
                     <div className="menu__title">Layout 2</div>
                   </a>
@@ -344,8 +287,7 @@ function MobileMenu() {
                 <li>
                   <a href="side-menu-blog-layout-3.html" className="menu">
                     <div className="menu__icon">
-                      {' '}
-                      <i data-feather="zap"></i>{' '}
+                      <i data-feather="zap"></i>
                     </div>
                     <div className="menu__title">Layout 3</div>
                   </a>
@@ -355,24 +297,18 @@ function MobileMenu() {
             <li>
               <a href="javascript:;" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title">
-                  {' '}
-                  Pricing{' '}
-                  <i
-                    data-feather="chevron-down"
-                    className="menu__sub-icon"
-                  ></i>{' '}
+                  Pricing
+                  <i data-feather="chevron-down" className="menu__sub-icon"></i>
                 </div>
               </a>
               <ul className="">
                 <li>
                   <a href="side-menu-pricing-layout-1.html" className="menu">
                     <div className="menu__icon">
-                      {' '}
-                      <i data-feather="zap"></i>{' '}
+                      <i data-feather="zap"></i>
                     </div>
                     <div className="menu__title">Layout 1</div>
                   </a>
@@ -380,8 +316,7 @@ function MobileMenu() {
                 <li>
                   <a href="side-menu-pricing-layout-2.html" className="menu">
                     <div className="menu__icon">
-                      {' '}
-                      <i data-feather="zap"></i>{' '}
+                      <i data-feather="zap"></i>
                     </div>
                     <div className="menu__title">Layout 2</div>
                   </a>
@@ -391,24 +326,18 @@ function MobileMenu() {
             <li>
               <a href="javascript:;" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title">
-                  {' '}
-                  Invoice{' '}
-                  <i
-                    data-feather="chevron-down"
-                    className="menu__sub-icon"
-                  ></i>{' '}
+                  Invoice
+                  <i data-feather="chevron-down" className="menu__sub-icon"></i>
                 </div>
               </a>
               <ul className="">
                 <li>
                   <a href="side-menu-invoice-layout-1.html" className="menu">
                     <div className="menu__icon">
-                      {' '}
-                      <i data-feather="zap"></i>{' '}
+                      <i data-feather="zap"></i>
                     </div>
                     <div className="menu__title">Layout 1</div>
                   </a>
@@ -416,8 +345,7 @@ function MobileMenu() {
                 <li>
                   <a href="side-menu-invoice-layout-2.html" className="menu">
                     <div className="menu__icon">
-                      {' '}
-                      <i data-feather="zap"></i>{' '}
+                      <i data-feather="zap"></i>
                     </div>
                     <div className="menu__title">Layout 2</div>
                   </a>
@@ -427,24 +355,18 @@ function MobileMenu() {
             <li>
               <a href="javascript:;" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title">
-                  {' '}
-                  FAQ{' '}
-                  <i
-                    data-feather="chevron-down"
-                    className="menu__sub-icon"
-                  ></i>{' '}
+                  FAQ
+                  <i data-feather="chevron-down" className="menu__sub-icon"></i>
                 </div>
               </a>
               <ul className="">
                 <li>
                   <a href="side-menu-faq-layout-1.html" className="menu">
                     <div className="menu__icon">
-                      {' '}
-                      <i data-feather="zap"></i>{' '}
+                      <i data-feather="zap"></i>
                     </div>
                     <div className="menu__title">Layout 1</div>
                   </a>
@@ -452,8 +374,7 @@ function MobileMenu() {
                 <li>
                   <a href="side-menu-faq-layout-2.html" className="menu">
                     <div className="menu__icon">
-                      {' '}
-                      <i data-feather="zap"></i>{' '}
+                      <i data-feather="zap"></i>
                     </div>
                     <div className="menu__title">Layout 2</div>
                   </a>
@@ -461,8 +382,7 @@ function MobileMenu() {
                 <li>
                   <a href="side-menu-faq-layout-3.html" className="menu">
                     <div className="menu__icon">
-                      {' '}
-                      <i data-feather="zap"></i>{' '}
+                      <i data-feather="zap"></i>
                     </div>
                     <div className="menu__title">Layout 3</div>
                   </a>
@@ -472,8 +392,7 @@ function MobileMenu() {
             <li>
               <a href="login-login.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Login </div>
               </a>
@@ -481,8 +400,7 @@ function MobileMenu() {
             <li>
               <a href="login-register.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Register </div>
               </a>
@@ -490,8 +408,7 @@ function MobileMenu() {
             <li>
               <a href="main-error-page.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Error Page </div>
               </a>
@@ -499,8 +416,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-update-profile.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Update profile </div>
               </a>
@@ -508,8 +424,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-change-password.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Change Password </div>
               </a>
@@ -520,40 +435,29 @@ function MobileMenu() {
         <li>
           <a href="javascript:;" className="menu">
             <div className="menu__icon">
-              {' '}
-              <i data-feather="inbox"></i>{' '}
+              <i data-feather="inbox"></i>
             </div>
             <div className="menu__title">
-              {' '}
-              Components{' '}
-              <i
-                data-feather="chevron-down"
-                className="menu__sub-icon"
-              ></i>{' '}
+              Components
+              <i data-feather="chevron-down" className="menu__sub-icon"></i>
             </div>
           </a>
           <ul className="">
             <li>
               <a href="javascript:;" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title">
-                  {' '}
-                  Grid{' '}
-                  <i
-                    data-feather="chevron-down"
-                    className="menu__sub-icon"
-                  ></i>{' '}
+                  Grid
+                  <i data-feather="chevron-down" className="menu__sub-icon"></i>
                 </div>
               </a>
               <ul className="">
                 <li>
                   <a href="side-menu-regular-table.html" className="menu">
                     <div className="menu__icon">
-                      {' '}
-                      <i data-feather="zap"></i>{' '}
+                      <i data-feather="zap"></i>
                     </div>
                     <div className="menu__title">Regular Table</div>
                   </a>
@@ -561,8 +465,7 @@ function MobileMenu() {
                 <li>
                   <a href="side-menu-datatable.html" className="menu">
                     <div className="menu__icon">
-                      {' '}
-                      <i data-feather="zap"></i>{' '}
+                      <i data-feather="zap"></i>
                     </div>
                     <div className="menu__title">Datatable</div>
                   </a>
@@ -572,8 +475,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-accordion.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Accordion </div>
               </a>
@@ -581,8 +483,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-button.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Button </div>
               </a>
@@ -590,8 +491,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-modal.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Modal </div>
               </a>
@@ -599,8 +499,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-alert.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Alert </div>
               </a>
@@ -608,8 +507,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-progress-bar.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Progress Bar </div>
               </a>
@@ -617,8 +515,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-tooltip.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Tooltip </div>
               </a>
@@ -626,8 +523,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-dropdown.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Dropdown </div>
               </a>
@@ -635,8 +531,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-toast.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Toast </div>
               </a>
@@ -644,8 +539,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-typography.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Typography </div>
               </a>
@@ -653,8 +547,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-icon.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Icon </div>
               </a>
@@ -662,8 +555,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-loading-icon.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Loading Icon </div>
               </a>
@@ -673,24 +565,18 @@ function MobileMenu() {
         <li>
           <a href="javascript:;" className="menu">
             <div className="menu__icon">
-              {' '}
-              <i data-feather="sidebar"></i>{' '}
+              <i data-feather="sidebar"></i>
             </div>
             <div className="menu__title">
-              {' '}
-              Forms{' '}
-              <i
-                data-feather="chevron-down"
-                className="menu__sub-icon"
-              ></i>{' '}
+              Forms
+              <i data-feather="chevron-down" className="menu__sub-icon"></i>
             </div>
           </a>
           <ul className="">
             <li>
               <a href="side-menu-regular-form.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Regular Form </div>
               </a>
@@ -698,8 +584,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-datepicker.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Datepicker </div>
               </a>
@@ -707,8 +592,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-select2.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Select2 </div>
               </a>
@@ -716,8 +600,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-file-upload.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> File Upload </div>
               </a>
@@ -725,8 +608,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-wysiwyg-editor.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Wysiwyg Editor </div>
               </a>
@@ -734,8 +616,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-validation.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Validation </div>
               </a>
@@ -745,24 +626,18 @@ function MobileMenu() {
         <li>
           <a href="javascript:;" className="menu">
             <div className="menu__icon">
-              {' '}
-              <i data-feather="hard-drive"></i>{' '}
+              <i data-feather="hard-drive"></i>
             </div>
             <div className="menu__title">
-              {' '}
-              Widgets{' '}
-              <i
-                data-feather="chevron-down"
-                className="menu__sub-icon"
-              ></i>{' '}
+              Widgets
+              <i data-feather="chevron-down" className="menu__sub-icon"></i>
             </div>
           </a>
           <ul className="">
             <li>
               <a href="side-menu-chart.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Chart </div>
               </a>
@@ -770,8 +645,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-slider.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Slider </div>
               </a>
@@ -779,8 +653,7 @@ function MobileMenu() {
             <li>
               <a href="side-menu-image-zoom.html" className="menu">
                 <div className="menu__icon">
-                  {' '}
-                  <i data-feather="activity"></i>{' '}
+                  <i data-feather="activity"></i>
                 </div>
                 <div className="menu__title"> Image Zoom </div>
               </a>

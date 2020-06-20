@@ -23,13 +23,16 @@ export default () => {
 
   function onChangeCheckbox(event) {
     setInputs({
-      isChecked: event.target.checked
+      isChecked: event.target.checked,
     })
   }
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(`%cemail : ${email}, password: ${password}`,'color: blue,font-weight:bold')
+    console.log(
+      `%cemail : ${email}, password: ${password}`,
+      'color: blue,font-weight:bold'
+    )
 
     setSubmitted(true)
     if (email && password) {
@@ -39,7 +42,7 @@ export default () => {
     } else if (email && !password) {
       dispatch(userActions.resetPassword(email, password))
     }
-    if (isChecked && email !== "") {
+    if (isChecked && email !== '') {
       localStorage.email = email
       localStorage.password = password
       localStorage.checkbox = isChecked
@@ -69,52 +72,59 @@ export default () => {
             {submitted && !email && (
               <div className="invalid-feedback">Email is required</div>
             )}
-            {!forgotPassword && 
-            <input
-              style={{ padding: '0.75em 1em' }}
-              type="password"
-              className="intro-x login__input input input--lg border border-gray-300 block mt-4"
-              placeholder="Password"
-              name="password"
-              value={password}
-              onChange={handleChange}
-            />
-            }
+            {!forgotPassword && (
+              <input
+                style={{ padding: '0.75em 1em' }}
+                type="password"
+                className="intro-x login__input input input--lg border border-gray-300 block mt-4"
+                placeholder="Password"
+                name="password"
+                value={password}
+                onChange={handleChange}
+              />
+            )}
             {submitted && !password && (
               <div className="invalid-feedback">Password is required</div>
             )}
           </div>
           <div className="intro-x flex text-gray-700 text-xs sm:text-sm mt-4">
             <div className="flex items-center mr-auto">
-            {!forgotPassword && 
-              <div>
-                <input
-                  type="checkbox"
-                  className="input border mr-2"
-                  id="remember-me"
-                  onChange={onChangeCheckbox}
-                  checked={isChecked}
-                />
-                <label
-                  className="cursor-pointer select-none"
-                  htmlFor="remember-me"
-                >
-                  Remember me
-                </label>
-              </div>
-            }
+              {!forgotPassword && (
+                <div>
+                  <input
+                    type="checkbox"
+                    className="input border mr-2"
+                    id="remember-me"
+                    onChange={onChangeCheckbox}
+                    checked={isChecked}
+                  />
+                  <label
+                    className="cursor-pointer select-none"
+                    htmlFor="remember-me"
+                  >
+                    Remember me
+                  </label>
+                </div>
+              )}
             </div>
-            <h4 style={{cursor:"pointer"}} onClick={() => setForgotPassword(!forgotPassword)}>Forgot Password?</h4>
+            <h4
+              style={{ cursor: 'pointer' }}
+              onClick={() => setForgotPassword(!forgotPassword)}
+            >
+              Forgot Password?
+            </h4>
           </div>
           <div className="intro-x mt-5 xl:mt-8 text-center xl:text-left">
-            {!forgotPassword && <button className="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3">
-              Login
-            </button>
-            }
-            {forgotPassword && <button className="button button--lg w-full xl:w-40 text-white bg-theme-1 xl:mr-3">
-              Request Password
-            </button>
-            }
+            {!forgotPassword && (
+              <button className="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3">
+                Login
+              </button>
+            )}
+            {forgotPassword && (
+              <button className="button button--lg w-full xl:w-40 text-white bg-theme-1 xl:mr-3">
+                Request Password
+              </button>
+            )}
             <Link
               to="/Register"
               className="button button--lg w-full xl:w-32 text-gray-700 border border-gray-300 mt-3 xl:mt-0"

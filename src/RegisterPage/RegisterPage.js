@@ -12,9 +12,6 @@ function RegisterPage() {
           <RegisterForm />
         </div>
       </div>
-      {/*
-        <script src="dist/js/app.js"></script>
-        */}
     </div>
   )
 }

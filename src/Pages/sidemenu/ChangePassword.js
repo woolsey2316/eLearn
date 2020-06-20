@@ -16,13 +16,13 @@ import profile2 from '../../assets/dist/images/profile-2.jpg'
 import profile4 from '../../assets/dist/images/profile-4.jpg'
 import { SideMenu } from '../../components/SideMenu'
 
-function ChangePassword() {
+function ChangePassword(props) {
   return (
     <div style={{ padding: '2.5em' }} className="app">
       <MobileMenu />
       <div className="flex">
         {/*<!-- BEGIN: Side Menu -->*/}
-        <SideMenu />
+        {props.sideMenu}
         {/*<!-- END: Side Menu -->*/}
         {/*<!-- BEGIN: Content -->*/}
         <div className="content">
