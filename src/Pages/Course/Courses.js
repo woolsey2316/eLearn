@@ -6,7 +6,7 @@ import { SideMenu } from '../../components'
 import { MobileMenu } from '../../components'
 import { TopBar } from '../../components'
 
-function ExamResults(props) {
+function Courses(props) {
   return (
     <body class="app">
       {/*<!-- BEGIN: Mobile Menu -->*/}
@@ -22,7 +22,10 @@ function ExamResults(props) {
           <TopBar />
           {/*<!-- END: Top Bar -->*/}
           <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-            <h2 class="text-lg font-medium mr-auto">Grades</h2>
+            <h2 class="text-lg font-medium mr-auto">Enrolled Courses</h2>
+          </div>
+          <div class="intro-y box overflow-hidden mt-5">
+            <h2 class="text-lg font-medium p-5">Not Enrolled in any Courses</h2>
           </div>
           {/*<!-- BEGIN: Invoice -->*/}
           <div class="intro-y box overflow-hidden mt-5">
@@ -122,4 +125,4 @@ function ExamResults(props) {
   )
 }
 
-export { ExamResults }
+export { Courses }

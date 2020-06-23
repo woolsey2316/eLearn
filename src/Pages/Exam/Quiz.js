@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Question } from './Question'
 import { AnswerOption } from './AnswerOption'
@@ -19,8 +19,8 @@ function Quiz(props) {
   return (
     <div className="items-center p-5 border-b border-gray-200">
       <div className="text-base mr-auto">
-        Question <span>{props.questionId + 1}</span> of{' '}
-        <span>{props.questionTotal}</span>
+        Question <span>{props.questionId + 1}</span> of
+        <span>{" " + props.questionTotal}</span>
       </div>
       <Question content={props.question} />
       <ul className="answerOptions">
@@ -31,7 +31,7 @@ function Quiz(props) {
 }
 
 Quiz.propTypes = {
-  answer: PropTypes.string.isRequired,
+  selectedOption: PropTypes.string.isRequired,
   answerOptions: PropTypes.array.isRequired,
   question: PropTypes.string.isRequired,
   questionId: PropTypes.number.isRequired,

@@ -36,7 +36,6 @@ function MainContent() {
                         className="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                         title="33% Higher than last month"
                       >
-                        
                         33% <Icon.ChevronUp className="w-4 h-4" />
                       </div>
                     </div>
@@ -58,7 +57,6 @@ function MainContent() {
                         className="report-box__indicator bg-theme-6 tooltip cursor-pointer"
                         title="2% Lower than last month"
                       >
-                        
                         2% <Icon.ChevronDown className="w-4 h-4" />
                       </div>
                     </div>
@@ -80,7 +78,6 @@ function MainContent() {
                         className="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                         title="12% Higher than last month"
                       >
-                        
                         12% <Icon.ChevronUp className="w-4 h-4" />
                       </div>
                     </div>
@@ -102,7 +99,6 @@ function MainContent() {
                         className="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                         title="22% Higher than last month"
                       >
-                        
                         22% <Icon.ChevronUp className="w-4 h-4" />
                       </div>
                     </div>
@@ -118,8 +114,8 @@ function MainContent() {
         </div>
       </div>
       <div className="col-span-12 xxl:col-span-3 xxl:border-l border-theme-5 -mb-10 pb-10">
-          <div className="flex">
-            <div className="mt-3 mr-5" style={{width:"60%"}}>
+        <div className="flex">
+          <div className="mt-3 mr-5" style={{ width: '60%' }}>
             <div className="intro-x flex items-center h-10">
               <h2 className="text-lg font-medium truncate mr-5">
                 Recent Activities
@@ -218,7 +214,7 @@ function MainContent() {
             </div>
           </div>
 
-          <div className="mt-3" style={{width:"38%"}}>
+          <div className="mt-3" style={{ width: '38%' }}>
             <div className="intro-x flex items-center h-10">
               <h2 className="text-lg font-medium truncate mr-5">Schedules</h2>
             </div>

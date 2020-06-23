@@ -5,7 +5,7 @@ import logo from '../assets/dist/images/logo.svg'
 
 function SideMenu(props) {
   return (
-    <nav style={{paddingLeft: "2.3em"}} className="side-nav">
+    <nav className="side-nav">
       <a href="" className="intro-x flex items-center pl-5 pt-4">
         <img
           alt="Midone Tailwind HTML Admin Template"
@@ -13,8 +13,8 @@ function SideMenu(props) {
           src={logo}
         />
         <span className="hidden xl:block text-white text-lg ml-3">
-          {' '}
-          e<span className="font-medium">Learn</span>{' '}
+          
+          e<span className="font-medium">Learn</span>
         </span>
       </a>
       <div className="side-nav__devider my-6"></div>
@@ -23,14 +23,14 @@ function SideMenu(props) {
           <a
             href="/student/"
             className={
-              window.location.pathname === '/'
+              window.location.pathname === '/student/'
                 ? 'side-menu side-menu--active'
                 : 'side-menu'
             }
           >
             <div className="side-menu__icon">
-              {' '}
-              <Icon.Home />{' '}
+              
+              <Icon.Home />
             </div>
             <div className="side-menu__title"> Dashboard </div>
           </a>
@@ -45,24 +45,40 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              {' '}
-              <Icon.User />{' '}
+              
+              <Icon.User />
             </div>
             <div className="side-menu__title"> Profile</div>
           </a>
         </li>
         <li>
           <a
-            href="/student/grades"
+            href="/student/courses"
             className={
-              window.location.pathname === '/grades'
+              window.location.pathname === '/student/courses'
                 ? 'side-menu side-menu--active'
                 : 'side-menu'
             }
           >
             <div className="side-menu__icon">
-              {' '}
-              <Icon.Inbox />{' '}
+              
+              <Icon.HardDrive />
+            </div>
+            <div className="side-menu__title"> Courses </div>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/grades"
+            className={
+              window.location.pathname === '/student/grades'
+                ? 'side-menu side-menu--active'
+                : 'side-menu'
+            }
+          >
+            <div className="side-menu__icon">
+              
+              <Icon.Inbox />
             </div>
             <div className="side-menu__title"> Grades </div>
           </a>
@@ -71,14 +87,14 @@ function SideMenu(props) {
           <a
             href="/student/exam_list"
             className={
-              window.location.pathname === '/enrolled_courses'
+              window.location.pathname === '/student/exam_list'
                 ? 'side-menu side-menu--active'
                 : 'side-menu'
             }
           >
             <div className="side-menu__icon">
-              {' '}
-              <Icon.HardDrive />{' '}
+              
+              <Icon.HardDrive />
             </div>
             <div className="side-menu__title"> Exam List </div>
           </a>
@@ -87,14 +103,14 @@ function SideMenu(props) {
           <a
             href="/student/exams"
             className={
-              window.location.pathname === '/exams'
+              window.location.pathname === '/student/exams'
                 ? 'side-menu side-menu--active'
                 : 'side-menu'
             }
           >
             <div className="side-menu__icon">
-              {' '}
-              <Icon.BookOpen />{' '}
+              
+              <Icon.BookOpen />
             </div>
             <div className="side-menu__title"> Exams </div>
           </a>
@@ -102,7 +118,6 @@ function SideMenu(props) {
         <li>
           <button
             onClick={props.open}
-            href="/login"
             className={
               window.location.pathname === '/profile/changepassword'
                 ? 'side-menu side-menu--active'
@@ -110,8 +125,8 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              {' '}
-              <Icon.LogOut />{' '}
+              
+              <Icon.LogOut />
             </div>
             <div className="side-menu__title"> Logout </div>
           </button>

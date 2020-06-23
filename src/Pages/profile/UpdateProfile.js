@@ -22,7 +22,7 @@ function UpdateProfile(props) {
         {/*<!-- BEGIN: Content -->*/}
         <div className="content">
           {/*<!-- BEGIN: Top Bar -->*/}
-          <TopBar/>
+          <TopBar />
           {/*<!-- END: Top Bar -->*/}
           <div className="intro-y flex items-center mt-8">
             <h2 className="text-lg font-medium mr-auto">Update Profile</h2>

@@ -21,7 +21,7 @@ function HomePage(props) {
   return (
     <div className="app">
       <MobileMenu />
-      <div className="flex">
+      <div style={{paddingLeft:"2.3em"}} className="flex">
         {props.sideMenu}
         <div className="content">
           <TopBar />

@@ -8,13 +8,21 @@ import profile12 from '../assets/dist/images/profile-12.jpg'
 import profile14 from '../assets/dist/images/profile-14.jpg'
 
 function NotificationIcon() {
-  const [isPressed, setPressed ] = React.useState(false)
+  const [isPressed, setPressed] = React.useState(false)
   return (
     <div className="intro-x dropdown relative mr-auto sm:mr-6">
-      <div onClick={() => setPressed(!isPressed)} className="dropdown-toggle notification notification--bullet cursor-pointer">
+      <div
+        onClick={() => setPressed(!isPressed)}
+        className="dropdown-toggle notification notification--bullet cursor-pointer"
+      >
         <Icon.Bell className="notification__icon" />
       </div>
-      <div className={"notification-content dropdown-box mt-8 absolute top-0 left-0 sm:left-auto sm:right-0 z-20 -ml-10 sm:ml-0" +(isPressed ? " show": "") }>
+      <div
+        className={
+          'notification-content dropdown-box mt-8 absolute top-0 left-0 sm:left-auto sm:right-0 z-20 -ml-10 sm:ml-0' +
+          (isPressed ? ' show' : '')
+        }
+      >
         <div className="notification-content__box dropdown-box__content box">
           <div className="notification-content__title">Notifications</div>
           <div className="cursor-pointer relative flex items-center ">
