@@ -17,6 +17,7 @@ import { ExamResults } from './Pages/ExamResults'
 import { ExamPage } from './Pages/Exam'
 import { ExamList } from './Pages/ExamList'
 import { Courses } from './Pages/Course'
+import { CourseRegister } from './Pages/CourseRegister'
 
 import { SideMenu } from './components'
 
@@ -54,6 +55,9 @@ function App() {
         </PrivateRoute>
         <PrivateRoute exact path="/student/courses">
           <Courses sideMenu={sideMenu} />
+        </PrivateRoute>
+        <PrivateRoute exact path="/student/CourseRegister">
+          <CourseRegister sideMenu={sideMenu} />
         </PrivateRoute>
         <PrivateRoute exact path="/student/profile/change_password">
           <ChangePassword sideMenu={sideMenu} />

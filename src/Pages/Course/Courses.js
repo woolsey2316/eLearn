@@ -5,117 +5,66 @@ import * as Icon from 'react-feather'
 import { SideMenu } from '../../components'
 import { MobileMenu } from '../../components'
 import { TopBar } from '../../components'
+import { Course } from './Course'
+
+import preview15 from '../../assets/dist/images/preview-15.jpg'
+import preview14 from '../../assets/dist/images/preview-14.jpg'
+import preview9 from '../../assets/dist/images/preview-9.jpg'
+import preview3 from '../../assets/dist/images/preview-3.jpg'
+import preview11 from '../../assets/dist/images/preview-11.jpg'
+import preview1 from '../../assets/dist/images/preview-1.jpg'
+import preview5 from '../../assets/dist/images/preview-5.jpg'
+import preview12 from '../../assets/dist/images/preview-12.jpg'
+import preview2 from '../../assets/dist/images/preview-2.jpg'
+import preview7 from '../../assets/dist/images/preview-7.jpg'
+import preview8 from '../../assets/dist/images/preview-8.jpg'
+import preview13 from '../../assets/dist/images/preview-13.jpg'
 
 function Courses(props) {
   return (
-    <body class="app">
+    <body className="app">
       {/*<!-- BEGIN: Mobile Menu -->*/}
       <MobileMenu />
       {/*<!-- END: Mobile Menu -->*/}
-      <div style={{paddingLeft:"2.3em"}} class="flex">
+      <div style={{ paddingLeft: '2.3em' }} className="flex">
         {/*<!-- BEGIN: Simple Menu -->*/}
         {props.sideMenu}
         {/*<!-- END: Simple Menu -->*/}
         {/*<!-- BEGIN: Content -->*/}
-        <div class="content">
+        <div className="content">
           {/*<!-- BEGIN: Top Bar -->*/}
           <TopBar />
           {/*<!-- END: Top Bar -->*/}
-          <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-            <h2 class="text-lg font-medium mr-auto">Enrolled Courses</h2>
-          </div>
-          <div class="intro-y box overflow-hidden mt-5">
-            <h2 class="text-lg font-medium p-5">Not Enrolled in any Courses</h2>
+          <div className="intro-y flex flex-col sm:flex-row items-center mt-8">
+            <h2 className="text-lg font-medium mr-auto">Enrolled Courses</h2>
+            <a
+              href="/student/CourseRegister"
+              className="ml-auto flex items-center text-theme-1 font-medium"
+            >
+              <Icon.Plus className="w-5 h-5" />
+              Enrol in new Course
+            </a>
           </div>
           {/*<!-- BEGIN: Invoice -->*/}
-          <div class="intro-y box overflow-hidden mt-5">
-            <div class="px-5 sm:px-16 py-10 sm:py-20">
-              <div class="overflow-x-auto">
-                <table class="table">
+          <div className="intro-y box overflow-hidden mt-5">
+            <div class="overflow-x-auto">
+              <table class="table">
                   <thead>
-                    <tr>
-                      <th class="border-b-2 whitespace-no-wrap">DESCRIPTION</th>
-                      <th class="border-b-2 text-right whitespace-no-wrap">
-                        Rank
-                      </th>
-                      <th class="border-b-2 text-right whitespace-no-wrap">
-                        Score
-                      </th>
-                      <th class="border-b-2 text-right whitespace-no-wrap">
-                        Score (%)
-                      </th>
-                      <th class="border-b-2 text-right whitespace-no-wrap">
-                        Average
-                      </th>
-                    </tr>
+                      <tr class="bg-gray-700 text-white">
+                          <th class="whitespace-no-wrap">#</th>
+                          <th class="whitespace-no-wrap">Course Name</th>
+                          <th class="whitespace-no-wrap">Course Code</th>
+                          <th class="whitespace-no-wrap">Exam Status</th>
+                          <th class="whitespace-no-wrap">Exam details</th>
+                      </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="border-b">
-                        <div class="font-medium whitespace-no-wrap">Exam 1</div>
-                        <div class="text-gray-600 text-xs whitespace-no-wrap">
-                          06/05/2020
-                        </div>
-                      </td>
-                      <td class="text-right border-b w-32">1</td>
-                      <td class="text-right border-b w-32">90/95</td>
-                      <td class="text-right border-b w-32 font-medium">95%</td>
-                      <td class="text-right border-b w-32">71%</td>
-                    </tr>
-                    <tr>
-                      <td class="border-b">
-                        <div class="font-medium whitespace-no-wrap">Exam 2</div>
-                        <div class="text-gray-600 text-xs whitespace-no-wrap">
-                          06/05/2020
-                        </div>
-                      </td>
-                      <td class="text-right border-b w-32">13</td>
-                      <td class="text-right border-b w-32">76/100</td>
-                      <td class="text-right border-b w-32 font-medium">76%</td>
-                      <td class="text-right border-b w-32">69%</td>
-                    </tr>
-                    <tr>
-                      <td class="border-b">
-                        <div class="font-medium whitespace-no-wrap">Exam 3</div>
-                        <div class="text-gray-600 text-xs whitespace-no-wrap">
-                          06/05/2020
-                        </div>
-                      </td>
-                      <td class="text-right border-b w-32">9</td>
-                      <td class="text-right border-b w-32">76/100</td>
-                      <td class="text-right border-b w-32 font-medium">76%</td>
-                      <td class="text-right border-b w-32">69%</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="font-medium whitespace-no-wrap">Exam 4</div>
-                        <div class="text-gray-600 text-xs whitespace-no-wrap">
-                          06/05/2020
-                        </div>
-                      </td>
-                      <td class="text-right w-32">14</td>
-                      <td class="text-right w-32">76/100</td>
-                      <td class="text-right w-32 font-medium">76%</td>
-                      <td class="text-right border-b w-32">70%</td>
-                    </tr>
+                    <Course name={"Mathematics"} code={"Math101"} active={true}/>
+                    <Course name={"Science"} code={"Sci2312"} active={false}/>
+                    <Course name={"History"} code={"Hist323"} active={false}/>
                   </tbody>
-                </table>
-              </div>
-            </div>
-            <div class="px-5 sm:px-20 pb-10 sm:pb-20 flex flex-col-reverse sm:flex-row">
-              <div class="text-center sm:text-left mt-10 sm:mt-0">
-                <div class="text-lg text-theme-1 font-medium mt-2">
-                  David Woolsey
-                </div>
-                <div class="mt-1">Course Name : History1001</div>
-                <div class="mt-1">Course Code : LFT133243</div>
-              </div>
-              <div class="text-center sm:text-right sm:ml-auto">
-                <div class="text-base text-gray-600">Weighted Average</div>
-                <div class="text-xl text-theme-1 font-medium mt-2">78%</div>
-                <div class="mt-1 tetx-xs">Class Rank: 7</div>
-              </div>
-            </div>
+              </table>
+          </div>
           </div>
           {/*<!-- END: Invoice -->*/}
         </div>

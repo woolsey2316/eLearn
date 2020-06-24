@@ -12,8 +12,7 @@ function RegisterInfo() {
           src={logo}
         />
         <span className="text-white text-lg ml-3">
-          {' '}
-          e<span className="font-medium">Learn</span>{' '}
+          e<span className="font-medium">Learn</span>
         </span>
       </a>
       <div className="my-auto">

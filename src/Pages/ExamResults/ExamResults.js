@@ -1,18 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import * as Icon from 'react-feather'
 
-import { SideMenu } from '../../components'
+import { CourseDropdown } from '../../components'
 import { MobileMenu } from '../../components'
 import { TopBar } from '../../components'
 
 function ExamResults(props) {
+  const [course, setCourse] = useState('Course #1')
   return (
     <body class="app">
       {/*<!-- BEGIN: Mobile Menu -->*/}
       <MobileMenu />
       {/*<!-- END: Mobile Menu -->*/}
-      <div style={{paddingLeft:"2.3em"}} class="flex">
+      <div style={{ paddingLeft: '2.3em' }} class="flex">
         {/*<!-- BEGIN: Simple Menu -->*/}
         {props.sideMenu}
         {/*<!-- END: Simple Menu -->*/}
@@ -26,6 +27,19 @@ function ExamResults(props) {
           </div>
           {/*<!-- BEGIN: Invoice -->*/}
           <div class="intro-y box overflow-hidden mt-5">
+            <div class="flex flex-col lg:flex-row pt-10 px-5 sm:px-20 sm:pt-20 lg:pb-20 text-center sm:text-left">
+              <CourseDropdown course={course} setCourse={setCourse} />
+            </div>
+            <div class="flex flex-col lg:flex-row border-b px-5 sm:px-20 pt-10 pb-10 sm:pb-20 text-center sm:text-left">
+              <div>
+                <div class="text-base text-gray-600">Course Details</div>
+                <div class="text-lg font-medium text-theme-1 mt-2">
+                  Instructor: Arnold Schwarzenegger
+                </div>
+                <div class="mt-1">arnodlschwarzenegger@gmail.com</div>
+                <div class="mt-1">260 W. Storm Street New York, NY 10025.</div>
+              </div>
+            </div>
             <div class="px-5 sm:px-16 py-10 sm:py-20">
               <div class="overflow-x-auto">
                 <table class="table">
@@ -104,7 +118,7 @@ function ExamResults(props) {
                 <div class="text-lg text-theme-1 font-medium mt-2">
                   David Woolsey
                 </div>
-                <div class="mt-1">Course Name : History1001</div>
+                <div class="mt-1">Course Name : {course}</div>
                 <div class="mt-1">Course Code : LFT133243</div>
               </div>
               <div class="text-center sm:text-right sm:ml-auto">

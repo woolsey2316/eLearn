@@ -9,8 +9,7 @@ function Logo() {
         src="dist/images/logo.svg"
       />
       <span class="text-white text-lg ml-3">
-        {' '}
-        Mid<span class="font-medium">one</span>{' '}
+        Mid<span class="font-medium">one</span>
       </span>
     </a>
   )

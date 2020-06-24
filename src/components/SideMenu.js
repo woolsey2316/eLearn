@@ -13,7 +13,6 @@ function SideMenu(props) {
           src={logo}
         />
         <span className="hidden xl:block text-white text-lg ml-3">
-          
           e<span className="font-medium">Learn</span>
         </span>
       </a>
@@ -29,7 +28,6 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              
               <Icon.Home />
             </div>
             <div className="side-menu__title"> Dashboard </div>
@@ -45,7 +43,6 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              
               <Icon.User />
             </div>
             <div className="side-menu__title"> Profile</div>
@@ -61,7 +58,6 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              
               <Icon.HardDrive />
             </div>
             <div className="side-menu__title"> Courses </div>
@@ -77,7 +73,6 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              
               <Icon.Inbox />
             </div>
             <div className="side-menu__title"> Grades </div>
@@ -93,7 +88,6 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              
               <Icon.HardDrive />
             </div>
             <div className="side-menu__title"> Exam List </div>
@@ -109,7 +103,6 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              
               <Icon.BookOpen />
             </div>
             <div className="side-menu__title"> Exams </div>
@@ -125,7 +118,6 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              
               <Icon.LogOut />
             </div>
             <div className="side-menu__title"> Logout </div>

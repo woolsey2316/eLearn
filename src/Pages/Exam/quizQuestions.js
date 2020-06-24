@@ -26,30 +26,15 @@ var quizQuestions = [
   [
     {
       question: '5 + 5?',
-      possibleAnswers: [
-        '10',
-        '20',
-        '5',
-        '0',
-      ],
+      possibleAnswers: ['10', '20', '5', '0'],
     },
     {
       question: '2 * 2?',
-      possibleAnswers: [
-        '10',
-        '4',
-        '5',
-        '0',
-      ],
+      possibleAnswers: ['10', '4', '5', '0'],
     },
     {
       question: '5 + 1?',
-      possibleAnswers: [
-        '10',
-        '20',
-        '6',
-        '0',
-      ],
+      possibleAnswers: ['10', '20', '6', '0'],
     },
   ],
   [
@@ -64,14 +49,9 @@ var quizQuestions = [
     },
     {
       question: '9 * 9?',
-      possibleAnswers: [
-        '81',
-        '4',
-        '5',
-        '0',
-      ],
+      possibleAnswers: ['81', '4', '5', '0'],
     },
-  ]
+  ],
 ]
 var QuizData = {
   title: 'History101 midterm exam',
@@ -80,7 +60,7 @@ var QuizData = {
   examCode: 'ec20393',
   courseName: 'string',
   questions: quizQuestions,
-  sections: ["Maths","Chemistry","Physics"]
+  sections: ['Maths', 'Chemistry', 'Physics'],
 }
 
 export { quizQuestions, QuizData }

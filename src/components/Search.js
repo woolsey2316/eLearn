@@ -12,8 +12,7 @@ function Search() {
         <i data-feather="search" class="search__icon"></i>
       </div>
       <a class="notification notification--light sm:hidden" href="">
-        {' '}
-        <i data-feather="search" class="notification__icon"></i>{' '}
+        <i data-feather="search" class="notification__icon"></i>
       </a>
       <div class="search-result">
         <div class="search-result__content">
@@ -21,22 +20,19 @@ function Search() {
           <div class="mb-5">
             <a href="" class="flex items-center">
               <div class="w-8 h-8 bg-theme-18 text-theme-9 flex items-center justify-center rounded-full">
-                {' '}
-                <i class="w-4 h-4" data-feather="inbox"></i>{' '}
+                <i class="w-4 h-4" data-feather="inbox"></i>
               </div>
               <div class="ml-3">Mail Settings</div>
             </a>
             <a href="" class="flex items-center mt-2">
               <div class="w-8 h-8 bg-theme-17 text-theme-11 flex items-center justify-center rounded-full">
-                {' '}
-                <i class="w-4 h-4" data-feather="users"></i>{' '}
+                <i class="w-4 h-4" data-feather="users"></i>
               </div>
               <div class="ml-3">Users & Permissions</div>
             </a>
             <a href="" class="flex items-center mt-2">
               <div class="w-8 h-8 bg-theme-14 text-theme-10 flex items-center justify-center rounded-full">
-                {' '}
-                <i class="w-4 h-4" data-feather="credit-card"></i>{' '}
+                <i class="w-4 h-4" data-feather="credit-card"></i>
               </div>
               <div class="ml-3">Transactions Report</div>
             </a>

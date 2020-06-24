@@ -13,7 +13,7 @@ function ProfileOptions() {
           <div className="intro-y box mt-5">
             <div className="relative flex items-center p-5">
               <div className="dropdown relative">
-              <h2 className="font-medium text-base mr-auto">Useful Links</h2>
+                <h2 className="font-medium text-base mr-auto">Useful Links</h2>
                 <div className="dropdown-box mt-5 absolute w-56 top-0 right-0 z-20">
                   <div className="dropdown-box__content box">
                     <div className="p-4 border-b border-gray-200 font-medium">
@@ -24,7 +24,6 @@ function ProfileOptions() {
                         href=""
                         className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
                       >
-                        
                         <Icon.Activity className="w-4 h-4 text-gray-700 mr-2" />
                         English
                       </a>
@@ -42,7 +41,6 @@ function ProfileOptions() {
                         href=""
                         className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
                       >
-                        
                         <Icon.Layout className="w-4 h-4 text-gray-700 mr-2" />
                         English
                       </a>
@@ -50,7 +48,6 @@ function ProfileOptions() {
                         href=""
                         className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
                       >
-                        
                         <Icon.Sidebar className="w-4 h-4 text-gray-700 mr-2" />
                         Indonesia
                       </a>
@@ -75,24 +72,18 @@ function ProfileOptions() {
             </div>
             <div className="p-5 border-t border-gray-200">
               <a className="flex items-center mt-5" href="/student/exam_list">
-                
                 <Icon.Box className="w-4 h-4 mr-2" /> Exam List
               </a>
               <a className="flex items-center mt-5" href="/student/grades">
-                
                 <Icon.Edit className="w-4 h-4 mr-2" /> Grades
               </a>
               <a className="flex items-center mt-5" href="/student/grades">
-                
                 <Icon.Airplay className="w-4 h-4 mr-2" /> Dashboard
               </a>
               <a className="flex items-center mt-5" href="/login">
-                
                 <Icon.Settings className="w-4 h-4 mr-2" /> Logout
               </a>
             </div>
-
-            
           </div>
         </div>
         {/*<!-- END: Profile Menu -->*/}
@@ -106,12 +97,10 @@ function ProfileOptions() {
                   className="dropdown-toggle w-5 h-5 block"
                   href="javascript:;"
                 >
-                  
                   <Icon.MoreHorizontal className="w-5 h-5 text-gray-700" />
                 </a>
                 <div className="nav-tabs dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
                   <div className="dropdown-box__content box p-2">
-                    
                     <a
                       href="javascript:;"
                       data-toggle="tab"
@@ -132,7 +121,6 @@ function ProfileOptions() {
                 </div>
               </div>
               <div className="nav-tabs ml-auto hidden sm:flex">
-                
                 <a
                   data-toggle="tab"
                   data-target="#latest-tasks-new"

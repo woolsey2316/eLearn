@@ -10,11 +10,11 @@ import { userActions } from '../actions'
 function LoginPage() {
   // reset login status
   const dispatch = useDispatch()
-  
-    useEffect(() => { 
-      dispatch(userActions.logout());
-    }, []);
-  
+
+  useEffect(() => {
+    dispatch(userActions.logout())
+  }, [])
+
   return (
     <div className="login">
       <div className="container sm:px-10">
