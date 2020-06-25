@@ -10,7 +10,7 @@ function ExamCard({ exam }) {
   return (
     <div className="intro-x inbox__item inbox__item--active box mb-2">
       <div className="intro-x flex items-center box">
-        <DateIcon due={exam.due}/>
+        <DateIcon due={exam.due} />
         <div className=" inbox__item--active inline-block sm:block text-gray-700">
           <div className="flex px-5 py-1">
             <h2 className="text-xl mt-2 font-medium leading-none">

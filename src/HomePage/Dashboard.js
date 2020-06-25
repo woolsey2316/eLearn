@@ -12,7 +12,7 @@ import '../assets/dist/css/app.css'
 
 import { TopBar } from '../components'
 
-function HomePage(props) {
+function Dashboard(props) {
   /*
   const access_token = useSelector(state => state.authentication.user.token.access_token)
   const refresh_token = useSelector(state => state.authentication.user.token.refresh_token)
@@ -32,4 +32,4 @@ function HomePage(props) {
   )
 }
 
-export { HomePage }
+export { Dashboard }

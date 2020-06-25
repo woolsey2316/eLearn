@@ -9,7 +9,7 @@ import { history } from './helpers/history'
 
 import { RegisterPage } from './RegisterPage'
 import { LoginPage } from './LoginPage'
-import { HomePage } from './HomePage'
+import { Dashboard } from './HomePage'
 import { ChangePassword } from './Pages/sidemenu'
 import { Profile } from './Pages'
 import { UpdateProfile } from './Pages/profile'
@@ -45,10 +45,10 @@ function App() {
       <LogoutModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
       <Switch>
         <PrivateRoute exact path="/">
-          <HomePage sideMenu={sideMenu} />
+          <Dashboard sideMenu={sideMenu} />
         </PrivateRoute>
         <PrivateRoute exact path="/student/">
-          <HomePage sideMenu={sideMenu} />
+          <Dashboard sideMenu={sideMenu} />
         </PrivateRoute>
         <PrivateRoute exact path="/student/profile">
           <Profile sideMenu={sideMenu} />

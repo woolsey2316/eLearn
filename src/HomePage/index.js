@@ -1,2 +1,2 @@
-export { HomePage } from './Homepage'
+export { Dashboard } from './Dashboard'
 export { MainContent } from './MainContent'

@@ -35,7 +35,7 @@ async function login(email, password) {
 async function logout() {
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: authHeader(),
   }
   const response = await fetch(
     `${process.env.REACT_APP_API_URL}/auth/sign-out`,

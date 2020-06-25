@@ -8,7 +8,7 @@ export function authHeader() {
   let user = JSON.parse(localStorage.getItem('user'))
 
   if (user && user.token) {
-    return { Authorisation: 'Bearer ' + user.token }
+    return { authorisation: user.token.access_token }
   } else {
     return {}
   }

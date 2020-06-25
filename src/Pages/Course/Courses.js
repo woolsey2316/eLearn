@@ -49,22 +49,22 @@ function Courses(props) {
           <div className="intro-y box overflow-hidden mt-5">
             <div class="overflow-x-auto">
               <table class="table">
-                  <thead>
-                      <tr class="bg-gray-700 text-white">
-                          <th class="whitespace-no-wrap">#</th>
-                          <th class="whitespace-no-wrap">Course Name</th>
-                          <th class="whitespace-no-wrap">Course Code</th>
-                          <th class="whitespace-no-wrap">Exam Status</th>
-                          <th class="whitespace-no-wrap">Exam details</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                    <Course name={"Mathematics"} code={"Math101"} active={true}/>
-                    <Course name={"Science"} code={"Sci2312"} active={false}/>
-                    <Course name={"History"} code={"Hist323"} active={false}/>
-                  </tbody>
+                <thead>
+                  <tr class="bg-gray-700 text-white">
+                    <th class="whitespace-no-wrap">#</th>
+                    <th class="whitespace-no-wrap">Course Name</th>
+                    <th class="whitespace-no-wrap">Course Code</th>
+                    <th class="whitespace-no-wrap">Exam Status</th>
+                    <th class="whitespace-no-wrap">Exam details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <Course name={'Mathematics'} code={'Math101'} active={true} />
+                  <Course name={'Science'} code={'Sci2312'} active={false} />
+                  <Course name={'History'} code={'Hist323'} active={false} />
+                </tbody>
               </table>
-          </div>
+            </div>
           </div>
           {/*<!-- END: Invoice -->*/}
         </div>
