@@ -35,7 +35,7 @@ async function login(email, password) {
 async function logout() {
   const requestOptions = {
     method: 'POST',
-    headers: authHeader(),
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
   }
   const response = await fetch(
     `${process.env.REACT_APP_API_URL}/auth/sign-out`,
@@ -147,7 +147,7 @@ function handleResponse(response) {
     const data = text && JSON.parse(text)
 
     if (!response.ok) {
-      console.log(`%cresponse: ${JSON.stringify(response)}`)
+      console.log(`response: ${JSON.stringify(response)}`)
       if (response.status === 401) {
         // auto logout if 401 response returned from api
         logout()

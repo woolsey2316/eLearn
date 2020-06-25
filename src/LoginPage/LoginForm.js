@@ -15,6 +15,10 @@ export default () => {
   const [submitted, setSubmitted] = useState(false)
   const { email, password, isChecked } = inputs
   const dispatch = useDispatch()
+  // logs out current user when going to login page
+  useEffect(() => {
+    dispatch(userActions.logout());
+  }, [dispatch]);
 
   function handleChange(e) {
     const { name, value } = e.target

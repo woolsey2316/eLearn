@@ -18,29 +18,22 @@ import { SideMenu } from '../../components/SideMenu'
 
 function ChangePassword(props) {
   return (
-    <div style={{ padding: '2.5em' }} className="app">
+    <div className="app">
       <MobileMenu />
-      <div className="flex">
-        {/*<!-- BEGIN: Side Menu -->*/}
+      <div style={{ padding: '0em 2.3em' }} className="flex">
         {props.sideMenu}
-        {/*<!-- END: Side Menu -->*/}
-        {/*<!-- BEGIN: Content -->*/}
         <div className="content">
-          {/*<!-- BEGIN: Top Bar -->*/}
           <div className="top-bar">
-            {/*<!-- BEGIN: Breadcrumb -->*/}
             <div className="-intro-x breadcrumb mr-auto hidden sm:flex">
-              {' '}
+              
               <a href="" className="">
                 Application
-              </a>{' '}
-              <Icon.ChevronRight className="breadcrumb__icon" />{' '}
+              </a>
+              <Icon.ChevronRight className="breadcrumb__icon" />
               <a href="" className="breadcrumb--active">
                 Dashboard
-              </a>{' '}
+              </a>
             </div>
-            {/*<!-- END: Breadcrumb -->*/}
-            {/*<!-- BEGIN: Search -->*/}
             <div className="intro-x relative mr-3 sm:mr-6">
               <div className="search hidden sm:block">
                 <input
@@ -51,8 +44,8 @@ function ChangePassword(props) {
                 <Icon.Search className="search__icon" />
               </div>
               <a className="notification sm:hidden" href="">
-                {' '}
-                <Icon.Search className="notification__icon" />{' '}
+                
+                <Icon.Search className="notification__icon" />
               </a>
               <div className="search-result">
                 <div className="search-result__content">
@@ -60,25 +53,25 @@ function ChangePassword(props) {
                   <div className="mb-5">
                     <a href="" className="flex items-center">
                       <div className="w-8 h-8 bg-theme-18 text-theme-9 flex items-center justify-center rounded-full">
-                        {' '}
-                        <i className="w-4 h-4" data-feather="inbox"></i>{' '}
+                        
+                        <i className="w-4 h-4" data-feather="inbox"></i>
                       </div>
                       <div className="ml-3">Mail Settings</div>
                     </a>
                     <a href="" className="flex items-center mt-2">
                       <div className="w-8 h-8 bg-theme-17 text-theme-11 flex items-center justify-center rounded-full">
-                        {' '}
-                        <i className="w-4 h-4" data-feather="users"></i>{' '}
+                        
+                        <i className="w-4 h-4" data-feather="users"></i>
                       </div>
                       <div className="ml-3">Users & Permissions</div>
                     </a>
                     <a href="" className="flex items-center mt-2">
                       <div className="w-8 h-8 bg-theme-14 text-theme-10 flex items-center justify-center rounded-full">
-                        {' '}
+                        
                         <i
                           className="w-4 h-4"
                           data-feather="credit-card"
-                        ></i>{' '}
+                        ></i>
                       </div>
                       <div className="ml-3">Transactions Report</div>
                     </a>
@@ -194,12 +187,10 @@ function ChangePassword(props) {
                 </div>
               </div>
             </div>
-            {/*<!-- END: Search -->*/}
-            {/*<!-- BEGIN: Notifications -->*/}
             <div className="intro-x dropdown relative mr-auto sm:mr-6">
               <div className="dropdown-toggle notification notification--bullet cursor-pointer">
-                {' '}
-                <Icon.Bell className="notification__icon" />{' '}
+                
+                <Icon.Bell className="notification__icon" />
               </div>
               <div className="notification-content dropdown-box mt-8 absolute top-0 left-0 sm:left-auto sm:right-0 z-20 -ml-10 sm:ml-0">
                 <div className="notification-content__box dropdown-box__content box">
@@ -286,7 +277,7 @@ function ChangePassword(props) {
                       <div className="w-full truncate text-gray-600">
                         It is a long established fact that a reader will be
                         distracted by the readable content of a page when
-                        looking at its layout. The point of using Lorem{' '}
+                        looking at its layout. The point of using Lorem
                       </div>
                     </div>
                   </div>
@@ -349,8 +340,6 @@ function ChangePassword(props) {
                 </div>
               </div>
             </div>
-            {/*<!-- END: Notifications -->*/}
-            {/*<!-- BEGIN: Account Menu -->*/}
             <div className="intro-x dropdown w-8 h-8 relative">
               <div className="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in">
                 <img alt="Midone Tailwind HTML Admin Template" src={profile2} />
@@ -368,29 +357,29 @@ function ChangePassword(props) {
                       href=""
                       className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
                     >
-                      {' '}
-                      <Icon.User className="w-4 h-4 mr-2" /> Profile{' '}
+                      
+                      <Icon.User className="w-4 h-4 mr-2" /> Profile
                     </a>
                     <a
                       href=""
                       className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
                     >
-                      {' '}
-                      <Icon.Edit className="w-4 h-4 mr-2" /> Add Account{' '}
+                      
+                      <Icon.Edit className="w-4 h-4 mr-2" /> Add Account
                     </a>
                     <a
                       href=""
                       className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
                     >
-                      {' '}
-                      <Icon.Lock className="w-4 h-4 mr-2" /> Reset Password{' '}
+                      
+                      <Icon.Lock className="w-4 h-4 mr-2" /> Reset Password
                     </a>
                     <a
                       href=""
                       className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
                     >
-                      {' '}
-                      <Icon.HelpCircle className="w-4 h-4 mr-2" /> Help{' '}
+                      
+                      <Icon.HelpCircle className="w-4 h-4 mr-2" /> Help
                     </a>
                   </div>
                   <div className="p-2 border-t border-theme-40">
@@ -398,21 +387,18 @@ function ChangePassword(props) {
                       href=""
                       className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
                     >
-                      {' '}
-                      <Icon.ToggleRight className="w-4 h-4 mr-2" /> Logout{' '}
+                      
+                      <Icon.ToggleRight className="w-4 h-4 mr-2" /> Logout
                     </a>
                   </div>
                 </div>
               </div>
             </div>
-            {/*<!-- END: Account Menu -->*/}
           </div>
-          {/*<!-- END: Top Bar -->*/}
           <div className="intro-y flex items-center mt-8">
             <h2 className="text-lg font-medium mr-auto">Update Profile</h2>
           </div>
           <div className="grid grid-cols-12 gap-6">
-            {/*<!-- BEGIN: Profile Menu -->*/}
             <div className="col-span-12 lg:col-span-4 xxl:col-span-3 flex lg:block flex-col-reverse">
               <div className="intro-y box mt-5">
                 <div className="relative flex items-center p-5">
@@ -432,8 +418,8 @@ function ChangePassword(props) {
                       className="dropdown-toggle w-5 h-5 block"
                       href="javascript:;"
                     >
-                      {' '}
-                      <Icon.MoreHorizontal className="w-5 h-5 text-gray-700" />{' '}
+                      
+                      <Icon.MoreHorizontal className="w-5 h-5 text-gray-700" />
                     </a>
                     <div className="dropdown-box mt-5 absolute w-56 top-0 right-0 z-20">
                       <div className="dropdown-box__content box">
@@ -445,15 +431,15 @@ function ChangePassword(props) {
                             href=""
                             className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
                           >
-                            {' '}
-                            <Icon.Activity className="w-4 h-4 text-gray-700 mr-2" />{' '}
-                            English{' '}
+                            
+                            <Icon.Activity className="w-4 h-4 text-gray-700 mr-2" />
+                            English
                           </a>
                           <a
                             href=""
                             className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
                           >
-                            <Icon.Box className="w-4 h-4 text-gray-700 mr-2" />{' '}
+                            <Icon.Box className="w-4 h-4 text-gray-700 mr-2" />
                             Indonesia
                             <div className="text-xs text-white px-1 rounded-full bg-theme-6 ml-auto">
                               10
@@ -463,17 +449,17 @@ function ChangePassword(props) {
                             href=""
                             className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
                           >
-                            {' '}
-                            <Icon.Layout className="w-4 h-4 text-gray-700 mr-2" />{' '}
-                            English{' '}
+                            
+                            <Icon.Layout className="w-4 h-4 text-gray-700 mr-2" />
+                            English
                           </a>
                           <a
                             href=""
                             className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
                           >
-                            {' '}
-                            <Icon.Sidebar className="w-4 h-4 text-gray-700 mr-2" />{' '}
-                            Indonesia{' '}
+                            
+                            <Icon.Sidebar className="w-4 h-4 text-gray-700 mr-2" />
+                            Indonesia
                           </a>
                         </div>
                         <div className="px-3 py-3 border-t border-gray-200 font-medium flex">
@@ -499,39 +485,39 @@ function ChangePassword(props) {
                     className="flex items-center text-theme-1 font-medium"
                     href=""
                   >
-                    {' '}
+                    
                     <Icon.Activity className="w-4 h-4 mr-2" /> Personal
-                    Information{' '}
+                    Information
                   </a>
                   <a className="flex items-center mt-5" href="">
-                    {' '}
-                    <Icon.Box className="w-4 h-4 mr-2" /> Account Settings{' '}
+                    
+                    <Icon.Box className="w-4 h-4 mr-2" /> Account Settings
                   </a>
                   <a className="flex items-center mt-5" href="">
-                    {' '}
-                    <Icon.Lock className="w-4 h-4 mr-2" /> Change Password{' '}
+                    
+                    <Icon.Lock className="w-4 h-4 mr-2" /> Change Password
                   </a>
                   <a className="flex items-center mt-5" href="">
-                    {' '}
-                    <Icon.Settings className="w-4 h-4 mr-2" /> User Settings{' '}
+                    
+                    <Icon.Settings className="w-4 h-4 mr-2" /> User Settings
                   </a>
                 </div>
                 <div className="p-5 border-t border-gray-200">
                   <a className="flex items-center" href="">
-                    {' '}
-                    <Icon.Activity className="w-4 h-4 mr-2" /> Email Settings{' '}
+                    
+                    <Icon.Activity className="w-4 h-4 mr-2" /> Email Settings
                   </a>
                   <a className="flex items-center mt-5" href="">
-                    {' '}
-                    <Icon.Box className="w-4 h-4 mr-2" /> Saved Credit Cards{' '}
+                    
+                    <Icon.Box className="w-4 h-4 mr-2" /> Saved Credit Cards
                   </a>
                   <a className="flex items-center mt-5" href="">
-                    {' '}
-                    <Icon.Lock className="w-4 h-4 mr-2" /> Social Networks{' '}
+                    
+                    <Icon.Lock className="w-4 h-4 mr-2" /> Social Networks
                   </a>
                   <a className="flex items-center mt-5" href="">
-                    {' '}
-                    <Icon.Settings className="w-4 h-4 mr-2" /> Tax Information{' '}
+                    
+                    <Icon.Settings className="w-4 h-4 mr-2" /> Tax Information
                   </a>
                 </div>
                 <div className="p-5 border-t flex">
@@ -550,15 +536,11 @@ function ChangePassword(props) {
                 </div>
               </div>
             </div>
-            {/*<!-- END: Profile Menu -->*/}
             <div className="col-span-12 lg:col-span-8 xxl:col-span-9">
-              {/*<!-- BEGIN: Change Password -->*/}
               <ChangePasswordForm />
-              {/*<!-- END: Change Password -->*/}
             </div>
           </div>
         </div>
-        {/*<!-- END: Content -->*/}
       </div>
     </div>
   )

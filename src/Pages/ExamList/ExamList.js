@@ -17,7 +17,7 @@ function ExamList(props) {
   return (
     <div className="app">
       <MobileMenu />
-      <div style={{ paddingLeft: '2.3em' }} className="flex">
+      <div style={{ padding: '0 2.3em' }} className="flex">
         {props.sideMenu}
         <div className="content">
           <TopBar />

@@ -12,23 +12,15 @@ import profile2 from '../../assets/dist/images/profile-2.jpg'
 function UpdateProfile(props) {
   return (
     <body className="app">
-      {/*<!-- BEGIN: Mobile Menu -->*/}
       <MobileMenu />
-      {/*<!-- END: Mobile Menu -->*/}
-      <div className="flex">
-        {/*<!-- BEGIN: Side Menu -->*/}
+      <div style={{ padding: '0em 2.3em' }} className="flex">
         {props.sideMenu}
-        {/*<!-- END: Side Menu -->*/}
-        {/*<!-- BEGIN: Content -->*/}
         <div className="content">
-          {/*<!-- BEGIN: Top Bar -->*/}
           <TopBar />
-          {/*<!-- END: Top Bar -->*/}
           <div className="intro-y flex items-center mt-8">
             <h2 className="text-lg font-medium mr-auto">Update Profile</h2>
           </div>
           <div className="grid grid-cols-12 gap-6">
-            {/*<!-- BEGIN: Profile Menu -->*/}
             <div className="col-span-12 lg:col-span-4 xxl:col-span-3 flex lg:block flex-col-reverse">
               <div className="intro-y box mt-5">
                 <div className="relative flex items-center p-5">
@@ -166,9 +158,7 @@ function UpdateProfile(props) {
                 </div>
               </div>
             </div>
-            {/*<!-- END: Profile Menu -->*/}
             <div className="col-span-12 lg:col-span-8 xxl:col-span-9">
-              {/*<!-- BEGIN: Display Information -->*/}
               <div className="intro-y box lg:mt-5">
                 <div className="flex items-center p-5 border-b border-gray-200">
                   <h2 className="font-medium text-base mr-auto">
@@ -272,8 +262,6 @@ function UpdateProfile(props) {
                   </div>
                 </div>
               </div>
-              {/*<!-- END: Display Information -->*/}
-              {/*<!-- BEGIN: Personal Information -->*/}
               <div className="intro-y box lg:mt-5">
                 <div className="flex items-center p-5 border-b border-gray-200">
                   <h2 className="font-medium text-base mr-auto">
@@ -360,25 +348,11 @@ function UpdateProfile(props) {
                       </div>
                     </div>
                   </div>
-                  <div className="flex justify-end mt-4">
-                    <a href="" className="text-theme-6 flex items-center">
-                      {' '}
-                      <Icon.Trash2 className="w-4 h-4 mr-1" /> Delete Account{' '}
-                    </a>
-                    <button
-                      type="button"
-                      className="button w-20 bg-theme-1 text-white ml-auto"
-                    >
-                      Save
-                    </button>
-                  </div>
                 </div>
               </div>
-              {/*<!-- END: Personal Information -->*/}
             </div>
           </div>
         </div>
-        {/*<!-- END: Content -->*/}
       </div>
     </body>
   )

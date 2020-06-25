@@ -26,13 +26,14 @@ export default () => {
   const dispatch = useDispatch()
 
   // Always logs out current user before loading signup form page
-  /*
-useEffect(() => {
-  dispatch(userActions.logout());
-}, [dispatch]);
-*/ function evaluatePasswordScore() {
+  useEffect(() => {
+    dispatch(userActions.logout());
+  }, [dispatch]);
+  // password strength 0 - weakest, 4 strongest
+  function evaluatePasswordScore() {
     return zxcvbn(user.password).score
   }
+  // green is best, orange moderate, red is weak
   function passwordStrengthColour() {
     var score = evaluatePasswordScore()
     if (score >= 3) return 'theme-9'
@@ -71,7 +72,7 @@ useEffect(() => {
       [name]: value,
     }))
   }
-
+  // dispatch an action to the redux store, updates 'user' object
   function handleSubmit(e) {
     e.preventDefault()
     console.log(`%cuser details: ${JSON.stringify(user)}`, 'color:green')

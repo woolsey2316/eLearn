@@ -26,7 +26,7 @@ function Courses(props) {
       {/*<!-- BEGIN: Mobile Menu -->*/}
       <MobileMenu />
       {/*<!-- END: Mobile Menu -->*/}
-      <div style={{ paddingLeft: '2.3em' }} className="flex">
+      <div style={{ padding: '0 2.3em' }} className="flex">
         {/*<!-- BEGIN: Simple Menu -->*/}
         {props.sideMenu}
         {/*<!-- END: Simple Menu -->*/}

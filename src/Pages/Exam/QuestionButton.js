@@ -1,19 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { AnswerStatusIcon } from './AnswerStatusIcons'
 
 function QuestionButton(props) {
-  const didMountRef = useRef(false)
-  const [visited, setVisited] = useState(false)
-
+  const [visitedOnce, setVisited] = useState(false);
   useEffect(() => {
-    if (didMountRef.current) {
-      if (props.currentQuestion === props.questionId) {
-        setVisited(true)
-      }
-    } else didMountRef.current = true
-  }, [props.currentQuestion, props.questionId, visited])
-
+    if (props.currentQuestion === props.questionId) {
+      setVisited(true);
+    }
+  },[visitedOnce, props.currentQuestion])
+  
   return (
     <div
       style={{ cursor: 'pointer' }}
@@ -30,7 +26,7 @@ function QuestionButton(props) {
         answer={props.answer}
         marked={props.markedQuestions}
         questionId={props.questionId}
-        visited={visited}
+        visited={visitedOnce}
       />
     </div>
   )
