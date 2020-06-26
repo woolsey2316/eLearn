@@ -8,7 +8,7 @@ function CalendarDay(props) {
         (props.curr === props.day
           ? ' bg-theme-1 text-white rounded relative'
           : '') +
-        (props.disabled ? " text-gray-500" : "")
+        (props.disabled ? ' text-gray-500' : '')
       }
     >
       {props.day}

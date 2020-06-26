@@ -6,22 +6,22 @@ function CalendarContainer() {
   var now = new Date()
   const [today, setDate] = useState(new Date())
   function nextMonth() {
-    var day = Math.min(now.getDate(),28)
+    var day = Math.min(now.getDate(), 28)
     if (today.getMonth() === 11) {
-      setDate( new Date(today.getFullYear() + 1, 0, day));
+      setDate(new Date(today.getFullYear() + 1, 0, day))
     } else {
-      setDate( new Date(today.getFullYear(), today.getMonth() + 1, day));
+      setDate(new Date(today.getFullYear(), today.getMonth() + 1, day))
     }
   }
   function todayDate() {
-    setDate(new Date());
+    setDate(new Date())
   }
   function previousMonth() {
-    var day = Math.min(now.getDate(),28)
+    var day = Math.min(now.getDate(), 28)
     if (today.getMonth() === 0) {
-      setDate( new Date(today.getFullYear() - 1, 11, day));
+      setDate(new Date(today.getFullYear() - 1, 11, day))
     } else {
-      setDate( new Date(today.getFullYear(), today.getMonth() - 1, day));
+      setDate(new Date(today.getFullYear(), today.getMonth() - 1, day))
     }
   }
   var getDaysInMonth = function (month, year) {
@@ -48,7 +48,7 @@ function CalendarContainer() {
     .fill(theFirstDayCurrentMonth)
     .map((e, i) => daysInLastMonth - e + i + 1)
   // ...1st,2nd,3rd day of next month might have to appear in the bottom right part of the calendar
-  const daysAfterCurrentMonth = Array(Math.max(6 - (theLastDayCurrentMonth),0))
+  const daysAfterCurrentMonth = Array(Math.max(6 - theLastDayCurrentMonth, 0))
     .fill('')
     .map((e, i) => i + 1)
 
@@ -61,11 +61,14 @@ function CalendarContainer() {
         <div className="intro-x box">
           <div className="p-5">
             <div className="flex">
-              <button style={{cursor:"pointer"}} onClick={previousMonth}>
+              <button style={{ cursor: 'pointer' }} onClick={previousMonth}>
                 <Icon.ChevronLeft className="w-5 h-5 text-gray-600" />
               </button>
-              <div onClick={todayDate} className="font-medium mx-auto">{`${month}, ${year}`}</div>
-              <button style={{cursor:"pointer"}} onClick={nextMonth}>
+              <div
+                onClick={todayDate}
+                className="font-medium mx-auto"
+              >{`${month}, ${year}`}</div>
+              <button style={{ cursor: 'pointer' }} onClick={nextMonth}>
                 <Icon.ChevronRight className="w-5 h-5 text-gray-600" />
               </button>
             </div>
@@ -78,7 +81,7 @@ function CalendarContainer() {
               <div className="font-medium">Fr</div>
               <div className="font-medium">Sa</div>
               {daysBeforeCurrentMonth.map((day) => (
-                <CalendarDay day={day} disabled={true}/>
+                <CalendarDay day={day} disabled={true} />
               ))}
               {Array(getDaysInMonth(month_ + 1, year_))
                 .fill('')
@@ -86,7 +89,7 @@ function CalendarContainer() {
                   <CalendarDay day={index + 1} curr={date} />
                 ))}
               {daysAfterCurrentMonth.map((day) => (
-                <CalendarDay day={day} disabled={true}/>
+                <CalendarDay day={day} disabled={true} />
               ))}
             </div>
           </div>

@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import * as Icon from 'react-feather'
 import ReactTooltip from 'react-tooltip'
 
-function answered(id){
-  return(
+function answered(id) {
+  return (
     <div className="mx-auto">
       <Icon.Check
         className="w-5 h-5 text-theme-9 mx-auto"
         data-for={id}
-        data-tip=""
+        data-tip="1"
       />
       <ReactTooltip place="left" id={id}>
         Question is answered
@@ -16,13 +16,13 @@ function answered(id){
     </div>
   )
 }
-function notAnswered(id){
-  return(
+function notAnswered(id) {
+  return (
     <div className="mx-auto">
       <Icon.AlertTriangle
         className="w-5 h-5 text-theme-12 mx-auto"
         data-for={id}
-        data-tip=""
+        data-tip="1"
       />
       <ReactTooltip place="left" id={id}>
         Question was skipped
@@ -31,12 +31,12 @@ function notAnswered(id){
   )
 }
 function marked(id) {
-  return(
+  return (
     <div className="mx-auto">
       <Icon.Crosshair
         className="w-5 h-5 text-theme-11 mx-auto"
         data-for={id}
-        data-tip=""
+        data-tip="1"
       />
       <ReactTooltip place="left" id={id}>
         Question was NOT answered and marked for review
@@ -45,12 +45,12 @@ function marked(id) {
   )
 }
 function answeredAndMarked(id) {
-  return(
+  return (
     <div className="mx-auto">
       <Icon.UserCheck
         className="w-5 h-5 text-theme-9 mx-auto"
         data-for={id}
-        data-tip=""
+        data-tip="1"
       />
       <ReactTooltip place="left" id={id}>
         Question was answered AND marked for review
@@ -59,12 +59,12 @@ function answeredAndMarked(id) {
   )
 }
 function notVisited(id) {
-  return( 
+  return (
     <div className="mx-auto">
       <Icon.AlertCircle
         className="w-5 h-5 text-gray-600 mx-auto"
         data-for={id}
-        data-tip=""
+        data-tip="1"
       />
       <ReactTooltip place="left" id={id}>
         Haven't visited question yet
@@ -73,12 +73,12 @@ function notVisited(id) {
   )
 }
 function defaultStatus(id) {
-  return(
+  return (
     <div className="mx-auto">
       <Icon.AlertCircle
         className="w-5 h-5 text-gray-600 mx-auto"
         data-for={id}
-        data-tip=""
+        data-tip="1"
       />
       <ReactTooltip place="left" id={id}>
         Haven't visited question yet
@@ -100,5 +100,5 @@ function AnswerStatusIcon(props) {
   }
   return notVisited(id)
 }
-  
+
 export { AnswerStatusIcon }

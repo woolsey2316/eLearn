@@ -28,7 +28,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.Home />
+              <Icon.Home className="side-menu__icon"/>
             </div>
             <div className="side-menu__title"> Dashboard </div>
           </a>
@@ -43,7 +43,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.User />
+              <Icon.User className="side-menu__icon"/>
             </div>
             <div className="side-menu__title"> Profile</div>
           </a>
@@ -58,7 +58,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.HardDrive />
+              <Icon.HardDrive className="side-menu__icon"/>
             </div>
             <div className="side-menu__title"> Courses </div>
           </a>
@@ -73,7 +73,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.Inbox />
+              <Icon.Inbox className="side-menu__icon"/>
             </div>
             <div className="side-menu__title"> Grades </div>
           </a>
@@ -88,7 +88,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.HardDrive />
+              <Icon.HardDrive className="side-menu__icon"/>
             </div>
             <div className="side-menu__title"> Exam List </div>
           </a>
@@ -103,7 +103,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.BookOpen />
+              <Icon.BookOpen className="side-menu__icon"/>
             </div>
             <div className="side-menu__title"> Exams </div>
           </a>
@@ -118,7 +118,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.LogOut />
+              <Icon.LogOut className="side-menu__icon"/>
             </div>
             <div className="side-menu__title"> Logout </div>
           </button>

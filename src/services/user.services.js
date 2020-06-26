@@ -1,4 +1,4 @@
-import { authHeader } from '../helpers'
+import { authHeader, IsValidJSONString} from '../helpers'
 /*
   The services layer handles all http communication with the back-end apis.
   This section of the services layer relates to user data. CRUD operations
@@ -10,6 +10,7 @@ export const userService = {
   register,
   //getById,
   getCurrentUserInfo,
+  requestPasswordChange,
   changePassword,
   update,
   delete: _delete,
@@ -92,21 +93,35 @@ async function register(user) {
   )
   return handleRegisterResponse(response)
 }
+// asks for permission to change password
+async function requestPasswordChange(user) {
+  const requestOptions = {
+    method: 'POST',
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    body: JSON.stringify(user),
+  }
+
+  const response = await fetch(
+    `${process.env.REACT_APP_API_URL}/auth/request-pass`,
+    requestOptions
+  ).then((response) => {
+    return response.text()
+  })
+  return handleResponse(response)
+}
 
 async function changePassword(user) {
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
     body: JSON.stringify(user),
   }
 
   const response = await fetch(
     `${process.env.REACT_APP_API_URL}/auth/reset-pass`,
     requestOptions
-  ).then((response) => {
-    return response.text()
-  })
-  return handleRegisterResponse(response)
+  )
+  return handleResponse(response)
 }
 
 async function update(user) {
@@ -144,7 +159,7 @@ async function _delete(id) {
 */
 function handleResponse(response) {
   return response.text().then((text) => {
-    const data = text && JSON.parse(text)
+    const data = IsValidJSONString(text) ? JSON.parse(text) : text
 
     if (!response.ok) {
       console.log(`response: ${JSON.stringify(response)}`)
@@ -154,8 +169,10 @@ function handleResponse(response) {
         // forces a reload after user object is deleted
         window.location.reload(true)
       }
-
-      const error = (data && data.message) || response.statusText
+      // trying to get as much information about the error as I can get
+      const error = response.statusText || 
+        (data.message + data.error && data.error + ": " + data.message) || 
+        data.message || data.error || data
       return Promise.reject(error)
     }
     return data
@@ -163,12 +180,8 @@ function handleResponse(response) {
 }
 
 function handleRegisterResponse(response) {
-  console.log(
-    `%cresponse from email registration request: ${response.statusText}`,
-    'color: red'
-  )
   return response.text().then((text) => {
-    const data = text && JSON.parse(text)
+    const data = IsValidJSONString(text) ? JSON.parse(text) : text
 
     if (!response.ok) {
       if (response.status === 401) {
@@ -183,8 +196,9 @@ function handleRegisterResponse(response) {
         // forces a reload after user object is deleted
         window.location.reload(true)
       }
-      const error = (data && data.message) || response.statusText
-      console.log(`%cerror: ${error}`, 'color: red')
+      const error = response.statusText || 
+      (data.message + data.error && data.error + ": " + data.message) || 
+      data.message || data.error || data
       return Promise.reject(error)
     }
     window.location.reload(true)

@@ -1,28 +1,45 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { history } from '../helpers'
+
 import { Link } from 'react-router-dom'
 
+import { alertActions } from '../actions'
 import { userActions } from '../actions'
+
+import { Alert } from '../components'
 
 function ChangePasswordForm() {
   const [user, setUser] = useState({
     confirmPassword: '',
-    oldPassword: '',
+    email: '',
     password: '',
   })
-  const [submitted, setSubmitted] = useState(false)
-  const registering = useSelector((state) => state.registration.registering)
-  const dispatch = useDispatch()
+
+  const alert = useSelector(state => state.alert);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    history.listen((location, action) => {
+      // clear alert on location change
+      dispatch(alertActions.clear());
+    });
+  }, []);
+
+  function handleChange(e) {
+    const { name, value } = e.target
+    setUser((user) => ({
+      ...user,
+      [name]: value,
+    }))
+  }
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(`%cuser details: ${JSON.stringify(user)}`, 'color:green')
-    console.log()
 
-    setSubmitted(true)
-    if (user.fullName && user.confirmPassword && user.email && user.password) {
-      dispatch(userActions.register(user))
+    if (user.confirmPassword && user.email && user.password) {
+      dispatch(userActions.resetPassword(user))
     }
   }
 
@@ -31,14 +48,16 @@ function ChangePasswordForm() {
       <div className="flex items-center p-5 border-b border-gray-200">
         <h2 className="font-medium text-base mr-auto">Change Password</h2>
       </div>
-      <form style={{ margin: 'auto' }} name="form" onSubmit={handleSubmit}>
+      <form style={{ margin: 'auto' }} name="form" onSubmit={handleSubmit} className="validate-form">
         <div className="p-5">
           <div>
-            <label>Old Password</label>
+            <label>Email</label>
             <input
-              type="password"
+              type="text"
               className="input w-full border mt-2"
-              placeholder="Input text"
+              placeholder=""
+              name="email"
+              onChange={handleChange}
             />
           </div>
           <div className="mt-3">
@@ -46,7 +65,9 @@ function ChangePasswordForm() {
             <input
               type="password"
               className="input w-full border mt-2"
-              placeholder="Input text"
+              placeholder=""
+              name="confirmPassword"
+              onChange={handleChange}
             />
           </div>
           <div className="mt-3">
@@ -54,12 +75,17 @@ function ChangePasswordForm() {
             <input
               type="password"
               className="input w-full border mt-2"
-              placeholder="Input text"
+              placeholder=""
+              name="password"
+              onChange={handleChange}
             />
           </div>
-          <button type="button" className="button bg-theme-1 text-white mt-4">
+          <button type="submit" className="button bg-theme-1 text-white mt-4">
             Change Password
           </button>
+          {alert.message &&
+            <Alert type={alert.type} message={alert.message} />
+          }
         </div>
       </form>
     </div>

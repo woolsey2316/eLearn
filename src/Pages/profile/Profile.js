@@ -66,10 +66,16 @@ function Profile(props) {
                 </div>
               </div>
               <div className="p-5 border-t border-gray-200">
-                <a className="flex items-center mb-5" href="/student/profile/update_profile">
+                <a
+                  className="flex items-center mb-5"
+                  href="/student/profile/update_profile"
+                >
                   <Icon.Box className="w-4 h-4 mr-2" /> Account Settings
                 </a>
-                <a className="flex items-center mb-5" href="/student/profile/change_password">
+                <a
+                  className="flex items-center mb-5"
+                  href="/student/profile/change_password"
+                >
                   <Icon.Lock className="w-4 h-4 mr-2" /> Change Password
                 </a>
               </div>

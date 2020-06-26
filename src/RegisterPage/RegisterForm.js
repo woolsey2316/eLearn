@@ -4,6 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { userActions } from '../actions'
+import { alertActions } from '../actions'
+
+import { Alert } from '../components'
+
+import { history } from '../helpers'
 
 import * as Icon from 'react-feather'
 
@@ -24,11 +29,19 @@ export default () => {
   const [passwordAdvice, showPasswordAdvice] = useState(false)
   const registering = useSelector((state) => state.registration.registering)
   const dispatch = useDispatch()
+  const alert = useSelector(state => state.alert);
+
+  useEffect(() => {
+    history.listen((location, action) => {
+      // clear alert on location change
+      dispatch(alertActions.clear());
+    });
+  }, []);
 
   // Always logs out current user before loading signup form page
   useEffect(() => {
-    dispatch(userActions.logout());
-  }, [dispatch]);
+    dispatch(userActions.logout())
+  }, [dispatch])
   // password strength 0 - weakest, 4 strongest
   function evaluatePasswordScore() {
     return zxcvbn(user.password).score
@@ -225,6 +238,9 @@ export default () => {
               Sign in
             </Link>
           </div>
+          {alert.message &&
+            <Alert type={alert.type} message={alert.message} />
+          }
         </div>
       </div>
     </form>

@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react'
 import { AnswerStatusIcon } from './AnswerStatusIcons'
 
 function QuestionButton(props) {
-  const [visitedOnce, setVisited] = useState(false);
+  const [visitedOnce, setVisited] = useState(false)
   useEffect(() => {
     if (props.currentQuestion === props.questionId) {
-      setVisited(true);
+      setVisited(true)
     }
-  },[visitedOnce, props.currentQuestion])
-  
+  }, [visitedOnce, props.currentQuestion])
+
   return (
     <div
       style={{ cursor: 'pointer' }}

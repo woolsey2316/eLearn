@@ -26,8 +26,7 @@ function CourseDropdown(props) {
                 onClick={() => chooseCourse('Course #1')}
                 className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
               >
-                <Icon.Box className="w-4 h-4 text-gray-700 mr-2" /> Course
-                #1
+                <Icon.Box className="w-4 h-4 text-gray-700 mr-2" /> Course #1
               </button>
               <button
                 onClick={() => chooseCourse('Course #2')}
@@ -51,8 +50,7 @@ function CourseDropdown(props) {
                 onClick={() => chooseCourse('Course #4')}
                 className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
               >
-                <Icon.Box className="w-4 h-4 text-gray-700 mr-2" /> Course
-                #4
+                <Icon.Box className="w-4 h-4 text-gray-700 mr-2" /> Course #4
               </button>
             </div>
           </div>

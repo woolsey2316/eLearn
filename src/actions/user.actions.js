@@ -27,6 +27,7 @@ function login(email, password) {
         dispatch(success(user))
         // API request to retrieve all user info from server, eg. profile image
         dispatch(getCurrentUserInfo(user))
+        history.push('/student/');
         redirect('/student/')
       },
       (error) => {
@@ -59,7 +60,7 @@ function register(user) {
     userService.register(user).then(
       (user) => {
         dispatch(success())
-        redirect('/student/login')
+        redirect('/login')
         dispatch(alertActions.success('Registration successful'))
       },
       (error) => {

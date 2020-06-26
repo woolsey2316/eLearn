@@ -2,6 +2,12 @@ import React from 'react'
 import { MobileMenu } from '../../components'
 import { ChangePasswordForm } from '../../components'
 
+import { history } from '../../helpers/history'
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import { alertActions } from '../../actions';
+
 import * as Icon from 'react-feather'
 
 import profile3 from '../../assets/dist/images/profile-3.jpg'
@@ -14,10 +20,13 @@ import preview1 from '../../assets/dist/images/preview-1.jpg'
 import profile1 from '../../assets/dist/images/profile-1.jpg'
 import profile2 from '../../assets/dist/images/profile-2.jpg'
 import profile4 from '../../assets/dist/images/profile-4.jpg'
+
 import { SideMenu } from '../../components/SideMenu'
 
 function ChangePassword(props) {
+  
   return (
+    <>
     <div className="app">
       <MobileMenu />
       <div style={{ padding: '0em 2.3em' }} className="flex">
@@ -25,7 +34,6 @@ function ChangePassword(props) {
         <div className="content">
           <div className="top-bar">
             <div className="-intro-x breadcrumb mr-auto hidden sm:flex">
-              
               <a href="" className="">
                 Application
               </a>
@@ -44,7 +52,6 @@ function ChangePassword(props) {
                 <Icon.Search className="search__icon" />
               </div>
               <a className="notification sm:hidden" href="">
-                
                 <Icon.Search className="notification__icon" />
               </a>
               <div className="search-result">
@@ -53,25 +60,19 @@ function ChangePassword(props) {
                   <div className="mb-5">
                     <a href="" className="flex items-center">
                       <div className="w-8 h-8 bg-theme-18 text-theme-9 flex items-center justify-center rounded-full">
-                        
                         <i className="w-4 h-4" data-feather="inbox"></i>
                       </div>
                       <div className="ml-3">Mail Settings</div>
                     </a>
                     <a href="" className="flex items-center mt-2">
                       <div className="w-8 h-8 bg-theme-17 text-theme-11 flex items-center justify-center rounded-full">
-                        
                         <i className="w-4 h-4" data-feather="users"></i>
                       </div>
                       <div className="ml-3">Users & Permissions</div>
                     </a>
                     <a href="" className="flex items-center mt-2">
                       <div className="w-8 h-8 bg-theme-14 text-theme-10 flex items-center justify-center rounded-full">
-                        
-                        <i
-                          className="w-4 h-4"
-                          data-feather="credit-card"
-                        ></i>
+                        <i className="w-4 h-4" data-feather="credit-card"></i>
                       </div>
                       <div className="ml-3">Transactions Report</div>
                     </a>
@@ -189,7 +190,6 @@ function ChangePassword(props) {
             </div>
             <div className="intro-x dropdown relative mr-auto sm:mr-6">
               <div className="dropdown-toggle notification notification--bullet cursor-pointer">
-                
                 <Icon.Bell className="notification__icon" />
               </div>
               <div className="notification-content dropdown-box mt-8 absolute top-0 left-0 sm:left-auto sm:right-0 z-20 -ml-10 sm:ml-0">
@@ -357,28 +357,24 @@ function ChangePassword(props) {
                       href=""
                       className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
                     >
-                      
                       <Icon.User className="w-4 h-4 mr-2" /> Profile
                     </a>
                     <a
                       href=""
                       className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
                     >
-                      
                       <Icon.Edit className="w-4 h-4 mr-2" /> Add Account
                     </a>
                     <a
                       href=""
                       className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
                     >
-                      
                       <Icon.Lock className="w-4 h-4 mr-2" /> Reset Password
                     </a>
                     <a
                       href=""
                       className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
                     >
-                      
                       <Icon.HelpCircle className="w-4 h-4 mr-2" /> Help
                     </a>
                   </div>
@@ -387,7 +383,6 @@ function ChangePassword(props) {
                       href=""
                       className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
                     >
-                      
                       <Icon.ToggleRight className="w-4 h-4 mr-2" /> Logout
                     </a>
                   </div>
@@ -418,7 +413,6 @@ function ChangePassword(props) {
                       className="dropdown-toggle w-5 h-5 block"
                       href="javascript:;"
                     >
-                      
                       <Icon.MoreHorizontal className="w-5 h-5 text-gray-700" />
                     </a>
                     <div className="dropdown-box mt-5 absolute w-56 top-0 right-0 z-20">
@@ -431,7 +425,6 @@ function ChangePassword(props) {
                             href=""
                             className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
                           >
-                            
                             <Icon.Activity className="w-4 h-4 text-gray-700 mr-2" />
                             English
                           </a>
@@ -449,7 +442,6 @@ function ChangePassword(props) {
                             href=""
                             className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
                           >
-                            
                             <Icon.Layout className="w-4 h-4 text-gray-700 mr-2" />
                             English
                           </a>
@@ -457,7 +449,6 @@ function ChangePassword(props) {
                             href=""
                             className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
                           >
-                            
                             <Icon.Sidebar className="w-4 h-4 text-gray-700 mr-2" />
                             Indonesia
                           </a>
@@ -485,38 +476,30 @@ function ChangePassword(props) {
                     className="flex items-center text-theme-1 font-medium"
                     href=""
                   >
-                    
                     <Icon.Activity className="w-4 h-4 mr-2" /> Personal
                     Information
                   </a>
                   <a className="flex items-center mt-5" href="">
-                    
                     <Icon.Box className="w-4 h-4 mr-2" /> Account Settings
                   </a>
                   <a className="flex items-center mt-5" href="">
-                    
                     <Icon.Lock className="w-4 h-4 mr-2" /> Change Password
                   </a>
                   <a className="flex items-center mt-5" href="">
-                    
                     <Icon.Settings className="w-4 h-4 mr-2" /> User Settings
                   </a>
                 </div>
                 <div className="p-5 border-t border-gray-200">
                   <a className="flex items-center" href="">
-                    
                     <Icon.Activity className="w-4 h-4 mr-2" /> Email Settings
                   </a>
                   <a className="flex items-center mt-5" href="">
-                    
                     <Icon.Box className="w-4 h-4 mr-2" /> Saved Credit Cards
                   </a>
                   <a className="flex items-center mt-5" href="">
-                    
                     <Icon.Lock className="w-4 h-4 mr-2" /> Social Networks
                   </a>
                   <a className="flex items-center mt-5" href="">
-                    
                     <Icon.Settings className="w-4 h-4 mr-2" /> Tax Information
                   </a>
                 </div>
@@ -543,6 +526,7 @@ function ChangePassword(props) {
         </div>
       </div>
     </div>
+  </>
   )
 }
 export { ChangePassword }

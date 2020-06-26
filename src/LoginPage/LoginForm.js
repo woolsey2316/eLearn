@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import { history } from '../helpers'
+
+import { alertActions } from '../actions'
 import { userActions } from '../actions'
+
+import { Alert } from '../components'
 
 export default () => {
   const [inputs, setInputs] = useState({
@@ -15,10 +20,18 @@ export default () => {
   const [submitted, setSubmitted] = useState(false)
   const { email, password, isChecked } = inputs
   const dispatch = useDispatch()
+  const alert = useSelector(state => state.alert);
+
+  useEffect(() => {
+    history.listen((location, action) => {
+      // clear alert on location change
+      dispatch(alertActions.clear());
+    });
+  }, []);
   // logs out current user when going to login page
   useEffect(() => {
-    dispatch(userActions.logout());
-  }, [dispatch]);
+    dispatch(userActions.logout())
+  }, [dispatch])
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -74,7 +87,7 @@ export default () => {
               onChange={handleChange}
             />
             {submitted && !email && (
-              <div className="invalid-feedback">Email is required</div>
+              <h2 className="mt-1 text-theme-6">Email is required</h2>
             )}
             {!forgotPassword && (
               <input
@@ -88,7 +101,7 @@ export default () => {
               />
             )}
             {submitted && !password && (
-              <div className="invalid-feedback">Password is required</div>
+              <h2 className="mt-1 text-theme-6">Password is required</h2>
             )}
           </div>
           <div className="intro-x flex text-gray-700 text-xs sm:text-sm mt-4">
@@ -129,6 +142,7 @@ export default () => {
                 Request Password
               </button>
             )}
+            
             <Link
               to="/Register"
               className="button button--lg w-full xl:w-32 text-gray-700 border border-gray-300 mt-3 xl:mt-0"
@@ -136,6 +150,9 @@ export default () => {
               Sign up
             </Link>
           </div>
+          {alert.message &&
+            <Alert type={alert.type} message={alert.message} />
+          }
         </form>
       </div>
     </div>
