@@ -17,7 +17,7 @@ function LogoutModal(props) {
       <div className="modal__content">
         <div className="text-center">
           <Icon.LogOut className="sm:w-10 sm:h-10 md:w-12 md:h-12 w-10 h-10 text-theme-6 mx-auto mt-3" />
-          <div className="md:text-2xl sm:text-xl text-lg mt-5 text-gray-600">
+          <div className="md:text-xl text-lg mt-5 text-gray-700">
             Are you sure you want to Logout?
           </div>
           <div className="text-gray-600 mt-2"></div>
@@ -33,7 +33,7 @@ function LogoutModal(props) {
           </button>
           <a
             href="/login"
-            class="mt-2 sm:mt-0 button button--lg bg-theme-6 text-white md:text-xl sm:text-lg text-medium"
+            class="mt-2 sm:mt-0 button bg-theme-6 text-white md:text-xl sm:text-lg text-medium"
           >
             Log Out
           </a>

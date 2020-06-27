@@ -21,10 +21,10 @@ function Dashboard(props) {
   return (
     <div className="app">
       <MobileMenu />
-      <div style={{ padding: '0 2.3em' }} className="flex">
+      <div className="flex px-2 sm:px-10">
         {props.sideMenu}
         <div className="content">
-          <TopBar />
+          <TopBar open={props.openModal}/>
           <MainContent />
         </div>
       </div>

@@ -1,88 +1,113 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import * as Icon from 'react-feather'
-import ReactTooltip from 'react-tooltip'
+import Tooltip from "@reach/tooltip";
+import "@reach/tooltip/styles.css";
 
-function answered(id) {
+function answered(message) {
   return (
     <div className="mx-auto">
-      <Icon.Check
-        className="w-5 h-5 text-theme-9 mx-auto"
-        data-for={id}
-        data-tip="1"
-      />
-      <ReactTooltip place="left" id={id}>
-        Question is answered
-      </ReactTooltip>
+      <Tooltip style={{
+        background: "hsla(0, 0%, 0%, 0.75)",
+        color: "white",
+        border: "none",
+        borderRadius: "4px",
+        padding: "0.5em 1em",
+        zIndex: "10000"
+      }}
+      label={message}>
+        <Icon.Check className="w-5 h-5 text-theme-9 mx-auto"
+        />
+      </Tooltip>
     </div>
   )
 }
-function notAnswered(id) {
+function notAnswered(message) {
   return (
     <div className="mx-auto">
-      <Icon.AlertTriangle
-        className="w-5 h-5 text-theme-12 mx-auto"
-        data-for={id}
-        data-tip="1"
-      />
-      <ReactTooltip place="left" id={id}>
-        Question was skipped
-      </ReactTooltip>
+      <Tooltip style={{
+        background: "hsla(0, 0%, 0%, 0.75)",
+        color: "white",
+        border: "none",
+        borderRadius: "4px",
+        padding: "0.5em 1em",
+        zIndex: "10000"
+      }}
+      label={message}>
+        <Icon.AlertTriangle className="w-5 h-5 text-theme-12 mx-auto"
+        />
+      </Tooltip>
     </div>
   )
 }
-function marked(id) {
+function marked(message) {
   return (
     <div className="mx-auto">
-      <Icon.Crosshair
-        className="w-5 h-5 text-theme-11 mx-auto"
-        data-for={id}
-        data-tip="1"
-      />
-      <ReactTooltip place="left" id={id}>
-        Question was NOT answered and marked for review
-      </ReactTooltip>
+      <Tooltip style={{
+        background: "hsla(0, 0%, 0%, 0.75)",
+        color: "white",
+        border: "none",
+        borderRadius: "4px",
+        padding: "0.5em 1em",
+        zIndex: "10000"
+      }}
+      label={message}>
+        <Icon.Crosshair className="w-5 h-5 text-theme-11 mx-auto"
+        />
+      </Tooltip>
     </div>
   )
 }
-function answeredAndMarked(id) {
+function answeredAndMarked(message) {
   return (
     <div className="mx-auto">
-      <Icon.UserCheck
-        className="w-5 h-5 text-theme-9 mx-auto"
-        data-for={id}
-        data-tip="1"
-      />
-      <ReactTooltip place="left" id={id}>
-        Question was answered AND marked for review
-      </ReactTooltip>
+      <Tooltip style={{
+        background: "hsla(0, 0%, 0%, 0.75)",
+        color: "white",
+        border: "none",
+        borderRadius: "4px",
+        padding: "0.5em 1em",
+        zIndex: "10000"
+      }}
+      label={message}>
+        <Icon.UserCheck className="w-5 h-5 text-theme-9 mx-auto"
+        />
+      </Tooltip>
     </div>
   )
 }
-function notVisited(id) {
+function notVisited(message) {
   return (
     <div className="mx-auto">
-      <Icon.AlertCircle
-        className="w-5 h-5 text-gray-600 mx-auto"
-        data-for={id}
-        data-tip="1"
-      />
-      <ReactTooltip place="left" id={id}>
-        Haven't visited question yet
-      </ReactTooltip>
+      <Tooltip style={{
+        background: "hsla(0, 0%, 0%, 0.75)",
+        color: "white",
+        border: "none",
+        borderRadius: "4px",
+        padding: "0.5em 1em",
+        zIndex: "10000"
+      }}
+      label={message}>
+        <Icon.AlertCircle className="w-5 h-5 text-gray-600 mx-auto"
+        />
+      </Tooltip>
     </div>
   )
 }
-function defaultStatus(id) {
+function defaultStatus(message) {
   return (
     <div className="mx-auto">
-      <Icon.AlertCircle
-        className="w-5 h-5 text-gray-600 mx-auto"
-        data-for={id}
-        data-tip="1"
-      />
-      <ReactTooltip place="left" id={id}>
-        Haven't visited question yet
-      </ReactTooltip>
+      <Tooltip style={{
+        background: "hsla(0, 0%, 0%, 0.75)",
+        color: "white",
+        border: "none",
+        borderRadius: "4px",
+        padding: "0.5em 1em",
+        zIndex: "10000"
+      }}
+      label={message}>
+        <Icon.AlertCircle className="w-5 h-5 text-gray-600 mx-auto"
+        />
+      </Tooltip>
     </div>
   )
 }
@@ -90,15 +115,15 @@ function defaultStatus(id) {
 function AnswerStatusIcon(props) {
   var id = props.questionId.toString()
   if (props.answer && props.marked.includes(props.questionId)) {
-    return answeredAndMarked(id)
+    return answeredAndMarked("Question was answered AND marked for review")
   } else if (props.answer) {
-    return answered(id)
+    return answered("Question is answered")
   } else if (props.visited && props.marked.includes(props.questionId)) {
-    return marked(id)
+    return marked("Question was NOT answered and marked for review")
   } else if (props.visited && props.currentQuestion === props.questionId) {
-    return notAnswered(id)
+    return notAnswered("Question was skipped")
   }
-  return notVisited(id)
+  return notVisited("Haven't visited question yet")
 }
 
 export { AnswerStatusIcon }

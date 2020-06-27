@@ -6,6 +6,7 @@ import SectionComplete from './SectionComplete'
 import { CourseSection } from './CourseSection'
 import { RightPanel } from './RightPanel'
 import { QuestionNavigation } from './QuestionNavigation'
+import { CountdownTimer, calculateTimeLeft } from './CountdownTimer'
 
 function ExamPage() {
   const [questionId, setQuestionId] = useState(0)
@@ -30,6 +31,8 @@ function ExamPage() {
       )
   )
   const [section, setActive] = React.useState(0)
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   function openModal() {
     console.log('open modal request')
@@ -168,11 +171,13 @@ function ExamPage() {
   return (
     <div style={{ margin: '1em' }} className="content">
       <div className="box flex justify-between mt-5">
-        <div className="box mt-5">
+        <div className="w-full mt-5">
           <CourseSection
             section={section}
             clicked={setSection}
             sections={QuizData.sections}
+            timeLeft={timeLeft}
+            setTimeLeft={setTimeLeft}
           />
           <div className="items-center p-5 border-b border-gray-200">
             <h2 className="font-medium text-base mr-auto">

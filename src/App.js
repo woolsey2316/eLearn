@@ -44,34 +44,34 @@ function App() {
       <LogoutModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
       <Switch>
         <PrivateRoute exact path="/">
-          <Dashboard sideMenu={sideMenu} />
+          <Dashboard openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
         <PrivateRoute exact path="/student/">
-          <Dashboard sideMenu={sideMenu} />
+          <Dashboard openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
         <PrivateRoute exact path="/student/profile">
-          <Profile sideMenu={sideMenu} />
+          <Profile openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
         <PrivateRoute exact path="/student/courses">
-          <Courses sideMenu={sideMenu} />
+          <Courses openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
         <PrivateRoute exact path="/student/CourseRegister">
-          <CourseRegister sideMenu={sideMenu} />
+          <CourseRegister openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
         <PrivateRoute exact path="/student/profile/change_password">
-          <ChangePassword sideMenu={sideMenu} />
+          <ChangePassword openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
         <PrivateRoute exact path="/student/Profile/update_profile">
-          <UpdateProfile sideMenu={sideMenu} />
+          <UpdateProfile openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
         <PrivateRoute exact path="/student/grades">
-          <ExamResults sideMenu={sideMenu} />
+          <ExamResults openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
         <PrivateRoute exact path="/student/exams">
           <ExamPage />
         </PrivateRoute>
         <PrivateRoute exact path="/student/exam_list">
-          <ExamList sideMenu={sideMenu} />
+          <ExamList openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
         <Route exact path="/Register" component={RegisterPage} />
         <Route exact path="/login" component={LoginPage} />

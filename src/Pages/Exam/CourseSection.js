@@ -1,13 +1,19 @@
 import React from 'react'
 import { SectionTab } from './SectionTab'
+import { CountdownTimer } from './CountdownTimer'
 
 function CourseSection(props) {
   return (
     <div className="ml-5">
-      <div className="font-medium items-center pt-2 pb-1 border-b border-gray-200">
-        Section
+      <div className="flex justify-between items-end">
+        <div className="font-medium items-center pt-2 pb-1">
+          Section
+        </div>
+        <CountdownTimer 
+          setTimeLeft={props.setTimeLeft} 
+          timeLeft={props.timeLeft}/>
       </div>
-      <div className="flex items-center border-b border-gray-200">
+      <div className="flex flex-wrap items-center">
         {props.sections.map((elem, index) => (
           <SectionTab
             onClick={props.clicked}

@@ -29,7 +29,7 @@ function ChangePassword(props) {
     <>
     <div className="app">
       <MobileMenu />
-      <div style={{ padding: '0em 2.3em' }} className="flex">
+      <div className="flex px-2 sm:px-10">
         {props.sideMenu}
         <div className="content">
           <div className="top-bar">

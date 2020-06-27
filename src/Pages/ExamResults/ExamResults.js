@@ -13,14 +13,14 @@ function ExamResults(props) {
       {/*<!-- BEGIN: Mobile Menu -->*/}
       <MobileMenu />
       {/*<!-- END: Mobile Menu -->*/}
-      <div style={{ paddingLeft: '2.3em' }} class="flex">
+      <div className="flex px-2 sm:px-10">
         {/*<!-- BEGIN: Simple Menu -->*/}
         {props.sideMenu}
         {/*<!-- END: Simple Menu -->*/}
         {/*<!-- BEGIN: Content -->*/}
         <div class="content">
           {/*<!-- BEGIN: Top Bar -->*/}
-          <TopBar />
+          <TopBar open={props.openModal}/>
           {/*<!-- END: Top Bar -->*/}
           <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">Grades</h2>

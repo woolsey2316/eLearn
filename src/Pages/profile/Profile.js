@@ -16,10 +16,10 @@ function Profile(props) {
   return (
     <div className="app">
       <MobileMenu />
-      <div style={{ padding: '0em 2.3em' }} className="flex">
+      <div className="flex px-2 sm:px-10">
         {props.sideMenu}
         <div className="content">
-          <TopBar />
+          <TopBar open={props.openModal}/>
           <div className="intro-y flex items-center mt-8">
             <h2 className="text-lg font-medium mr-auto">Profile</h2>
           </div>

@@ -21,13 +21,13 @@ import profile7 from '../assets/dist/images/profile-7.jpg'
 import profile4 from '../assets/dist/images/profile-4.jpg'
 import profile11 from '../assets/dist/images/profile-11.jpg'
 
-function TopBar() {
+function TopBar(props) {
   const [menu, showMenu] = React.useState(false)
   return (
     <div className="top-bar">
       <Breadcrumb />
       <FullName />
-      <UserIcon />
+      <UserIcon open={props.open}/>
     </div>
   )
 }

@@ -7,7 +7,7 @@ import profile11 from '../assets/dist/images/profile-11.jpg'
 
 function ActivityFeed() {
   return (
-    <div className="mt-3 mr-5" style={{ width: '60%' }}>
+    <div className="col-span-12 sm:col-span-6">
       <div className="intro-x flex items-center h-10">
         <h2 className="text-lg font-medium truncate mr-5">Recent Activities</h2>
       </div>

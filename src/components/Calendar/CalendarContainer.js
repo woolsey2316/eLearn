@@ -53,7 +53,7 @@ function CalendarContainer() {
     .map((e, i) => i + 1)
 
   return (
-    <div className="mt-3" style={{ width: '38%' }}>
+    <div className="col-span-12 sm:col-span-6">
       <div className="intro-x flex items-center h-10">
         <h2 className="text-lg font-medium truncate mr-5">Schedules</h2>
       </div>

@@ -4,7 +4,7 @@ import * as Icon from 'react-feather'
 
 import profile8 from '../assets/dist/images/profile-8.png'
 
-function UserIcon() {
+function UserIcon(props) {
   const [isPressed, setPressed] = React.useState(false)
   return (
     <div className="intro-x dropdown w-8 h-8 relative">
@@ -44,12 +44,12 @@ function UserIcon() {
             </a>
           </div>
           <div className="p-2 border-t border-theme-40">
-            <a
-              href="/login"
-              className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
+            <button
+              onClick={props.open}
+              className="w-full flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
             >
               <Icon.ToggleRight className="w-4 h-4 mr-2" /> Logout
-            </a>
+            </button>
           </div>
         </div>
       </div>

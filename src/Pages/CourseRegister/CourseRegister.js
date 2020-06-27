@@ -29,10 +29,10 @@ function CourseRegister(props) {
   return (
     <div className="app">
       <MobileMenu />
-      <div style={{ paddingLeft: '2.3em' }} className="flex">
+      <div className="flex px-2 sm:px-10">
         {props.sideMenu}
         <div className="content">
-          <TopBar />
+          <TopBar open={props.openModal}/>
           <h2 class="intro-y text-lg font-medium mt-10">Course Catalogue</h2>
           <div class="grid grid-cols-12 gap-6 mt-5">
             <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap justify-between items-center mt-2">

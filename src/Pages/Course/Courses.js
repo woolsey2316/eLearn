@@ -26,14 +26,14 @@ function Courses(props) {
       {/*<!-- BEGIN: Mobile Menu -->*/}
       <MobileMenu />
       {/*<!-- END: Mobile Menu -->*/}
-      <div style={{ padding: '0 2.3em' }} className="flex">
+      <div className="flex px-2 sm:px-10">
         {/*<!-- BEGIN: Simple Menu -->*/}
         {props.sideMenu}
         {/*<!-- END: Simple Menu -->*/}
         {/*<!-- BEGIN: Content -->*/}
         <div className="content">
           {/*<!-- BEGIN: Top Bar -->*/}
-          <TopBar />
+          <TopBar open={props.openModal}/>
           {/*<!-- END: Top Bar -->*/}
           <div className="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 className="text-lg font-medium mr-auto">Enrolled Courses</h2>

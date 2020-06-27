@@ -17,10 +17,10 @@ function ExamList(props) {
   return (
     <div className="app">
       <MobileMenu />
-      <div style={{ padding: '0 2.3em' }} className="flex">
+      <div className="flex px-2 sm:px-10">
         {props.sideMenu}
         <div className="content">
-          <TopBar />
+          <TopBar open={props.openModal}/>
           <h2 className="intro-y text-lg font-medium mt-10"> Exams </h2>
           <div class="grid grid-cols-12 gap-6 mt-8">
             <div class="col-span-12 lg:col-span-3 xxl:col-span-2">

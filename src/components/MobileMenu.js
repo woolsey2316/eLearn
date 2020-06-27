@@ -11,7 +11,7 @@ function MobileMenu() {
         <a href="" className="flex mr-auto">
           <img
             alt="Midone Tailwind HTML Admin Template"
-            className="w-6"
+            className="w-6 ml-1"
             src={logo}
           />
         </a>
