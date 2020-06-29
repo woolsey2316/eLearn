@@ -227,7 +227,7 @@ export default () => {
                   </div>
                 ))}
           </div>
-          <div className="intro-x mt-5 xl:mt-8 text-center xl:text-left">
+          <div className="flex flex-col sm:flex-row intro-x mt-5 xl:mt-8 text-center xl:text-left">
             <button className="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3">
               Register
             </button>
