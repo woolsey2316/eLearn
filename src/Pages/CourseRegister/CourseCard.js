@@ -1,6 +1,16 @@
 import React from 'react'
 
-function CourseCard({ course }) {
+function CourseCard({ course, register }) {
+  const expiryDate = new Date(course.expires)
+  const courseDTO = {
+    "category": course.category,
+    "description": course.description,
+    "expires": new Date(course.expires).getTime(),
+    "id": course.id,
+    "name": course.name,
+    "reference": course.reference,
+    "status": course.status
+  }
   return (
     <div className="intro-y col-span-12 md:col-span-6">
       <div className="box">
@@ -9,10 +19,11 @@ function CourseCard({ course }) {
             <a href="" className="font-medium">
               {course.name}
             </a>
-            <div className="text-gray-600 text-xs">{course.subject}</div>
+            <div className="text-gray-600 text-xs">{`Category: ${course.category}`}</div>
+            <div className="text-gray-600 text-xs">{course.description}</div>
           </div>
           <div className="flex mt-4 lg:mt-0">
-            <button className="button button--sm text-white bg-theme-1 mr-2 w-20">
+            <button onClick={() => register(courseDTO)} className="button button--sm text-white bg-theme-1 mr-2 w-20">
               Register
             </button>
             <button className="button button--sm text-gray-700 border border-gray-300">

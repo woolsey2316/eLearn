@@ -28,10 +28,6 @@ export default () => {
       dispatch(alertActions.clear());
     });
   }, []);
-  // logs out current user when going to login page
-  useEffect(() => {
-    dispatch(userActions.logout())
-  }, [dispatch])
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -56,7 +52,7 @@ export default () => {
     if (email && password) {
       // Dispatches a login action, if successful redirects current URL
       // to Home page.
-      dispatch(userActions.login(email, password))
+      dispatch(userActions.login(email, password, isChecked))
     } else if (email && !password) {
       dispatch(userActions.resetPassword(email, password))
     }
@@ -138,7 +134,7 @@ export default () => {
                 style={{ cursor: 'pointer' }}
                 onClick={() => setForgotPassword(!forgotPassword)}
               >
-                Show password field again
+                Show Password Field
               </h4>
               }
           </div>
@@ -154,14 +150,14 @@ export default () => {
               </button>
             )}
             
-            <Link
-              to="/Register"
+            <a
+              href="/register"
               className="button button--lg w-full xl:w-32 text-gray-700 border border-gray-300 mt-3 xl:mt-0"
             >
               Sign up
-            </Link>
+            </a>
           </div>
-          {alert.message &&
+          {alert && alert.message &&
             <Alert type={alert.type} message={alert.message} />
           }
         </form>

@@ -16,11 +16,11 @@ export const userService = {
   delete: _delete,
 }
 
-async function login(email, password) {
+async function login(email, password, rememberMe) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ email, password, rememberMe }),
   }
 
   const response = await fetch(
@@ -39,7 +39,7 @@ async function logout() {
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
   }
   const response = await fetch(
-    `${process.env.REACT_APP_API_URL}/auth/sign-out`,
+    `${process.env.REACT_APP_API_URL}/auth/logout`,
     requestOptions
   )
   const user = await handleResponse(response)
@@ -91,7 +91,7 @@ async function register(user) {
     `${process.env.REACT_APP_API_URL}/auth/sign-up`,
     requestOptions
   )
-  return handleRegisterResponse(response)
+  return handleResponse(response)
 }
 // asks for permission to change password
 async function requestPasswordChange(user) {
@@ -163,45 +163,12 @@ function handleResponse(response) {
 
     if (!response.ok) {
       console.log(`response: ${JSON.stringify(response)}`)
-      if (response.status === 401) {
-        // auto logout if 401 response returned from api
-        logout()
-        // forces a reload after user object is deleted
-        window.location.reload(true)
-      }
-      // trying to get as much information about the error as I can get
+      // trying to get as much information about the error as can get
       const error = response.statusText || 
-        (data.message + data.error && data.error + ": " + data.message) || 
+        ((data.message && data.error) && data.error + ": " + data.message) || 
         data.message || data.error || data
       return Promise.reject(error)
     }
-    return data
-  })
-}
-
-function handleRegisterResponse(response) {
-  return response.text().then((text) => {
-    const data = IsValidJSONString(text) ? JSON.parse(text) : text
-
-    if (!response.ok) {
-      if (response.status === 401) {
-        // auto logout if 401 response returned from api
-        logout()
-        // forces a reload after user object is deleted
-        window.location.reload(true)
-      }
-      if (response.status === 409) {
-        // auto logout if 409 response returned from api
-        logout()
-        // forces a reload after user object is deleted
-        window.location.reload(true)
-      }
-      const error = response.statusText || 
-      (data.message + data.error && data.error + ": " + data.message) || 
-      data.message || data.error || data
-      return Promise.reject(error)
-    }
-    window.location.reload(true)
     return data
   })
 }

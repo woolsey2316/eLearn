@@ -15,7 +15,7 @@ function MobileMenu() {
             src={logo}
           />
         </a>
-        <a href="javascript:;" id="mobile-menu-toggler">
+        <a href="" id="mobile-menu-toggler">
           <Icon.BarChart2 className="w-8 h-8 text-white transform -rotate-90" />
         </a>
       </div>
@@ -29,7 +29,7 @@ function MobileMenu() {
           </a>
         </li>
         <li>
-          <a href="javascript:;" className="menu">
+          <a href="" className="menu">
             <div className="menu__icon">
               <i data-feather="box"></i>
             </div>
@@ -107,7 +107,7 @@ function MobileMenu() {
         </li>
         <li className="menu__devider my-6"></li>
         <li>
-          <a href="javascript:;" className="menu">
+          <a href="" className="menu">
             <div className="menu__icon">
               <i data-feather="edit"></i>
             </div>
@@ -136,7 +136,7 @@ function MobileMenu() {
           </ul>
         </li>
         <li>
-          <a href="javascript:;" className="menu">
+          <a href="" className="menu">
             <div className="menu__icon">
               <i data-feather="users"></i>
             </div>
@@ -173,7 +173,7 @@ function MobileMenu() {
           </ul>
         </li>
         <li>
-          <a href="javascript:;" className="menu">
+          <a href="" className="menu">
             <div className="menu__icon">
               <i data-feather="trello"></i>
             </div>
@@ -210,7 +210,7 @@ function MobileMenu() {
           </ul>
         </li>
         <li>
-          <a href="javascript:;" className="menu">
+          <a href="" className="menu">
             <div className="menu__icon">
               <i data-feather="layout"></i>
             </div>
@@ -221,7 +221,7 @@ function MobileMenu() {
           </a>
           <ul className="">
             <li>
-              <a href="javascript:;" className="menu">
+              <a href="" className="menu">
                 <div className="menu__icon">
                   <i data-feather="activity"></i>
                 </div>
@@ -258,7 +258,7 @@ function MobileMenu() {
               </ul>
             </li>
             <li>
-              <a href="javascript:;" className="menu">
+              <a href="" className="menu">
                 <div className="menu__icon">
                   <i data-feather="activity"></i>
                 </div>
@@ -295,7 +295,7 @@ function MobileMenu() {
               </ul>
             </li>
             <li>
-              <a href="javascript:;" className="menu">
+              <a href="" className="menu">
                 <div className="menu__icon">
                   <i data-feather="activity"></i>
                 </div>
@@ -324,7 +324,7 @@ function MobileMenu() {
               </ul>
             </li>
             <li>
-              <a href="javascript:;" className="menu">
+              <a href="" className="menu">
                 <div className="menu__icon">
                   <i data-feather="activity"></i>
                 </div>
@@ -353,7 +353,7 @@ function MobileMenu() {
               </ul>
             </li>
             <li>
-              <a href="javascript:;" className="menu">
+              <a href="" className="menu">
                 <div className="menu__icon">
                   <i data-feather="activity"></i>
                 </div>
@@ -433,7 +433,7 @@ function MobileMenu() {
         </li>
         <li className="menu__devider my-6"></li>
         <li>
-          <a href="javascript:;" className="menu">
+          <a href="" className="menu">
             <div className="menu__icon">
               <i data-feather="inbox"></i>
             </div>
@@ -444,7 +444,7 @@ function MobileMenu() {
           </a>
           <ul className="">
             <li>
-              <a href="javascript:;" className="menu">
+              <a href="" className="menu">
                 <div className="menu__icon">
                   <i data-feather="activity"></i>
                 </div>
@@ -563,7 +563,7 @@ function MobileMenu() {
           </ul>
         </li>
         <li>
-          <a href="javascript:;" className="menu">
+          <a href="" className="menu">
             <div className="menu__icon">
               <i data-feather="sidebar"></i>
             </div>
@@ -624,7 +624,7 @@ function MobileMenu() {
           </ul>
         </li>
         <li>
-          <a href="javascript:;" className="menu">
+          <a href="" className="menu">
             <div className="menu__icon">
               <i data-feather="hard-drive"></i>
             </div>

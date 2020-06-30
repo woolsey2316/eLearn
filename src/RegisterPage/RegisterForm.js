@@ -41,7 +41,7 @@ export default () => {
   // Always logs out current user before loading signup form page
   useEffect(() => {
     dispatch(userActions.logout())
-  }, [dispatch])
+  }, [])
   // password strength 0 - weakest, 4 strongest
   function evaluatePasswordScore() {
     return zxcvbn(user.password).score
@@ -98,7 +98,7 @@ export default () => {
   return (
     <form
       style={{ margin: 'auto' }}
-      class="validate-form"
+      className="validate-form"
       onSubmit={handleSubmit}
     >
       <div className="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
@@ -135,7 +135,7 @@ export default () => {
               <div className="text-theme-6 mt-2">Email is required</div>
             )) ||
               (!isValidEmail() && (
-                <label id="email-error" class="error" htmlFor="email">
+                <label id="email-error" className="error" htmlFor="email">
                   Please enter a valid email address
                 </label>
               ))}
@@ -231,12 +231,12 @@ export default () => {
             <button className="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3">
               Register
             </button>
-            <Link
-              to="/login"
+            <a
+              href="/login"
               className="button button--lg w-full xl:w-32 text-gray-700 border border-gray-300 mt-3 xl:mt-0"
             >
               Sign in
-            </Link>
+            </a>
           </div>
           {alert.message &&
             <Alert type={alert.type} message={alert.message} />

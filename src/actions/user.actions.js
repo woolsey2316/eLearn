@@ -26,7 +26,7 @@ function login(email, password) {
       (user) => {
         dispatch(success(user))
         // API request to retrieve all user info from server, eg. profile image
-        dispatch(getCurrentUserInfo(user))
+        //dispatch(getCurrentUserInfo(user))
         history.push('/student/');
         redirect('/student/')
       },

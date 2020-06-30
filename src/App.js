@@ -9,6 +9,8 @@ import { history } from './helpers/history'
 import { RegisterPage } from './RegisterPage'
 import { LoginPage } from './LoginPage'
 import { Dashboard } from './HomePage'
+import { AdminDashboard } from './Pages/AdminDashboard'
+import { CreateExam } from './Pages/CreateExam'
 import { ChangePassword } from './Pages/profile'
 import { Profile } from './Pages'
 import { UpdateProfile } from './Pages/profile'
@@ -38,13 +40,22 @@ function App() {
     setIsOpen(false)
   }
 
-  const sideMenu = <SideMenu open={openModal} />
+  const sideMenu = <SideMenu permissions={true} open={openModal} />
   return (
     <Router history={history}>
       <LogoutModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
       <Switch>
         <PrivateRoute exact path="/">
           <Dashboard openModal={openModal} sideMenu={sideMenu} />
+        </PrivateRoute>
+        <PrivateRoute exact path="/admin/">
+          <AdminDashboard openModal={openModal} sideMenu={sideMenu} />
+        </PrivateRoute>
+        <PrivateRoute exact path="/admin/home">
+          <AdminDashboard openModal={openModal} sideMenu={sideMenu} />
+        </PrivateRoute>
+        <PrivateRoute exact path="/admin/create_exam">
+          <CreateExam openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
         <PrivateRoute exact path="/student/">
           <Dashboard openModal={openModal} sideMenu={sideMenu} />

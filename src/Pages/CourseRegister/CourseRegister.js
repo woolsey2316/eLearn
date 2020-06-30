@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import * as Icon from 'react-feather'
 import { MobileMenu } from '../../components'
 import { TopBar } from '../../components'
@@ -6,17 +6,51 @@ import { TopBar } from '../../components'
 import { courseData } from './CourseData'
 import { CourseCard } from './CourseCard'
 
+import { CourseNumberSelector } from './CourseNumberSelector'
+
+import { useDispatch, useSelector } from 'react-redux'
+
+import { courseActions } from '../../actions'
+import { alertActions } from '../../actions'
+
 function CourseRegister(props) {
+
+  const registering = useSelector((state) => state.registration.registering)
+  const dispatch = useDispatch()
+  const courseList = useSelector(state => state.courseList);
+  console.log(courseList)
+
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
+  const [resultsPerPage, setResultsPerPage] = useState(10)
+  const [courseData, setCourseData] = useState([])
+
+  useEffect(()=> {
+    fetchCourses()
+  },[resultsPerPage, page])
+
+  handleChange = (event) => {
+    setResultsPerPage(event.target.value);
+  }
+
+  function fetchCourses() {
+    dispatch(courseActions.getAllCourses(page-1, resultsPerPage))
+  }
+
+  function registerCourse(coursDTO) {
+    dispatch(courseActions.register(coursDTO))
+  }
+
   function handleChange(e) {
     const { name, value } = e.target
     setSearch(value)
   }
   function decrementPage() {
+    fetchCourses(page - 1)
     navigatePage(page - 1)
   }
   function incrementPage() {
+    fetchCourses(page + 1)
     navigatePage(page + 1)
   }
   // Reasonable page values: 0 -> max page
@@ -25,7 +59,7 @@ function CourseRegister(props) {
     if (page_ > 0 && page_ <= max) return setPage(page_)
     else return setPage(1)
   }
-  const resultsPerPage = 10
+  
   return (
     <div className="app">
       <MobileMenu />
@@ -33,37 +67,38 @@ function CourseRegister(props) {
         {props.sideMenu}
         <div className="content">
           <TopBar open={props.openModal}/>
-          <h2 class="intro-y text-lg font-medium mt-10">Course Catalogue</h2>
-          <div class="grid grid-cols-12 gap-6 mt-5">
-            <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap justify-between items-center mt-2">
-              <div class="hidden md:block text-gray-600">
-                Showing {resultsPerPage * (page - 1) + 1} to{' '}
-                {resultsPerPage * page} of {courseData.length} entries
+          <h2 className="intro-y text-lg font-medium mt-10">Course Catalogue</h2>
+          <div className="grid grid-cols-12 gap-6 mt-5">
+            <div className="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap justify-between items-center mt-2">
+              <div className="hidden md:block text-gray-600">
+                Showing {resultsPerPage * (page - 1) + 1} to {resultsPerPage * page} of {0} entries
               </div>
-              <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                <div class="w-56 relative text-gray-700">
+              <div className="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                <div className="w-56 relative text-gray-700">
                   <input
                     type="text"
-                    class="input w-56 box pr-10 placeholder-theme-13"
+                    className="input w-56 box pr-10 placeholder-theme-13"
                     onChange={handleChange}
                     placeholder="Search..."
                   />
-                  <Icon.Search class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" />
+                  <Icon.Search className="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" />
                 </div>
               </div>
             </div>
-            {courseData
-              .filter((elem) => elem.name.includes(search))
-              .filter(
-                (elem, index) =>
-                  // Navigate pages
-                  index < resultsPerPage * page &&
-                  index >= resultsPerPage * (page - 1)
-              )
-              .map((course) => (
-                <CourseCard course={course} />
-              ))}
-
+            {
+              courseList && courseList.courseList && courseList.courseList.list &&
+                courseList.courseList.list
+                .filter((elem) => elem.name.includes(search))
+                .filter(
+                  (elem, index) =>
+                    // Navigate pages
+                    index < resultsPerPage * page &&
+                    index >= resultsPerPage * (page - 1)
+                )
+                .map((course) => (
+                  <CourseCard course={course} key={course.id} register={registerCourse}/>
+                )) 
+            }
             <div className="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-no-wrap items-center">
               <ul className="pagination">
                 <li>
@@ -125,12 +160,7 @@ function CourseRegister(props) {
                   </button>
                 </li>
               </ul>
-              <select className="w-20 input box mt-3 sm:mt-0">
-                <option>10</option>
-                <option>25</option>
-                <option>35</option>
-                <option>50</option>
-              </select>
+              <CourseNumberSelector name="pages" value={resultsPerPage} handleChange={handleChange}/>
             </div>
           </div>
         </div>

@@ -124,6 +124,44 @@ function SideMenu(props) {
           </button>
         </li>
       </ul>
+      {props.permissions &&
+      <nav className="side-nav">
+        <h2 className = "text-lg font-medium text-white truncate m-5 text-left"> Admin </h2>
+        <div className="side-nav__devider my-6"></div>
+        <ul>
+          <li>
+            <a
+              href="/admin"
+              className={
+                window.location.pathname === '/admin'
+                  ? 'side-menu side-menu--active'
+                  : 'side-menu'
+              }
+            >
+              <div className="side-menu__icon">
+                <Icon.Home className="side-menu__icon"/>
+              </div>
+              <div className="side-menu__title"> Admin Dashboard </div>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/admin/create_exam"
+              className={
+                window.location.pathname.includes('/admin/dashboard')
+                  ? 'side-menu side-menu--active'
+                  : 'side-menu'
+              }
+            >
+              <div className="side-menu__icon">
+                <Icon.Edit className="side-menu__icon"/>
+              </div>
+              <div className="side-menu__title"> Create Exam</div>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      }
     </nav>
   )
 }
