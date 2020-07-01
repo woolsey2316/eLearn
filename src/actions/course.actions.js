@@ -48,7 +48,9 @@ function getAllCourses(page, size) {
     courseService.getAllCourses(page, size).then(
       (courseInfo) => {
         dispatch(success(courseInfo))
-        dispatch(alertActions.success('Successfully fetched all courses on eLearn'))
+        dispatch(
+          alertActions.success('Successfully fetched all courses on eLearn')
+        )
       },
       (error) => {
         dispatch(failure(error.toString()))

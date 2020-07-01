@@ -32,7 +32,7 @@ function ExamPage() {
   )
   const [section, setActive] = React.useState(0)
 
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
 
   function openModal() {
     console.log('open modal request')

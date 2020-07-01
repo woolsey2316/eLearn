@@ -5,7 +5,7 @@ import { QuestionButton } from './QuestionButton'
 
 function RightPanel(props) {
   return (
-    <div className="sm:w-25 sm:intro-y sm:box sm:bg-theme-1 sm:p-5 box sm:hidden md:block">
+    <div className="sm:w-25 sm:intro-y sm:box sm:bg-theme-1 sm:p-5 box sm:hidden md:block m-2">
       <Profile />
       <div className="border-t border-theme-3 mt-5 pt-5 text-white">
         <a href="" className="flex items-center px-3 py-2 truncate font-medium">

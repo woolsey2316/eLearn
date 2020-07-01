@@ -20,7 +20,7 @@ function ExamResults(props) {
         {/*<!-- BEGIN: Content -->*/}
         <div class="content">
           {/*<!-- BEGIN: Top Bar -->*/}
-          <TopBar open={props.openModal}/>
+          <TopBar open={props.openModal} />
           {/*<!-- END: Top Bar -->*/}
           <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">Grades</h2>

@@ -24,7 +24,7 @@ function AdminDashboard(props) {
       <div className="flex px-2 sm:px-10">
         {props.sideMenu}
         <div className="content">
-          <TopBar open={props.openModal}/>
+          <TopBar open={props.openModal} />
           <AdminMainContent />
         </div>
       </div>

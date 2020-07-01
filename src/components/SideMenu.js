@@ -28,7 +28,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.Home className="side-menu__icon"/>
+              <Icon.Home className="side-menu__icon" />
             </div>
             <div className="side-menu__title"> Dashboard </div>
           </a>
@@ -43,7 +43,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.User className="side-menu__icon"/>
+              <Icon.User className="side-menu__icon" />
             </div>
             <div className="side-menu__title"> Profile</div>
           </a>
@@ -58,7 +58,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.HardDrive className="side-menu__icon"/>
+              <Icon.HardDrive className="side-menu__icon" />
             </div>
             <div className="side-menu__title"> Courses </div>
           </a>
@@ -73,7 +73,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.Inbox className="side-menu__icon"/>
+              <Icon.Inbox className="side-menu__icon" />
             </div>
             <div className="side-menu__title"> Grades </div>
           </a>
@@ -88,7 +88,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.HardDrive className="side-menu__icon"/>
+              <Icon.HardDrive className="side-menu__icon" />
             </div>
             <div className="side-menu__title"> Exam List </div>
           </a>
@@ -103,7 +103,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.BookOpen className="side-menu__icon"/>
+              <Icon.BookOpen className="side-menu__icon" />
             </div>
             <div className="side-menu__title"> Exams </div>
           </a>
@@ -118,50 +118,53 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.LogOut className="side-menu__icon"/>
+              <Icon.LogOut className="side-menu__icon" />
             </div>
             <div className="side-menu__title"> Logout </div>
           </button>
         </li>
       </ul>
-      {props.permissions &&
-      <nav className="side-nav">
-        <h2 className = "text-lg font-medium text-white truncate m-5 text-left"> Admin </h2>
-        <div className="side-nav__devider my-6"></div>
-        <ul>
-          <li>
-            <a
-              href="/admin"
-              className={
-                window.location.pathname === '/admin'
-                  ? 'side-menu side-menu--active'
-                  : 'side-menu'
-              }
-            >
-              <div className="side-menu__icon">
-                <Icon.Home className="side-menu__icon"/>
-              </div>
-              <div className="side-menu__title"> Admin Dashboard </div>
-            </a>
-          </li>
-          <li>
-            <a
-              href="/admin/create_exam"
-              className={
-                window.location.pathname.includes('/admin/dashboard')
-                  ? 'side-menu side-menu--active'
-                  : 'side-menu'
-              }
-            >
-              <div className="side-menu__icon">
-                <Icon.Edit className="side-menu__icon"/>
-              </div>
-              <div className="side-menu__title"> Create Exam</div>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      }
+      {props.permissions && (
+        <nav className="side-nav">
+          <h2 className="text-lg font-medium text-white truncate m-5 text-left">
+            {' '}
+            Admin{' '}
+          </h2>
+          <div className="side-nav__devider my-6"></div>
+          <ul>
+            <li>
+              <a
+                href="/admin"
+                className={
+                  window.location.pathname === '/admin'
+                    ? 'side-menu side-menu--active'
+                    : 'side-menu'
+                }
+              >
+                <div className="side-menu__icon">
+                  <Icon.Home className="side-menu__icon" />
+                </div>
+                <div className="side-menu__title"> Admin Dashboard </div>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/admin/create_exam"
+                className={
+                  window.location.pathname.includes('/admin/dashboard')
+                    ? 'side-menu side-menu--active'
+                    : 'side-menu'
+                }
+              >
+                <div className="side-menu__icon">
+                  <Icon.Edit className="side-menu__icon" />
+                </div>
+                <div className="side-menu__title"> Create Exam</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      )}
     </nav>
   )
 }

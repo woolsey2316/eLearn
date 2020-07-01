@@ -10,6 +10,8 @@ import { userActions } from '../actions'
 
 import { Alert } from '../components'
 
+import zxcvbn from 'zxcvbn'
+
 function ChangePasswordForm() {
   const [user, setUser] = useState({
     confirmPassword: '',
@@ -17,15 +19,15 @@ function ChangePasswordForm() {
     password: '',
   })
 
-  const alert = useSelector(state => state.alert);
-  const dispatch = useDispatch();
+  const alert = useSelector((state) => state.alert)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     history.listen((location, action) => {
       // clear alert on location change
-      dispatch(alertActions.clear());
-    });
-  }, []);
+      dispatch(alertActions.clear())
+    })
+  }, [])
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -45,10 +47,12 @@ function ChangePasswordForm() {
 
   return (
     <div className="intro-y box lg:mt-5">
-      <div className="flex items-center p-5 border-b border-gray-200">
-        <h2 className="font-medium text-base mr-auto">Change Password</h2>
-      </div>
-      <form style={{ margin: 'auto' }} name="form" onSubmit={handleSubmit} className="validate-form">
+      <form
+        style={{ margin: 'auto' }}
+        name="form"
+        onSubmit={handleSubmit}
+        className="validate-form"
+      >
         <div className="p-5">
           <div>
             <label>Email</label>
@@ -83,9 +87,7 @@ function ChangePasswordForm() {
           <button type="submit" className="button bg-theme-1 text-white mt-4">
             Change Password
           </button>
-          {alert.message &&
-            <Alert type={alert.type} message={alert.message} />
-          }
+          {alert.message && <Alert type={alert.type} message={alert.message} />}
         </div>
       </form>
     </div>

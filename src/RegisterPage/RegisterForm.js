@@ -29,14 +29,14 @@ export default () => {
   const [passwordAdvice, showPasswordAdvice] = useState(false)
   const registering = useSelector((state) => state.registration.registering)
   const dispatch = useDispatch()
-  const alert = useSelector(state => state.alert);
+  const alert = useSelector((state) => state.alert)
 
   useEffect(() => {
     history.listen((location, action) => {
       // clear alert on location change
-      dispatch(alertActions.clear());
-    });
-  }, []);
+      dispatch(alertActions.clear())
+    })
+  }, [])
 
   // Always logs out current user before loading signup form page
   useEffect(() => {
@@ -238,9 +238,7 @@ export default () => {
               Sign in
             </a>
           </div>
-          {alert.message &&
-            <Alert type={alert.type} message={alert.message} />
-          }
+          {alert.message && <Alert type={alert.type} message={alert.message} />}
         </div>
       </div>
     </form>

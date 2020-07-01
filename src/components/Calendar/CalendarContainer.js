@@ -80,16 +80,16 @@ function CalendarContainer() {
               <div className="font-medium">Th</div>
               <div className="font-medium">Fr</div>
               <div className="font-medium">Sa</div>
-              {daysBeforeCurrentMonth.map((day) => (
-                <CalendarDay day={day} disabled={true} />
+              {daysBeforeCurrentMonth.map((day, i) => (
+                <CalendarDay key={i} day={day} disabled={true} />
               ))}
               {Array(getDaysInMonth(month_ + 1, year_))
                 .fill('')
                 .map((elem, index) => (
-                  <CalendarDay day={index + 1} curr={date} />
+                  <CalendarDay key={index} day={index + 1} curr={date} />
                 ))}
-              {daysAfterCurrentMonth.map((day) => (
-                <CalendarDay day={day} disabled={true} />
+              {daysAfterCurrentMonth.map((day, i) => (
+                <CalendarDay key={i} day={day} disabled={true} />
               ))}
             </div>
           </div>

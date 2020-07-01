@@ -1,4 +1,4 @@
-import { authHeader, IsValidJSONString} from '../helpers'
+import { authHeader, IsValidJSONString } from '../helpers'
 /*
   The services layer handles all http communication with the back-end apis.
   This section of the services layer relates to user data. CRUD operations
@@ -7,7 +7,7 @@ import { authHeader, IsValidJSONString} from '../helpers'
 export const courseService = {
   getAllCourses,
   getAllUserCourses,
-  addCourse
+  addCourse,
 }
 
 /* 
@@ -32,7 +32,7 @@ async function getAllUserCourses(id) {
 async function getAllCourses(page, size) {
   const requestOptions = {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json', 'mode' : 'no-cors' }
+    headers: { 'Content-Type': 'application/json', mode: 'no-cors' },
   }
 
   const response = await fetch(
@@ -48,7 +48,7 @@ async function addCourse(courseDTO) {
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
     body: JSON.stringify(courseDTO),
   }
-  const userID = JSON.parse(localStorage.getItem('user')).data.user.id
+  const userID = JSON.parse(localStorage.getItem('user')).userId
 
   const response = await fetch(
     `${process.env.REACT_APP_API_URL}/users/${userID}/courses`,
@@ -65,9 +65,12 @@ function handleResponse(response) {
     if (!response.ok) {
       console.log(`response: ${JSON.stringify(response)}`)
       // trying to get as much information about the error as I can get
-      const error = response.statusText || 
-        (data.message + data.error && data.error + ": " + data.message) || 
-        data.message || data.error || data
+      const error =
+        response.statusText ||
+        (data.message + data.error && data.error + ': ' + data.message) ||
+        data.message ||
+        data.error ||
+        data
       return Promise.reject(error)
     }
     return data

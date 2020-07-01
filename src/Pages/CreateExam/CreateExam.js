@@ -22,7 +22,7 @@ function CreateExam(props) {
       <div className="flex px-2 sm:px-10">
         {props.sideMenu}
         <div className="content">
-        <ExamCreationForm/>
+          <ExamCreationForm />
         </div>
       </div>
     </div>

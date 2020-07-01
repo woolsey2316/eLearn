@@ -4,18 +4,17 @@ import { courseConstants } from '../constants'
   a registering flag which is only used for loading animation purposes.
 */
 
-export function courseList(state = {}, action) {
+export function courses(state = {}, action) {
   switch (action.type) {
     case courseConstants.REGISTER_REQUEST:
       return { ...state, courseRegistering: true }
     case courseConstants.REGISTER_SUCCESS:
-      return { ...state, courseRegistering: false}
+      return { ...state, courseRegistering: false }
     case courseConstants.REGISTER_FAILURE:
-      return { ...state}
+      return { ...state, courseRegistering: false }
     case courseConstants.COURSE_INFO_SUCCESS:
       return { courseRegistering: false, courseList: action.courses.data }
     default:
       return state
   }
 }
-

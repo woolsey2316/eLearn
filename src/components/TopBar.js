@@ -27,7 +27,7 @@ function TopBar(props) {
     <div className="top-bar">
       <Breadcrumb />
       <FullName />
-      <UserIcon open={props.open}/>
+      <UserIcon open={props.open} />
     </div>
   )
 }

@@ -20,14 +20,14 @@ export default () => {
   const [submitted, setSubmitted] = useState(false)
   const { email, password, isChecked } = inputs
   const dispatch = useDispatch()
-  const alert = useSelector(state => state.alert);
+  const alert = useSelector((state) => state.alert)
 
   useEffect(() => {
     history.listen((location, action) => {
       // clear alert on location change
-      dispatch(alertActions.clear());
-    });
-  }, []);
+      dispatch(alertActions.clear())
+    })
+  }, [])
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -35,9 +35,7 @@ export default () => {
   }
 
   function onChangeCheckbox(event) {
-    setInputs({
-      isChecked: event.target.checked,
-    })
+    setInputs({ ...inputs, isChecked: event.target.checked })
     console.log(event.target.checked)
   }
 
@@ -70,8 +68,8 @@ export default () => {
             Sign In
           </h2>
           <div className="intro-x mt-2 text-gray-500 xl:hidden text-center">
-            A few more clicks to sign in to your account. Manage all your
-            online exams in one place
+            A few more clicks to sign in to your account. Manage all your online
+            exams in one place
           </div>
           <div className="intro-x mt-8">
             <input
@@ -121,22 +119,22 @@ export default () => {
                 </div>
               )}
             </div>
-            {!forgotPassword && 
-            <h4
-              style={{ cursor: 'pointer' }}
-              onClick={() => setForgotPassword(!forgotPassword)}
-            >
-              Forgot Password?
-            </h4>
-            }
-            {forgotPassword && 
+            {!forgotPassword && (
+              <h4
+                style={{ cursor: 'pointer' }}
+                onClick={() => setForgotPassword(!forgotPassword)}
+              >
+                Forgot Password?
+              </h4>
+            )}
+            {forgotPassword && (
               <h4
                 style={{ cursor: 'pointer' }}
                 onClick={() => setForgotPassword(!forgotPassword)}
               >
                 Show Password Field
               </h4>
-              }
+            )}
           </div>
           <div className="flex flex-col xl:flex-row intro-x mt-5 xl:mt-8 text-center xl:text-left">
             {!forgotPassword && (
@@ -145,11 +143,14 @@ export default () => {
               </button>
             )}
             {forgotPassword && (
-              <button type="submit" className="button button--lg w-full xl:w-40 text-white bg-theme-1 xl:mr-3">
+              <button
+                type="submit"
+                className="button button--lg w-full xl:w-40 text-white bg-theme-1 xl:mr-3"
+              >
                 Request Password
               </button>
             )}
-            
+
             <a
               href="/register"
               className="button button--lg w-full xl:w-32 text-gray-700 border border-gray-300 mt-3 xl:mt-0"
@@ -157,9 +158,9 @@ export default () => {
               Sign up
             </a>
           </div>
-          {alert && alert.message &&
+          {alert && alert.message && (
             <Alert type={alert.type} message={alert.message} />
-          }
+          )}
         </form>
       </div>
     </div>

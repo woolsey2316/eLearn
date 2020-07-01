@@ -10,6 +10,7 @@ import { TopBar } from '../../components'
 import profile2 from '../../assets/dist/images/profile-2.jpg'
 
 function UpdateProfile(props) {
+  const user = JSON.parse(localStorage.getItem('user')).data.user
   return (
     <body className="app">
       <MobileMenu />
@@ -32,74 +33,8 @@ function UpdateProfile(props) {
                     />
                   </div>
                   <div className="ml-4 mr-auto">
-                    <div className="font-medium text-base">Bruce Willis</div>
-                    <div className="text-gray-600">Frontend Engineer</div>
-                  </div>
-                  <div className="dropdown relative">
-                    <a
-                      className="dropdown-toggle w-5 h-5 block"
-                      href="javascript:;"
-                    >
-                      {' '}
-                      <Icon.MoreHorizontal className="w-5 h-5 text-gray-700" />{' '}
-                    </a>
-                    <div className="dropdown-box mt-5 absolute w-56 top-0 right-0 z-20">
-                      <div className="dropdown-box__content box">
-                        <div className="p-4 border-b border-gray-200 font-medium">
-                          Export Options
-                        </div>
-                        <div className="p-2">
-                          <a
-                            href=""
-                            className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
-                          >
-                            {' '}
-                            <Icon.Activity className="w-4 h-4 text-gray-700 mr-2" />{' '}
-                            English{' '}
-                          </a>
-                          <a
-                            href=""
-                            className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
-                          >
-                            <Icon.Box className="w-4 h-4 text-gray-700 mr-2" />{' '}
-                            Indonesia
-                            <div className="text-xs text-white px-1 rounded-full bg-theme-6 ml-auto">
-                              10
-                            </div>
-                          </a>
-                          <a
-                            href=""
-                            className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
-                          >
-                            {' '}
-                            <Icon.Layout className="w-4 h-4 text-gray-700 mr-2" />{' '}
-                            English{' '}
-                          </a>
-                          <a
-                            href=""
-                            className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
-                          >
-                            {' '}
-                            <Icon.Sidebar className="w-4 h-4 text-gray-700 mr-2" />{' '}
-                            Indonesia{' '}
-                          </a>
-                        </div>
-                        <div className="px-3 py-3 border-t border-gray-200 font-medium flex">
-                          <button
-                            type="button"
-                            className="button button--sm bg-theme-1 text-white"
-                          >
-                            Settings
-                          </button>
-                          <button
-                            type="button"
-                            className="button button--sm bg-gray-200 text-gray-600 ml-auto"
-                          >
-                            View Profile
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+                    <div className="font-medium text-base">{user.name}</div>
+                    <div className="text-gray-600">{user.email}</div>
                   </div>
                 </div>
                 <div className="p-5 border-t border-gray-200">
@@ -107,54 +42,18 @@ function UpdateProfile(props) {
                     className="flex items-center text-theme-1 font-medium"
                     href=""
                   >
-                    {' '}
                     <Icon.Activity className="w-4 h-4 mr-2" /> Personal
-                    Information{' '}
+                    Information
                   </a>
                   <a className="flex items-center mt-5" href="">
-                    {' '}
-                    <Icon.Box className="w-4 h-4 mr-2" /> Account Settings{' '}
+                    <Icon.Box className="w-4 h-4 mr-2" /> Account Settings
                   </a>
                   <a className="flex items-center mt-5" href="">
-                    {' '}
-                    <Icon.Lock className="w-4 h-4 mr-2" /> Change Password{' '}
+                    <Icon.Lock className="w-4 h-4 mr-2" /> Change Password
                   </a>
                   <a className="flex items-center mt-5" href="">
-                    {' '}
-                    <Icon.Settings className="w-4 h-4 mr-2" /> User Settings{' '}
+                    <Icon.Settings className="w-4 h-4 mr-2" /> User Settings
                   </a>
-                </div>
-                <div className="p-5 border-t border-gray-200">
-                  <a className="flex items-center" href="">
-                    {' '}
-                    <Icon.Activity className="w-4 h-4 mr-2" /> Email Settings{' '}
-                  </a>
-                  <a className="flex items-center mt-5" href="">
-                    {' '}
-                    <Icon.Box className="w-4 h-4 mr-2" /> Saved Credit Cards{' '}
-                  </a>
-                  <a className="flex items-center mt-5" href="">
-                    {' '}
-                    <Icon.Lock className="w-4 h-4 mr-2" /> Social Networks{' '}
-                  </a>
-                  <a className="flex items-center mt-5" href="">
-                    {' '}
-                    <Icon.Settings className="w-4 h-4 mr-2" /> Tax Information{' '}
-                  </a>
-                </div>
-                <div className="p-5 border-t flex">
-                  <button
-                    type="button"
-                    className="button button--sm block bg-theme-1 text-white"
-                  >
-                    New Group
-                  </button>
-                  <button
-                    type="button"
-                    className="button button--sm border text-gray-700 ml-auto"
-                  >
-                    New Quick Link
-                  </button>
                 </div>
               </div>
             </div>
@@ -179,8 +78,7 @@ function UpdateProfile(props) {
                             title="Remove this profile photo?"
                             className="tooltip w-5 h-5 flex items-center justify-center absolute rounded-full text-white bg-theme-6 right-0 top-0 -mr-2 -mt-2"
                           >
-                            {' '}
-                            <Icon.X className="w-4 h-4" />{' '}
+                            <Icon.X className="w-4 h-4" />
                           </div>
                         </div>
                         <div className="w-40 mx-auto cursor-pointer relative mt-5">

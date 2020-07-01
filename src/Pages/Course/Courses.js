@@ -13,7 +13,7 @@ function Courses(props) {
       <div className="flex px-2 sm:px-10">
         {props.sideMenu}
         <div className="content">
-          <TopBar open={props.openModal}/>
+          <TopBar open={props.openModal} />
           <div className="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 className="text-lg font-medium mr-auto">Enrolled Courses</h2>
             <a

@@ -12,7 +12,6 @@ import { history } from '../../helpers'
 
 import * as Icon from 'react-feather'
 
-
 function ExamCreationForm() {
   const [user, setUser] = useState({
     confirmoption1: '',
@@ -25,17 +24,17 @@ function ExamCreationForm() {
   const [submitted, setSubmitted] = useState(false)
   const registering = useSelector((state) => state.registration.registering)
   const dispatch = useDispatch()
-  const alert = useSelector(state => state.alert);
+  const alert = useSelector((state) => state.alert)
 
   useEffect(() => {
     history.listen((location, action) => {
       // clear alert on location change
-      dispatch(alertActions.clear());
-    });
-  }, []);
+      dispatch(alertActions.clear())
+    })
+  }, [])
 
   function isNotEmpty(field) {
-    return field !== ""
+    return field !== ''
   }
 
   function handleChange(e) {
@@ -155,18 +154,15 @@ function ExamCreationForm() {
                 Confirmed option1 is required
               </div>
             )) ||
-              (user.option1 !== user.confirmoption1 &&
-                user.confirmoption1 && (
-                  <div className="text-theme-6 mt-2">
-                    option1s do not match
-                  </div>
-                ))}
+              (user.option1 !== user.confirmoption1 && user.confirmoption1 && (
+                <div className="text-theme-6 mt-2">option1s do not match</div>
+              ))}
           </div>
           <div className="flex flex-col sm:flex-row intro-x mt-5 xl:mt-8 text-center xl:text-left">
-            <button 
+            <button
               type="button"
-              
-              className="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3">
+              className="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3"
+            >
               Save Question
             </button>
             <button
@@ -177,9 +173,7 @@ function ExamCreationForm() {
               Submit Exam
             </button>
           </div>
-          {alert.message &&
-            <Alert type={alert.type} message={alert.message} />
-          }
+          {alert.message && <Alert type={alert.type} message={alert.message} />}
         </div>
       </div>
     </form>

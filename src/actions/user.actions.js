@@ -18,16 +18,16 @@ export const userActions = {
   delete: _delete,
 }
 
-function login(email, password) {
+function login(email, password, rememberMe) {
   return (dispatch) => {
     dispatch(request({ email }))
 
-    userService.login(email, password).then(
+    userService.login(email, password, rememberMe).then(
       (user) => {
         dispatch(success(user))
         // API request to retrieve all user info from server, eg. profile image
         //dispatch(getCurrentUserInfo(user))
-        history.push('/student/');
+        history.push('/student/')
         redirect('/student/')
       },
       (error) => {
@@ -49,7 +49,10 @@ function login(email, password) {
 }
 
 function logout() {
-  userService.logout()
+  let user = JSON.parse(localStorage.getItem('user')).user
+  if (user) {
+    userService.logout(user)
+  }
   return { type: userConstants.LOGOUT }
 }
 
