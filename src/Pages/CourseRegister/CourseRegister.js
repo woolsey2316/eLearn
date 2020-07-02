@@ -90,7 +90,11 @@ function CourseRegister(props) {
             <div className="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap justify-between items-center mt-2">
               <div className="hidden md:block text-gray-600">
                 Showing {resultsPerPage * (page - 1) + 1} to{' '}
-                {resultsPerPage * page} of {courses && courses.length} entries
+                {resultsPerPage * page} of{' '}
+                {courses &&
+                  courses.courseList &&
+                  courses.courseList.list.length}{' '}
+                entries
               </div>
               <div className="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div className="w-56 relative text-gray-700">

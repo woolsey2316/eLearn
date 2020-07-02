@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function Question(props) {
-  return <h2 className="font-medium text-base mr-auto">{props.content}</h2>
+  return <h2 className="font-medium text-base mr-auto mb-5">{props.content}</h2>
 }
 
 Question.propTypes = {

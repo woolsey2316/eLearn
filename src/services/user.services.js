@@ -1,4 +1,4 @@
-import { authHeader, IsValidJSONString } from '../helpers'
+import { authHeader, IsValidJSONString, getUserId } from '../helpers'
 /*
   The services layer handles all http communication with the back-end apis.
   This section of the services layer relates to user data. CRUD operations
@@ -67,15 +67,14 @@ async function getById(id) {
   fetches all information related to the current logged in user
   address, roles, profile image etc
   */
-async function getCurrentUserInfo(user) {
+async function getCurrentUserInfo() {
   const requestOptions = {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(user),
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
   }
-
+  const userId = getUserId()
   const response = await fetch(
-    `${process.env.REACT_APP_API_URL}/users/current`,
+    `${process.env.REACT_APP_API_URL}/users/${userId}/summary`,
     requestOptions
   )
   return handleResponse(response)

@@ -17,13 +17,27 @@ function Quiz(props) {
   }
 
   return (
-    <div className="items-center p-5 border-b border-gray-200">
-      <div className="text-base mr-auto">
-        Question <span>{props.questionId + 1}</span> of
-        <span>{' ' + props.questionTotal}</span>
-      </div>
+    <div
+      style={{ height: '55vh' }}
+      className="items-center p-5 border-b border-gray-200 overflow-auto"
+    >
       <Question content={props.question} />
       <ul className="answerOptions">
+        {props.answerOptions.map(renderAnswerOptions)}
+        {props.answerOptions.map(renderAnswerOptions)}
+        {props.answerOptions.map(renderAnswerOptions)}
+        {props.answerOptions.map(renderAnswerOptions)}
+        {props.answerOptions.map(renderAnswerOptions)}
+        {props.answerOptions.map(renderAnswerOptions)}
+        {props.answerOptions.map(renderAnswerOptions)}
+        {props.answerOptions.map(renderAnswerOptions)}
+        {props.answerOptions.map(renderAnswerOptions)}
+        {props.answerOptions.map(renderAnswerOptions)}
+        {props.answerOptions.map(renderAnswerOptions)}
+        {props.answerOptions.map(renderAnswerOptions)}
+        {props.answerOptions.map(renderAnswerOptions)}
+        {props.answerOptions.map(renderAnswerOptions)}
+        {props.answerOptions.map(renderAnswerOptions)}
         {props.answerOptions.map(renderAnswerOptions)}
       </ul>
     </div>

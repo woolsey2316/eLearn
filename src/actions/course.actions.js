@@ -67,14 +67,13 @@ function getAllCourses(page, size) {
   }
 }
 
-function getAllUserCourses(course) {
+function getAllUserCourses(page, size) {
   return (dispatch) => {
-    dispatch(request(course))
+    dispatch(request(page, size))
 
-    courseService.getAllUserCourses(course).then(
-      (courseInfo) => {
-        course = { ...course, courseInfo }
-        dispatch(success(courseInfo))
+    courseService.getAllUserCourses(page, size).then(
+      (courseList) => {
+        dispatch(success(courseList))
         dispatch(alertActions.success('Successfully fetched courses'))
       },
       (error) => {
@@ -85,13 +84,13 @@ function getAllUserCourses(course) {
   }
 
   function request(courseList) {
-    return { type: courseConstants.COURSE_INFO_REQUEST, courseList }
+    return { type: courseConstants.USER_COURSE_INFO_REQUEST, courseList }
   }
   function success(courseList) {
-    return { type: courseConstants.COURSE_INFO_SUCCESS, courseList }
+    return { type: courseConstants.USER_COURSE_INFO_SUCCESS, courseList }
   }
   function failure(error) {
-    return { type: courseConstants.COURSE_INFO_FAILURE, error }
+    return { type: courseConstants.USER_COURSE_INFO_FAILURE, error }
   }
 }
 

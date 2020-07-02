@@ -3,9 +3,12 @@ import { QuestionButton } from './QuestionButton'
 
 function QuestionNavigation(props) {
   return (
-    <div class="intro-x box">
-      <div class="p-5">
-        <div class="flex flex-wrap text-center">
+    <div className="intro-x box">
+      <div className="p-1">
+        <div
+          style={{ maxHeight: '27vh' }}
+          className="flex flex-wrap text-center overflow-y-auto"
+        >
           {props.answerList.map((ans, index) => (
             <QuestionButton
               answer={ans}

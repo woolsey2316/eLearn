@@ -12,7 +12,7 @@ class AnswerOption extends React.Component {
   render() {
     return (
       <div className="flex items-center text-gray-700 mt-2">
-        <li>
+        <li className="flex items-center">
           <input
             type="checkbox"
             className="input border mr-2"

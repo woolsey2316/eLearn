@@ -1,7 +1,8 @@
 import React from 'react'
+import { getUser } from '../helpers'
 
 function FullName({ firstName, lastName }) {
-  const user = JSON.parse(localStorage.getItem('user')).user
+  const user = getUser()
   return (
     <div className="flex">
       <h6 className="font-medium text-gray-700 leading-none mt-auto mb-auto mr-4">

@@ -7,6 +7,7 @@ import { CourseSection } from './CourseSection'
 import { RightPanel } from './RightPanel'
 import { QuestionNavigation } from './QuestionNavigation'
 import { CountdownTimer, calculateTimeLeft } from './CountdownTimer'
+import * as Icon from 'react-feather'
 
 function ExamPage() {
   const [questionId, setQuestionId] = useState(0)
@@ -31,6 +32,7 @@ function ExamPage() {
       )
   )
   const [section, setActive] = React.useState(0)
+  const [show, setShow] = React.useState(true)
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
 
@@ -169,9 +171,9 @@ function ExamPage() {
   }
 
   return (
-    <div style={{ margin: '1em' }} className="content">
-      <div className="box flex justify-between mt-5">
-        <div className="w-full mt-5">
+    <div className="content rounded-none p-2">
+      <div className="box flex justify-between">
+        <div className="flex flex-col mt-5 flex-grow">
           <CourseSection
             section={section}
             clicked={setSection}
@@ -183,15 +185,13 @@ function ExamPage() {
             <h2 className="font-medium text-base mr-auto">
               Exam Name: {QuizData.title}
             </h2>
-            <h2 className="text-base mr-auto">
-              Section: {QuizData.sections[section]}
-            </h2>
-            <h2 className="text-base mr-auto">
-              Duration: {QuizData.duration} minutes
-            </h2>
+            <div className="text-base mr-auto">
+              Question <span>{questionId + 1}</span> of
+              <span>{' ' + answerList[section].length}</span>
+            </div>
           </div>
           {finished ? renderResult() : renderQuiz()}
-          <div className="intro-y box mt-5">
+          <div className="intro-y mt-5">
             <div className="items-center p-5 border-b border-gray-200">
               <button
                 className="button w-30 shadow-md mr-1 mb-2 bg-theme-2 text-blue border border-gray-700"
@@ -206,26 +206,37 @@ function ExamPage() {
                 Clear response
               </button>
               <button
+                style={{ float: 'right' }}
                 className="button w-30 shadow-md mr-1 mb-2 bg-theme-1 text-white"
                 onClick={confirmAnswer}
               >
-                Next Question
+                Save and next
               </button>
             </div>
-            <QuestionNavigation
-              onClickQuestion={onClickQuestion}
-              markedQuestions={MarkedQuestionIds[section]}
-              currentQuestion={questionId}
-              answerList={answerList[section]}
-            />
           </div>
         </div>
-        <RightPanel
-          onClickQuestion={onClickQuestion}
-          answerList={answerList[section]}
-          markedQuestions={MarkedQuestionIds[section]}
-          currentQuestion={questionId}
-        />
+        <button style={{ cursor: 'default' }}>
+          {show ? (
+            <Icon.ChevronRight
+              style={{ cursor: 'pointer' }}
+              onClick={() => setShow(!show)}
+            />
+          ) : (
+            <Icon.ChevronLeft
+              style={{ cursor: 'pointer' }}
+              onClick={() => setShow(!show)}
+            />
+          )}
+        </button>
+        {show && (
+          <RightPanel
+            onClickQuestion={onClickQuestion}
+            answerList={answerList[section]}
+            markedQuestions={MarkedQuestionIds[section]}
+            currentQuestion={questionId}
+            section={QuizData.sections[section]}
+          />
+        )}
       </div>
     </div>
   )

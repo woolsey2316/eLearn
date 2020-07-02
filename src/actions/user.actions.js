@@ -6,8 +6,7 @@
 import { userConstants } from '../constants'
 import { userService } from '../services'
 import { alertActions } from './'
-import { history } from '../helpers'
-import { redirect } from '../helpers'
+import { history, redirect, getUser } from '../helpers'
 
 export const userActions = {
   login,
@@ -26,7 +25,7 @@ function login(email, password, rememberMe) {
       (user) => {
         dispatch(success(user))
         // API request to retrieve all user info from server, eg. profile image
-        //dispatch(getCurrentUserInfo(user))
+        dispatch(getCurrentUserInfo(user))
         history.push('/student/')
         redirect('/student/')
       },
@@ -49,7 +48,7 @@ function login(email, password, rememberMe) {
 }
 
 function logout() {
-  let user = JSON.parse(localStorage.getItem('user')).user
+  let user = getUser()
   if (user) {
     userService.logout(user)
   }
@@ -88,9 +87,8 @@ function getCurrentUserInfo(user) {
   return (dispatch) => {
     dispatch(request(user))
 
-    userService.getCurrentUserInfo(user).then(
+    userService.getCurrentUserInfo().then(
       (userInfo) => {
-        user = { ...user, userInfo }
         dispatch(success())
         dispatch(alertActions.success('Successfully fetched User info'))
       },

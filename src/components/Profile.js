@@ -1,8 +1,9 @@
 import React from 'react'
 import profile from '../assets/dist/images/profile-8.jpg'
+import { getUser } from '../helpers'
 
 function Profile() {
-  const user = JSON.parse(localStorage.getItem('user')).user
+  const user = getUser()
   return (
     <div className="relative flex items-center p-5">
       <div className="w-12 h-12 image-fit">
@@ -13,7 +14,7 @@ function Profile() {
         />
       </div>
       <div className="ml-4 mr-auto">
-        <div className="font-medium text-white">{user.name}</div>
+        <div className="font-medium text-white">{user && user.name}</div>
         <div className="text-gray-600">Student</div>
       </div>
     </div>

@@ -6,7 +6,22 @@ import { MobileMenu } from '../../components'
 import { TopBar } from '../../components'
 import { Course } from './Course'
 
+import { useDispatch, useSelector } from 'react-redux'
+
+import { courseActions } from '../../actions'
+import { alertActions } from '../../actions'
+
 function Courses(props) {
+  const dispatch = useDispatch()
+  const courses = useSelector((state) => state.courses)
+  const page = 0
+  const size = 20
+  function fetchCourses() {
+    dispatch(courseActions.getAllUserCourses(page, size))
+  }
+
+  fetchCourses()
+
   return (
     <body className="app">
       <MobileMenu />
