@@ -8,7 +8,7 @@ import { getUser } from '../../helpers'
 function RightPanel({
   onClickQuestion,
   markedQuestions,
-  questionId,
+  currentQuestion,
   answerList,
   section,
 }) {
@@ -16,7 +16,7 @@ function RightPanel({
   return (
     <div
       style={{ width: '23em' }}
-      className="sm:box sm:bg-theme-1 box sm:hidden md:block m-2 px-3 flex flex-col justify-between"
+      className="sm:box sm:bg-theme-1 box sm:hidden md:block mt-2 mb-2 mr-2 px-3 flex flex-col justify-between"
     >
       <div className="ml-2 mt-5 mr-auto">
         <div className="font-medium text-white">{user && user.name}</div>
@@ -52,7 +52,7 @@ function RightPanel({
         <QuestionNavigation
           onClickQuestion={onClickQuestion}
           markedQuestions={markedQuestions}
-          currentQuestion={questionId}
+          currentQuestion={currentQuestion}
           answerList={answerList}
         />
       </div>

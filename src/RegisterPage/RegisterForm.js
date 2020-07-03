@@ -18,10 +18,17 @@ import '../assets/dist/css/app.css'
 
 export default () => {
   const [user, setUser] = useState({
-    confirmPassword: '',
+    address1: '',
+    area: '',
+    className: '',
+    district: '',
     email: '',
+    mobile: '',
     fullName: '',
     password: '',
+    pincode: '',
+    school: '',
+    state: '',
     passwordColour: '',
     passwordQuality: '',
   })
@@ -85,158 +92,213 @@ export default () => {
       [name]: value,
     }))
   }
+
+  function allFieldsExist() {
+    return (
+      user.address1 &&
+      user.area &&
+      user.className &&
+      user.district &&
+      user.email &&
+      user.mobile &&
+      user.fullName &&
+      user.password &&
+      user.pincode &&
+      user.school &&
+      user.state &&
+      user.passwordColour &&
+      user.passwordQuality
+    )
+  }
   // dispatch an action to the redux store, updates 'user' object
   function handleSubmit(e) {
     e.preventDefault()
     console.log(`%cuser details: ${JSON.stringify(user)}`, 'color:green')
 
     setSubmitted(true)
-    if (user.fullName && user.confirmPassword && user.email && user.password) {
+    if (allFieldsExist()) {
       dispatch(userActions.register(user))
     }
   }
   return (
     <form
-      style={{ margin: 'auto' }}
       className="validate-form"
       onSubmit={handleSubmit}
     >
       <div className="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
-        <div className="my-auto mx-auto xl:ml-20 bg-white xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
-          <h2 className="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left">
+        <div className="my-auto mx-auto bg-white xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
+          <h2 className="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left mt-5">
             Sign Up
           </h2>
           <div className="intro-x mt-2 text-gray-500 xl:hidden text-center">
-            A few more clicks to sign in to your account. Manage all your
-            e-commerce accounts in one place
+            A few more clicks to register for your account. Manage all your
+            online exams in one place
           </div>
           <div className="intro-x mt-8">
-            <input
-              type="text"
-              name="fullName"
-              className="intro-x login__input input input--lg border border-gray-300 block"
-              placeholder="Full Name"
-              value={user.firstName}
-              onChange={handleChange}
-            />
-            {submitted && !user.fullName && (
-              <div className="text-theme-6 mt-2">Full Name is required</div>
-            )}
-            <input
-              type="text"
-              name="email"
-              className="intro-x login__input input input--lg border border-gray-300 block mt-4"
-              style={{ borderColor: isValidEmail() ? '' : '#D32929' }}
-              placeholder="Email"
-              value={user.email}
-              onChange={handleChange}
-            />
-            {(submitted && !user.email && (
-              <div className="text-theme-6 mt-2">Email is required</div>
-            )) ||
-              (!isValidEmail() && (
-                <label id="email-error" className="error" htmlFor="email">
-                  Please enter a valid email address
-                </label>
+              <input
+                type="text"
+                name="fullName"
+                className="intro-x login__input input input--lg border border-gray-300 block"
+                placeholder="Full Name"
+                value={user.fullName}
+                onChange={handleChange}
+              />
+              {submitted && !user.fullName && (
+                <div className="text-theme-6 mt-2">Full Name is required</div>
+              )}
+              <input
+                type="text"
+                name="address"
+                className="intro-x login__input input input--lg border border-gray-300 block mt-4"
+                style={{ borderColor: isValidEmail() ? '' : '#D32929'}}
+                placeholder="address"
+                value={user.address}
+                onChange={handleChange}
+              />
+              {submitted && !user.address && (
+                <div className="text-theme-6 mt-2">Address is required</div>
+              )}
+              <input
+                type="text"
+                name="className"
+                className="intro-x login__input input input--lg border border-gray-300 block mt-4"
+                style={{ borderColor: isValidEmail() ? '' : '#D32929' }}
+                placeholder="className"
+                value={user.className}
+                onChange={handleChange}
+              />
+              {(submitted && !user.className && (
+                <div className="text-theme-6 mt-2">className is required</div>
               ))}
-            <input
-              type="password"
-              name="password"
-              className="intro-x login__input input input--lg border border-gray-300 block mt-4"
-              placeholder="Password"
-              value={user.password}
-              onChange={handleChange}
-            />
-            {submitted && !user.password && (
-              <div className="text-theme-6 mt-2">Password is required</div>
-            )}
-            <div className="intro-x w-full grid grid-cols-12 gap-4 h-1 mt-3">
-              <div
-                className={
-                  evaluatePasswordScore() > 0
-                    ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}`
-                    : `col-span-3 h-full rounded bg-gray-200`
-                }
-              ></div>
-              <div
-                className={
-                  evaluatePasswordScore() > 1
-                    ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}`
-                    : `col-span-3 h-full rounded bg-gray-200`
-                }
-              ></div>
-              <div
-                className={
-                  evaluatePasswordScore() > 2
-                    ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}`
-                    : `col-span-3 h-full rounded bg-gray-200`
-                }
-              ></div>
-              <div
-                className={
-                  evaluatePasswordScore() > 3
-                    ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}`
-                    : `col-span-3 h-full rounded bg-gray-200`
-                }
-              ></div>
-            </div>
-            <label className={`text-${passwordStrengthColour()} mt-2`}>
-              {passwordQuality()}
-            </label>
-            <div className="flex">
-              <h4
-                onClick={() => showPasswordAdvice(!passwordAdvice)}
-                style={{ cursor: 'pointer' }}
-                className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm"
-              >
-                What is a secure password?
-              </h4>
-            </div>
-            {passwordAdvice && (
-              <div className="ml-4">
-                <h3 className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm">
-                  - Make it long
-                </h3>
-                <h3 className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm">
-                  - Use a mix of characters
-                </h3>
-                <h3 className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm">
-                  - Avoid common substitutions
-                </h3>
-                <h3 className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm">
-                  - Don’t use memorable keyboard paths
-                </h3>
+              <input
+                type="text"
+                name="district"
+                className="intro-x login__input input input--lg border border-gray-300 block mt-4"
+                style={{ borderColor: isValidEmail() ? '' : '#D32929' }}
+                placeholder="Email"
+                value={user.district}
+                onChange={handleChange}
+              />
+              {(submitted && !user.district && (
+                <div className="text-theme-6 mt-2">District is required</div>
+              ))}
+              <input
+                type="text"
+                name="mobile"
+                className="intro-x login__input input input--lg border border-gray-300 block mt-4"
+                style={{ borderColor: isValidEmail() ? '' : '#D32929' }}
+                placeholder="Mobile"
+                value={user.mobile}
+                onChange={handleChange}
+              />
+              {(submitted && !user.mobile && (
+                <div className="text-theme-6 mt-2">Mobile is required</div>
+              ))}
+              <input
+                type="text"
+                name="pincode"
+                className="intro-x login__input input input--lg border border-gray-300 block mt-4"
+                style={{ borderColor: isValidEmail() ? '' : '#D32929' }}
+                placeholder="4-digit Pincode"
+                value={user.pincode}
+                onChange={handleChange}
+              />
+              {(submitted && !user.pincode && (
+                <div className="text-theme-6 mt-2">Pincode is required</div>
+              ))}
+              <input
+                type="text"
+                name="school"
+                className="intro-x login__input input input--lg border border-gray-300 block mt-4"
+                style={{ borderColor: isValidEmail() ? '' : '#D32929' }}
+                placeholder="School"
+                value={user.school}
+                onChange={handleChange}
+              />
+              {(submitted && !user.school && (
+                <div className="text-theme-6 mt-2">School is required</div>
+              ))}
+              <input
+                type="password"
+                name="password"
+                className="intro-x login__input input input--lg border border-gray-300 block mt-4"
+                style={{ borderColor: isValidEmail() ? '' : '#D32929'}}
+                placeholder="Password"
+                value={user.password}
+                onChange={handleChange}
+              />
+              {submitted && !user.password && (
+                <div className="text-theme-6 mt-2">Password is required</div>
+              )}
+              <div className="intro-x w-full grid grid-cols-12 gap-4 h-1 mt-3">
+                <div
+                  className={
+                    evaluatePasswordScore() > 0
+                      ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}`
+                      : `col-span-3 h-full rounded bg-gray-200`
+                  }
+                ></div>
+                <div
+                  className={
+                    evaluatePasswordScore() > 1
+                      ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}`
+                      : `col-span-3 h-full rounded bg-gray-200`
+                  }
+                ></div>
+                <div
+                  className={
+                    evaluatePasswordScore() > 2
+                      ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}`
+                      : `col-span-3 h-full rounded bg-gray-200`
+                  }
+                ></div>
+                <div
+                  className={
+                    evaluatePasswordScore() > 3
+                      ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}`
+                      : `col-span-3 h-full rounded bg-gray-200`
+                  }
+                ></div>
               </div>
-            )}
-            <input
-              type="password"
-              name="confirmPassword"
-              className="intro-x login__input input input--lg border border-gray-300 block mt-4"
-              placeholder="Password Confirmation"
-              onChange={handleChange}
-            />
-            {(submitted && !user.password && (
-              <div className="text-theme-6 mt-2">
-                Confirmed Password is required
+              <label className={`text-${passwordStrengthColour()} mt-2`}>
+                {passwordQuality()}
+              </label>
+              <div className="flex">
+                <h4
+                  onClick={() => showPasswordAdvice(!passwordAdvice)}
+                  style={{ cursor: 'pointer' }}
+                  className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm"
+                >
+                  What is a secure password?
+                </h4>
               </div>
-            )) ||
-              (user.password !== user.confirmPassword &&
-                user.confirmPassword && (
-                  <div className="text-theme-6 mt-2">
-                    Passwords do not match
-                  </div>
-                ))}
+              {passwordAdvice && (
+                <div className="ml-4">
+                  <h3 className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm">
+                    - Make it long
+                  </h3>
+                  <h3 className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm">
+                    - Use a mix of characters
+                  </h3>
+                  <h3 className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm">
+                    - Avoid common substitutions
+                  </h3>
+                  <h3 className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm">
+                    - Don’t use memorable keyboard paths
+                  </h3>
+                </div>
+              )}
           </div>
-          <div className="flex flex-col sm:flex-row intro-x mt-5 xl:mt-8 text-center xl:text-left">
-            <button className="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3">
-              Register
-            </button>
+          <div className="flex flex-col sm:block intro-x mt-5 xl:mt-8 text-center xl:text-left mb-20">
             <a
               href="/login"
-              className="button button--lg w-full xl:w-32 text-gray-700 border border-gray-300 mt-3 xl:mt-0"
+              className="button button--lg text-gray-700 border border-gray-300 mb-3 sm:mr-3 xl:mt-0 sm:float-left"
             >
-              Sign in
+              Switch to Sign In
             </a>
+            <button className="button button--lg sm:w-32 text-white bg-theme-1 xl:mr-3 py-0 sm:float-right">
+              Register
+            </button>
           </div>
           {alert.message && <Alert type={alert.type} message={alert.message} />}
         </div>

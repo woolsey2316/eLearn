@@ -1,31 +1,54 @@
-import React, { useState } from 'react'
-
-import * as Icon from 'react-feather'
+import React, { useState, useEffect } from 'react'
 
 import { CourseDropdown } from '../../components'
 import { MobileMenu } from '../../components'
 import { TopBar } from '../../components'
 
+import { ExamResultCard } from './ExamResultCard'
+
+import { useDispatch, useSelector } from 'react-redux'
+
+import { examActions } from '../../actions'
+import { courseActions } from '../../actions'
+import { alertActions } from '../../actions'
+import { examService } from '../../services'
+
 function ExamResults(props) {
-  const [course, setCourse] = useState('Course #1')
+  const [course, setCourse] = useState('Exam #1')
+  const dispatch = useDispatch()
+  const courses = useSelector((state) => state.courses.userCourseList)
+  const exams = useSelector((state) => state.exams.userExamList)
+  const page = 0
+  const size = 20
+
+  useEffect(()=> {
+    fetchExams()
+    return console.log("exams: " + exams)
+  },[])
+
+  fetchExams()
+  function fetchExams() {
+    dispatch(examActions.getAllExams(1))
+  }
+
+  useEffect(()=> {
+    fetchCourses()
+    return console.log("course: " + courses)
+  },[])
+
+  function fetchCourses() {
+    dispatch(courseActions.getAllUserCourses(page, size))
+  }
   return (
     <body class="app">
-      {/*<!-- BEGIN: Mobile Menu -->*/}
       <MobileMenu />
-      {/*<!-- END: Mobile Menu -->*/}
       <div className="flex px-2 sm:px-10">
-        {/*<!-- BEGIN: Simple Menu -->*/}
         {props.sideMenu}
-        {/*<!-- END: Simple Menu -->*/}
-        {/*<!-- BEGIN: Content -->*/}
         <div class="content">
-          {/*<!-- BEGIN: Top Bar -->*/}
           <TopBar open={props.openModal} />
-          {/*<!-- END: Top Bar -->*/}
           <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">Grades</h2>
           </div>
-          {/*<!-- BEGIN: Invoice -->*/}
           <div class="intro-y box overflow-hidden mt-5">
             <div class="flex flex-col lg:flex-row pt-10 px-5 sm:px-20 sm:pt-20 lg:pb-20 text-center sm:text-left">
               <CourseDropdown course={course} setCourse={setCourse} />
@@ -61,54 +84,8 @@ function ExamResults(props) {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="border-b">
-                        <div class="font-medium whitespace-no-wrap">Exam 1</div>
-                        <div class="text-gray-600 text-xs whitespace-no-wrap">
-                          06/05/2020
-                        </div>
-                      </td>
-                      <td class="text-right border-b w-32">1</td>
-                      <td class="text-right border-b w-32">90/95</td>
-                      <td class="text-right border-b w-32 font-medium">95%</td>
-                      <td class="text-right border-b w-32">71%</td>
-                    </tr>
-                    <tr>
-                      <td class="border-b">
-                        <div class="font-medium whitespace-no-wrap">Exam 2</div>
-                        <div class="text-gray-600 text-xs whitespace-no-wrap">
-                          06/05/2020
-                        </div>
-                      </td>
-                      <td class="text-right border-b w-32">13</td>
-                      <td class="text-right border-b w-32">76/100</td>
-                      <td class="text-right border-b w-32 font-medium">76%</td>
-                      <td class="text-right border-b w-32">69%</td>
-                    </tr>
-                    <tr>
-                      <td class="border-b">
-                        <div class="font-medium whitespace-no-wrap">Exam 3</div>
-                        <div class="text-gray-600 text-xs whitespace-no-wrap">
-                          06/05/2020
-                        </div>
-                      </td>
-                      <td class="text-right border-b w-32">9</td>
-                      <td class="text-right border-b w-32">76/100</td>
-                      <td class="text-right border-b w-32 font-medium">76%</td>
-                      <td class="text-right border-b w-32">69%</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="font-medium whitespace-no-wrap">Exam 4</div>
-                        <div class="text-gray-600 text-xs whitespace-no-wrap">
-                          06/05/2020
-                        </div>
-                      </td>
-                      <td class="text-right w-32">14</td>
-                      <td class="text-right w-32">76/100</td>
-                      <td class="text-right w-32 font-medium">76%</td>
-                      <td class="text-right border-b w-32">70%</td>
-                    </tr>
+                    {//exams.map(exam => <ExamResultCard exam={exam}/>)
+                  }
                   </tbody>
                 </table>
               </div>
@@ -118,7 +95,7 @@ function ExamResults(props) {
                 <div class="text-lg text-theme-1 font-medium mt-2">
                   David Woolsey
                 </div>
-                <div class="mt-1">Course Name : {course}</div>
+                <div class="mt-1">Course Name : {course.name}</div>
                 <div class="mt-1">Course Code : LFT133243</div>
               </div>
               <div class="text-center sm:text-right sm:ml-auto">
@@ -128,9 +105,7 @@ function ExamResults(props) {
               </div>
             </div>
           </div>
-          {/*<!-- END: Invoice -->*/}
         </div>
-        {/*<!-- END: Content -->*/}
       </div>
     </body>
   )

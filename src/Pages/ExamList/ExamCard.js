@@ -49,7 +49,7 @@ function ExamCard({ exam }) {
             )}
           </div>
         </div>
-        <div className="flex m-5 p-5">
+        <div className="flex ml-auto mr-5">
           <a
             href="/student/exams"
             className="button w-24 inline-block my-auto mx-1 bg-theme-9 text-white"

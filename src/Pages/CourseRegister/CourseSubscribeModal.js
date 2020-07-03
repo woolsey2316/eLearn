@@ -46,7 +46,7 @@ function CourseSubscribeModal({
 
   function closeAndExit() {
     closeModal()
-    window.location = '/student/'
+    window.location = '/student/courses'
     window.reload()
   }
 

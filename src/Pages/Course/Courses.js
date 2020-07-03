@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import * as Icon from 'react-feather'
 
@@ -10,20 +10,24 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { courseActions } from '../../actions'
 import { alertActions } from '../../actions'
+import { courseService } from '../../services'
 
 function Courses(props) {
   const dispatch = useDispatch()
-  const courses = useSelector((state) => state.courses)
+  const courses = useSelector((state) => state.courses.userCourseList)
   const page = 0
   const size = 20
+  useEffect(()=> {
+    fetchCourses()
+    return console.log("course: " + courses)
+  },[])
+
   function fetchCourses() {
     dispatch(courseActions.getAllUserCourses(page, size))
   }
 
-  fetchCourses()
-
   return (
-    <body className="app">
+    <div className="app">
       <MobileMenu />
       <div className="flex px-2 sm:px-10">
         {props.sideMenu}
@@ -40,28 +44,33 @@ function Courses(props) {
             </a>
           </div>
           <div className="intro-y box overflow-hidden mt-5">
-            <div class="overflow-x-auto">
-              <table class="table">
+            <div className="overflow-x-auto">
+              <table className="table">
                 <thead>
-                  <tr class="bg-gray-700 text-white">
-                    <th class="whitespace-no-wrap">#</th>
-                    <th class="whitespace-no-wrap">Course Name</th>
-                    <th class="whitespace-no-wrap">Course Code</th>
-                    <th class="whitespace-no-wrap">Exam Status</th>
-                    <th class="whitespace-no-wrap">Exam details</th>
+                  <tr className="bg-gray-700 text-white">
+                    <th className="whitespace-no-wrap">#</th>
+                    <th className="whitespace-no-wrap">Course Name</th>
+                    <th className="whitespace-no-wrap">Category</th>
+                    <th className="whitespace-no-wrap">Course Status</th>
+                    <th className="whitespace-no-wrap">Expire Date</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <Course name={'Mathematics'} code={'Math101'} active={true} />
-                  <Course name={'Science'} code={'Sci2312'} active={false} />
-                  <Course name={'History'} code={'Hist323'} active={false} />
+                  {courses &&
+                    courses.reduce((unique, item) => {
+                      // unique course values, some subscribe multiple times
+                      return unique.map(elem => elem.coursesDTO.id).includes(item.coursesDTO.id) 
+                      ? unique : [ ...unique, item]},[])
+                        .map(elem => <Course course={elem.coursesDTO}/>)
+                    
+                  }
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
-    </body>
+    </div>
   )
 }
 

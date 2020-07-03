@@ -15,7 +15,7 @@ export function courses(state = {}, action) {
     case courseConstants.COURSE_INFO_SUCCESS:
       return { courseRegistering: false, courseList: action.courses.data }
     case courseConstants.USER_COURSE_INFO_SUCCESS:
-      return { courseRegistering: false, courseList: action.course }
+      return { courseRegistering: false, userCourseList: action.courseList.data.list }
     default:
       return state
   }
