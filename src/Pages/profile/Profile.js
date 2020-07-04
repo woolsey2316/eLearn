@@ -10,7 +10,7 @@ import * as Icon from 'react-feather'
 
 import { ProfileOptions } from './ProfileOptions'
 
-import profile14 from '../../assets/dist/images/profile-14.jpg'
+import profile8 from '../../assets/dist/images/profile-8.png'
 
 function Profile(props) {
   const user = JSON.parse(localStorage.getItem('user')).user
@@ -37,7 +37,7 @@ function Profile(props) {
                     <img
                       alt="Midone Tailwind HTML Admin Template"
                       className="rounded-full"
-                      src={profile14}
+                      src={profile8}
                     />
                   </div>
                   <div className="ml-5">

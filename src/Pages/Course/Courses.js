@@ -17,10 +17,10 @@ function Courses(props) {
   const courses = useSelector((state) => state.courses.userCourseList)
   const page = 0
   const size = 20
-  useEffect(()=> {
+  useEffect(() => {
     fetchCourses()
-    return console.log("course: " + courses)
-  },[])
+    return console.log('course: ' + courses)
+  }, [])
 
   function fetchCourses() {
     dispatch(courseActions.getAllUserCourses(page, size))
@@ -57,13 +57,16 @@ function Courses(props) {
                 </thead>
                 <tbody>
                   {courses &&
-                    courses.reduce((unique, item) => {
-                      // unique course values, some subscribe multiple times
-                      return unique.map(elem => elem.coursesDTO.id).includes(item.coursesDTO.id) 
-                      ? unique : [ ...unique, item]},[])
-                        .map(elem => <Course course={elem.coursesDTO}/>)
-                    
-                  }
+                    courses
+                      .reduce((unique, item) => {
+                        // unique course values, some subscribe multiple times
+                        return unique
+                          .map((elem) => elem.coursesDTO.id)
+                          .includes(item.coursesDTO.id)
+                          ? unique
+                          : [...unique, item]
+                      }, [])
+                      .map((elem) => <Course course={elem.coursesDTO} />)}
                 </tbody>
               </table>
             </div>

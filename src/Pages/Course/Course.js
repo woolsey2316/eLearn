@@ -7,7 +7,7 @@ import { courseActions } from '../../actions'
 import { alertActions } from '../../actions'
 import { courseService } from '../../services'
 
-function Course({course}) {
+function Course({ course }) {
   return (
     <tr>
       <td className="border-b">{course.id}</td>
@@ -27,7 +27,7 @@ function Course({course}) {
 
       <td className="border-b">
         <div className="px-3 py-2 bg-theme-14 text-theme-10 rounded font-medium inline">
-          {course.expires && course.expires.split(" ")[0]}
+          {course.expires && course.expires.split(' ')[0]}
         </div>
       </td>
     </tr>

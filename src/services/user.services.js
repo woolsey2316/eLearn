@@ -39,9 +39,9 @@ async function logout() {
   const requestOptions = {
     method: 'POST',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userId })
+    body: JSON.stringify({ userId }),
   }
-  console.log("body:" + requestOptions.body)
+  console.log('body:' + requestOptions.body)
   const response = await fetch(
     `${process.env.REACT_APP_API_URL}/auth/logout`,
     requestOptions
@@ -91,7 +91,7 @@ async function register(user) {
   }
 
   const response = await fetch(
-    `${process.env.REACT_APP_API_URL}/auth/sign-up`,
+    `${process.env.REACT_APP_API_URL}/auth/register`,
     requestOptions
   )
   return handleResponse(response)

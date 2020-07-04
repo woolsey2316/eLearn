@@ -21,20 +21,20 @@ function ExamResults(props) {
   const page = 0
   const size = 20
 
-  useEffect(()=> {
+  useEffect(() => {
     fetchExams()
-    return console.log("exams: " + exams)
-  },[])
+    return console.log('exams: ' + exams)
+  }, [])
 
   fetchExams()
   function fetchExams() {
     dispatch(examActions.getAllExams(1))
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     fetchCourses()
-    return console.log("course: " + courses)
-  },[])
+    return console.log('course: ' + courses)
+  }, [])
 
   function fetchCourses() {
     dispatch(courseActions.getAllUserCourses(page, size))
@@ -84,8 +84,9 @@ function ExamResults(props) {
                     </tr>
                   </thead>
                   <tbody>
-                    {//exams.map(exam => <ExamResultCard exam={exam}/>)
-                  }
+                    {
+                      //exams.map(exam => <ExamResultCard exam={exam}/>)
+                    }
                   </tbody>
                 </table>
               </div>

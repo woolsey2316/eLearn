@@ -8,12 +8,12 @@ import { Route, Redirect } from 'react-router-dom'
   using browser dev tools, however this fake user would not be able to fetch
   data from the server api becuase a jwt token is necessary.
 */
-export const PrivateRoute = ({ component: Component, ...rest }) => (
+export const PrivateRoute = ({ children: Children, ...rest }) => (
   <Route
     {...rest}
     render={(props) =>
       localStorage.getItem('user') ? (
-        <Component {...props} />
+        Children
       ) : (
         <Redirect
           to={{ pathname: '/login', state: { from: props.location } }}

@@ -28,7 +28,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.Home className="side-menu__icon" />
+              <Icon.BarChart className="side-menu__icon" />
             </div>
             <div className="side-menu__title"> Dashboard </div>
           </a>
@@ -58,7 +58,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.HardDrive className="side-menu__icon" />
+              <Icon.Package className="side-menu__icon" />
             </div>
             <div className="side-menu__title"> Courses </div>
           </a>
@@ -73,7 +73,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.Inbox className="side-menu__icon" />
+              <Icon.Activity className="side-menu__icon" />
             </div>
             <div className="side-menu__title"> Grades </div>
           </a>
@@ -88,7 +88,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.HardDrive className="side-menu__icon" />
+              <Icon.Layers className="side-menu__icon" />
             </div>
             <div className="side-menu__title"> Exam List </div>
           </a>
@@ -103,7 +103,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.BookOpen className="side-menu__icon" />
+              <Icon.Edit className="side-menu__icon" />
             </div>
             <div className="side-menu__title"> Exams </div>
           </a>

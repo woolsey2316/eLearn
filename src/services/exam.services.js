@@ -30,7 +30,7 @@ async function getAllUserExams(courseId) {
 /* 
   fetches all results of an exam a User has
   */
- async function getExamResult(examId) {
+async function getExamResult(examId) {
   const requestOptions = {
     method: 'GET',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
@@ -46,7 +46,7 @@ async function getAllUserExams(courseId) {
 /* 
   fetches all questions of an exam
   */
- async function getExamQuestions(examId) {
+async function getExamQuestions(examId) {
   const requestOptions = {
     method: 'GET',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
@@ -62,7 +62,7 @@ async function getAllUserExams(courseId) {
 /* 
   sumbit question of an exam a User has attended
   */
- async function submitExam(examId) {
+async function submitExam(examId) {
   const requestOptions = {
     method: 'POST',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },

@@ -9,11 +9,6 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-/* setup backend
-import { configureFakeBackend } from './helpers';
-configureFakeBackend();
-*/
-
 render(
   <Provider store={store}>
     <App />

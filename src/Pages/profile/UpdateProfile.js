@@ -10,7 +10,7 @@ import { TopBar } from '../../components'
 import profile2 from '../../assets/dist/images/profile-2.jpg'
 
 function UpdateProfile(props) {
-  const user = JSON.parse(localStorage.getItem('user')).data.user
+  const user = JSON.parse(localStorage.getItem('user')).user
   return (
     <body className="app">
       <MobileMenu />

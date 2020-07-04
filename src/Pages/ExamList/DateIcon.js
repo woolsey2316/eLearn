@@ -1,5 +1,4 @@
 import React from 'react'
-import * as Icon from 'react-feather'
 
 function DateIcon(props) {
   var date = new Date(props.due)
