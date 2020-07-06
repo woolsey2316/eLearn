@@ -62,14 +62,15 @@ async function getExamQuestions(examId) {
 /* 
   sumbit question of an exam a User has attended
   */
-async function submitExam(examId) {
+async function submitExam(exam) {
   const requestOptions = {
     method: 'POST',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    body: JSON.stringify(exam),
   }
   const userId = getUserId()
   const response = await fetch(
-    `${process.env.REACT_APP_API_URL}/users/${userId}/exams/${examId}/submit`,
+    `${process.env.REACT_APP_API_URL}/users/${userId}/exams/${exam.examId}/submit`,
     requestOptions
   )
   return handleResponse(response)

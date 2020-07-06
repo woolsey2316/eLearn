@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Link } from 'react-router-dom'
-
 import { userActions } from '../actions'
 import { alertActions } from '../actions'
 
 import { Alert } from '../components'
 
 import { history } from '../helpers'
-
-import * as Icon from 'react-feather'
 
 import zxcvbn from 'zxcvbn'
 
@@ -165,6 +161,18 @@ export default () => {
             )}
             <input
               type="text"
+              name="district"
+              className="intro-x login__input input input--lg border border-gray-300 block mt-4"
+              style={{ borderColor: isValidEmail() ? '' : '#D32929' }}
+              placeholder="District"
+              value={user.district}
+              onChange={handleChange}
+            />
+            {submitted && !user.district && (
+              <div className="text-theme-6 mt-2">District is required</div>
+            )}
+            <input
+              type="text"
               name="area"
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
               style={{ borderColor: isValidEmail() ? '' : '#D32929' }}
@@ -198,18 +206,6 @@ export default () => {
             />
             {submitted && !user.className && (
               <div className="text-theme-6 mt-2">className is required</div>
-            )}
-            <input
-              type="text"
-              name="district"
-              className="intro-x login__input input input--lg border border-gray-300 block mt-4"
-              style={{ borderColor: isValidEmail() ? '' : '#D32929' }}
-              placeholder="District"
-              value={user.district}
-              onChange={handleChange}
-            />
-            {submitted && !user.district && (
-              <div className="text-theme-6 mt-2">District is required</div>
             )}
             <input
               type="text"

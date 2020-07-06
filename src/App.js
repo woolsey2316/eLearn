@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Router, Switch, Route, Redirect } from 'react-router-dom'
+import { Router, Switch, Route } from 'react-router-dom'
 
 import './assets/dist/css/app.css'
 import './index.css'
@@ -19,6 +19,7 @@ import { ExamPage } from './Pages/Exam'
 import { ExamList } from './Pages/ExamList'
 import { Courses } from './Pages/Course'
 import { CourseRegister } from './Pages/CourseRegister'
+import { PageNotFound } from './Pages/NotFound'
 
 import { SideMenu } from './components'
 
@@ -45,7 +46,7 @@ function App() {
     <Router history={history}>
       <LogoutModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
       <Switch>
-        <PrivateRoute exact path="/">
+        <PrivateRoute exact path="/dashboard">
           <Dashboard openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
         <PrivateRoute exact path="/admin/">
@@ -57,7 +58,7 @@ function App() {
         <PrivateRoute exact path="/admin/create_exam">
           <CreateExam openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
-        <PrivateRoute exact path="/student/">
+        <PrivateRoute exact path="/student/dashboard">
           <Dashboard openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
         <PrivateRoute exact path="/student/profile">
@@ -86,6 +87,7 @@ function App() {
         </PrivateRoute>
         <Route exact path="/Register" component={RegisterPage} />
         <Route exact path="/login" component={LoginPage} />
+        <Route path="*" exact={true} component={PageNotFound} />
       </Switch>
     </Router>
   )

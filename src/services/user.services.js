@@ -12,6 +12,7 @@ export const userService = {
   getCurrentUserInfo,
   requestPasswordChange,
   changePassword,
+  verifyEmail,
   update,
   delete: _delete,
 }
@@ -78,6 +79,19 @@ async function getCurrentUserInfo() {
   const userId = getUserId()
   const response = await fetch(
     `${process.env.REACT_APP_API_URL}/users/${userId}/summary`,
+    requestOptions
+  )
+  return handleResponse(response)
+}
+
+async function verifyEmail() {
+  const requestOptions = {
+    method: 'GET',
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
+  }
+  const userId = getUserId()
+  const response = await fetch(
+    `${process.env.REACT_APP_API_URL}/users/${userId}/verifyEmail`,
     requestOptions
   )
   return handleResponse(response)

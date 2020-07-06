@@ -11,6 +11,7 @@ function RightPanel({
   currentQuestion,
   answerList,
   section,
+  submitExam
 }) {
   const user = getUser()
   return (
@@ -58,6 +59,7 @@ function RightPanel({
       </div>
       <div className="border-t border-theme-3 mt-2 pt-5 text-white">
         <button
+          onClick={submitExam}
           style={{ width: '21em', position: 'absolute', bottom: '0' }}
           className="button flex items-center justify-center inline-block py-5 bg-theme-2 text-gray-700 my-2"
         >

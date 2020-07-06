@@ -1,10 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { MobileMenu } from '../../components/MobileMenu'
 import { TopBar } from '../../components/TopBar'
-import { TopMenu } from './TopMenu'
-import { Breadcrumb } from '../../components'
-
-import { SideMenu } from '../../components'
 
 import * as Icon from 'react-feather'
 
@@ -12,8 +8,20 @@ import { ProfileOptions } from './ProfileOptions'
 
 import profile8 from '../../assets/dist/images/profile-8.png'
 
+import { useDispatch, useSelector } from 'react-redux'
+
+import { userActions } from '../../actions'
+import { alertActions } from '../../actions'
+
 function Profile(props) {
+  const dispatch = useDispatch()
   const user = JSON.parse(localStorage.getItem('user')).user
+
+  useEffect(() => {
+    dispatch(userActions.verifyEmail())
+  }, [])
+
+  //const verified = useSelector((state) => state.user.verifyEmail)
   const role = ['Student', 'Admin']
 
   return (
@@ -46,15 +54,21 @@ function Profile(props) {
                     </div>
                     <div className="text-gray-600">{role[user.roleId - 1]}</div>
                     <div className="flex mt-1">
-                      <div className="truncate sm:whitespace-normal flex items-center text-theme-9">
-                        {user.emailVerified ? (
+                      <div
+                        className="truncate sm:whitespace-normal flex items-center text-theme-9 tooltip"
+                        title="Email verified"
+                      >
+                        {true ? (
                           <Icon.Mail className="w-4 h-4 mr-2 text-theme-9" />
                         ) : (
                           <Icon.Mail className="w-4 h-4 mr-2 text-theme-11" />
                         )}
                       </div>
-                      <div className="truncate sm:whitespace-normal flex items-center">
-                        {user.mobileVerified ? (
+                      <div
+                        className="truncate sm:whitespace-normal flex items-center tooltip"
+                        title="Mobile verified"
+                      >
+                        {true ? (
                           <Icon.Phone className="w-4 h-4 mr-2 text-theme-9" />
                         ) : (
                           <Icon.Phone className="w-4 h-4 mr-2 text-theme-11" />
@@ -78,8 +92,8 @@ function Profile(props) {
                     <Icon.Book className="w-4 h-4 mr-2" /> {user.school}
                   </div>
                   <div className="truncate sm:whitespace-normal flex items-center mt-3">
-                    <Icon.Briefcase className="w-4 h-4 mr-2" />{' '}
-                    {role[user.roleId - 1]}
+                    <Icon.Briefcase className="w-4 h-4 mr-2" />
+                    {`${user.state}, ${user.district}, ${user.area}`}
                   </div>
                 </div>
                 <div className=""></div>

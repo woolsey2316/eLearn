@@ -20,9 +20,9 @@ function SideMenu(props) {
       <ul>
         <li>
           <a
-            href="/student/"
+            href="/student/dashboard"
             className={
-              window.location.pathname === '/student/'
+              window.location.pathname === '/student/dashboard'
                 ? 'side-menu side-menu--active'
                 : 'side-menu'
             }

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Tooltip from '@reach/tooltip'
 import '@reach/tooltip/styles.css'
-import * as Icon from 'react-feather'
 
 const calculateTimeLeft = () => {
-  const difference = +new Date('2020-07-02') - +new Date()
+  const difference = +new Date(1593869097000) - +new Date()
   let timeLeft = {}
 
   if (difference > 0) {

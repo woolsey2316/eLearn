@@ -44,31 +44,33 @@ function Courses(props) {
             </a>
           </div>
           <div className="intro-y box overflow-hidden mt-5">
-            <div className="overflow-x-auto">
-              <table className="table">
-                <thead>
-                  <tr className="bg-gray-700 text-white">
-                    <th className="whitespace-no-wrap">#</th>
-                    <th className="whitespace-no-wrap">Course Name</th>
-                    <th className="whitespace-no-wrap">Category</th>
-                    <th className="whitespace-no-wrap">Course Status</th>
-                    <th className="whitespace-no-wrap">Expire Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {courses &&
-                    courses
-                      .reduce((unique, item) => {
-                        // unique course values, some subscribe multiple times
-                        return unique
-                          .map((elem) => elem.coursesDTO.id)
-                          .includes(item.coursesDTO.id)
-                          ? unique
-                          : [...unique, item]
-                      }, [])
-                      .map((elem) => <Course course={elem.coursesDTO} />)}
-                </tbody>
-              </table>
+            <div className="box p-5">
+              <div className="overflow-x-auto">
+                <table className="table">
+                  <thead>
+                    <tr className="bg-gray-700 text-white">
+                      <th className="whitespace-no-wrap">#</th>
+                      <th className="whitespace-no-wrap">Course Name</th>
+                      <th className="whitespace-no-wrap">Category</th>
+                      <th className="whitespace-no-wrap">Course Status</th>
+                      <th className="whitespace-no-wrap">Course Expire Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {courses &&
+                      courses
+                        .reduce((unique, item) => {
+                          // unique course values, some subscribe multiple times
+                          return unique
+                            .map((elem) => elem.coursesDTO.id)
+                            .includes(item.coursesDTO.id)
+                            ? unique
+                            : [...unique, item]
+                        }, [])
+                        .map((elem) => <Course course={elem.coursesDTO} />)}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>

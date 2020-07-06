@@ -24,21 +24,7 @@ function Quiz(props) {
       <Question content={props.question} />
       <ul className="answerOptions">
         {props.answerOptions.map(renderAnswerOptions)}
-        {props.answerOptions.map(renderAnswerOptions)}
-        {props.answerOptions.map(renderAnswerOptions)}
-        {props.answerOptions.map(renderAnswerOptions)}
-        {props.answerOptions.map(renderAnswerOptions)}
-        {props.answerOptions.map(renderAnswerOptions)}
-        {props.answerOptions.map(renderAnswerOptions)}
-        {props.answerOptions.map(renderAnswerOptions)}
-        {props.answerOptions.map(renderAnswerOptions)}
-        {props.answerOptions.map(renderAnswerOptions)}
-        {props.answerOptions.map(renderAnswerOptions)}
-        {props.answerOptions.map(renderAnswerOptions)}
-        {props.answerOptions.map(renderAnswerOptions)}
-        {props.answerOptions.map(renderAnswerOptions)}
-        {props.answerOptions.map(renderAnswerOptions)}
-        {props.answerOptions.map(renderAnswerOptions)}
+        
       </ul>
     </div>
   )

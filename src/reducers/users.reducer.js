@@ -25,6 +25,8 @@ export function users(state = {}, action) {
           return user
         }),
       }
+    case userConstants.VERIFICATION_SUCCESS:
+      return { ...state, emailVerified: action.verify }
     default:
       return state
   }

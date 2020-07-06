@@ -10,21 +10,6 @@ import { alertActions } from '../../actions'
 
 import { TopBar } from '../../components'
 
-import * as Icon from 'react-feather'
-
-import profile3 from '../../assets/dist/images/profile-3.jpg'
-import profile14 from '../../assets/dist/images/profile-14.jpg'
-import profile8 from '../../assets/dist/images/profile-8.jpg'
-import preview2 from '../../assets/dist/images/preview-2.jpg'
-import preview13 from '../../assets/dist/images/preview-13.jpg'
-import preview5 from '../../assets/dist/images/preview-5.jpg'
-import preview1 from '../../assets/dist/images/preview-1.jpg'
-import profile1 from '../../assets/dist/images/profile-1.jpg'
-import profile2 from '../../assets/dist/images/profile-2.jpg'
-import profile4 from '../../assets/dist/images/profile-4.jpg'
-
-import { SideMenu } from '../../components/SideMenu'
-
 function ChangePassword(props) {
   return (
     <>

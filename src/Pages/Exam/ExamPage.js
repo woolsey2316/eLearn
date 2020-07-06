@@ -5,8 +5,7 @@ import Result from './Result'
 import SectionComplete from './SectionComplete'
 import { CourseSection } from './CourseSection'
 import { RightPanel } from './RightPanel'
-import { QuestionNavigation } from './QuestionNavigation'
-import { CountdownTimer, calculateTimeLeft } from './CountdownTimer'
+import { calculateTimeLeft } from './CountdownTimer'
 import * as Icon from 'react-feather'
 
 function ExamPage() {
@@ -35,6 +34,14 @@ function ExamPage() {
   const [show, setShow] = React.useState(true)
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
+
+  React.useEffect(() => {
+    if (Object.keys(timeLeft).length === 0) submitExam()
+  }, [timeLeft])
+
+  function submitExam() {
+    console.log("submit exam!")
+  }
 
   function openModal() {
     console.log('open modal request')
@@ -235,6 +242,7 @@ function ExamPage() {
             markedQuestions={MarkedQuestionIds[section]}
             currentQuestion={questionId}
             section={QuizData.sections[section]}
+            submitExam={submitExam}
           />
         )}
       </div>

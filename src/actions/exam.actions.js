@@ -17,10 +17,10 @@ function submit(exam) {
   return (dispatch) => {
     dispatch(request(exam))
 
-    examService.addExam(exam).then(
+    examService.submitExam(exam).then(
       (exam) => {
         dispatch(success())
-        dispatch(alertActions.success('Registration successful'))
+        dispatch(alertActions.success('Successfully submitted exam'))
       },
       (error) => {
         dispatch(failure(error.toString()))

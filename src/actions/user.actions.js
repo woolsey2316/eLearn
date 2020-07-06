@@ -13,6 +13,8 @@ export const userActions = {
   logout,
   register,
   resetPassword,
+  verifyEmail,
+  setUserDetails,
   //delete is reserved
   delete: _delete,
 }
@@ -26,8 +28,8 @@ function login(email, password, rememberMe) {
         dispatch(success(user))
         // API request to retrieve all user info from server, eg. profile image
         dispatch(getCurrentUserInfo(user))
-        history.push('/student/')
-        redirect('/student/')
+        history.push('/student/dashboard')
+        redirect('/student/dashboard')
       },
       (error) => {
         dispatch(failure(error.toString()))
@@ -110,6 +112,33 @@ function getCurrentUserInfo(user) {
   }
 }
 
+function verifyEmail(user) {
+  return (dispatch) => {
+    dispatch(request(user))
+
+    userService.verifyEmail().then(
+      (res) => {
+        dispatch(success(res))
+        dispatch(alertActions.success('Successfully found verification status'))
+      },
+      (error) => {
+        dispatch(failure(error.toString()))
+        dispatch(alertActions.error(error.toString()))
+      }
+    )
+  }
+
+  function request(verify) {
+    return { type: userConstants.VERIFICATION_REQUEST, verify }
+  }
+  function success(verify) {
+    return { type: userConstants.VERIFICATION_SUCCESS, verify }
+  }
+  function failure(error) {
+    return { type: userConstants.VERIFICATION_FAILURE, error }
+  }
+}
+
 function resetPassword(user) {
   return (dispatch) => {
     dispatch(request(user))
@@ -134,6 +163,34 @@ function resetPassword(user) {
   }
   function failure(error) {
     return { type: userConstants.CHANGE_PASSWORD_FAILURE, error }
+  }
+}
+
+function setUserDetails(userDTO) {
+  return (dispatch) => {
+    dispatch(request({ userDTO }))
+
+    userService.setUserDetails(userDTO).then(
+      (user) => {
+        dispatch(success(user))
+        // API request to retrieve all user info from server, eg. profile image
+        dispatch(getCurrentUserInfo(user))
+      },
+      (error) => {
+        dispatch(failure(error.toString()))
+        dispatch(alertActions.error(error.toString()))
+      }
+    )
+  }
+
+  function request(user) {
+    return { type: userConstants.USER_UPDATE_REQUEST, user }
+  }
+  function success(user) {
+    return { type: userConstants.USER_UPDATE_SUCCESS, user }
+  }
+  function failure(error) {
+    return { type: userConstants.USER_UPDATE_FAILURE, error }
   }
 }
 
