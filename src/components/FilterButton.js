@@ -6,11 +6,11 @@ function FilterButton(props) {
       onClick={() => props.setActive(props.name)}
       style={{ cursor: 'pointer' }}
       className={
-        'flex items-center px-3 py-2 rounded-md font-medium' +
-        (props.name === props.active ? ' bg-theme-22' : '')
+        'flex items-center px-3 py-2 mt-2 rounded-md' +
+        (props.name === props.active ? ' bg-theme-1 text-white text-medium' : ' ')
       }
     >
-      {props.icon}
+      {props.children}
       {props.name}
     </h2>
   )

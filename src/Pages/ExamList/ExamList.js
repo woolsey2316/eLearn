@@ -1,6 +1,5 @@
 import React from 'react'
 import { MobileMenu } from '../../components'
-import { SideMenu } from '../../components'
 import { TopBar } from '../../components'
 import { ExamFilterPanel } from '../../components'
 
@@ -8,12 +7,35 @@ import { examData } from './ExamData'
 
 import { ExamCard } from './ExamCard'
 
+import { MonthContainer } from './MonthContainer'
+
 function ExamList(props) {
   const [examList, setExamList] = React.useState({
     activeExams: [],
     upcomingExams: [],
     completedExams: [],
   })
+
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+  examData.sort((a,b) => a-b)
+  const months = new Set(examData.map(elem => monthNames[new Date(elem.due).getMonth()]))
+  var ExamList = new Array();
+  for (let month of months.values()){
+    ExamList.push(
+      <MonthContainer month={month}>
+        {
+          examData
+            .filter(elem => monthNames[new Date(elem.due).getMonth()] === month)
+            .map( exam =>
+              <ExamCard exam={exam} />
+            )
+        }
+      </MonthContainer>
+    )
+  }
   return (
     <div className="app">
       <MobileMenu />
@@ -22,15 +44,13 @@ function ExamList(props) {
         <div className="content">
           <TopBar open={props.openModal} />
           <h2 className="intro-y text-lg font-medium mt-10"> Exams </h2>
-          <div class="grid grid-cols-12 gap-6 mt-8">
-            <div class="col-span-12 lg:col-span-3 xxl:col-span-2">
+          <div className="grid grid-cols-12 gap-6 mt-8">
+            <div className="col-span-12 lg:col-span-3 xxl:col-span-2">
               <ExamFilterPanel />
             </div>
-            <div class="col-span-12 lg:col-span-9 xxl:col-span-10">
-              <div class="intro-y inbox">
-                {examData.map((exam) => (
-                  <ExamCard exam={exam} />
-                ))}
+            <div className="col-span-12 lg:col-span-9 xxl:col-span-10">
+              <div className="intro-y inbox">
+                {ExamList}
               </div>
             </div>
           </div>

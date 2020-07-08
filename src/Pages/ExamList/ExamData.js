@@ -20,7 +20,12 @@ const examData = [
     sections: 1,
     duration: 120,
   },
-  { examName: 'Maths101', due: '06/20/2020', description: 'a Maths101 exam' },
+  { examName: 'Maths101',
+    due: '06/20/2020',
+    description: 'a Maths101 exam',
+    sections: 1,
+    duration: 120, 
+  },
 ]
 
 export { examData }

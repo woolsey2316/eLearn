@@ -26,7 +26,6 @@ function UpdateProfile(props) {
             <h2 className="text-lg font-medium mr-auto">Update Profile</h2>
           </div>
           <div className="grid grid-cols-12 gap-6">
-            
             <div className="col-span-12 lg:col-span-8 xxl:col-span-9">
               <div className="intro-y box lg:mt-5">                
               </div>

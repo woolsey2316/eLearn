@@ -39,7 +39,7 @@ function ExamType() {
           <div className="report-box zoom-in">
             <div className="box p-5">
               <div className="flex">
-                <Icon.Activity className="report-box__icon text-theme-10" />
+                <Icon.Layers className="report-box__icon text-theme-10" />
                 <div className="ml-auto">
                   <div
                     className="report-box__indicator bg-theme-9 tooltip cursor-pointer"

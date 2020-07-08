@@ -1,10 +1,6 @@
 import React from 'react'
 
-import * as Icon from 'react-feather'
-
-import { SideMenu } from '../components'
 import { MobileMenu } from '../components'
-import { Breadcrumb } from '../components'
 
 import { MainContent } from './MainContent'
 

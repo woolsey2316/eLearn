@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { quizQuestions, QuizData } from './quizQuestions'
 import Quiz from './Quiz'
-import Result from './Result'
 import SectionComplete from './SectionComplete'
 import { CourseSection } from './CourseSection'
 import { RightPanel } from './RightPanel'

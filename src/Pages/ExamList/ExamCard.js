@@ -8,7 +8,7 @@ function ExamCard({ exam }) {
   const [description, show] = React.useState(false)
   console.table({ exam })
   return (
-    <div className="intro-x inbox__item inbox__item--active box mb-2">
+    <div className="inbox__item inbox__item--active box mb-4 zoom-in">
       <div className="intro-x flex items-center box">
         <DateIcon due={exam.due} />
         <div className=" inbox__item--active inline-block sm:block text-gray-700">
