@@ -37,8 +37,6 @@ function Alert(props) {
     default:
       return (
         <div className={DEFAULT}>
-          <Icon.AlertCircle className="mr-4" />
-          {props.message}
         </div>
       )
   }

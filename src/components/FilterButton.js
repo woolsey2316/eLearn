@@ -7,7 +7,9 @@ function FilterButton(props) {
       style={{ cursor: 'pointer' }}
       className={
         'flex items-center px-3 py-2 mt-2 rounded-md' +
-        (props.name === props.active ? ' bg-theme-1 text-white text-medium' : ' ')
+        (props.name === props.active
+          ? ' bg-theme-1 text-white text-medium'
+          : ' ')
       }
     >
       {props.children}

@@ -5,7 +5,7 @@ import '@reach/tooltip/styles.css'
 
 function answered(message) {
   return (
-    <div className="mx-auto">
+    <div>
       <Tooltip
         style={{
           background: 'hsla(0, 0%, 0%, 0.75)',
@@ -24,7 +24,7 @@ function answered(message) {
 }
 function notAnswered(message) {
   return (
-    <div className="mx-auto">
+    <div>
       <Tooltip
         style={{
           background: 'hsla(0, 0%, 0%, 0.75)',
@@ -43,7 +43,7 @@ function notAnswered(message) {
 }
 function marked(message) {
   return (
-    <div className="mx-auto">
+    <div>
       <Tooltip
         style={{
           background: 'hsla(0, 0%, 0%, 0.75)',
@@ -62,7 +62,7 @@ function marked(message) {
 }
 function answeredAndMarked(message) {
   return (
-    <div className="mx-auto">
+    <div>
       <Tooltip
         style={{
           background: 'hsla(0, 0%, 0%, 0.75)',
@@ -81,7 +81,7 @@ function answeredAndMarked(message) {
 }
 function notVisited(message) {
   return (
-    <div className="mx-auto">
+    <div>
       <Tooltip
         style={{
           background: 'hsla(0, 0%, 0%, 0.75)',
@@ -100,7 +100,7 @@ function notVisited(message) {
 }
 function defaultStatus(message) {
   return (
-    <div className="mx-auto">
+    <div>
       <Tooltip
         style={{
           background: 'hsla(0, 0%, 0%, 0.75)',
@@ -119,7 +119,6 @@ function defaultStatus(message) {
 }
 
 function AnswerStatusIcon(props) {
-  var id = props.questionId.toString()
   if (props.answer && props.marked.includes(props.questionId)) {
     return answeredAndMarked('Question was answered AND marked for review')
   } else if (props.answer) {
@@ -132,4 +131,12 @@ function AnswerStatusIcon(props) {
   return notVisited("Haven't visited question yet")
 }
 
-export { AnswerStatusIcon }
+export {
+  answered,
+  notAnswered,
+  marked,
+  answeredAndMarked,
+  notVisited,
+  defaultStatus,
+  AnswerStatusIcon,
+}

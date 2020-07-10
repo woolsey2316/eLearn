@@ -12,9 +12,7 @@ import { PersonalInformation } from './PersonalInformation'
 
 function UpdateProfile(props) {
   const user = JSON.parse(localStorage.getItem('user')).user
-  const [newUserDetails, setDetails] = useState(
-    user
-  )
+  const [newUserDetails, setDetails] = useState(user)
   return (
     <body className="app">
       <MobileMenu />
@@ -27,11 +25,11 @@ function UpdateProfile(props) {
           </div>
           <div className="grid grid-cols-12 gap-6">
             <div className="col-span-12 lg:col-span-8 xxl:col-span-9">
-              <div className="intro-y box lg:mt-5">                
-              </div>
-              <PersonalInformation 
-              newUserDetails={newUserDetails} 
-              setDetails={setDetails}/>
+              <div className="intro-y box lg:mt-5"></div>
+              <PersonalInformation
+                newUserDetails={newUserDetails}
+                setDetails={setDetails}
+              />
             </div>
           </div>
         </div>

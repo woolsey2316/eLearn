@@ -12,10 +12,10 @@ function QuestionButton(props) {
 
   return (
     <div
-      style={{ cursor: 'pointer' }}
       onClick={() => props.onClickQuestion(props.questionId)}
+      style={{ height: '50px', width: '45px' }}
       className={
-        'border text-gray-700 py-1 p-3 rounded relative font-medium m-1' +
+        'border text-gray-700 py-1 p-3 rounded relative font-medium m-1 cursor-pointer' +
         (props.currentQuestion === props.questionId
           ? ' border-gray-700 bg-gray-200 text-gray-600'
           : ' border-gray-400')

@@ -2,7 +2,7 @@ import React from 'react'
 import Modal from 'react-modal'
 import * as Icon from 'react-feather'
 
-function SectionComplete(props) {
+function SectionCompleteModal(props) {
   return (
     <Modal
       isOpen={props.modalIsOpen}
@@ -37,4 +37,4 @@ function SectionComplete(props) {
   )
 }
 
-export default SectionComplete
+export default SectionCompleteModal

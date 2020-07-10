@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { quizQuestions, QuizData } from './quizQuestions'
 import Quiz from './Quiz'
-import SectionComplete from './SectionComplete'
+import SectionCompleteModal from './SectionCompleteModal'
 import { CourseSection } from './CourseSection'
 import { RightPanel } from './RightPanel'
 import { calculateTimeLeft } from './CountdownTimer'
@@ -39,7 +39,7 @@ function ExamPage() {
   }, [timeLeft])
 
   function submitExam() {
-    console.log("submit exam!")
+    console.log('submit exam!')
   }
 
   function openModal() {
@@ -173,13 +173,15 @@ function ExamPage() {
   }
 
   function renderResult() {
-    return <SectionComplete modalIsOpen={finished} closeModal={closeModal} />
+    return (
+      <SectionCompleteModal modalIsOpen={finished} closeModal={closeModal} />
+    )
   }
 
   return (
     <div className="content rounded-none p-2">
       <div className="box flex justify-between">
-        <div className="flex flex-col mt-5 flex-grow">
+        <div className="flex flex-col flex-grow">
           <CourseSection
             section={section}
             clicked={setSection}
