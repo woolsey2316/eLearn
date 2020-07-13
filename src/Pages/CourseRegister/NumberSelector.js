@@ -1,6 +1,6 @@
 import React from 'react'
 
-function CourseNumberSelector({ name, value, handleChange }) {
+function NumberSelector({ name, value, handleChange }) {
   return (
     <select
       name={name}
@@ -17,4 +17,4 @@ function CourseNumberSelector({ name, value, handleChange }) {
   )
 }
 
-export { CourseNumberSelector }
+export { NumberSelector }

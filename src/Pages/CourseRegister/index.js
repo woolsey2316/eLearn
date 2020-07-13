@@ -1,3 +1,3 @@
 export { CourseRegister } from './CourseRegister'
-export { CourseNumberSelector } from './CourseNumberSelector'
+export { NumberSelector } from './NumberSelector'
 export { CourseSubscribeModal } from './CourseSubscribeModal'

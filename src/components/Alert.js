@@ -4,13 +4,13 @@ import * as Icon from 'react-feather'
 
 function Alert(props) {
   const ALERT_SUCCESS =
-    'rounded-md flex items-center px-5 py-4 mt-4 bg-theme-9 text-white'
+    'intro-x rounded-md flex items-center px-5 py-4 mt-4 bg-theme-9 text-white'
   const ALERT_MODERATE =
-    'rounded-md flex items-center px-5 py-4 mt-4 bg-theme-12 text-white'
+    'intro-x rounded-md flex items-center px-5 py-4 mt-4 bg-theme-12 text-white'
   const ALERT_ERROR =
-    'rounded-md flex items-center px-5 py-4 mt-4 bg-theme-6 text-white'
+    'intro-x rounded-md flex items-center px-5 py-4 mt-4 bg-theme-6 text-white'
   const DEFAULT =
-    'rounded-md flex items-center px-5 py-4 mt-4 bg-gray-200 text-gray-600'
+    'intro-x  rounded-md flex items-center px-5 py-4 mt-4 bg-gray-200 text-gray-600'
 
   switch (props.type) {
     case 'alert-success':
@@ -35,10 +35,7 @@ function Alert(props) {
         </div>
       )
     default:
-      return (
-        <div className={DEFAULT}>
-        </div>
-      )
+      return <div className={DEFAULT}></div>
   }
 }
 export { Alert }

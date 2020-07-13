@@ -16,7 +16,7 @@ class AnswerOption extends React.Component {
           <input
             type="checkbox"
             className="input border mr-2"
-            value={this.props.answerContent}
+            value={this.props.answerContent || ''}
             checked={this.props.selectedOption === this.props.answerContent}
             onChange={this.props.getUserAnswer}
           />

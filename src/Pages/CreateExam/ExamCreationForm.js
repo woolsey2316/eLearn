@@ -17,19 +17,20 @@ function ExamCreationForm({
   questionList,
 }) {
   const [submitted, setSubmitted] = useState(false)
+  const [success, setSuccess] = useState(false)
   const [questionID, setQuestionID] = useState(0)
   const dispatch = useDispatch()
   const [alert, setAlert] = useState({
-    type:'',
-    message:'',
+    type: '',
+    message: '',
   })
 
   useEffect(() => {
     setQuestion((quiz) => ({
       ...quiz,
-      ['id']: questionList.length,
+      number: questionList.length+1,
     }))
-  },[questionList] )
+  }, [questionList])
 
   function isNotEmpty(field) {
     return field !== ''
@@ -66,6 +67,14 @@ function ExamCreationForm({
     )
   }
 
+  function handleQuestionChange(content, delta, source, editor) {
+    console.log(editor.getHTML())
+    setQuestion((quiz) => ({
+      ...quiz,
+      question: editor.getHTML(),
+    }))
+	}
+
   function handleChange(e) {
     const { name, value } = e.target
     setQuestion((quiz) => ({
@@ -76,17 +85,17 @@ function ExamCreationForm({
 
   function changeAnswerOption(e) {
     const { name, value } = e.target
+    console.log(`changing index ${name}, to value ${value}`)
     setQuestion((quiz) => ({
       ...quiz,
-      option : [
+      option: [
         ...quiz.option.slice(0, name),
         value,
-        ...quiz.option.slice(name+1)
-      ]
+        ...quiz.option.slice(parseInt(name, 10) + 1),
+      ],
     }))
   }
 
-  
   // dispatch an action to the redux store, updates 'user' object
   function handleSubmit(e) {
     e.preventDefault()
@@ -97,16 +106,32 @@ function ExamCreationForm({
       setQuestion({
         question: '',
         answer: '',
-        option: ['','','','']
+        option: ['', '', '', ''],
       })
-      setAlert( {["type"]: "alert-success", ["message"]: "Successfully created question!" })
+      setAlert({
+        ['type']: 'alert-success',
+        ['message']: 'Question was successfully added to test!',
+      })
+      setSuccess(true)
       setSubmitted(false)
     } else if (!allFieldsExist()) {
-      setAlert( {["type"]: "alert-danger", ["message"]: "empty fields present" })
+      setAlert({
+        ['type']: 'alert-danger',
+        ['message']: 'Empty fields present',
+      })
+      setSuccess(false)
     } else if (!eachAnswerUnique()) {
-      setAlert( {["type"]: "alert-danger", ["message"]: "Not all answer options are unique" })
+      setAlert({
+        ['type']: 'alert-danger',
+        ['message']: 'Answer options must be unique',
+      })
+      setSuccess(false)
     } else if (!answerAmongOptions()) {
-      setAlert( {["type"]: "alert-danger", ["message"]: "Correct answer is not among options" })
+      setAlert({
+        ['type']: 'alert-danger',
+        ['message']: 'Correct answer is not among 4 options',
+      })
+      setSuccess(false)
     }
   }
   return (
@@ -119,23 +144,35 @@ function ExamCreationForm({
         <div className="bg-white xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
           <div className="intro-x">
             <h2 className="font-medium text-base mx-auto mb-2">
-              Question {questionID + 1} of {questionList.length}
+              Question {quiz && quiz.number} of {questionList.length}
             </h2>
-            <QuestionField quiz={quiz} handleChange={handleChange} submitted={submitted}/>
-            
+            <QuestionField
+              quiz={quiz}
+              handleChange={handleQuestionChange}
+              submitted={submitted}
+            />
+
             <div className="grid grid-cols-2 gap-5">
-              <AnswerField quiz={quiz} handleChange={handleChange} submitted={submitted}/>
-              <QuestionNumberField quiz={quiz} handleChange={handleChange} submitted={submitted}/>
-              { new Array(4).fill('').map((elem,i) => (
+              <AnswerField
+                quiz={quiz}
+                handleChange={handleChange}
+                submitted={submitted}
+              />
+              <QuestionNumberField
+                quiz={quiz}
+                handleChange={handleChange}
+                submitted={submitted}
+              />
+              {new Array(4).fill('').map((elem, i) => (
                 <InputField
                   key={i}
                   changeAnswerOption={changeAnswerOption}
                   handleChange={handleChange}
+                  submitted={submitted}
                   quiz={quiz}
-                  number={i+1}
-                /> 
-              ))
-              }
+                  number={i + 1}
+                />
+              ))}
             </div>
           </div>
           <div className="intro-x mt-5 xl:mt-8 text-center xl:text-left">
@@ -145,7 +182,8 @@ function ExamCreationForm({
             >
               Save and Next Question
             </button>
-            {submitted && <Alert type={alert.type} message={alert.message}/>}
+            {submitted && <Alert type={alert.type} message={alert.message} />}
+            {success && <Alert type={alert.type} message={alert.message} />}
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ import { TopBar } from '../../components'
 import { courseData } from './CourseData'
 import { CourseCard } from './CourseCard'
 
-import { CourseNumberSelector } from './CourseNumberSelector'
+import { NumberSelector } from './NumberSelector'
 import { CourseSubscribeModal } from './CourseSubscribeModal'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -89,12 +89,12 @@ function CourseRegister(props) {
           <div className="grid grid-cols-12 gap-6 mt-5">
             <div className="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap justify-between items-center mt-2">
               <div className="hidden md:block text-gray-600">
-                Showing {resultsPerPage * (page - 1) + 1} to
-                {resultsPerPage * page} of
-                {courses &&
+                {`Showing ${resultsPerPage * (page - 1) + 1} to ${resultsPerPage * page} of 
+                ${courses &&
                   courses.courseList &&
                   courses.courseList.list.length}
                 entries
+                `}
               </div>
               <div className="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div className="w-56 relative text-gray-700">
@@ -188,7 +188,7 @@ function CourseRegister(props) {
                   </button>
                 </li>
               </ul>
-              <CourseNumberSelector
+              <NumberSelector
                 name="pages"
                 value={resultsPerPage}
                 handleChange={handleChange}

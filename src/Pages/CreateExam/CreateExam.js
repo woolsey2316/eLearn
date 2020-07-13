@@ -13,21 +13,20 @@ function CreateExam(props) {
   const [quiz, setQuestion] = useState({
     question: '',
     answer: '',
-    option: ['','','',''],
-    id: questionList.length
+    option: ['', '', '', ''],
+    number: questionList.length + 1,
   })
-  
+
   function removeItem(id) {
     updateList(questionList.filter((item, index) => index !== id))
   }
-  
-  function updateQuestionList(question) {
-    updateList((questionList) => [...questionList, question])
-    console.log('update called, new question: ')
-    console.log({ question })
 
-    console.log('update called, questionList: ')
-    console.log({ questionList })
+  function updateQuestionList(question) {
+    updateList((questionList) => 
+      [...questionList.slice(0, question.number-1),
+        question,
+        ...questionList.slice(question.number, questionList.length)
+      ])
   }
 
   return (
@@ -65,7 +64,11 @@ function CreateExam(props) {
               </div>
             </div>
             <PreviewQuestion quiz={quiz} />
-            <QuestionList removeItem={removeItem} questionList={questionList} setQuestion={setQuestion} />
+            <QuestionList
+              removeItem={removeItem}
+              questionList={questionList}
+              setQuestion={setQuestion}
+            />
           </div>
         </div>
       </div>
