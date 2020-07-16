@@ -18,6 +18,7 @@ import { ExamResults } from './Pages/ExamResults'
 import { ExamPage } from './Pages/Exam'
 import { ExamList } from './Pages/ExamList'
 import { Courses } from './Pages/Course'
+import { MyCourses } from './Pages/MyCourses'
 import { CourseRegister } from './Pages/CourseRegister'
 import { PageNotFound } from './Pages/NotFound'
 
@@ -57,6 +58,9 @@ function App() {
         </PrivateRoute>
         <PrivateRoute exact path="/admin/create_exam">
           <CreateExam openModal={openModal} sideMenu={sideMenu} />
+        </PrivateRoute>
+        <PrivateRoute exact path="/admin/my_courses">
+          <MyCourses openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
         <PrivateRoute exact path="/student/dashboard">
           <Dashboard openModal={openModal} sideMenu={sideMenu} />

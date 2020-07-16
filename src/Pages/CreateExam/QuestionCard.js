@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Icon from 'react-feather'
-import ReactHtmlParser from 'react-html-parser'; 
+import ReactHtmlParser from 'react-html-parser'
 
 import img11 from '../../assets/dist/images/preview-11.jpg'
 import img3 from '../../assets/dist/images/preview-3.jpg'
@@ -44,15 +44,17 @@ function QuestionCard({ question, setQuestion, questionList, removeItem }) {
         </div>
       </td>
       <td>
-        <h2 
+        <h2
           className="font-medium overflow-hidden"
-          style={{maxWidth:'15em'}}>
-          { ReactHtmlParser (question.question)}</h2>
+          style={{ maxWidth: '15em' }}
+        >
+          {ReactHtmlParser(question.question)}
+        </h2>
         <div className="text-gray-600 text-xs whitespace-no-wrap">
           question {question.number}
         </div>
       </td>
-      <td className="text-center">{question.answer }</td>
+      <td className="text-center">{question.answer}</td>
       <td className="table-report__action w-56">
         <div className="flex flex-col justify-center items-center">
           <button

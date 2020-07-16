@@ -3,9 +3,9 @@ import * as Icon from 'react-feather'
 import { MobileMenu } from '../../components'
 import { TopBar } from '../../components'
 
-import { CourseCard } from './CourseCard'
+import { CourseItem } from './CourseItem'
 
-import { CourseSubscribeModal } from './CourseSubscribeModal'
+import { CourseSubscribeModal } from '../CourseRegister'
 
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -13,15 +13,19 @@ import { courseActions } from '../../actions'
 import { alertActions } from '../../actions'
 
 import { Pagination } from '../../components'
-import { ShowingFirstToLast } from './ShowingFirstToLast'
+import { ShowingFirstToLast } from '../CourseRegister'
 
-function CourseRegister(props) {
+import { CourseExams } from './CourseExams'
+
+
+function MyCourses(props) {
   const registering = useSelector((state) => state.registration.registering)
   const dispatch = useDispatch()
   const courses = useSelector((state) => state.courses)
 
   const [search, setSearch] = useState('')
   const [chosenCourse, setCourse] = useState({})
+  const [courseName, setCourseName] = useState('')
   const [page, setPage] = useState(1)
   const [resultsPerPage, setResultsPerPage] = useState(10)
 
@@ -60,6 +64,11 @@ function CourseRegister(props) {
     const { name, value } = e.target
     setSearch(value)
   }
+
+  function handleCourse(course) {
+    setCourse(course)
+  }
+
   function decrementPage() {
     navigatePage(page - 1)
   }
@@ -81,7 +90,7 @@ function CourseRegister(props) {
         <div className="content">
           <TopBar open={props.openModal} />
           <h2 className="intro-y text-lg font-medium mt-10">
-            Course Catalogue
+            My Courses
           </h2>
           <CourseSubscribeModal
             modalIsOpen={modalIsOpen}
@@ -115,7 +124,7 @@ function CourseRegister(props) {
                     index >= resultsPerPage * (page - 1)
                 )
                 .map((course) => (
-                  <CourseCard
+                  <CourseItem
                     modalIsOpen={modalIsOpen}
                     openModal={openModal}
                     setCourse={setCourse}
@@ -135,9 +144,10 @@ function CourseRegister(props) {
               handleChange={handleChange}/>
             </div>
           </div>
+          <CourseExams courseName={courseName}/>
         </div>
       </div>
     </div>
   )
 }
-export { CourseRegister }
+export { MyCourses }

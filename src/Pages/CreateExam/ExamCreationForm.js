@@ -28,13 +28,9 @@ function ExamCreationForm({
   useEffect(() => {
     setQuestion((quiz) => ({
       ...quiz,
-      number: questionList.length+1,
+      number: questionList.length + 1,
     }))
   }, [questionList])
-
-  function isNotEmpty(field) {
-    return field !== ''
-  }
 
   function answerAmongOptions() {
     return (
@@ -73,7 +69,7 @@ function ExamCreationForm({
       ...quiz,
       question: editor.getHTML(),
     }))
-	}
+  }
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -96,25 +92,8 @@ function ExamCreationForm({
     }))
   }
 
-  // dispatch an action to the redux store, updates 'user' object
-  function handleSubmit(e) {
-    e.preventDefault()
-    console.log(`%cquiz details: ${JSON.stringify(quiz)}`, 'color:green')
-    setSubmitted(true)
-    if (allFieldsExist() && answerAmongOptions() && eachAnswerUnique()) {
-      updateQuestionList(quiz)
-      setQuestion({
-        question: '',
-        answer: '',
-        option: ['', '', '', ''],
-      })
-      setAlert({
-        ['type']: 'alert-success',
-        ['message']: 'Question was successfully added to test!',
-      })
-      setSuccess(true)
-      setSubmitted(false)
-    } else if (!allFieldsExist()) {
+  function handleValidation() {
+    if (!allFieldsExist()) {
       setAlert({
         ['type']: 'alert-danger',
         ['message']: 'Empty fields present',
@@ -134,14 +113,36 @@ function ExamCreationForm({
       setSuccess(false)
     }
   }
+  // dispatch an action to the redux store, updates 'user' object
+  function handleSubmit(e) {
+    e.preventDefault()
+    console.log(`%cquiz details: ${JSON.stringify(quiz)}`, 'color:green')
+    setSubmitted(true)
+    if (allFieldsExist() && answerAmongOptions() && eachAnswerUnique()) {
+      updateQuestionList(quiz)
+      setQuestion({
+        question: '',
+        answer: '',
+        option: ['', '', '', ''],
+      })
+      setAlert({
+        ['type']: 'alert-success',
+        ['message']: 'Question was successfully added to test!',
+      })
+      setSuccess(true)
+      setSubmitted(false)
+    } else {
+      handleValidation()
+    }
+  }
   return (
     <form
       style={{ margin: 'auto' }}
       className="validate-form"
       onSubmit={handleSubmit}
     >
-      <div className="h-screen xl:h-auto flex xl:py-0 xl:my-0">
-        <div className="bg-white xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
+      <div className="">
+        <div className="bg-white px-5 py-8 xl:p-0 rounded-md xl:shadow-none w-full xl:w-auto">
           <div className="intro-x">
             <h2 className="font-medium text-base mx-auto mb-2">
               Question {quiz && quiz.number} of {questionList.length}

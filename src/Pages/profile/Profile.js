@@ -31,13 +31,12 @@ function Profile(props) {
         {props.sideMenu}
         <div className="content">
           <TopBar open={props.openModal} />
-          <div className="intro-y flex items-center mt-8">
+          <div className="intro-y flex items-center mt-8 mb-5">
             <h2 className="text-lg font-medium mr-auto">Profile</h2>
           </div>
-          <div className="flex">
+          <div className="grid grid-cols-12 gap-5">
             <div
-              style={{ width: '75%' }}
-              className="intro-y box px-5 pt-5 mt-5"
+              className="intro-y box col-span-8 lg:col-span-9 px-5 pt-5"
             >
               <div className="flex flex-col lg:flex-row border-b border-gray-200 pb-5 -mx-5">
                 <div className="flex flex-1 px-5 items-center justify-center lg:justify-start">
@@ -49,8 +48,8 @@ function Profile(props) {
                     />
                   </div>
                   <div className="ml-5">
-                    <div className="w-24 sm:w-40 truncate sm:whitespace-normal font-medium text-lg">
-                      {user.name}
+                    <div className="sm:whitespace-normal font-medium text-lg break-all">
+                      {user.name} Wolfeschlegelsteinhausenbergerdorff
                     </div>
                     <div className="text-gray-600">{role[user.roleId - 1]}</div>
                     <div className="flex mt-1">
@@ -77,7 +76,7 @@ function Profile(props) {
                     </div>
                   </div>
                 </div>
-                <div className="flex mt-6 lg:mt-0 items-center lg:items-start flex-1 flex-col justify-center text-gray-600 px-5 border-l border-r border-gray-200 border-t lg:border-t-0 pt-5 lg:pt-0">
+                <div className="flex mt-6 lg:mt-0 items-center lg:items-start flex-1 flex-col text-gray-600 px-5 border-l border-r border-gray-200 border-t lg:border-t-0 pt-5 lg:pt-0">
                   <div className="truncate sm:whitespace-normal flex items-center">
                     <Icon.Mail className="w-4 h-4 mr-2" />
                     {user.email}
@@ -99,7 +98,7 @@ function Profile(props) {
                 <div className=""></div>
               </div>
             </div>
-            <div style={{ width: '25%' }} className="intro-y box mt-5 ml-5">
+            <div className="intro-y box col-span-4 lg:col-span-3">
               <div className="relative flex items-center pt-5 pb-5 pl-5">
                 <div className="dropdown relative">
                   <h2 className="text-lg font-medium">Profile Settings</h2>
@@ -110,7 +109,7 @@ function Profile(props) {
                   className="flex items-center mb-5"
                   href="/student/profile/update_profile"
                 >
-                  <Icon.Box className="w-4 h-4 mr-2" /> Account Settings
+                  <Icon.Box className="w-4 h-4 mr-2" /> Update Profile
                 </a>
                 <a
                   className="flex items-center mb-5"
@@ -120,8 +119,9 @@ function Profile(props) {
                 </a>
               </div>
             </div>
+            <ProfileOptions />
           </div>
-          <ProfileOptions />
+          
         </div>
       </div>
     </div>

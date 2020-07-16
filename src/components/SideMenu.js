@@ -1,5 +1,7 @@
 import React from 'react'
 import * as Icon from 'react-feather'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChalkboardTeacher, faUniversity } from '@fortawesome/free-solid-svg-icons'
 
 import logo from '../assets/dist/images/logo.svg'
 
@@ -58,7 +60,7 @@ function SideMenu(props) {
             }
           >
             <div className="side-menu__icon">
-              <Icon.Package className="side-menu__icon" />
+            <FontAwesomeIcon className="mt-1" icon={faUniversity} style={{fontSize:'1.55em',marginRight:'3px'}} />
             </div>
             <div className="side-menu__title"> Courses </div>
           </a>
@@ -126,11 +128,10 @@ function SideMenu(props) {
       </ul>
       {props.permissions && (
         <nav className="side-nav">
-          <h2 className="text-lg font-medium text-white truncate m-5 text-left">
-            {' '}
-            Admin{' '}
-          </h2>
-          <div className="side-nav__devider my-6"></div>
+          <div className="side-menu">
+            Admin
+          </div>
+          <div className="side-nav__devider mb-6"></div>
           <ul>
             <li>
               <a
@@ -145,6 +146,21 @@ function SideMenu(props) {
                   <Icon.Home className="side-menu__icon" />
                 </div>
                 <div className="side-menu__title"> Admin Dashboard </div>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/admin/my_courses"
+                className={
+                  window.location.pathname.includes('/admin/my_courses')
+                    ? 'side-menu side-menu--active'
+                    : 'side-menu'
+                }
+              >
+                <div className="side-menu__icon">
+                  <FontAwesomeIcon className="mt-1 -ml-1" icon={faChalkboardTeacher} style={{fontSize:'1.5em'}} />
+                </div>
+                <div className="side-menu__title"> My Courses</div>
               </a>
             </li>
             <li>

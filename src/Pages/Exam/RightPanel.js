@@ -32,7 +32,6 @@ function RightPanel({
     >
       <div className="ml-2 mt-5 flex justify-between">
         <div className="font-medium text-white">{user && user.name}</div>
-        <div className="text-gray-600">Student</div>
         <Tooltip
           style={{
             background: 'hsla(0, 0%, 0%, 0.75)',

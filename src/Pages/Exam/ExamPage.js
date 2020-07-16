@@ -215,7 +215,7 @@ function ExamPage() {
               </button>
               <button
                 style={{ float: 'right' }}
-                className="button w-30 shadow-md mr-1 mb-2 bg-theme-1 text-white"
+                className="button w-30 shadow-md mr-1 mb-2 bg-theme-1 text-white border border-theme-1"
                 onClick={confirmAnswer}
               >
                 Save and next

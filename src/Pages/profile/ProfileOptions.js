@@ -7,67 +7,11 @@ import profile8 from '../../assets/dist/images/profile-8.jpg'
 function ProfileOptions() {
   return (
     <>
-      <div className="grid grid-cols-12 gap-6">
-        {/*<!-- BEGIN: Profile Menu -->*/}
         <div className="col-span-12 lg:col-span-4 xxl:col-span-3 flex lg:block flex-col-reverse">
-          <div className="intro-y box mt-5">
+          <div className="intro-y box">
             <div className="relative flex items-center p-5">
               <div className="dropdown relative">
                 <h2 className="font-medium text-base mr-auto">Useful Links</h2>
-                <div className="dropdown-box mt-5 absolute w-56 top-0 right-0 z-20">
-                  <div className="dropdown-box__content box">
-                    <div className="p-4 border-b border-gray-200 font-medium">
-                      Export Options
-                    </div>
-                    <div className="p-2">
-                      <a
-                        href=""
-                        className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
-                      >
-                        <Icon.Activity className="w-4 h-4 text-gray-700 mr-2" />
-                        English
-                      </a>
-                      <a
-                        href=""
-                        className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
-                      >
-                        <Icon.Box className="w-4 h-4 text-gray-700 mr-2" />
-                        Indonesia
-                        <div className="text-xs text-white px-1 rounded-full bg-theme-6 ml-auto">
-                          10
-                        </div>
-                      </a>
-                      <a
-                        href=""
-                        className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
-                      >
-                        <Icon.Layout className="w-4 h-4 text-gray-700 mr-2" />
-                        English
-                      </a>
-                      <a
-                        href=""
-                        className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
-                      >
-                        <Icon.Sidebar className="w-4 h-4 text-gray-700 mr-2" />
-                        Indonesia
-                      </a>
-                    </div>
-                    <div className="px-3 py-3 border-t border-gray-200 font-medium flex">
-                      <button
-                        type="button"
-                        className="button button--sm bg-theme-1 text-white"
-                      >
-                        Settings
-                      </button>
-                      <button
-                        type="button"
-                        className="button button--sm bg-gray-200 text-gray-600 ml-auto"
-                      >
-                        View Profile
-                      </button>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
             <div className="p-5 border-t border-gray-200">
@@ -89,7 +33,7 @@ function ProfileOptions() {
         {/*<!-- END: Profile Menu -->*/}
         <div className="col-span-12 lg:col-span-8 xxl:col-span-9">
           {/*<!-- BEGIN: Latest Tasks -->*/}
-          <div className="intro-y box mt-5">
+          <div className="intro-y box">
             <div className="flex items-center px-5 py-5 sm:py-0 border-b border-gray-200">
               <h2 className="font-medium text-base mr-auto">Latest Tasks</h2>
               <div className="dropdown relative ml-auto sm:hidden">
@@ -183,7 +127,6 @@ function ProfileOptions() {
             </div>
           </div>
         </div>
-      </div>
     </>
   )
 }

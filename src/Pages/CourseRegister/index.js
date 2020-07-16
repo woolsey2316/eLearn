@@ -1,3 +1,5 @@
 export { CourseRegister } from './CourseRegister'
-export { NumberSelector } from './NumberSelector'
+export { NumberSelector } from '../../components/NumberSelector'
 export { CourseSubscribeModal } from './CourseSubscribeModal'
+export { CourseCard } from './CourseCard'
+export { ShowingFirstToLast } from './ShowingFirstToLast'

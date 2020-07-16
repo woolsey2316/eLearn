@@ -22,11 +22,11 @@ function CreateExam(props) {
   }
 
   function updateQuestionList(question) {
-    updateList((questionList) => 
-      [...questionList.slice(0, question.number-1),
-        question,
-        ...questionList.slice(question.number, questionList.length)
-      ])
+    updateList((questionList) => [
+      ...questionList.slice(0, question.number - 1),
+      question,
+      ...questionList.slice(question.number, questionList.length),
+    ])
   }
 
   return (
@@ -36,8 +36,8 @@ function CreateExam(props) {
         {props.sideMenu}
         <div className="content">
           <TopBar />
-          <div className="grid grid-cols-12 gap-5">
-            <div className="col-span-6 xl:col-span-6">
+          <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-5">
+            <div className="col-span-12 lg:col-span-6">
               <div className="intro-y box lg:mt-5">
                 <div className="flex items-center p-5 border-b border-gray-200">
                   <h2 className="font-medium text-base mr-auto">
@@ -51,7 +51,6 @@ function CreateExam(props) {
                     updateQuestionList={updateQuestionList}
                     questionList={questionList}
                   />
-
                   <div className="flex justify-start mt-4">
                     <button
                       type="submit"

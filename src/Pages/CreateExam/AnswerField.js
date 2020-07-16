@@ -11,11 +11,11 @@ function AnswerField({ quiz, handleChange, submitted }) {
         type="text"
         name="answer"
         className={
-          'intro-x login__input input input--lg border border-gray-300 block mb-2 mt-1' +
+          'intro-x login__input input input--lg border border-gray-300 block mb-2 mt-1 w-full' +
           (submitted && !quiz.answer ? ' border-theme-6' : '')
         }
         placeholder="answer"
-        value={quiz && quiz.answer || ''}
+        value={(quiz && quiz.answer) || ''}
         onChange={handleChange}
       />
     </div>
