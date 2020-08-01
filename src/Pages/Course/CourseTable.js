@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Course } from './Course'
 
-function CourseTable({courses}) {
+function CourseTable({ courses }) {
   return (
     <table className="table">
       <thead>
@@ -18,7 +18,7 @@ function CourseTable({courses}) {
         {courses &&
           courses
             .reduce((unique, item) => {
-              // unique course values, current issue with subscribing to the same course 
+              // unique course values, current issue with subscribing to the same course
               // multiple times
               return unique
                 .map((elem) => elem.coursesDTO.id)

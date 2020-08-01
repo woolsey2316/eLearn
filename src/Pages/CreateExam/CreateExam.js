@@ -8,6 +8,8 @@ import { PreviewQuestion } from './PreviewQuestion'
 
 import { QuestionList } from './QuestionList'
 
+import { ToastAlert } from './ToastAlert'
+
 function CreateExam(props) {
   const [questionList, updateList] = useState([])
   const [quiz, setQuestion] = useState({
@@ -16,6 +18,7 @@ function CreateExam(props) {
     option: ['', '', '', ''],
     number: questionList.length + 1,
   })
+  const [success, setSuccess] = useState(false)
 
   function removeItem(id) {
     updateList(questionList.filter((item, index) => index !== id))
@@ -50,6 +53,8 @@ function CreateExam(props) {
                     quiz={quiz}
                     updateQuestionList={updateQuestionList}
                     questionList={questionList}
+                    success={success}
+                    setSuccess={setSuccess}
                   />
                   <div className="flex justify-start mt-4">
                     <button
@@ -68,6 +73,7 @@ function CreateExam(props) {
               questionList={questionList}
               setQuestion={setQuestion}
             />
+            {success && <ToastAlert message={alert.message}/>}
           </div>
         </div>
       </div>

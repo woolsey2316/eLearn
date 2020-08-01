@@ -92,7 +92,7 @@ function getCurrentUserInfo(user) {
     userService.getCurrentUserInfo().then(
       (userInfo) => {
         dispatch(success())
-        dispatch(alertActions.success('Successfully fetched User info'))
+        dispatch(alertActions.success('Successfully fetched user info'))
       },
       (error) => {
         dispatch(failure(error.toString()))

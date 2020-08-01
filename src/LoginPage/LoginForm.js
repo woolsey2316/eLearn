@@ -9,6 +9,13 @@ import { userActions } from '../actions'
 
 import { Alert } from '../components'
 
+import EmailField from './EmailField'
+import PasswordField from './PasswordField'
+import RememberMe from './RememberMe'
+import ForgotPassword from './ForgotPassword'
+import MainButtons from './MainButtons'
+import FormHeading from './FormHeading'
+
 export default () => {
   const [inputs, setInputs] = useState({
     email: '',
@@ -64,100 +71,32 @@ export default () => {
     <div className="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0 mx-3">
       <div className="my-auto mx-auto xl:ml-20 bg-white xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/3 xl:w-auto">
         <form style={{ display: 'block' }} name="form" onSubmit={handleSubmit}>
-          <h2 className="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left">
-            Sign In
-          </h2>
-          <div className="intro-x mt-2 text-gray-500 xl:hidden text-center">
-            A few more clicks to sign in to your account. Manage all your online
-            exams in one place
-          </div>
+          <FormHeading />
           <div className="intro-x mt-8">
-            <input
-              style={{ padding: '0.75em 1em' }}
-              type="text"
-              className="intro-x login__input input input--lg border border-gray-300 block"
-              placeholder="Email"
-              name="email"
-              value={email}
-              onChange={handleChange}
+            <EmailField
+              submitted={submitted}
+              email={email}
+              handleChange={handleChange}
             />
-            {submitted && !email && (
-              <h2 className="mt-1 text-theme-6">Email is required</h2>
-            )}
-            {!forgotPassword && (
-              <input
-                style={{ padding: '0.75em 1em' }}
-                type="password"
-                className="intro-x login__input input input--lg border border-gray-300 block mt-4"
-                placeholder="Password"
-                name="password"
-                value={password}
-                onChange={handleChange}
-              />
-            )}
-            {!forgotPassword && submitted && !password && (
-              <h2 className="mt-1 text-theme-6">Password is required</h2>
-            )}
+            <PasswordField
+              forgotPassword={forgotPassword}
+              submitted={submitted}
+              password={password}
+              handleChange={handleChange}
+            />
           </div>
           <div className="intro-x flex text-gray-700 text-xs sm:text-sm mt-4">
-            <div className="flex items-center mr-auto">
-              {!forgotPassword && (
-                <div>
-                  <input
-                    type="checkbox"
-                    className="input border mr-2"
-                    id="remember-me"
-                    onChange={onChangeCheckbox}
-                    checked={isChecked}
-                  />
-                  <label
-                    className="cursor-pointer select-none"
-                    htmlFor="remember-me"
-                  >
-                    Remember me
-                  </label>
-                </div>
-              )}
-            </div>
-            {!forgotPassword && (
-              <h4
-                style={{ cursor: 'pointer' }}
-                onClick={() => setForgotPassword(!forgotPassword)}
-              >
-                Forgot Password?
-              </h4>
-            )}
-            {forgotPassword && (
-              <h4
-                style={{ cursor: 'pointer' }}
-                onClick={() => setForgotPassword(!forgotPassword)}
-              >
-                Show Password Field
-              </h4>
-            )}
+            <RememberMe
+              forgotPassword={forgotPassword}
+              onChangeCheckbox={onChangeCheckbox}
+              isChecked={isChecked}
+            />
+            <ForgotPassword
+              forgotPassword={forgotPassword}
+              setForgotPassword={setForgotPassword}
+            />
           </div>
-          <div className="flex flex-col xl:flex-row intro-x mt-5 xl:mt-8 text-center xl:text-left">
-            {!forgotPassword && (
-              <button className="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3">
-                Login
-              </button>
-            )}
-            {forgotPassword && (
-              <button
-                type="submit"
-                className="button button--lg w-full xl:w-40 text-white bg-theme-1 xl:mr-3"
-              >
-                Request Password
-              </button>
-            )}
-
-            <a
-              href="/register"
-              className="button button--lg w-full xl:w-32 text-gray-700 border border-gray-300 mt-3 xl:mt-0"
-            >
-              Sign up
-            </a>
-          </div>
+          <MainButtons forgotPassword={forgotPassword} />
           {alert && alert.message && (
             <Alert type={alert.type} message={alert.message} />
           )}

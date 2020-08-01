@@ -223,14 +223,18 @@ function ExamPage() {
             </div>
           </div>
         </div>
-        <button style={{ cursor: 'default' }}>
+        <button 
+        className = {show ? 'side-menu side-menu--active': 'side-menu'}
+        style={{ cursor: 'default' }}>
           {show ? (
             <Icon.ChevronRight
+              className='h-8 w-8'
               style={{ cursor: 'pointer' }}
               onClick={() => setShow(!show)}
             />
           ) : (
             <Icon.ChevronLeft
+              className='h-8 w-8'
               style={{ cursor: 'pointer' }}
               onClick={() => setShow(!show)}
             />

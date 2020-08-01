@@ -9,15 +9,18 @@ import { InputField } from './InputField'
 import { AnswerField } from './AnswerField'
 import { QuestionNumberField } from './QuestionNumberField'
 import { QuestionField } from './QuestionField'
+import { ToastAlert } from './ToastAlert'
+
 
 function ExamCreationForm({
   quiz,
   setQuestion,
   updateQuestionList,
   questionList,
+  success,
+  setSuccess
 }) {
   const [submitted, setSubmitted] = useState(false)
-  const [success, setSuccess] = useState(false)
   const [questionID, setQuestionID] = useState(0)
   const dispatch = useDispatch()
   const [alert, setAlert] = useState({
@@ -188,6 +191,7 @@ function ExamCreationForm({
           </div>
         </div>
       </div>
+      
     </form>
   )
 }

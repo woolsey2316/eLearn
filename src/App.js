@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import './assets/dist/css/app.css'
 import './index.css'
@@ -28,6 +28,9 @@ import { LogoutModal } from './components'
 
 import { PrivateRoute } from './components'
 
+import { useSelector } from 'react-redux'
+
+
 // const Register = lazy(() => import("./RegisterPage"));
 // const Login = lazy(() => import("./LoginPage"));
 
@@ -42,58 +45,61 @@ function App() {
     setIsOpen(false)
   }
 
+  const loggedIn = useSelector((state) => state.authentication.loggedIn)
+
   const sideMenu = <SideMenu permissions={true} open={openModal} />
   return (
-    <Router history={history}>
+    <BrowserRouter history={history}>
       <LogoutModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
       <Switch>
-        <PrivateRoute exact path="/dashboard">
+        <PrivateRoute loggedIn={loggedIn} exact path="/dashboard">
           <Dashboard openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
-        <PrivateRoute exact path="/admin/">
+        <PrivateRoute loggedIn={loggedIn} exact path="/admin/dashboard">
           <AdminDashboard openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
-        <PrivateRoute exact path="/admin/home">
+        <PrivateRoute loggedIn={loggedIn} exact path="/admin/home">
           <AdminDashboard openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
-        <PrivateRoute exact path="/admin/create_exam">
+        <PrivateRoute loggedIn={loggedIn} exact path="/admin/create_exam">
           <CreateExam openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
-        <PrivateRoute exact path="/admin/my_courses">
+        <PrivateRoute loggedIn={loggedIn} exact path="/admin/my_courses">
           <MyCourses openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
-        <PrivateRoute exact path="/student/dashboard">
+        <PrivateRoute loggedIn={loggedIn} exact path="/student/dashboard">
           <Dashboard openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
-        <PrivateRoute exact path="/student/profile">
+        <PrivateRoute loggedIn={loggedIn} exact path="/student/profile">
           <Profile openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
-        <PrivateRoute exact path="/student/courses">
+        <PrivateRoute loggedIn={loggedIn} exact path="/student/courses">
           <Courses openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
-        <PrivateRoute exact path="/student/CourseRegister">
+        <PrivateRoute loggedIn={loggedIn} exact path="/student/courses/CourseRegister">
           <CourseRegister openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
-        <PrivateRoute exact path="/student/profile/change_password">
+        <PrivateRoute loggedIn={loggedIn} exact path="/student/profile/change_password">
           <ChangePassword openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
-        <PrivateRoute exact path="/student/Profile/update_profile">
+        <PrivateRoute loggedIn={loggedIn} exact path="/student/Profile/update_profile">
           <UpdateProfile openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
-        <PrivateRoute exact path="/student/grades">
+        <PrivateRoute loggedIn={loggedIn} exact path="/student/grades">
           <ExamResults openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
-        <PrivateRoute exact path="/student/exams">
+        <PrivateRoute loggedIn={loggedIn} exact path="/student/exams">
           <ExamPage />
         </PrivateRoute>
-        <PrivateRoute exact path="/student/exam_list">
+        <PrivateRoute loggedIn={loggedIn} exact path="/student/exam_list">
           <ExamList openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
         <Route exact path="/Register" component={RegisterPage} />
         <Route exact path="/login" component={LoginPage} />
-        <Route path="*" exact={true} component={PageNotFound} />
+        <Route path="*" exact component={PageNotFound} />
       </Switch>
-    </Router>
+      
+    </BrowserRouter>
   )
 }
 

@@ -17,7 +17,6 @@ import { ShowingFirstToLast } from '../CourseRegister'
 
 import { CourseExams } from './CourseExams'
 
-
 function MyCourses(props) {
   const registering = useSelector((state) => state.registration.registering)
   const dispatch = useDispatch()
@@ -45,11 +44,10 @@ function MyCourses(props) {
 
   useEffect(() => {
     navigatePage(page)
-  },[resultsPerPage])
-  
+  }, [resultsPerPage])
 
   function handleChange(event) {
-    setResultsPerPage(parseInt(event.target.value,10))
+    setResultsPerPage(parseInt(event.target.value, 10))
   }
 
   function fetchCourses() {
@@ -77,7 +75,11 @@ function MyCourses(props) {
   }
   // Reasonable page values: 0 -> max page
   function navigatePage(page_) {
-    var max = Math.ceil(courses && courses.courseList && courses.courseList.list.length / resultsPerPage)
+    var max = Math.ceil(
+      courses &&
+        courses.courseList &&
+        courses.courseList.list.length / resultsPerPage
+    )
     if (page_ > 0 && page_ <= max) return setPage(page_)
     else return setPage(1)
   }
@@ -89,9 +91,7 @@ function MyCourses(props) {
         {props.sideMenu}
         <div className="content">
           <TopBar open={props.openModal} />
-          <h2 className="intro-y text-lg font-medium mt-10">
-            My Courses
-          </h2>
+          <h2 className="intro-y text-lg font-medium mt-10">My Courses</h2>
           <CourseSubscribeModal
             modalIsOpen={modalIsOpen}
             closeModal={closeModal}
@@ -101,7 +101,11 @@ function MyCourses(props) {
           />
           <div className="grid grid-cols-12 gap-6 mt-5">
             <div className="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap justify-between items-center mt-2">
-              <ShowingFirstToLast resultsPerPage={resultsPerPage} page={page} courses={courses}/>
+              <ShowingFirstToLast
+                resultsPerPage={resultsPerPage}
+                page={page}
+                courses={courses}
+              />
               <div className="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div className="w-56 relative text-gray-700">
                   <input
@@ -134,17 +138,19 @@ function MyCourses(props) {
                   />
                 ))}
             <div className="intro-y col-span-9 col-start-4">
-            <Pagination setPage={setPage} 
-              decrementPage={decrementPage} 
-              incrementPage={incrementPage} 
-              navigatePage={navigatePage} 
-              page={page} 
-              list={courses && courses.courseList && courses.courseList.list} 
-              resultsPerPage={resultsPerPage} 
-              handleChange={handleChange}/>
+              <Pagination
+                setPage={setPage}
+                decrementPage={decrementPage}
+                incrementPage={incrementPage}
+                navigatePage={navigatePage}
+                page={page}
+                list={courses && courses.courseList && courses.courseList.list}
+                resultsPerPage={resultsPerPage}
+                handleChange={handleChange}
+              />
             </div>
           </div>
-          <CourseExams courseName={courseName}/>
+          <CourseExams courseName={courseName} />
         </div>
       </div>
     </div>

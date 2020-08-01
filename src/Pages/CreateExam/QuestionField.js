@@ -15,7 +15,6 @@ function QuestionField({ submitted, quiz, handleChange }) {
         placeholder="enter question..."
         value={(quiz && quiz.question) || ''}
         onChange={handleChange}
-        
       ></ReactQuill>
     </div>
   )

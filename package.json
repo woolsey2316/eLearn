@@ -11,6 +11,8 @@
     "daterangepicker": "^3.1.0",
     "dotenv": "^8.2.0",
     "dropzone": "^5.7.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "highlight.js": "^10.1.0",
     "history": "^5.0.0",
     "latest": "^0.2.0",
@@ -39,12 +41,17 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "format": "prettier --no-semi --single-quote --write \"**/*.{js,jsx,json,md}\""
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./src/setupTests.js"
+    ]
   },
   "browserslist": {
     "production": [
@@ -57,5 +64,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "react-test-renderer": "^16.13.1"
   }
 }

@@ -38,9 +38,7 @@ function CourseItem({
             >
               View Exams
             </button>
-            <button
-              className="button button--sm text-white bg-theme-1 mr-2 align-bottom"
-            >
+            <button className="button button--sm text-white bg-theme-1 mr-2 align-bottom">
               Add Exam
             </button>
           </div>

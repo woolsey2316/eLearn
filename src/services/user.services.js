@@ -30,7 +30,7 @@ async function login(email, password, rememberMe) {
   )
   const user = await handleResponse(response)
   // store user details and jwt token in local storage to keep user logged in between page refreshes
-  if (user && user.status < 300 && user.data)
+  if (user && user.status < 300 && user.data && rememberMe)
     localStorage.setItem('user', JSON.stringify(user.data))
   return user
 }

@@ -6,7 +6,7 @@ import { QuestionCard } from './QuestionCard'
 
 import { Pagination } from '../../components/Pagination'
 
-function QuestionList({ questionList, submitted, setQuestion, removeItem }) {
+function QuestionList({ questionList, setQuestion, removeItem }) {
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
   const [resultsPerPage, setResultsPerPage] = useState(10)
@@ -37,7 +37,9 @@ function QuestionList({ questionList, submitted, setQuestion, removeItem }) {
   return (
     <React.Fragment>
       <div className="intro-y col-span-12 sm:flex-no-wrap items-center">
-        <h2 className="my-5 font-medium text-base col-span-2"> Edit Questions</h2>
+        <h2 className="my-5 font-medium text-base col-span-2">
+          Edit Questions
+        </h2>
         <div className="flex flex-wrap">
           <button
             className="button text-white bg-theme-1 shadow-md mr-2 col-span-2"
@@ -89,8 +91,9 @@ function QuestionList({ questionList, submitted, setQuestion, removeItem }) {
                       index < resultsPerPage * page
                   )
                   .filter((elem) => elem.question.includes(search))
-                  .map((elem) => (
+                  .map((elem, ind) => (
                     <QuestionCard
+                      key={ind}
                       removeItem={removeItem}
                       questionList={questionList}
                       question={elem}
@@ -99,24 +102,24 @@ function QuestionList({ questionList, submitted, setQuestion, removeItem }) {
                   ))}
             </tbody>
           </table>
-          {questionList.length === 0 ? (
+          {!questionList.length &&
             <h2 className="box font-medium my-auto p-5 w-full">
               There are currently no Questions for this test
             </h2>
-          ) : (
-            <React.fragment></React.fragment>
-          )}
+          }
         </div>
       </div>
       <div className="intro-y col-span-9 col-start-4 overflow-auto lg:overflow-visible">
-        <Pagination setPage={setPage} 
-        decrementPage={decrementPage} 
-        incrementPage={incrementPage} 
-        navigatePage={navigatePage} 
-        page={page} 
-        list={questionList} 
-        resultsPerPage={resultsPerPage} 
-        handleChange={handleChange}/>
+        <Pagination
+          setPage={setPage}
+          decrementPage={decrementPage}
+          incrementPage={incrementPage}
+          navigatePage={navigatePage}
+          page={page}
+          list={questionList}
+          resultsPerPage={resultsPerPage}
+          handleChange={handleChange}
+        />
       </div>
     </React.Fragment>
   )

@@ -6,7 +6,7 @@ function ExamItem({ exam }) {
   const [description, show] = React.useState(false)
   console.table({ exam })
   return (
-    <div className="mb-2">
+    <div className="mb-5">
       <div className="intro-x flex items-center rounded bg-gray-200">
         <DateIcon due={exam.due} />
         <div className=" inbox__item--active inline-block sm:block text-gray-700">

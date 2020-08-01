@@ -36,7 +36,7 @@ function Courses(props) {
           <div className="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 className="text-lg font-medium mr-auto">Enrolled Courses</h2>
             <a
-              href="/student/CourseRegister"
+              href="/student/courses/CourseRegister"
               className="ml-auto flex items-center text-theme-1 font-medium"
             >
               <Icon.Plus className="w-5 h-5" />

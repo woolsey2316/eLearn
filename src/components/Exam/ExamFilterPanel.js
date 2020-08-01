@@ -4,7 +4,7 @@ import { FilterButton } from '../FilterButton'
 import * as Icon from 'react-feather'
 
 function ExamFilterPanel() {
-  const [active, setActive] = useState('All Exams')
+  const [active, setActive] = useState('Active')
   function setActiveFilter(name) {
     setActive(name)
   }
@@ -35,31 +35,28 @@ function ExamFilterPanel() {
         </FilterButton>
       </div>
       <div className="border-t border-grey-200 mt-5 pt-5">
-        <a href="" className="flex items-center px-3 py-2 truncate">
+        <div className="flex items-center px-3 py-2 truncate">
           <div className="w-2 h-2 bg-theme-11 rounded-full mr-3"></div>
-          Important
-        </a>
-        <a
-          href=""
+          This Week
+        </div>
+        <div
           className="flex items-center px-3 py-2 mt-2 rounded-md truncate"
         >
           <div className="w-2 h-2 bg-theme-9 rounded-full mr-3"></div>
-          Ready for
-        </a>
-        <a
-          href=""
+          Expired
+        </div>
+        <div
           className="flex items-center px-3 py-2 mt-2 rounded-md truncate"
         >
           <div className="w-2 h-2 bg-theme-12 rounded-full mr-3"></div>
-          Work
-        </a>
-        <a
-          href=""
+          This Month
+        </div>
+        <div
           className="flex items-center px-3 py-2 mt-2 rounded-md truncate"
         >
           <div className="w-2 h-2 bg-theme-6 rounded-full mr-3"></div>
-          This Week
-        </a>
+          Today
+        </div>
       </div>
     </div>
   )

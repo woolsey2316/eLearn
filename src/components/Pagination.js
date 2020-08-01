@@ -7,15 +7,16 @@ import { NumberSelector } from '../Pages/CourseRegister'
 /* a single row of navigation buttons which traverses through a list of results 
   << < 0 1 2 > >>
 */
-function Pagination({setPage, 
-  decrementPage, 
-  incrementPage, 
-  navigatePage, 
-  page, 
-  list, 
-  resultsPerPage, 
-  handleChange}) {
-    
+function Pagination({
+  setPage,
+  decrementPage,
+  incrementPage,
+  navigatePage,
+  page,
+  list,
+  resultsPerPage,
+  handleChange,
+}) {
   return (
     <div className="intro-y flex my-5">
       <ul className="pagination">
@@ -67,9 +68,7 @@ function Pagination({setPage,
         <li>
           <button
             className="pagination__link"
-            onClick={() =>
-              setPage(Math.floor(list.length / resultsPerPage))
-            }
+            onClick={() => setPage(Math.floor(list.length / resultsPerPage))}
           >
             <Icon.ChevronsRight className="w-4 h-4" />
           </button>

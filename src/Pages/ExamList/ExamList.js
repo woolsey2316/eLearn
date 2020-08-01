@@ -28,7 +28,7 @@ function ExamList(props) {
     'December',
   ]
 
-  examData.sort((a, b) => a - b)
+  examData.sort((a, b) => Date.parse(a.due) - Date.parse(b.due))
   const months = new Set(
     examData.map((elem) => monthNames[new Date(elem.due).getMonth()])
   )

@@ -1,12 +1,8 @@
 import React, { useState } from 'react'
 
-import * as Icon from 'react-feather'
-
 import { MobileMenu } from '../../components'
 
 import { TopBar } from '../../components'
-
-import profile from '../../assets/dist/images/profile-8.png'
 
 import { PersonalInformation } from './PersonalInformation'
 

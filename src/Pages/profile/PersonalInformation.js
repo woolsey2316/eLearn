@@ -70,15 +70,14 @@ function PersonalInformation({ newUserDetails, setDetails }) {
                 />
               </div>
               <div className="mt-3">
-                <label>Pin code</label>
+                <label>Class Name</label>
                 <input
                   onChange={handleChange}
-                  type="password"
+                  type="text"
                   className="input w-full border mt-2"
-                  placeholder="6 digit Pin Code"
-                  value={newUserDetails.pincode}
-                  name="pincode"
-                  disabled
+                  placeholder="Class Name"
+                  value={newUserDetails.className}
+                  name="className"
                 />
               </div>
               <div className="mt-3">
@@ -92,15 +91,15 @@ function PersonalInformation({ newUserDetails, setDetails }) {
                   name="school"
                 />
               </div>
-              <div className="mt-3">
-                <label>Class Name</label>
+              <div className="mt-3 flex flex-col">
+                <label>Pin code (6 digits)</label>
                 <input
                   onChange={handleChange}
-                  type="text"
-                  className="input w-full border mt-2"
-                  placeholder="Class Name"
-                  value={newUserDetails.className}
-                  name="className"
+                  type="password"
+                  className="input w-20 border mt-2"
+                  placeholder="6 digit Pin Code"
+                  value={newUserDetails.pincode}
+                  name="pincode"
                 />
               </div>
             </div>
@@ -149,12 +148,12 @@ function PersonalInformation({ newUserDetails, setDetails }) {
                   name="district"
                 />
               </div>
-              <div className="mt-3">
+              <div className="mt-3 flex flex-col">
                 <label>State</label>
                 <input
                   onChange={handleChange}
                   type="text"
-                  className="input w-full border mt-2"
+                  className="input w-32 border mt-2"
                   placeholder="State"
                   value={newUserDetails.state}
                   name="state"

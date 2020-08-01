@@ -6,6 +6,8 @@ import { RegisterInfo } from '../RegisterPage'
 
 import { userActions } from '../actions'
 
+import { withRouter } from 'react-router'
+
 function LoginPage() {
   // reset login status
   const dispatch = useDispatch()
@@ -26,4 +28,5 @@ function LoginPage() {
   )
 }
 
-export { LoginPage }
+const Login = withRouter(LoginPage) 
+export { Login as LoginPage }

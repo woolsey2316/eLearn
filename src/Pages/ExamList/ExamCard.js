@@ -5,15 +5,47 @@ import * as Icon from 'react-feather'
 function ExamCard({ exam }) {
   const [description, show] = React.useState(false)
   console.table({ exam })
+
+  function determineUrgency() {
+    if (new Date(exam.due).getMonth() === new Date().getMonth()) {
+      if (new Date(exam.due).getDate() - new Date().getDate() < 0) {
+        return 4
+      }
+      if (new Date(exam.due).getDate() - new Date().getDate() < 2) {
+        return 3
+      }
+      if (new Date(exam.due).getDate() - new Date().getDate() < 8) {
+        return 2
+      }
+      if (new Date(exam.due).getDate() - new Date().getDate() < 30) {
+        return 1
+      }
+    }
+  }
+  function urgencyDot() {
+    if (determineUrgency() === 4) {
+      return <div className="mt-3 w-2 h-2 bg-theme-9 rounded-full ml-2"></div>
+    }
+    if (determineUrgency() === 3) {
+      return <div className="mt-3 w-2 h-2 bg-theme-6 rounded-full ml-2"></div>
+    }
+    if (determineUrgency() === 2) {
+      return <div className="mt-3 w-2 h-2 bg-theme-11 rounded-full ml-2"></div>
+    }
+    if (determineUrgency() === 1) {
+      return <div className="mt-3 w-2 h-2 bg-theme-12 rounded-full ml-2"></div>
+    }
+  }
   return (
     <div className="inbox__item inbox__item--active mb-4 zoom-in">
-      <div className="intro-x flex items-center rounded bg-gray-200">
+      <div className="intro-x flex items-center rounded bg-gray-200 cursor-default">
         <DateIcon due={exam.due} />
         <div className=" inbox__item--active inline-block sm:block text-gray-700">
           <div className="flex px-5 py-1">
             <h2 className="text-xl mt-2 font-medium leading-none">
               {exam.examName}
             </h2>
+            {urgencyDot()}
           </div>
           <h2 className="leading-none ml-5 my-2">
             {`exam duration: ${exam.duration} · number of sections: ${exam.sections}`}
@@ -44,7 +76,7 @@ function ExamCard({ exam }) {
         <div className="flex ml-auto mr-5">
           <a
             href="/student/exams"
-            className="button w-24 inline-block my-auto mr-1 bg-theme-1 text-white"
+            className={"button w-24 inline-block my-auto mr-1 bg-theme-1 text-white" + (determineUrgency() === 4 ? " invisible" : "") }
           >
             Take Exam
           </a>

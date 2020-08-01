@@ -35,9 +35,7 @@ function Profile(props) {
             <h2 className="text-lg font-medium mr-auto">Profile</h2>
           </div>
           <div className="grid grid-cols-12 gap-5">
-            <div
-              className="intro-y box col-span-8 lg:col-span-9 px-5 pt-5"
-            >
+            <div className="intro-y box col-span-8 lg:col-span-9 px-5 pt-5">
               <div className="flex flex-col lg:flex-row border-b border-gray-200 pb-5 -mx-5">
                 <div className="flex flex-1 px-5 items-center justify-center lg:justify-start">
                   <div className="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative">
@@ -121,7 +119,6 @@ function Profile(props) {
             </div>
             <ProfileOptions />
           </div>
-          
         </div>
       </div>
     </div>
