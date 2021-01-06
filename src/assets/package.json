@@ -39,7 +39,7 @@
     "vue-template-compiler": "^2.6.11"
   },
   "devDependencies": {
-    "axios": "^0.19",
+    "axios": "^0.21",
     "browser-sync": "^2.26.7",
     "browser-sync-webpack-plugin": "^2.0.1",
     "cross-env": "^7.0",
