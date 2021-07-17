@@ -162,8 +162,6 @@ export const signUp: RequestHandler[] = [
             password: req.body.password,
             name: req.body.name,
             address: req.body.address,
-            avatarUrl: req.body.avatarUrl,
-            preferences: req.body.preferences,
             invitationCode: req.body.invitationCode
         });
         UserCollection

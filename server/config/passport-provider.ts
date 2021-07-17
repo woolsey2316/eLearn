@@ -4,6 +4,7 @@
 import passport from "passport";
 import UserDocument from "../models/User/UserDocument";
 import UserCollection from "../models/User/UserCollection";
+import User from "../../client/core/src/models/User";
 import { Strategy as LocalStrategy } from "passport-local";
 import { BasicStrategy } from "passport-http";
 import { Strategy as ClientPasswordStrategy } from "passport-oauth2-client-password";
@@ -13,7 +14,7 @@ import Client from "../models/OAuth/Client";
 import AccessTokenCollection from "../models/OAuth/AccessTokenCollection";
 import AccessToken from "../models/OAuth/AccessToken";
 
-passport.serializeUser<any, any>((user: UserDocument, done: (err: any, id?: any) => void) => {
+passport.serializeUser<any, any>((req: undefined, user: any, done: (err: any, id?: any) => void) => {
     done(undefined, user.id);
 });
 

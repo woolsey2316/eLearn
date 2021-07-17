@@ -15,8 +15,7 @@
     "build-server": "yarn build-ts && yarn tslint",
     "build": "cd client/core && yarn build && cd .. && yarn build && cd .. && yarn build-server",
     "start-client": "node start-client.js",
-    "start-mobile": "cd client && expo install expo-font && cd .. && node start-mobile.js",
-    "start": "yarn build-server && concurrently \"yarn serve\" \"yarn start-client\" \"yarn start-mobile\"",
+    "start": "yarn build-server && concurrently \"yarn serve\" \"yarn start-client\"",
     "serve": "node dist/server/server.js",
     "debug": "yarn build-server && yarn watch-debug",
     "watch-node": "nodemon dist/server/server.js",
@@ -28,7 +27,7 @@
     "watch-ts": "tsc -w",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "serve-debug": "nodemon --inspect dist/server/server.js",
-    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"yarn watch-ts\" \"yarn serve-debug\" \"yarn start-client\" \"yarn start-mobile\""
+    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"yarn watch-ts\" \"yarn serve-debug\" \"yarn start-client\""
   },
   "dependencies": {
     "@azure/storage-blob": "^12.0.1",

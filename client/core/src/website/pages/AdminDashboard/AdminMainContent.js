@@ -2,7 +2,15 @@ import React from 'react'
 import { CalendarContainer } from '../../components'
 import { ActivityFeed } from '../../components'
 
-import * as Icon from 'react-feather'
+import {
+  Activity,
+  ChevronUp,
+  AlertCircle,
+  ChevronDown,
+  Monitor,
+  Grid
+} from 'react-feather'
+
 
 function AdminMainContent() {
   return (
@@ -17,13 +25,13 @@ function AdminMainContent() {
               <div className="report-box zoom-in">
                 <div className="box p-5">
                   <div className="flex">
-                    <Icon.Activity className="report-box__icon text-theme-10" />
+                    <Activity className="report-box__icon text-theme-10" />
                     <div className="ml-auto">
                       <div
                         className="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                         title="33% Higher than last month"
                       >
-                        2 <Icon.ChevronUp className="w-4 h-4" />
+                        2 <ChevronUp className="w-4 h-4" />
                       </div>
                     </div>
                   </div>
@@ -38,13 +46,13 @@ function AdminMainContent() {
               <div className="report-box zoom-in">
                 <div className="box p-5">
                   <div className="flex">
-                    <Icon.AlertCircle className="report-box__icon text-theme-9" />
+                    <AlertCircle className="report-box__icon text-theme-9" />
                     <div className="ml-auto">
                       <div
                         className="report-box__indicator bg-theme-6 tooltip cursor-pointer"
                         title="2% Lower than last month"
                       >
-                        2% <Icon.ChevronDown className="w-4 h-4" />
+                        2% <ChevronDown className="w-4 h-4" />
                       </div>
                     </div>
                   </div>
@@ -59,13 +67,13 @@ function AdminMainContent() {
               <div className="report-box zoom-in">
                 <div className="box p-5">
                   <div className="flex">
-                    <Icon.Monitor className="report-box__icon text-theme-12" />
+                    <Monitor className="report-box__icon text-theme-12" />
                     <div className="ml-auto">
                       <div
                         className="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                         title="12% Higher than last month"
                       >
-                        12% <Icon.ChevronUp className="w-4 h-4" />
+                        12% <ChevronUp className="w-4 h-4" />
                       </div>
                     </div>
                   </div>
@@ -80,13 +88,13 @@ function AdminMainContent() {
               <div className="report-box zoom-in">
                 <div className="box p-5">
                   <div className="flex">
-                    <Icon.Grid className="report-box__icon text-theme-11" />
+                    <Grid className="report-box__icon text-theme-11" />
                     <div className="ml-auto">
                       <div
                         className="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                         title="22% Higher than last month"
                       >
-                        22% <Icon.ChevronUp className="w-4 h-4" />
+                        22% <ChevronUp className="w-4 h-4" />
                       </div>
                     </div>
                   </div>

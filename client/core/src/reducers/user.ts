@@ -35,15 +35,15 @@ const userState = (state: UserState = initialState, action: Action): UserState =
                 loading: false,
                 currentUser: action.user
             };
-        case UPDATE_PREFERENCES_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                currentUser: {
-                    ...(state.currentUser as User),
-                    preferences: action.preferences
-                }
-            };
+        // case UPDATE_PREFERENCES_SUCCESS:
+        //     return {
+        //         ...state,
+        //         loading: false,
+        //         currentUser: {
+        //             ...(state.currentUser as User),
+        //             preferences: action.preferences
+        //         }
+        //     };
         case USER_REQUEST_START:
         case GET_NOTIFICATIONS_BEGIN:
         case UPDATE_PASSWORD_START:

@@ -2,7 +2,7 @@ import React from "react";
 import connectAllProps from "../../../shared/connect";
 import { Redirect } from "react-router-dom";
 import Article from "../../../models/Article";
-import ErrorPage from "../../pages/ErrorPage";
+import { PageNotFound } from "../../pages/NotFound";
 import { Container, Header } from "semantic-ui-react";
 import { CONTAINER_STYLE } from "../../../shared/styles";
 import ArticleEditor from "./ArticleEditor";
@@ -24,13 +24,13 @@ class EditArticle extends React.Component<Props, States> {
         };
         this.articleId = this.props.match && this.props.match.params && this.props.match.params.articleId;
         if (!this.articleId) {
-            return <ErrorPage error={notFoundError} />;
+            return <PageNotFound />;
         }
         const article: Article | undefined = this.props.state.articleState.data.find(
             (value: Article): boolean => value._id === this.articleId
         );
         if (!article) {
-            return <ErrorPage error={notFoundError} />;
+            return <PageNotFound />;
         }
         if (this.props.state.userState.currentUser) {
             const containerStyle: any = isMobile() ? CONTAINER_STYLE :

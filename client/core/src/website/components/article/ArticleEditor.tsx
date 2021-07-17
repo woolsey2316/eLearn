@@ -58,13 +58,8 @@ class ArticleEditor extends React.Component<Props, States> {
             this.originalContent = this.props.article.content;
         }
         let editorType: string;
-        if (this.props.state.userState.currentUser &&
-            this.props.state.userState.currentUser.preferences &&
-            this.props.state.userState.currentUser.preferences.editorType) {
-            editorType = this.props.state.userState.currentUser.preferences.editorType;
-        } else {
-            editorType = DEFAULT_PREFERENCES.editorType;
-        }
+        editorType = DEFAULT_PREFERENCES.editorType;
+
         return (
             <Form>
                 <ResponsiveFormField>

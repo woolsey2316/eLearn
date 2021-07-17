@@ -8,7 +8,6 @@ import UserCollection from "../models/User/UserCollection";
 import UserDocument from "../models/User/UserDocument.d";
 import { validationResult } from "express-validator";
 import { validationErrorResponse } from "./utils";
-import CommentCollection from "../models/Comment/CommentCollection";
 import { DEFAULT_PAGE_SIZE } from "../../client/core/src/shared/constants";
 import NotificationCollection from "../models/Notification/NotificationCollection";
 import NotificationDocument from "../models/Notification/NotificationDocument";
@@ -28,10 +27,6 @@ export const remove: RequestHandler = (req: Request, res: Response, next: NextFu
             return Promise.reject(res.status(401).json({ message: "toast.user.attack_alert" }));
         }
         return ArticleCollection.findByIdAndRemove(req.params.id).exec();
-    })
-    .then((removed: Article | null) => {
-        CommentCollection.remove({targetId: req.params.id}).exec();
-        return res.status(200).end();
     })
     .catch((error: Response) => {
         return next(error);
@@ -184,7 +179,6 @@ export const read: RequestHandler = async (req: Request, res: Response, next: Ne
                 email: user.email,
                 name: user.name,
                 avatarUrl: user.avatarUrl,
-                gender: user.gender,
                 _id: user._id.toString()
             } as User;
         }

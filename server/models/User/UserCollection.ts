@@ -39,8 +39,8 @@ userSchema.pre("save", function save(next: any) {
     }
     bcrypt.genSalt(10, (err: any, salt: any) => {
         if (err) { return next(err); }
-            // tslint:disable-next-line:no-null-keyword
-            bcrypt.hash(user.password as string, salt, null, (err: mongoose.Error, hash: any) => {
+        // tslint:disable-next-line:no-null-keyword
+        bcrypt.hash(user.password as string, salt, null, (err: mongoose.Error, hash: any) => {
             if (err) {
                 return next(err);
             }

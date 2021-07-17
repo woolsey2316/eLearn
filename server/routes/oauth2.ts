@@ -11,21 +11,14 @@ const oauth2: Router = express.Router();
 oauth2.route("/token").post(controllers.token);
 oauth2.route("/authorize").get(controllers.authorization);
 oauth2.route("/authorize/decision").post(controllers.decision);
-console.log("email OK?");
 oauth2.route("/signup").post(
     [
         check("email", "toast.user.email").isEmail(),
         check("password", "toast.user.password_too_short").isLength({ min: PASSWORD_MIN_LENGTH }),
-        check("confirmPassword", "toast.user.confirm_password")
-            .exists()
-            .custom((value, { req }) => value === req.body.password),
-        check("name", "toast.user.name").not().isEmpty(),
-        check("gender", "toast.user.gender").isIn(Object.values(Gender))
     ],
     FLAG_ENABLE_INVITATION_CODE ? check("invitationCode", "toast.user.invitation_code.empty").not().isEmpty() : [],
     controllers.signUp
 );
-console.log("email OK?");
 oauth2.route("/login").post(
     [
         check("email", "toast.user.email").isEmail(),

@@ -3,7 +3,7 @@ import connectAllProps from "../../../shared/connect";
 import { Redirect } from "react-router-dom";
 import { pendingRedirect } from "../../../shared/redirect";
 import Article from "../../../models/Article";
-import ErrorPage from "../../pages/ErrorPage";
+import { PageNotFound } from "../../pages/NotFound";
 import { Container, Header, Label, Rating, RatingProps, Popup } from "semantic-ui-react";
 import { CONTAINER_STYLE } from "../../../shared/styles";
 import "react-tiny-fab/dist/styles.css";
@@ -62,13 +62,13 @@ class ArticleDetail extends React.Component<Props, States> {
             message: `not found for ${window.location.href} `
         };
         if (!this.articleId) {
-            return <ErrorPage error={notFoundError} />;
+            return <PageNotFound />;
         }
         const article: Article | undefined = this.props.state.articleState.data.find(
             (value: Article): boolean => value._id === this.articleId
         );
         if (!article) {
-            return <ErrorPage error={notFoundError} />;
+            return <PageNotFound />;
         }
         return (
             <Fragment>

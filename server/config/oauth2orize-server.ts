@@ -31,7 +31,7 @@ const issueToken = (clientId: string, userId: string, done: (err: Error | null, 
         clientId: clientId,
         userId: userId
     });
-    accessToken.save((error: Error, accessToken: AccessToken): void => {
+    accessToken.save((error: Error | null, accessToken: AccessToken): void => {
         if (error) {
             return done(error, undefined);
         }
@@ -88,7 +88,7 @@ server.grant(oauth2orize.grant.code(
             userName: user.name,
             redirectUri: redirectUri
         });
-        authCode.save((error: Error, authCode: AuthCode): void => {
+        authCode.save((error: Error | null, authCode: AuthCode): void => {
             if (error) {
                 return issued(error, undefined);
             }
