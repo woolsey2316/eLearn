@@ -28,6 +28,7 @@ function login(email, password, rememberMe) {
         dispatch(success(user))
         // API request to retrieve all user info from server, eg. profile image
         dispatch(getCurrentUserInfo(user))
+        // set authentication slice to true
         history.push('/student/dashboard')
         redirect('/student/dashboard')
       },

@@ -162,20 +162,8 @@ async function _delete(id) {
   or is no longer valid for any reason.
 */
 function handleResponse(response) {
-  return response.text().then((text) => {
-    const data = IsValidJSONString(text) ? JSON.parse(text) : text
-
-    if (!response.ok) {
-      console.log(`response: ${JSON.stringify(response)}`)
-      // trying to get as much information about the error as can get
-      const error =
-        response.statusText ||
-        (data.message && data.error && data.error + ': ' + data.message) ||
-        data.message ||
-        data.error ||
-        data
-      return Promise.reject(error)
-    }
-    return data
-  })
+  if (!response.ok) {
+    return Promise.reject(response.status.toString() + " " + response.statusText);
+  }
+  return response.ok
 }

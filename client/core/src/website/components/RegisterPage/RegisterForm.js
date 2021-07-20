@@ -18,7 +18,7 @@ export default () => {
     district: '',
     email: '',
     mobile: '',
-    fullName: '',
+    name: '',
     confirmPassword: '',
     password: '',
     pincode: '',
@@ -29,7 +29,7 @@ export default () => {
   const [submitted, setSubmitted] = useState(false)
   const [passwordAdvice, showPasswordAdvice] = useState(false)
   const dispatch = useDispatch()
-  const alert = useSelector((state) => state.alert)
+  const alert = useSelector((state) => state)
 
   useEffect(() => {
     history.listen((location, action) => {
@@ -40,6 +40,8 @@ export default () => {
 
   // Always logs out current user before loading signup form page
   useEffect(() => {
+    console.log("redux state")
+    console.log({alert})
     dispatch(userActions.logout())
   }, [dispatch])
   // password strength 0 - weakest, 4 strongest
@@ -100,6 +102,7 @@ export default () => {
     if (allFieldsExist()) {
       dispatch(userActions.register(user))
     }
+    console.log(alert)
     event.preventDefault();
   }
   return (
@@ -128,11 +131,11 @@ export default () => {
             )}
             <input
               type="text"
-              name="fullName"
-              style={{ borderColor: user.fullName || !submitted ? '' : '#D32929' }}
+              name="name"
+              style={{ borderColor: user.name || !submitted ? '' : '#D32929' }}
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
               placeholder="Full Name"
-              value={user.fullName}
+              value={user.name}
               onChange={handleChange}
             />
             {submitted && !user.fullName && (

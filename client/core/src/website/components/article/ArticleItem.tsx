@@ -6,7 +6,6 @@ import connectAllProps from "../../../shared/connect";
 import { FormattedMessage } from "react-intl";
 import { Viewer } from "@toast-ui/react-editor";
 import { getArticleAbstract, getArticleCoverImage } from "../../../shared/string";
-import UserLabel from "../user/UserLabel";
 import { Image } from "semantic-ui-react";
 import moment from "moment";
 import { ARTICLE_CONTENT_MIN_LENGTH } from "../../../shared/constants";
@@ -28,9 +27,6 @@ class ArticleItem extends React.Component<Props, States> {
             <Item>
                 <Item.Content>
                     <Item.Header as="h2">{article.title}</Item.Header>
-                    <Item.Meta>
-                        <UserLabel user={this.props.state.userDictionary[article.author]} />
-                    </Item.Meta>
                     {
                         coverSrc ? <Image style={{paddingTop: 10}} src={coverSrc} />
                         : undefined

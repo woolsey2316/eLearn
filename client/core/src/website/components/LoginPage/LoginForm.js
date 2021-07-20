@@ -19,12 +19,11 @@ export default () => {
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
-    //remember me option
-    isChecked: false,
+    rememberMe: false,
   })
   const [forgotPassword, setForgotPassword] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-  const { email, password, isChecked } = inputs
+  const { email, password, rememberMe } = inputs
   const dispatch = useDispatch()
   const alert = useSelector((state) => state.alert)
 
@@ -41,7 +40,7 @@ export default () => {
   }
 
   function onChangeCheckbox(event) {
-    setInputs({ ...inputs, isChecked: event.target.checked })
+    setInputs({ ...inputs, rememberMe: event.target.checked })
     console.log(event.target.checked)
   }
 
@@ -56,14 +55,14 @@ export default () => {
     if (email && password) {
       // Dispatches a login action, if successful redirects current URL
       // to Home page.
-      dispatch(userActions.login(email, password, isChecked))
+      dispatch(userActions.login(email, password, rememberMe))
     } else if (email && !password) {
       dispatch(userActions.resetPassword(email, password))
     }
-    if (isChecked && email !== '') {
+    if (rememberMe && email !== '') {
       localStorage.email = email
       localStorage.password = password
-      localStorage.checkbox = isChecked
+      localStorage.checkbox = rememberMe
     }
   }
   return (
@@ -88,7 +87,7 @@ export default () => {
             <RememberMe
               forgotPassword={forgotPassword}
               onChangeCheckbox={onChangeCheckbox}
-              isChecked={isChecked}
+              rememberMe={rememberMe}
             />
             <ForgotPassword
               forgotPassword={forgotPassword}

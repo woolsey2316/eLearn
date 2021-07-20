@@ -11,7 +11,6 @@ import { MessageDescriptor, FormattedMessage } from "react-intl";
 import { PrimitiveType } from "intl-messageformat";
 import { Viewer } from "@toast-ui/react-editor";
 import WarningModal from "../shared/WarningModal";
-import UserLabel from "../user/UserLabel";
 import User from "../../../models/User";
 import FabAction from "../../../models/client/FabAction";
 import CommentSection from "../comment/CommentSection";
@@ -142,7 +141,6 @@ class ArticleDetail extends React.Component<Props, States> {
                     disabled={!likersPopUpContent}
                     content={likersPopUpContent}
                     position="top center" />
-                <UserLabel user={this.props.state.userDictionary[article.author]} />
                 <Label style={labelStyle}>
                     <FormattedMessage id="post.created_at" />
                     {moment(createDate).fromNow()}

@@ -1,22 +1,20 @@
 import { combineReducers } from "redux";
-import userState from "./user";
-import articleState from "./article";
-import redirectTask from "./redirectTask";
-import translations from "./translations";
-import commentState from "./comment";
-import userDictionary from "./userDictionary";
-import fabActions from "./fabActions";
-import threadState from "./thread";
+import { alert } from "./alert.reducer";
+import { authentication } from "./authentication.reducer";
+import { courses } from "./course.reducer";
+import { dashboard } from "./dashboard.reducer";
+import { exams } from "./exam.reducer";
+import { registration } from "./registration.reducer";
+import { users } from "./users.reducer";
 
 const reducer = combineReducers({
-    userState,
-    articleState,
-    threadState,
-    redirectTask,
-    translations,
-    commentState,
-    userDictionary,
-    fabActions
+    alert,
+    authentication,
+    courses,
+    dashboard,
+    exams,
+    registration,
+    users,
 });
 
 export default reducer;
