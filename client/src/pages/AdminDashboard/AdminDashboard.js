@@ -1,12 +1,14 @@
-import React from "react"
+import React from 'react'
 
-import { MobileMenu } from '../MobileMenu'
+import { MobileMenu } from '../../components'
 
-import { MainContent } from './MainContent'
+import { AdminMainContent } from './AdminMainContent'
 
-import { TopBar } from '../TopBar'
+import '../../midone-assets/dist/css/app.css'
 
-function Dashboard(props) {
+import { TopBar } from '../../components'
+
+function AdminDashboard(props) {
   /*
   const access_token = useSelector(state => state.authentication.user.token.access_token)
   const refresh_token = useSelector(state => state.authentication.user.token.refresh_token)
@@ -19,11 +21,11 @@ function Dashboard(props) {
         {props.sideMenu}
         <div className="content">
           <TopBar open={props.openModal} />
-          <MainContent />
+          <AdminMainContent />
         </div>
       </div>
     </div>
   )
 }
 
-export { Dashboard }
+export { AdminDashboard }
