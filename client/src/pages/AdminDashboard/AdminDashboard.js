@@ -4,8 +4,6 @@ import { MobileMenu } from '../../components'
 
 import { AdminMainContent } from './AdminMainContent'
 
-import '../../midone-assets/dist/css/app.css'
-
 import { TopBar } from '../../components'
 
 function AdminDashboard(props) {

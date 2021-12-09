@@ -22,7 +22,7 @@ const CourseSubmenu = () => {
           icon={faUniversity}
           style={{ fontSize: '1.55em', marginRight: '10px' }}
           /> */}
-          <img src="../assets/icons/chalkboard-teacher-solid.svg" alt="my courses"/>
+          <img className="w-5 h-5" src="/assets/icons/chalkboard-teacher-solid.svg" alt="my courses"/>
         </div>
         <div className="side-menu__title"> Courses </div>
       </a>
@@ -40,7 +40,7 @@ const CourseSubmenu = () => {
           icon={faUniversity}
           style={{ fontSize: '1.55em', marginRight: '3px' }}
           /> */}
-          <img src="../assets/icons/university-solid.svg" alt="register for course"/>
+          <img className="w-5 h-5" src="/assets/icons/university-solid.svg" alt="register for course"/>
           <Icon.Plus className= "h-3 w-3 -ml-1"/> </div>
         <div className="side-menu__title"> Course Register </div>
       </a>

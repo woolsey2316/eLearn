@@ -42,7 +42,7 @@ function SideMenu(props) {
             icon={faUniversity}
             style={{ fontSize: '1.55em', marginRight: '3px' }}
             /> */}
-          <img src="./assets/icons/university-solid.svg" alt="course icon"/>
+          <img className="w-10 h-10" src="/assets/icons/university-solid.svg" alt="course icon"/>
         </SideMenuGroup>
           
         <SideMenuItem name="Grades"  path="/student/grades">
@@ -74,7 +74,7 @@ function SideMenu(props) {
               icon={faChalkboardTeacher}
               style={{ fontSize: '1.5em' }}
               /> */}
-            <img src="../assets/icons/chalkboard-teacher-solid.svg" alt="courses icon"/>
+            <img className="w-6 h-6" src="/assets/icons/chalkboard-teacher-solid.svg" alt="courses icon"/>
           </SideMenuItem>
 
           <SideMenuItem name="Create Exam" path="/admin/create_exam">

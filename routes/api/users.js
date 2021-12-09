@@ -119,7 +119,7 @@ router.get("/:user_id/courses", (req, res) => {
       return res.status(404).json({ idnotfound: "course id not found" });
     }
 
-    return res.status(200).json({ course: course })
+    return res.status(200).json({ courses: course })
   })
 });
 

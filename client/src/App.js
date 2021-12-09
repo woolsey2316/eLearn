@@ -28,9 +28,6 @@ import { LogoutModal } from './components'
 
 import { PrivateRoute } from './components'
 
-// const Register = lazy(() => import("./RegisterPage"));
-// const Login = lazy(() => import("./LoginPage"));
-
 function App() {
   const [modalIsOpen, setIsOpen] = useState(false)
   function openModal() {
