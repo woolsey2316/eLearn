@@ -9,7 +9,6 @@ import { alertActions } from '.'
 import { history, getUser } from '../helpers'
 
 function registerUser(user) {
-  console.log("here")
   return (dispatch) => {
     dispatch(request(user))
     userService.register(user).then(
@@ -19,10 +18,8 @@ function registerUser(user) {
         dispatch(getCurrentUserInfo())
 
         history.push('/login')
-        console.log("success")
       },
       (error) => {
-        console.log("error")
         dispatch(failure(error.toString()))
         dispatch(alertActions.error(error.toString()))
       }

@@ -81,6 +81,7 @@ router.post("/login", (req, res) => {
         (err, token) => {
           res.json({
           success: true,
+          id: user.id,
           token: "Bearer " + token,
           email: email
           });
@@ -103,7 +104,35 @@ router.get("/user/profile", (req, res) => {
     if (!user) {
       return res.status(404).json({ emailnotfound: "Email not found" });
     }
+    console.log(user)
     return user
+  })
+});
+
+// @route GET /users/:id/courses
+// @desc Retrieve user courses
+// @access Public
+router.get("/:user_id/courses", (req, res) => {
+  
+  User.findById( req.params.user_id, 'courses').then(course => {
+    if (!course) {
+      return res.status(404).json({ idnotfound: "course id not found" });
+    }
+
+    return res.status(200).json({ course: course })
+  })
+});
+
+// @route GET /users/:id/dashboard
+// @desc Retrieve dashboard details
+// @access Public
+router.get("/:user_id/dashboard", (req, res) => {
+  User.findById( req.params.user_id, 'active_tests total_completion_rate completed_tests total_enrolled_courses' ).then(dashboard => {
+    if (!dashboard) {
+      return res.status(404).json({ idnotfound: "exam id not found" });
+    }
+    
+    return res.status(200).json({ dashboard: dashboard })
   })
 });
 

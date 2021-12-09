@@ -5,8 +5,7 @@ export const Calendar = {
   getDaysInMonth,
   daysBeforeCurrentMonth,
   daysAfterCurrentMonth,
-  totalDays
-  ,
+  totalDays,
 }
 
 export function nextMonth(today,setDate) {

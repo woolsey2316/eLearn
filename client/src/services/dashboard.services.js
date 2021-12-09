@@ -1,4 +1,5 @@
 import { authHeader, IsValidJSONString, getUserId } from '../helpers'
+import { API_URL } from './index';
 /*
   The services layer handles all http communication with the back-end apis.
   This section of the services layer relates to user data. CRUD operations
@@ -15,7 +16,7 @@ async function getUserDashboard() {
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
   }
   const response = await fetch(
-    `/users/${userId}/dashboard`,
+    `${API_URL}/users/${userId}/dashboard`,
     requestOptions
   )
   const dashboard = await handleResponse(response)

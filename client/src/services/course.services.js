@@ -1,4 +1,5 @@
 import { authHeader, IsValidJSONString, getUserId } from '../helpers'
+import { API_URL } from './index';
 /*
   The services layer handles all http communication with the back-end apis.
   This section of the services layer relates to course data.
@@ -12,14 +13,14 @@ export const courseService = {
 /* 
   fetches all courses a User has registered to
   */
-async function getAllUserCourses(page, size) {
+async function getAllUserCourses() {
   const requestOptions = {
     method: 'GET',
     headers: authHeader(),
   }
   const userId = getUserId()
   const response = await fetch(
-    `/users/${userId}/courses?page=${page}&size=${size}`,
+    `${API_URL}/users/${userId}/courses`,
     requestOptions
   )
   return handleResponse(response)
@@ -35,7 +36,7 @@ async function getAllCourses(page, size) {
   }
 
   const response = await fetch(
-    `/courses?page=${page}&size=${size}`,
+    `${API_URL}/courses?page=${page}&size=${size}`,
     requestOptions
   )
   return handleResponse(response)
@@ -53,7 +54,7 @@ async function addCourse(courseDTO) {
   const userID = getUserId()
 
   const response = await fetch(
-    `/users/${userID}/courses`,
+    `${API_URL}/users/${userID}/courses`,
     requestOptions
   )
   const user = await handleResponse(response)

@@ -67,12 +67,12 @@ function getAllCourses(page, size) {
   }
 }
 
-function getAllUserCourses(page, size) {
+function getAllUserCourses() {
   return (dispatch) => {
-    dispatch(request(page, size))
-
-    courseService.getAllUserCourses(page, size).then(
+    dispatch(request())
+    courseService.getAllUserCourses().then(
       (courseList) => {
+        console.log("user courses", courseList)
         dispatch(success(courseList))
         dispatch(alertActions.success('Successfully fetched courses'))
       },

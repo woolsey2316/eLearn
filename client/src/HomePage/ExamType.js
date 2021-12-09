@@ -24,9 +24,9 @@ function ExamType() {
 
   function monthlyTotal() {
     return (
-      parseInt(dashboard.dashboard.assignment.month, 10) +
-      parseInt(dashboard.dashboard.exam.month, 10) +
-      parseInt(dashboard.dashboard.multiChoiceQuestion.month, 10)
+      parseInt(dashboard.dashboard.assignment?.month, 10) +
+      parseInt(dashboard.dashboard.exam?.month, 10) +
+      parseInt(dashboard.dashboard.multiChoiceQuestion?.month, 10)
     )
   }
 
@@ -48,14 +48,14 @@ function ExamType() {
                   >
                     {dashboard &&
                       dashboard.dashboard &&
-                      dashboard.dashboard.exam.total}
+                      dashboard.total.exam}
                   </div>
                 </div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
                 {dashboard &&
                   dashboard.dashboard &&
-                  dashboard.dashboard.assignment.month}
+                  dashboard.month.assignment}
               </div>
               <div className="text-base text-gray-600 mt-1">Assignments</div>
             </div>
@@ -73,14 +73,14 @@ function ExamType() {
                   >
                     {dashboard &&
                       dashboard.dashboard &&
-                      dashboard.dashboard.multiChoiceQuestion.total}
+                      dashboard.total.multiChoiceQuestion}
                   </div>
                 </div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
                 {dashboard &&
                   dashboard.dashboard &&
-                  dashboard.dashboard.multiChoiceQuestion.month}
+                  dashboard.month.multiChoiceQuestion}
               </div>
               <div className="text-base text-gray-600 mt-1">
                 Multiple Choice Exams
@@ -100,14 +100,14 @@ function ExamType() {
                   >
                     {dashboard &&
                       dashboard.dashboard &&
-                      dashboard.dashboard.exam.total}
+                      dashboard.total.exam}
                   </div>
                 </div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
                 {dashboard &&
                   dashboard.dashboard &&
-                  dashboard.dashboard.exam.month}
+                  dashboard.month.exam}
               </div>
               <div className="text-base text-gray-600 mt-1">Exams</div>
             </div>
@@ -120,7 +120,7 @@ function ExamType() {
                 <Icon.Grid className="report-box__icon text-theme-11" />
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard && dashboard.dashboard && monthlyTotal()}
+                {dashboard.month.exam + dashboard.month.multiChoiceQuestion + dashboard.month.assignment}
               </div>
               <div className="text-base text-gray-600 mt-1">Monthly Total</div>
             </div>

@@ -23,7 +23,7 @@ export function courses(state = initialState, action: AnyAction) {
     case courseConstants.USER_COURSE_INFO_SUCCESS:
       return {
         courseRegistering: false,
-        userCourseList: action.courseList.data?.list,
+        userCourseList: action,
       };
     default:
       return state;

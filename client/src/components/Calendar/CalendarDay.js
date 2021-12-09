@@ -7,7 +7,7 @@ function CalendarDay(props) {
   return (
     <div
       className={
-        'p-3 mx-auto rounded relative' +
+        'px-5 py-3 mx-auto rounded relative' +
         (isTodayDate() ? ' bg-theme-1 text-white rounded relative' : '') +
         (props.disabled ? ' text-gray-500' : '')
       }

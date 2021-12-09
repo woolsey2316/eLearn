@@ -62,8 +62,9 @@ async function login(email, password, rememberMe, dispatch) {
   .then((response) => {
     if (response.ok === true) { 
       response.json().then(data => {
-        console.log(data)
+        setTimeout(() => console.log({data}),6000)
         if (data.success === true) {
+          localStorage.setItem("USER_ID", data.id)
           localStorage.setItem("EMAIL", data.email)
           return localStorage.setItem("ACCESS_TOKEN_KEY", data.token);
         } else {

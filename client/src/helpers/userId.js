@@ -1,7 +1,5 @@
 function getUserId() {
-  if (localStorage.getItem('user')) {
-    return JSON.parse(localStorage.getItem('user')).userId
-  }
+  return localStorage.getItem('USER_ID')
 }
 
 function getUser() {

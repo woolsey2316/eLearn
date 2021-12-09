@@ -18,7 +18,7 @@ const CalendarDateTile = ({ today }) => {
           <CalendarDay key={index} month={month_} day={index + 1} curr={date} />
         ))}
       {Calendar.daysAfterCurrentMonth(today).map((day, i) => (
-        <CalendarDay key={i} month={month_} day={day} disabled={true} />
+        <CalendarDay key={i} month={month_+1} day={day} disabled={true} />
       ))}
     </React.Fragment>
    );
