@@ -6,5 +6,18 @@ const courseSchema = new Schema({
     type: String,
     required: true
   },
+  examResults: {
+    type: Array(Object),
+    required: false
+  },
+  subscribers: {
+    type: Array(mongoose.ObjectId)
+  },
+  category: {
+    type: String
+  },
+  instructor: {
+    type: String
+  }
 });
 module.exports = course = mongoose.model("course", courseSchema);

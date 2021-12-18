@@ -1,4 +1,5 @@
 import { authHeader, IsValidJSONString, getUserId } from '../helpers'
+import { API_URL } from './index';
 /*
   The services layer handles all http communication with the back-end apis.
   This section of the services layer relates to user data. CRUD operations
@@ -6,6 +7,7 @@ import { authHeader, IsValidJSONString, getUserId } from '../helpers'
 */
 export const examService = {
   getAllUserExams,
+  getExamResultsByCourse,
   getExamResult,
   getExamQuestions,
   submitExam,
@@ -21,11 +23,27 @@ async function getAllUserExams(courseId) {
   }
   const userId = getUserId()
   const response = await fetch(
-    `/users/${userId}/course/${courseId}/exams`,
+    `${API_URL}/users/courses/${courseId}/${userId}/exams`,
     requestOptions
   )
   return handleResponse(response)
 }
+
+/* 
+  fetches all exam results belonging to a course
+  */
+  async function getExamResultsByCourse(courseId) {
+    const requestOptions = {
+      method: 'GET',
+      headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    }
+    console.log("babs", courseId)
+    const response = await fetch(
+      `${API_URL}/exams/courses/${courseId}`,
+      requestOptions
+    )
+    return handleResponse(response)
+  }
 
 /* 
   fetches all results of an exam a User has
@@ -37,7 +55,7 @@ async function getExamResult(examId) {
   }
   const userId = getUserId()
   const response = await fetch(
-    `/users/${userId}/exams/${examId}/result`,
+    `${API_URL}/users/${userId}/exams/${examId}/result`,
     requestOptions
   )
   return handleResponse(response)
@@ -53,7 +71,7 @@ async function getExamQuestions(examId) {
   }
   const userId = getUserId()
   const response = await fetch(
-    `/users/${userId}/exams/${examId}/questions`,
+    `${API_URL}/users/${userId}/exams/${examId}/questions`,
     requestOptions
   )
   return handleResponse(response)
@@ -70,7 +88,7 @@ async function submitExam(exam) {
   }
   const userId = getUserId()
   const response = await fetch(
-    `/users/${userId}/exams/${exam.examId}/submit`,
+    `${API_URL}/users/${userId}/exams/${exam.examId}/submit`,
     requestOptions
   )
   return handleResponse(response)

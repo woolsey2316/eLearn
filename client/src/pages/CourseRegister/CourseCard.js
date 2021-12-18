@@ -28,7 +28,7 @@ function CourseCard({
         <div className="flex flex-col lg:flex-row items-end p-5">
           <div className="lg:ml-2 lg:mr-auto text-center lg:text-left mt-3 lg:mt-0">
             <div className="flex align-center">
-              <h2 className="font-medium">{course.name}</h2>
+              <h2 className="font-medium">{course.CourseName}</h2>
               <div className="text-gray-600 ml-1">{`· Category: ${course.category}`}</div>
             </div>
             <div className="text-gray-700 text-xs mt-1">

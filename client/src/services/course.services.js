@@ -20,7 +20,7 @@ async function getAllUserCourses() {
   }
   const userId = getUserId()
   const response = await fetch(
-    `${API_URL}/users/${userId}/courses`,
+    `${API_URL}/courses/user/${userId}`,
     requestOptions
   )
   return handleResponse(response)

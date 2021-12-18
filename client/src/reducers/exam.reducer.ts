@@ -17,9 +17,11 @@ export function exams(state: ExamState = {submittingExam: false, examList: []}, 
     case examConstants.SUBMIT_FAILURE:
       return { ...state, submittingExam: false }
     case examConstants.EXAM_LIST_INFO_SUCCESS:
-      return { ...state, submittingExam: false, examList: action.examList.data }
+      return { ...state, submittingExam: false, examList: action.examList?.data }
     case examConstants.EXAM_INFO_SUCCESS:
-      return { ...state, submittingExam: false, examList: action.exam.data }
+      return { ...state, submittingExam: false, examList: action.examList }
+    case examConstants.EXAM_RESULT_SUCCESS:
+      return { ...state, submittingExam: false, examResults: action.examResults }
     default:
       return state
   }

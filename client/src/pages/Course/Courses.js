@@ -23,8 +23,7 @@ function Courses(props) {
 
   useEffect(() => {
     fetchCourses()
-    return console.log('course: ' + courses)
-  }, [courses, fetchCourses])
+  }, [fetchCourses])
 
 
   return (

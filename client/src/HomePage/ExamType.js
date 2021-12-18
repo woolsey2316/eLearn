@@ -21,15 +21,6 @@ function ExamType() {
     return console.log({ dashboard })
   }, [])
 
-
-  function monthlyTotal() {
-    return (
-      parseInt(dashboard.dashboard.assignment?.month, 10) +
-      parseInt(dashboard.dashboard.exam?.month, 10) +
-      parseInt(dashboard.dashboard.multiChoiceQuestion?.month, 10)
-    )
-  }
-
   return (
     <div className="col-span-12 mt-8">
       <div className="intro-y flex items-center h-10">

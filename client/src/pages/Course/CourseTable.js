@@ -3,6 +3,7 @@ import React from 'react'
 import { Course } from './Course'
 
 function CourseTable({ courses }) {
+  console.log("courses table", courses)
   return (
     <table className="table">
       <thead>
@@ -15,18 +16,7 @@ function CourseTable({ courses }) {
         </tr>
       </thead>
       <tbody>
-        {courses &&
-          courses
-            .reduce((unique, item) => {
-              // unique course values, current issue with subscribing to the same course
-              // multiple times
-              return unique
-                .map((elem) => elem.coursesDTO.id)
-                .includes(item.coursesDTO.id)
-                ? unique
-                : [...unique, item]
-            }, [])
-            .map((elem) => <Course course={elem.coursesDTO} />)}
+        {courses?.courseList?.courses?.courses.map(elem => <Course course={elem}></Course>)}
       </tbody>
     </table>
   )

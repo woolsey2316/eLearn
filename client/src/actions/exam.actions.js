@@ -10,7 +10,8 @@ import { alertActions } from '.'
 export const examActions = {
   submit,
   getCurrentExamInfo,
-  getAllExams,
+  getAllExamResults,
+  getUserExamResultsByCourse,
 }
 
 function submit(exam) {
@@ -40,7 +41,7 @@ function submit(exam) {
   }
 }
 
-function getAllExams(courseId) {
+function getUserExamResultsByCourse(courseId) {
   return (dispatch) => {
     dispatch(request(courseId))
 
@@ -64,6 +65,33 @@ function getAllExams(courseId) {
   }
   function failure(error) {
     return { type: examConstants.EXAM_INFO_FAILURE, error }
+  }
+}
+
+function getAllExamResults(courseId) {
+  return (dispatch) => {
+    dispatch(request(courseId))
+
+    examService.getExamResultsByCourse(courseId).then(
+      (examResults) => {
+        dispatch(success(examResults))
+        dispatch(alertActions.success('Successfully fetched exams'))
+      },
+      (error) => {
+        dispatch(failure(error.toString()))
+        dispatch(alertActions.error(error.toString()))
+      }
+    )
+  }
+
+  function request(examResults) {
+    return { type: examConstants.EXAM_RESULT_REQUEST, examResults }
+  }
+  function success(examResults) {
+    return { type: examConstants.EXAM_RESULT_SUCCESS, examResults }
+  }
+  function failure(error) {
+    return { type: examConstants.EXAM_RESULT_FAILURE, error }
   }
 }
 

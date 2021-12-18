@@ -7,6 +7,7 @@ function CourseDropdown(props) {
     props.setCourse(name)
     showMore(!show)
   }
+
   return (
     <div className="dropdown relative">
       <button
@@ -22,36 +23,14 @@ function CourseDropdown(props) {
               Select a Course
             </div>
             <div className="p-2">
-              <button
-                onClick={() => chooseCourse('Course #1')}
-                className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
-              >
-                <Icon.Box className="w-4 h-4 text-gray-700 mr-2" /> Course #1
-              </button>
-              <button
-                onClick={() => chooseCourse('Course #2')}
-                className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
-              >
-                <Icon.Box className="w-4 h-4 text-gray-700 mr-2" /> Course #2
-                <div className="text-xs text-white px-1 rounded-full bg-theme-6 ml-2">
-                  2
-                </div>
-              </button>
-              <button
-                onClick={() => chooseCourse('Course #3')}
-                className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
-              >
-                <Icon.Box className="w-4 h-4 text-gray-700 mr-2" /> Course #3
-                <div className="text-xs text-white px-1 rounded-full bg-theme-6 ml-2">
-                  1
-                </div>
-              </button>
-              <button
-                onClick={() => chooseCourse('Course #4')}
-                className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
-              >
-                <Icon.Box className="w-4 h-4 text-gray-700 mr-2" /> Course #4
-              </button>
+              {props.courseList?.map(elem => (
+                <button
+                  onClick={() => chooseCourse(elem.courseName)}
+                  className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
+                >
+                  <Icon.Box className="w-4 h-4 text-gray-700 mr-2" /> {elem.courseName}
+                </button>
+              ))}
             </div>
           </div>
         </div>

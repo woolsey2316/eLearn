@@ -46,7 +46,7 @@ function CourseRegister(props) {
     let max = Math.ceil(
       courses &&
         courses.courseList &&
-        courses.courseList.list.length / resultsPerPage
+        courses.courseList?.length / resultsPerPage
     )
     if (page_ > 0 && page_ <= max) return setPage(page_)
     else return setPage(1)
@@ -74,6 +74,8 @@ function CourseRegister(props) {
   function incrementPage() {
     navigatePage(page + 1)
   }
+
+  console.log("courses slice", courses)
 
   return (
     <div className="app">
@@ -112,14 +114,8 @@ function CourseRegister(props) {
               </div>
             </div>
             {courses.courseList &&
-              courses.courseList.list
-                .filter((elem) => elem.name.includes(search))
-                .filter(
-                  (elem, index) =>
-                    // Navigate pages
-                    index < resultsPerPage * page &&
-                    index >= resultsPerPage * (page - 1)
-                )
+              courses.courseList
+                .filter((elem) => elem.CourseName.includes(search) || elem.CourseName.toLowerCase().includes(search))
                 .map((course) => (
                   <CourseCard
                     modalIsOpen={modalIsOpen}
@@ -137,7 +133,7 @@ function CourseRegister(props) {
                 incrementPage={incrementPage}
                 navigatePage={navigatePage}
                 page={page}
-                list={courses && courses.courseList && courses.courseList.list}
+                list={courses && courses.courseList && courses.courseList}
                 resultsPerPage={resultsPerPage}
                 handleChange={handleChange}
               />

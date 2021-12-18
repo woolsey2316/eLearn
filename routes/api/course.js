@@ -54,6 +54,27 @@ router.get('/:id', (req, res) => {
       .catch(err => res.status(404).json({ nocoursefound: 'No Course found' }));
 });
 
+// @route GET api/courses/:id
+// @description Get all courses a user is subscribed to
+// @access Public
+router.get('/user/:user_id', (req, res) => {
+    Course.find({subscribers: req.params.user_id})
+      .then(courseList => {
+        //console.log(courseList)
+        const courseIds = Object.keys(courseList).map(key => {
+            console.log("here they are", courseList[key])
+            return {
+                _id: courseList[key]._id,
+                courseName: courseList[key].CourseName,
+                category: courseList[key].category,
+                instructor: courseList[key].instructor
+            }
+        })
+        return res.json(courseIds)
+       })
+      .catch(err => res.status(404).json({ nocoursefound: 'No Course found' }));
+});
+
 // @route GET api/courses
 // @description add/save course
 // @access Public

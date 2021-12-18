@@ -9,96 +9,132 @@ import { useDispatch, useSelector } from 'react-redux'
 import { examActions } from '../../actions'
 import { courseActions } from '../../actions'
 
+import { ExamResultCard } from './ExamResultCard'
+
+function weightedAverage(examResults) {
+  if (examResults) {
+    return Object.values(examResults).reduce(
+      (acc, elem) => acc + elem?.score/elem?.total*elem?.weight,0
+      ).toFixed(2)
+  }
+  else {
+    return ""
+  }
+}
+
 function ExamResults(props) {
-  const [course, setCourse] = useState('Exam #1')
   const dispatch = useDispatch()
   const courses = useSelector((state) => state.courses.userCourseList)
-  const exams = useSelector((state) => state.exams.userExamList)
+  const userExamResults = useSelector((state) => state.exams.examList.examResults)
+  const exams = useSelector((state) => state.exams.examResults)
   const page = 0
   const size = 20
-
-  const fetchExams = useCallback(() => {
-    dispatch(examActions.getAllExams(1))
-  },[dispatch])
-
-  useEffect(() => {
-    fetchExams()
-    return console.log('exams: ' + exams)
-  }, [exams, fetchExams])
-
+  
   const fetchCourses = useCallback(() => {
     dispatch(courseActions.getAllUserCourses(page, size))
   }, [dispatch, page, size])
 
   useEffect(() => {
     fetchCourses()
-    return console.log('course: ' + courses)
-  }, [courses, fetchCourses])
+  }, [fetchCourses])
+  
+  const [course, setCourse] = useState("Select Course")
+
+  const courseList = courses?.courseList
+
+  console.log("examResults", userExamResults)
+
+  const instructor = courseList?.filter(elem => elem.courseName === course)[0]?.instructor
+  const category = courseList?.filter(elem => elem.courseName === course)[0]?.category
+  const courseId = courseList?.filter(elem => elem.courseName === course)[0]?._id
+
+  const course_ = courses?.courseList[0].courseName
+
+  const fetchExams = useCallback(() => {
+    dispatch(examActions.getUserExamResultsByCourse(courseId))
+  },[courseId, dispatch])
+  
+  useEffect(() => {
+    fetchExams()
+  }, [fetchExams])
+
+  const fetchExamResults = useCallback(() => {
+    dispatch(examActions.getAllExamResults(courseId))
+  },[courseId, dispatch])
+  
+  useEffect(() => {
+    fetchExamResults()
+  }, [fetchExamResults])
 
   return (
-    <body class="app">
+    <body className="app">
       <MobileMenu />
       <div className="flex px-2 sm:px-10">
         {props.sideMenu}
-        <div class="content">
+        <div className="content">
           <TopBar open={props.openModal} />
-          <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-            <h2 class="text-lg font-medium mr-auto">Grades</h2>
+          <div className="intro-y flex flex-col sm:flex-row items-center mt-8">
+            <h2 className="text-lg font-medium mr-auto">Grades</h2>
           </div>
-          <div class="intro-y box overflow-hidden mt-5">
-            <div class="flex flex-col lg:flex-row pt-10 px-5 sm:px-20 sm:pt-20 lg:pb-20 text-center sm:text-left">
-              <CourseDropdown course={course} setCourse={setCourse} />
+          <div className="intro-y box overflow-hidden mt-5">
+            <div className="flex flex-col lg:flex-row pt-10 px-5 sm:px-20 sm:pt-20 lg:pb-20 text-center sm:text-left">
+              <CourseDropdown courseList={courseList} course={course} setCourse={setCourse} />
             </div>
-            <div class="flex flex-col lg:flex-row border-b px-5 sm:px-20 pt-10 pb-10 sm:pb-20 text-center sm:text-left">
+            <div className="flex flex-col lg:flex-row border-b px-5 sm:px-20 pt-10 pb-10 sm:pb-20 text-center sm:text-left">
               <div>
-                <div class="text-base text-gray-600">Course Details</div>
-                <div class="text-lg font-medium text-theme-1 mt-2">
-                  Instructor: Arnold Schwarzenegger
+                <div className="text-base text-gray-600">Course Details</div>
+                <div className="text-lg font-medium text-theme-1 mt-2">
+                  Instructor: {instructor}
                 </div>
-                <div class="mt-1">arnodlschwarzenegger@gmail.com</div>
-                <div class="mt-1">260 W. Storm Street New York, NY 10025.</div>
+                {instructor && <div className="mt-1">{instructor}@gmail.com</div>}
+                <div className="mt-1">260 W. Storm Street New York, NY 10025.</div>
               </div>
             </div>
-            <div class="px-5 sm:px-16 py-10 sm:py-20">
-              <div class="overflow-x-auto">
-                <table class="table">
+            <div className="px-5 sm:px-16 py-10 sm:py-20">
+              <div className="overflow-x-auto">
+                <table className="table">
                   <thead>
                     <tr>
-                      <th class="border-b-2 whitespace-no-wrap">DESCRIPTION</th>
-                      <th class="border-b-2 text-right whitespace-no-wrap">
+                      <th className="border-b-2 whitespace-no-wrap">DESCRIPTION</th>
+                      <th className="border-b-2 text-right whitespace-no-wrap">
                         Rank
                       </th>
-                      <th class="border-b-2 text-right whitespace-no-wrap">
+                      <th className="border-b-2 text-right whitespace-no-wrap">
                         Score
                       </th>
-                      <th class="border-b-2 text-right whitespace-no-wrap">
+                      <th className="border-b-2 text-right whitespace-no-wrap">
                         Score (%)
                       </th>
-                      <th class="border-b-2 text-right whitespace-no-wrap">
-                        Average
+                      <th className="border-b-2 text-right whitespace-no-wrap">
+                        Average (%)
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {
-                      //exams.map(exam => <ExamResultCard exam={exam}/>)
-                    }
+                    {userExamResults?.map(elem =>{
+                    return ( 
+                      <ExamResultCard
+                        examInfo={elem}
+                        average={exams?.average[elem.exam_name]}
+                      />
+                    )
+                    })}
                   </tbody>
                 </table>
               </div>
             </div>
-            <div class="px-5 sm:px-20 pb-10 sm:pb-20 flex flex-col-reverse sm:flex-row">
-              <div class="text-center sm:text-left mt-10 sm:mt-0">
-                <div class="text-lg text-theme-1 font-medium mt-2">
+            <div className="px-5 sm:px-20 pb-10 sm:pb-20 flex flex-col-reverse sm:flex-row">
+              <div className="text-center sm:text-left mt-10 sm:mt-0">
+                <div className="text-lg text-theme-1 font-medium mt-2">
                   David Woolsey
                 </div>
-                <div class="mt-1">Course Name : {course.name}</div>
-                <div class="mt-1">Course Code : LFT133243</div>
+                <div className="mt-1">Course Name : {course}</div>
+                <div className="mt-1">Category : {category}</div>
               </div>
-              <div class="text-center sm:text-right sm:ml-auto">
-                <div class="text-base text-gray-600">Weighted Average</div>
-                <div class="text-xl text-theme-1 font-medium mt-2">78%</div>
-                <div class="mt-1 tetx-xs">Class Rank: 7</div>
+              <div className="text-center sm:text-right sm:ml-auto">
+                <div className="text-base text-gray-600">Weighted Average</div>
+                <div className="text-xl text-theme-1 font-medium mt-2">{weightedAverage(userExamResults)}</div>
+                <div className="mt-1 tetx-xs">Class Rank: 7</div>
               </div>
             </div>
           </div>
