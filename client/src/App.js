@@ -83,7 +83,7 @@ function App() {
         <PrivateRoute exact path="/student/grades">
           <ExamResults openModal={openModal} sideMenu={sideMenu} />
         </PrivateRoute>
-        <PrivateRoute exact path="/student/exams">
+        <PrivateRoute exact path="/student/exams/:exam_id">
           <ExamPage />
         </PrivateRoute>
         <PrivateRoute exact path="/student/exam_list">

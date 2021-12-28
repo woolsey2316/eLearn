@@ -1,0 +1,19 @@
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+// Create Schema
+const examSchema = new Schema({
+  examName: {
+    type: String,
+    required: true
+  },
+  quizQuestions: {
+    type: Array(Array(Object))
+  },
+  examName: {
+    type: String
+  },
+  instructor: {
+    type: String
+  },
+});
+module.exports = exam = mongoose.model("exam", examSchema);

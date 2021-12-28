@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { quizQuestions, QuizData } from './quizQuestions'
 import Quiz from './Quiz'
 import SectionCompleteModal from './SectionCompleteModal'
@@ -7,12 +7,33 @@ import { RightPanel } from './RightPanel'
 import { calculateTimeLeft } from './CountdownTimer'
 import * as Icon from 'react-feather'
 
+import { useDispatch, useSelector } from 'react-redux'
+
+import { examActions } from '../../actions'
+
+import { useParams } from "react-router";
+
 function ExamPage() {
-  const [questionId, setQuestionId] = useState(0)
-  const [question, setQuestion] = useState(quizQuestions[0][0].question)
-  const [answerOptions, setAnswerOptions] = useState(
-    quizQuestions[0][0].possibleAnswers
+  const dispatch = useDispatch()
+  const [isBusy, setBusy] = useState(true)
+  const { exam_id } = useParams();
+
+  const fetchExamQuestions = useCallback(() => {
+    dispatch(examActions.getUserExamQuestions(exam_id))
+    setBusy(false)
+  },[dispatch])
+  
+  useEffect(() => {
+    fetchExamQuestions()},
+    [fetchExamQuestions]
   )
+  
+  const quizQuestions = useSelector((state) => state.exams.examQuestions.quizQuestions)
+
+  console.log("quizQuestions", quizQuestions)
+    
+  const [questionId, setQuestionId] = useState(0)
+  const [question, setQuestion] = useState()
   const [selectedOption, setSelectedOption] = useState('')
   const [answerList, setAnswerList] = useState(
     Array(quizQuestions.length)
@@ -58,7 +79,6 @@ function ExamPage() {
       setTimeout(() => {
         setQuestionId(qId)
         setQuestion(quizQuestions[section][qId].question)
-        setAnswerOptions(quizQuestions[section][qId].possibleAnswers)
         findSavedAnswers(qId)
       }, 300)
     } else {
@@ -67,7 +87,6 @@ function ExamPage() {
       setTimeout(() => {
         setQuestionId(qId)
         setQuestion(quizQuestions[section][qId].question)
-        setAnswerOptions(quizQuestions[section][qId].possibleAnswers)
         findSavedAnswers(qId)
       }, 300)
     }
@@ -103,7 +122,6 @@ function ExamPage() {
   function loadQuestion(qId) {
     setQuestionId(qId)
     setQuestion(quizQuestions[section][qId].question)
-    setAnswerOptions(quizQuestions[section][qId].possibleAnswers)
     findSavedAnswers(qId)
   }
   
@@ -162,7 +180,7 @@ function ExamPage() {
           return (
             <Quiz
             selectedOption={selectedOption}
-            answerOptions={answerOptions}
+            answerOptions={quizQuestions[section][questionId].possibleAnswers}
             questionId={questionId}
             question={question}
             questionTotal={answerList[section].length}

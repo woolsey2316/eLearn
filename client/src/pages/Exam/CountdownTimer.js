@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Tooltip from '@reach/tooltip'
 
 const calculateTimeLeft = () => {
-  const difference = +new Date(1593869097000) - +new Date()
+  const difference = +new Date(1653869097000) - +new Date()
   let timeLeft = {}
 
   if (difference > 0) {

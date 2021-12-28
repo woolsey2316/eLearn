@@ -18,6 +18,9 @@ const courseSchema = new Schema({
   },
   instructor: {
     type: String
+  },
+  exams: {
+    type: Array(Object)
   }
 });
 module.exports = course = mongoose.model("course", courseSchema);

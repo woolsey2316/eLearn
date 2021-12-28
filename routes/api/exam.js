@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const ExamResult = require("../../models/ExamResult");
+const Exam = require("../../models/Exam");
 const Course = require("../../models/Course");
 
 // @route GET /users/:id/courses/:courseId/exams
@@ -35,5 +35,13 @@ router.get("/courses/:course_id", (req, res) => {
         return res.status(200).json({ exams: grouped, average: average })
     })
 });
+
+router.get("/:exam_id/questions", async (req, res) => {
+    Exam.findById(req.params.exam_id)
+        .then(examQuestions => {
+            return res.json(examQuestions)
+       })
+      .catch(err => res.status(404).json({ nocoursefound: 'No Course found' }));
+})
 
 module.exports = router;

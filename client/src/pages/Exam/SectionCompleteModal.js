@@ -19,7 +19,7 @@ function SectionCompleteModal(props) {
           <div className="text-3xl mt-5">Good job!</div>
           <div className="text-gray-600 mt-2">
             You Completed a section! <br />
-            make sure all other sections are completed
+            Make sure all other sections are completed
           </div>
         </div>
         <div className="px-5 pb-8 text-center">

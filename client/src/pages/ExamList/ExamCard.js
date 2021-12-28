@@ -37,7 +37,7 @@ function ExamCard({ exam }) {
     }
   }
   return (
-    <div className="inbox__item inbox__item--active mb-4 zoom-in">
+    <div className="inbox__item inbox__item--active mb-4">
       <div className="intro-x flex items-center rounded bg-gray-200 cursor-default">
         <DateIcon due={exam.due} />
         <div className=" inbox__item--active inline-block sm:block text-gray-700">

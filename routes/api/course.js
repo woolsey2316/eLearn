@@ -45,6 +45,17 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.get("/exams/:user_id", async (req, res) => {
+    Course.find({subscribers: req.params.user_id})
+        .then(courseList => {
+            const examList = courseList.reduce(
+                (previousValue, currentValue) => [...previousValue, ...currentValue.exams],[]
+            )
+            return res.json(examList)
+       })
+      .catch(err => res.status(404).json({ nocoursefound: 'No Course found' }));
+})
+
 // @route GET api/courses/:id
 // @description Get single course by id
 // @access Public
@@ -62,7 +73,6 @@ router.get('/user/:user_id', (req, res) => {
       .then(courseList => {
         //console.log(courseList)
         const courseIds = Object.keys(courseList).map(key => {
-            console.log("here they are", courseList[key])
             return {
                 _id: courseList[key]._id,
                 courseName: courseList[key].CourseName,

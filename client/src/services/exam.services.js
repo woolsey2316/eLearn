@@ -6,6 +6,7 @@ import { API_URL } from './index';
   are performed here, as well as login/register.
 */
 export const examService = {
+  getAllExams,
   getAllUserExams,
   getExamResultsByCourse,
   getExamResult,
@@ -14,7 +15,7 @@ export const examService = {
 }
 
 /* 
-  fetches all exams a User has registered to
+  fetches all exams a User has registered to in a particular course
   */
 async function getAllUserExams(courseId) {
   const requestOptions = {
@@ -28,6 +29,22 @@ async function getAllUserExams(courseId) {
   )
   return handleResponse(response)
 }
+
+/* 
+  fetches all exams a User has registered to
+  */
+  async function getAllExams() {
+    const requestOptions = {
+      method: 'GET',
+      headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    }
+    const userId = getUserId()
+    const response = await fetch(
+      `${API_URL}/courses/exams/${userId}`,
+      requestOptions
+    )
+    return handleResponse(response)
+  }
 
 /* 
   fetches all exam results belonging to a course
@@ -69,9 +86,8 @@ async function getExamQuestions(examId) {
     method: 'GET',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
   }
-  const userId = getUserId()
   const response = await fetch(
-    `${API_URL}/users/${userId}/exams/${examId}/questions`,
+    `${API_URL}/exams/${examId}/questions`,
     requestOptions
   )
   return handleResponse(response)

@@ -1,32 +1,46 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { MobileMenu } from '../../components'
 import { TopBar } from '../../components'
 import { ExamFilterPanel } from '../../components/Exam'
-
-import { examData } from './ExamData'
-
+// import { examData } from './ExamData'
 import { ExamCard } from './ExamCard'
-
 import { MonthContainer } from './MonthContainer'
+
+import { examActions } from '../../actions'
+
+import { useDispatch, useSelector } from 'react-redux'
+
+const monthNames = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+]
+
 /* 
   A web page that shows all exams grouped by month, Users go here to select an exam
   and take it.
 */
 function ExamList(props) {
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ]
+  const dispatch = useDispatch()
+  const examData = useSelector((state) => state.exams.examList)
+
+  const exam_id = 2
+  const fetchExams = useCallback(() => {
+    dispatch(examActions.getExamQuestions(exam_id))
+  },[dispatch])
+
+  useEffect(() => {
+    fetchExams()
+  }, [fetchExams])
 
   examData.sort((a, b) => Date.parse(a.due) - Date.parse(b.due))
   const months = new Set(
