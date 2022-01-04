@@ -104,6 +104,8 @@ async function register(user) {
     body: JSON.stringify(user),
   }
 
+  console.log(JSON.stringify(user))
+
   const response = await fetch(
     `${API_URL}/users/register`,
     requestOptions

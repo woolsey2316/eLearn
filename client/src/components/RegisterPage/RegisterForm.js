@@ -19,8 +19,8 @@ const RegisterForm = () => {
     email: '',
     mobile: '',
     name: '',
-    confirmPassword: '',
     password: '',
+    password2: '',
     pincode: '',
     school: '',
     state: '',
@@ -98,7 +98,7 @@ const RegisterForm = () => {
 
     setSubmitted(true)
     if (allFieldsExist()) {
-      userActions.registerUser(user)()
+      dispatch(userActions.registerUser(user))
     }
     event.preventDefault();
   }
@@ -278,14 +278,14 @@ const RegisterForm = () => {
             </div>
             <input
               type="password"
-              name="confirmPassword"
+              name="password2"
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
-              style={{ borderColor: user.confirmPassword || !submitted ? '' : '#D32929' }}
+              style={{ borderColor: user.password2 || !submitted ? '' : '#D32929' }}
               placeholder="Confirm password"
-              value={user.confirmPassword}
+              value={user.password2}
               onChange={handleChange}
             />
-            {submitted && !user.confirmPassword && (
+            {submitted && !user.password2 && (
               <div className="text-theme-6 mt-2">Password is required</div>
             )}
             <label className={`text-${passwordStrengthColour()} mt-2`}>

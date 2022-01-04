@@ -33,9 +33,8 @@ function ExamList(props) {
   const dispatch = useDispatch()
   const examData = useSelector((state) => state.exams.examList)
 
-  const exam_id = 2
   const fetchExams = useCallback(() => {
-    dispatch(examActions.getExamQuestions(exam_id))
+    dispatch(examActions.getUserExams())
   },[dispatch])
 
   useEffect(() => {
@@ -74,9 +73,6 @@ function ExamList(props) {
           <TopBar open={props.openModal} />
           <h2 className="intro-y text-lg font-medium mt-10"> Exams </h2>
           <div className="grid grid-cols-12 gap-6 mt-8">
-            <div className="col-span-12 lg:col-span-3 xxl:col-span-2">
-              <ExamFilterPanel />
-            </div>
             <div className="col-span-12 lg:col-span-9 xxl:col-span-10">
               <div className="intro-y inbox">{ExamList}</div>
             </div>

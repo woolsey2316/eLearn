@@ -16,7 +16,7 @@ async function getUserDashboard() {
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
   }
   const response = await fetch(
-    `${API_URL}/users/${userId}/dashboard`,
+    `${API_URL}/dashboard/${userId}`,
     requestOptions
   )
   const dashboard = await handleResponse(response)

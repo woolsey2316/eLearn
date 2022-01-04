@@ -11,10 +11,10 @@ function LogoutModal(props) {
       contentLabel="Example Modal"
       style={{
         overlay: { zIndex: 9999 },
-        content: { bottom: '25%', top: '25%' },
+        content: { bottom: '25%', top: '25%', inset: '25% 25%' }
       }}
     >
-      <div className="modal__content">
+      <div className="modal__content" >
         <div className="text-center">
           <Icon.LogOut className="sm:w-10 sm:h-10 md:w-12 md:h-12 w-10 h-10 text-theme-6 mx-auto mt-3" />
           <div className="md:text-xl text-lg mt-5 text-gray-700">

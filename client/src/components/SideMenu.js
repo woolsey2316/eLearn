@@ -22,7 +22,6 @@ function SideMenu(props) {
         <SideMenuItem name="Dashboard"  path="/student/dashboard">
           <Icon.BarChart className="side-menu__icon" />
         </SideMenuItem>
-          
         <SideMenuGroup name="Profile"
           path="/student/profile"
           subMenu={profileSubMenu}
@@ -30,33 +29,20 @@ function SideMenu(props) {
           setOpen={setOpen}>
           <Icon.User className="side-menu__icon mt-2" />
         </SideMenuGroup>
-          
         <SideMenuGroup
           name="Courses"
           path="/student/courses"
           subMenu={courseSubMenu}
           open={open}
           setOpen={setOpen}>
-          {/* <FontAwesomeIcon
-            className="mt-2"
-            icon={faUniversity}
-            style={{ fontSize: '1.55em', marginRight: '3px' }}
-            /> */}
           <img className="w-10 h-10" src="/assets/icons/university-solid.svg" alt="course icon"/>
         </SideMenuGroup>
-          
         <SideMenuItem name="Grades"  path="/student/grades">
           <Icon.Activity className="side-menu__icon" />
         </SideMenuItem>
-          
         <SideMenuItem name="Exam List"  path="/student/exam_list">
           <Icon.Layers className="side-menu__icon" />
         </SideMenuItem>
-          
-        <SideMenuItem name="Exams"  path="/student/exams">
-          <Icon.Edit className="side-menu__icon" />
-        </SideMenuItem>
-          
         <SideMenuItem name="Logout"  path={props.open}>
           <Icon.LogOut className="side-menu__icon" />
         </SideMenuItem>

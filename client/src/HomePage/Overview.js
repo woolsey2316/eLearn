@@ -14,10 +14,11 @@ import { courseActions } from '../actions'
 function Overview() {
   const dispatch = useDispatch()
   const courses = useSelector((state) => state.courses.userCourseList)
-  console.log("course slice", courses)
   const dashboard = useSelector((state) => state.dashboard)
   const page = 0
   const size = 20
+
+  console.log("dashboard",dashboard)
 
   const fetchCourses = useCallback(() => {
     dispatch(courseActions.getAllUserCourses())
@@ -35,14 +36,6 @@ function Overview() {
     fetchDashboard()
   }, [fetchDashboard])
 
-  function total() {
-    return (
-      parseInt(dashboard.dashboard.assignment, 10) +
-      parseInt(dashboard.dashboard.exam, 10) +
-      parseInt(dashboard.dashboard.multiChoiceQuestion, 10)
-    )
-  }
-
   return (
     <div className="col-span-12 mt-8">
       <div className="intro-y flex items-center h-10">
@@ -59,12 +52,12 @@ function Overview() {
                     className="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                     title="Total tests"
                   >
-                    {dashboard && dashboard.dashboard && total()}
+                    {dashboard && dashboard?.dashboard?.total + " total exams"}
                   </div>
                 </div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard?.dashboard?.total_completion_rate}
+                {dashboard?.dashboard?.total != 0 ? dashboard?.dashboard?.completed / dashboard?.dashboard?.total : 0}
               </div>
               <div className="text-base text-gray-600 mt-1">
                 Total completion rate
@@ -80,7 +73,7 @@ function Overview() {
                 <div className="ml-auto"></div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard && dashboard.dashboard && dashboard?.dashboard?.active_tests}
+                {dashboard && dashboard.dashboard && dashboard?.dashboard?.active}
               </div>
               <div className="text-base text-gray-600 mt-1">
                 Active Tests
@@ -96,7 +89,7 @@ function Overview() {
                 <div className="ml-auto"></div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard && dashboard.dashboard && dashboard?.dashboard?.completed_tests}
+                {dashboard && dashboard.dashboard && dashboard?.dashboard?.completed}
               </div>
               <div className="text-base text-gray-600 mt-1">
                 Completed Tests
@@ -111,7 +104,7 @@ function Overview() {
                 <Grid className="report-box__icon text-theme-11" />
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {courses?.courseList?.courses?.courses?.length}
+                {courses?.courseList.length}
               </div>
               <div className="text-base text-gray-600 mt-1">
                 Total Enrolled Courses

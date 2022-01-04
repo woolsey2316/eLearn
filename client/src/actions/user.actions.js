@@ -18,6 +18,7 @@ function registerUser(user) {
         dispatch(getCurrentUserInfo())
 
         history.push('/login')
+        window.location.reload()
       },
       (error) => {
         dispatch(failure(error.toString()))

@@ -15,5 +15,11 @@ const examSchema = new Schema({
   instructor: {
     type: String
   },
+  due: {
+    type: Date
+  },
+  courseId: {
+    type: mongoose.ObjectId
+  }
 });
 module.exports = exam = mongoose.model("exam", examSchema);

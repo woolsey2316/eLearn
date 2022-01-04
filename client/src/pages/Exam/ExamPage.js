@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { quizQuestions, QuizData } from './quizQuestions'
+import { QuizData } from './quizQuestions'
 import Quiz from './Quiz'
 import SectionCompleteModal from './SectionCompleteModal'
 import { CourseSection } from './CourseSection'
@@ -15,12 +15,10 @@ import { useParams } from "react-router";
 
 function ExamPage() {
   const dispatch = useDispatch()
-  const [isBusy, setBusy] = useState(true)
   const { exam_id } = useParams();
 
   const fetchExamQuestions = useCallback(() => {
     dispatch(examActions.getUserExamQuestions(exam_id))
-    setBusy(false)
   },[dispatch])
   
   useEffect(() => {
@@ -33,7 +31,6 @@ function ExamPage() {
   console.log("quizQuestions", quizQuestions)
     
   const [questionId, setQuestionId] = useState(0)
-  const [question, setQuestion] = useState()
   const [selectedOption, setSelectedOption] = useState('')
   const [answerList, setAnswerList] = useState(
     Array(quizQuestions.length)
@@ -78,7 +75,6 @@ function ExamPage() {
       qId = MarkedQuestionIds[section][0]
       setTimeout(() => {
         setQuestionId(qId)
-        setQuestion(quizQuestions[section][qId].question)
         findSavedAnswers(qId)
       }, 300)
     } else {
@@ -86,7 +82,6 @@ function ExamPage() {
       qId = 0
       setTimeout(() => {
         setQuestionId(qId)
-        setQuestion(quizQuestions[section][qId].question)
         findSavedAnswers(qId)
       }, 300)
     }
@@ -121,7 +116,6 @@ function ExamPage() {
   
   function loadQuestion(qId) {
     setQuestionId(qId)
-    setQuestion(quizQuestions[section][qId].question)
     findSavedAnswers(qId)
   }
   
@@ -182,7 +176,7 @@ function ExamPage() {
             selectedOption={selectedOption}
             answerOptions={quizQuestions[section][questionId].possibleAnswers}
             questionId={questionId}
-            question={question}
+            question={quizQuestions[section][questionId].question}
             questionTotal={answerList[section].length}
             getUserAnswer={handleChange}
             />

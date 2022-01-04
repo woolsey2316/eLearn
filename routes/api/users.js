@@ -25,13 +25,18 @@ router.post("/register", (req, res) => {
         return res.status(400).json({ email: "Email already exists" });
       } else {
         const newUser = new User({
-          name: req.body.name,
           email: req.body.email,
           password: req.body.password,
-          courseList: [],
-          results: []
+          name: req.body.name,
+          gender: req.body.gender,
+          area: req.body.area,
+          state: req.body.state,
+          className: req.body.className,
+          password2: req.body.password2,
+          mobile: req.body.mobile,
+          pincode: req.body.pincode,
         });
-  // Hash password before saving in database
+        // Hash password before saving in database
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) throw err;

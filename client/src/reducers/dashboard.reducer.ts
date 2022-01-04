@@ -5,9 +5,9 @@ import { AnyAction } from 'redux'
 */
 interface DashboardState {
   total: {  
-    multiChoiceQuestion: number,
-    assignment: number,
-    exam: number,
+    totalCompletionRate: number,
+    activeTests: number,
+    completedTests: number,
   },
   month: {
     multiChoiceQuestion: number,
@@ -17,9 +17,9 @@ interface DashboardState {
 };
 const initialState: Partial<DashboardState> = {
   total: {
-    multiChoiceQuestion: 0,
-    assignment: 0,
-    exam: 0
+    totalCompletionRate: 0,
+    activeTests: 0,
+    completedTests: 0
   },
   month: {
     multiChoiceQuestion: 0,
@@ -31,7 +31,7 @@ const initialState: Partial<DashboardState> = {
 export function dashboard(state = initialState, action: AnyAction) {
   switch (action.type) {
     case dashboardConstants.DASHBOARD_INFO_SUCCESS:
-      return { ...state, dashboard: action.dashboard.dashboard || initialState }
+      return { ...state, dashboard: action.dashboard || initialState }
     default:
       return state
   }

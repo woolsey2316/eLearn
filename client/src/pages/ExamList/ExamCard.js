@@ -75,7 +75,7 @@ function ExamCard({ exam }) {
         </div>
         <div className="flex ml-auto mr-5">
           <a
-            href="/student/exams"
+            href={`/student/exams/61c1652e14fdaabab1842464`}
             className={"button w-24 inline-block my-auto mr-1 bg-theme-1 text-white" + (determineUrgency() === 4 ? " invisible" : "") }
           >
             Take Exam
