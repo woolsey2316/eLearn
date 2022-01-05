@@ -42,18 +42,17 @@ function CourseRegister(props) {
   }, [fetchCourses])
 
   // Reasonable page values: 0 -> max page
-  const navigatePage = useCallback((page_) => {
-    let max = Math.ceil(
-      courses &&
-        courses.courseList &&
-        courses.courseList?.length / resultsPerPage
-    )
-    if (page_ > 0 && page_ <= max) return setPage(page_)
-    else return setPage(1)
+  const navigatePage = useCallback((page) => {
+    if (page > 0) {
+      setPage(page)
+    } else {
+      setPage(1)
+    }
   }, [courses, resultsPerPage ])
   
   useEffect(() => {
     navigatePage(page)
+    
   }, [navigatePage, page, resultsPerPage])
 
   function handleChange(event) {
