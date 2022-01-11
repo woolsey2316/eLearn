@@ -38,17 +38,17 @@ const UserSchema = new Schema({
     type: Number,
     required: true
   },
+  school: {
+    type:String,
+    required: true
+  },
+  address: {
+    type:String,
+    required: true
+  },
   date: {
     type: Date,
     default: Date.now
-  },
-  courses: {
-    type: Array,
-    default: []
-  },
-  exams: {
-    type: Array,
-    default: []
   }
 });
 module.exports = User = mongoose.model("users", UserSchema);

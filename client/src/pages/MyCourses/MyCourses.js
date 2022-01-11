@@ -54,7 +54,7 @@ function MyCourses(props) {
     var max = Math.ceil(
       courses &&
         courses.courseList &&
-        courses.courseList.list.length / resultsPerPage
+        courses.courseList.list?.length / resultsPerPage
     )
     if (page_ > 0 && page_ <= max) return setPage(page_)
     else return setPage(1)
@@ -67,7 +67,6 @@ function MyCourses(props) {
   function handleChange(event) {
     setResultsPerPage(parseInt(event.target.value, 10))
   }
-
 
   function registerCourse() {
     dispatch(courseActions.register(chosenCourse))
@@ -114,9 +113,9 @@ function MyCourses(props) {
               </div>
             </div>
             {courses.courseList &&
-              courses.courseList.list
-                .filter((elem) => elem.name.includes(search))
-                .filter(
+              courses?.courseList?.list
+                ?.filter((elem) => elem.name.includes(search))
+                ?.filter(
                   (elem, index) =>
                     // Navigate pages
                     index < resultsPerPage * page &&

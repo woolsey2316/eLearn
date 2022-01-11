@@ -57,7 +57,7 @@ function Overview() {
                 </div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard?.dashboard?.total != 0 ? dashboard?.dashboard?.completed / dashboard?.dashboard?.total : 0}
+                {dashboard?.dashboard?.total !== 0 ? dashboard?.dashboard?.completed / dashboard?.dashboard?.total : 0}
               </div>
               <div className="text-base text-gray-600 mt-1">
                 Total completion rate

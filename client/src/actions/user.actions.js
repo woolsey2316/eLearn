@@ -80,7 +80,7 @@ function getCurrentUserInfo() {
     const user = localStorage.getItem("EMAIL")
     dispatch(request(user))
 
-    userService.getCurrentUserInfo().then(
+    userService.getUserDetails().then(
       (userInfo) => {
         dispatch(success())
         dispatch(alertActions.success('Successfully fetched user info'))
@@ -135,7 +135,7 @@ function resetPassword(user) {
     dispatch(request(user))
 
     userService.changePassword(user).then(
-      (user) => {
+      () => {
         dispatch(success())
         dispatch(alertActions.success('password change successful'))
       },
@@ -185,6 +185,32 @@ function setUserDetails(userDTO) {
   }
 }
 
+function getUserDetails() {
+  return (dispatch) => {
+    dispatch(request())
+
+    userService.getUserDetails().then(
+      (user) => {
+        dispatch(success(user))
+      },
+      (error) => {
+        dispatch(failure(error.toString()))
+        dispatch(alertActions.error(error.toString()))
+      }
+    )
+  }
+
+  function request(user) {
+    return { type: userConstants.USER_DETAILS_REQUEST, user }
+  }
+  function success(user) {
+    return { type: userConstants.USER_DETAILS_SUCCESS, user }
+  }
+  function failure(error) {
+    return { type: userConstants.USER_DETAILS_FAILURE, error }
+  }
+}
+
 function _delete(id) {
   return (dispatch) => {
     dispatch(request(id))
@@ -213,6 +239,7 @@ export const userActions = {
   resetPassword,
   verifyEmail,
   setUserDetails,
+  getUserDetails,
   //delete is reserved
   delete: _delete,
 }

@@ -30,6 +30,8 @@ export function users(state = INITIAL_STATE, action: AnyAction) {
       };
     case userConstants.VERIFICATION_SUCCESS:
       return { ...state, emailVerified: action.verify };
+    case userConstants.USER_DETAILS_SUCCESS:
+      return { ...state, user: action.user}
     default:
       return state;
   }

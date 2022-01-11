@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
         let query = Course.find();
     
         const page = parseInt(req.query.page) || 1;
-        const pageSize = parseInt(req.query.limit) || 4;
+        const pageSize = parseInt(req.query.size) || 4;
         const skip = (page - 1) * pageSize;
         const total = await Course.countDocuments();
     

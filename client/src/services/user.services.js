@@ -10,11 +10,11 @@ export const userService = {
   logout,
   register,
   //getById,
-  getCurrentUserInfo,
+  getUserDetails,
+  setUserDetails,
   requestPasswordChange,
   changePassword,
   verifyEmail,
-  update,
   delete: _delete,
 }
 
@@ -23,13 +23,14 @@ export const userService = {
 fetches all information related to the current logged in user
 address, roles, profile image etc
 */
-async function getCurrentUserInfo() {
+async function getUserDetails() {
   const requestOptions = {
     method: 'GET',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
   }
+  const userId = getUserId()
   const response = await fetch(
-    `${API_URL}/user/profile`,
+    `${API_URL}/users/${userId}/profile`,
     requestOptions
     )
     return handleResponse(response)
@@ -131,27 +132,27 @@ async function requestPasswordChange(user) {
 
 async function changePassword(user) {
   const requestOptions = {
-    method: 'POST',
+    method: 'PUT',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
     body: JSON.stringify(user),
   }
-
+  const userId = getUserId()
   const response = await fetch(
-    `${API_URL}/oauth2/password/update`,
+    `${API_URL}/users/${userId}/password`,
     requestOptions
   )
   return handleResponse(response)
 }
 
-async function update(user) {
+async function setUserDetails(user) {
   const requestOptions = {
     method: 'PUT',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
     body: JSON.stringify(user),
   }
-
+  const userId = getUserId()
   const response = await fetch(
-    `/api/user/${user.id}`,
+    `${API_URL}/users/${userId}/profile`,
     requestOptions
   )
   return handleResponse(response)

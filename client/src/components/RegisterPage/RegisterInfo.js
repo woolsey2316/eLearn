@@ -7,7 +7,7 @@ function RegisterInfo() {
         <img
           alt="Midone Tailwind HTML Admin Template"
           className="w-6"
-          src='/images/logo.svg'
+          src='/logo.svg'
         />
         <span className="text-white text-lg ml-3">e<span className="font-medium">Learn</span></span>
       </a>

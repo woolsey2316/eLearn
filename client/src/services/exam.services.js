@@ -54,7 +54,7 @@ async function getAllUserExams(courseId) {
       method: 'GET',
       headers: { ...authHeader(), 'Content-Type': 'application/json' },
     }
-    console.log("babs", courseId)
+
     const response = await fetch(
       `${API_URL}/exams/courses/${courseId}`,
       requestOptions

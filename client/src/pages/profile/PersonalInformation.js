@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { history } from '../../helpers'
 
@@ -9,9 +9,23 @@ import { alertActions } from '../../actions'
 
 import { Alert } from '../../components'
 
-function PersonalInformation({ newUserDetails, setDetails }) {
+function PersonalInformation() {
   const alert = useSelector((state) => state.alert)
+  const user = useSelector((state) => state.users.user)
   const dispatch = useDispatch()
+
+  const [userDetails, setDetails] = useState({
+    address: '',
+    area: '',
+    className: '',
+    gender: '',
+    email: '',
+    mobile: '',
+    name: '',
+    pincode: '',
+    school: '',
+    state: '',
+  })
 
   useEffect(() => {
     history.listen((location, action) => {
@@ -19,22 +33,28 @@ function PersonalInformation({ newUserDetails, setDetails }) {
       dispatch(alertActions.clear())
     })
   }, [dispatch])
-  const user = useSelector((state) => state.users.useruserList)
-  const page = 0
-  const size = 20
+
+  useEffect(() => {
+    dispatch(userActions.getUserDetails())
+    
+  },[])
+
+  useEffect(() => {
+    setDetails(user)
+  },[user])
 
   function handleChange(event) {
     const { name, value } = event.target
-    setDetails((newUserDetails) => ({
-      ...newUserDetails,
+    setDetails(userDetails => ({
+      ...userDetails,
       [name]: value,
     }))
   }
 
   function handleSubmit(event) {
-    alert('new user details: ' + user)
     event.preventDefault()
-    dispatch(userActions.setUserDetails(page, size))
+    console.log("submitted user", userDetails)
+    dispatch(userActions.setUserDetails(userDetails))
   }
   return (
     <div className="intro-y box lg:mt-5">
@@ -52,7 +72,7 @@ function PersonalInformation({ newUserDetails, setDetails }) {
                   type="text"
                   className="input w-full border bg-gray-100 cursor-not-allowed mt-2"
                   placeholder="Email"
-                  value={newUserDetails.email}
+                  value={userDetails?.email}
                   name="email"
                   disabled
                 />
@@ -64,7 +84,7 @@ function PersonalInformation({ newUserDetails, setDetails }) {
                   type="text"
                   className="input w-full border mt-2"
                   placeholder="Full Name"
-                  value={newUserDetails.name}
+                  value={userDetails?.name}
                   name="name"
                   disabled
                 />
@@ -76,7 +96,7 @@ function PersonalInformation({ newUserDetails, setDetails }) {
                   type="text"
                   className="input w-full border mt-2"
                   placeholder="Class Name"
-                  value={newUserDetails.className}
+                  value={userDetails?.className}
                   name="className"
                 />
               </div>
@@ -87,19 +107,8 @@ function PersonalInformation({ newUserDetails, setDetails }) {
                   type="text"
                   className="input w-full border mt-2"
                   placeholder="School"
-                  value={newUserDetails.school}
+                  value={userDetails?.school}
                   name="school"
-                />
-              </div>
-              <div className="mt-3 flex flex-col">
-                <label>Pin code (6 digits)</label>
-                <input
-                  onChange={handleChange}
-                  type="password"
-                  className="input w-20 border mt-2"
-                  placeholder="6 digit Pin Code"
-                  value={newUserDetails.pincode}
-                  name="pincode"
                 />
               </div>
             </div>
@@ -111,7 +120,7 @@ function PersonalInformation({ newUserDetails, setDetails }) {
                   type="text"
                   className="input w-full border mt-2"
                   placeholder="Mobile Number"
-                  value={newUserDetails.mobile}
+                  value={userDetails?.mobile}
                   name="mobile"
                 />
               </div>
@@ -122,7 +131,7 @@ function PersonalInformation({ newUserDetails, setDetails }) {
                   type="text"
                   className="input w-full border mt-2"
                   placeholder="Address"
-                  value={newUserDetails.address}
+                  value={userDetails?.address}
                   name="address"
                 />
               </div>
@@ -133,19 +142,8 @@ function PersonalInformation({ newUserDetails, setDetails }) {
                   type="text"
                   className="input w-full border mt-2"
                   placeholder="Area"
-                  value={newUserDetails.area}
+                  value={userDetails?.area}
                   name="area"
-                />
-              </div>
-              <div className="mt-3">
-                <label>District</label>
-                <input
-                  onChange={handleChange}
-                  type="text"
-                  className="input w-full border mt-2"
-                  placeholder="District"
-                  value={newUserDetails.district}
-                  name="district"
                 />
               </div>
               <div className="mt-3 flex flex-col">
@@ -155,12 +153,12 @@ function PersonalInformation({ newUserDetails, setDetails }) {
                   type="text"
                   className="input w-32 border mt-2"
                   placeholder="State"
-                  value={newUserDetails.state}
+                  value={userDetails?.state}
                   name="state"
                 />
               </div>
             </div>
-            <div className="col-start-9">
+            <div className="col-start-7 col-span-3">
               <button
                 className="button w-40 rounded-full mr-1 mb-2 bg-theme-1 text-white"
                 type="submit"

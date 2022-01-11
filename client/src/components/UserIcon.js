@@ -9,7 +9,7 @@ function UserIcon(props) {
         onClick={() => setPressed(!isPressed)}
         className="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in"
       >
-        <img alt="Midone Tailwind HTML Admin Template" src='/images/profile-8.png' />
+        <img alt="Midone Tailwind HTML Admin Template" src='/images/profile.png' />
       </div>
       <div
         className={
@@ -19,11 +19,8 @@ function UserIcon(props) {
       >
         <div className="dropdown-box__content box bg-theme-38 text-white">
           <div className="p-4 border-b border-theme-40">
-            <div className="font-medium">
-              {localStorage.getItem('fullname')}
-            </div>
             <div className="text-xs text-theme-41">
-              {localStorage.getItem('email')}
+              {localStorage.getItem('EMAIL')}
             </div>
           </div>
           <div className="p-2">

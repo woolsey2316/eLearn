@@ -18,8 +18,7 @@ function ExamType() {
 
   useEffect(() => {
     fetchDashboard()
-    return console.log({ dashboard })
-  }, [])
+  }, [fetchDashboard])
 
   return (
     <div className="col-span-12 mt-8">

@@ -14,7 +14,7 @@ function ShowingFirstToLast({ resultsPerPage, page, courses }) {
     )
   }
   function total() {
-    return courses && courses.courseList && courses.courseList?.length
+    return resultsPerPage
   }
   return (
     <div className="text-gray-600">

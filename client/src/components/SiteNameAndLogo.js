@@ -6,7 +6,7 @@ const  SiteNameAndLogo = () => {
       <img
         alt="Midone Tailwind HTML Admin Template"
         className="w-6"
-        src='logo.svg'
+        src='/logo.svg'
       />
       <span className="hidden xl:block text-white text-lg ml-3">
         e<span className="font-medium">Learn</span>

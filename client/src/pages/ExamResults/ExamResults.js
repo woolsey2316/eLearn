@@ -48,8 +48,6 @@ function ExamResults(props) {
   const category = courseList?.filter(elem => elem.courseName === course)[0]?.category
   const courseId = courseList?.filter(elem => elem.courseName === course)[0]?._id
 
-  const course_ = courses?.courseList[0].courseName
-
   const fetchExams = useCallback(() => {
     dispatch(examActions.getUserExamResultsByCourse(courseId))
   },[courseId, dispatch])

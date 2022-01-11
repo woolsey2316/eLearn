@@ -4,8 +4,8 @@ import * as Icon from 'react-feather'
 function SideMenuGroup({ children, name, path , subMenu, open, setOpen}) {
   
   const collapse = ((open === name) || window.location.pathname.includes(path) ) ? 
-  <Icon.ChevronUp className="h-10 w-10 mr-10"/> : 
-  <Icon.ChevronDown className="h-10 w-10 mr-10"/>
+  <Icon.ChevronUp className="h-10 w-10"/> : 
+  <Icon.ChevronDown className="h-10 w-10"/>
   return ( 
     <li>
       <div

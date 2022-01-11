@@ -34,7 +34,7 @@ function CourseRegister(props) {
   }
 
   const fetchCourses = useCallback(() => {
-    dispatch(courseActions.getAllCourses(page - 1, resultsPerPage))
+    dispatch(courseActions.getAllCourses(page, resultsPerPage))
   },[page, resultsPerPage, dispatch])
 
   useEffect(() => {
@@ -48,7 +48,7 @@ function CourseRegister(props) {
     } else {
       setPage(1)
     }
-  }, [courses, resultsPerPage ])
+  }, [])
   
   useEffect(() => {
     navigatePage(page)
@@ -74,7 +74,7 @@ function CourseRegister(props) {
     navigatePage(page + 1)
   }
 
-  console.log("courses slice", courses)
+  console.log("resultsPerPage", resultsPerPage)
 
   return (
     <div className="app">

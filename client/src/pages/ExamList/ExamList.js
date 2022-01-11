@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect } from 'react'
 import { MobileMenu } from '../../components'
 import { TopBar } from '../../components'
-import { ExamFilterPanel } from '../../components/Exam'
-// import { examData } from './ExamData'
 import { ExamCard } from './ExamCard'
 import { MonthContainer } from './MonthContainer'
 

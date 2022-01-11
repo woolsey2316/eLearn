@@ -31,6 +31,8 @@ router.post("/register", (req, res) => {
           gender: req.body.gender,
           area: req.body.area,
           state: req.body.state,
+          school: req.body.school,
+          address: req.body.address,
           className: req.body.className,
           password2: req.body.password2,
           mobile: req.body.mobile,
@@ -101,17 +103,64 @@ router.post("/login", (req, res) => {
       });
     });
 });
-// @route GET api/user/profile
+
+// @route PUT api/:user_id/password
 // @desc Retrieve user details
 // @access Public
-router.get("/user/profile", (req, res) => {
-  const email = req.body.email;
-  User.findOne({ email }).then(user => {
+router.put("/:user_id/password", (req, res) => {
+  const userId = req.params.user_id;
+  User.findOneAndUpdate(userId).then(user => {
+    // Hash password before saving in database
+    user.password = req.body.password
+    console.log(req.body.password)
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(user.password, salt, (err, hash) => {
+        if (err) throw err;
+        user.password = hash;
+        user
+          .save()
+          .catch(err => console.log(err));
+      });
+    });
+    return res.status(200).json(user)
+  })
+});
+
+// @route PUT api/user/:user_id/profile
+// @desc Retrieve user details
+// @access Public
+router.put("/:user_id/profile", (req, res) => {
+  console.log("here")
+  const filter = {email: req.body.email}
+  User.findOneAndUpdate(filter, {
+    email: req.body.email,
+    password: req.body.password,
+    name: req.body.name,
+    gender: req.body.gender,
+    area: req.body.area,
+    state: req.body.state,
+    school: req.body.school,
+    address: req.body.address,
+    className: req.body.className,
+    password2: req.body.password2,
+    mobile: req.body.mobile,
+    pincode: req.body.pincode,
+  })
+  .then(user => res.status(200).json(user))
+  
+});
+
+
+// @route GET api/user/:user_id/profile
+// @desc Retrieve user details
+// @access Public
+router.get("/:user_id/profile", (req, res) => {
+  const userId = req.params.user_id;
+  User.findById(userId).then(user => {
     if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" });
+      return res.status(404).json({ userNotFound: "User not found!" });
     }
-    console.log(user)
-    return user
+    return res.status(200).json(user)
   })
 });
 
@@ -184,19 +233,6 @@ router.get("/courses/:course_id/:user_id/exams", (req, res) => {
   
     const result = examResults.examResults.filter(exam => exam.userId == req.params.user_id)
     return res.status(200).json({ examResults: result })
-  })
-});
-
-// @route GET /users/:id/dashboard
-// @desc Retrieve dashboard details
-// @access Public
-router.get("/:user_id/dashboard", (req, res) => {
-  User.findById( req.params.user_id, 'active_tests total_completion_rate completed_tests total_enrolled_courses' ).then(dashboard => {
-    if (!dashboard) {
-      return res.status(404).json({ idnotfound: "exam id not found" });
-    }
-    
-    return res.status(200).json({ dashboard: dashboard })
   })
 });
 

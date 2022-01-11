@@ -6,17 +6,22 @@ import * as Icon from 'react-feather'
 
 import { ProfileOptions } from './ProfileOptions'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { userActions } from '../../actions'
 
 function Profile(props) {
   const dispatch = useDispatch()
-  const user = JSON.parse(localStorage.getItem('user')).user
+  const user = useSelector((state) => state.users.user)
 
   useEffect(() => {
     dispatch(userActions.verifyEmail())
   }, [dispatch])
+
+  useEffect(() => {
+    dispatch(userActions.getUserDetails())
+    
+  },[])
 
   //const verified = useSelector((state) => state.user.verifyEmail)
   const role = ['Student', 'Admin']
@@ -44,9 +49,9 @@ function Profile(props) {
                   </div>
                   <div className="ml-5">
                     <div className="sm:whitespace-normal font-medium text-lg break-all">
-                      {user.name} Wolfeschlegelsteinhausenbergerdorff
+                      {user?.name}
                     </div>
-                    <div className="text-gray-600">{role[user.roleId - 1]}</div>
+                    <div className="text-gray-600">{role[user?.roleId - 1]}</div>
                     <div className="flex mt-1">
                       <div
                         className="truncate sm:whitespace-normal flex items-center text-theme-9 tooltip"
@@ -74,20 +79,20 @@ function Profile(props) {
                 <div className="flex mt-6 lg:mt-0 items-center lg:items-start flex-1 flex-col text-gray-600 px-5 border-l border-r border-gray-200 border-t lg:border-t-0 pt-5 lg:pt-0">
                   <div className="truncate sm:whitespace-normal flex items-center">
                     <Icon.Mail className="w-4 h-4 mr-2" />
-                    {user.email}
+                    {user?.email}
                   </div>
                   <div className="truncate sm:whitespace-normal flex items-center mt-3">
-                    <Icon.Home className="w-4 h-4 mr-2" /> {user.address1}
+                    <Icon.Home className="w-4 h-4 mr-2" /> {user?.address1}
                   </div>
                   <div className="truncate sm:whitespace-normal flex items-center mt-3">
-                    <Icon.Phone className="w-4 h-4 mr-2" /> {user.mobile}
+                    <Icon.Phone className="w-4 h-4 mr-2" /> {user?.mobile}
                   </div>
                   <div className="truncate sm:whitespace-normal flex items-center mt-3">
-                    <Icon.Book className="w-4 h-4 mr-2" /> {user.school}
+                    <Icon.Book className="w-4 h-4 mr-2" /> {user?.school}
                   </div>
                   <div className="truncate sm:whitespace-normal flex items-center mt-3">
                     <Icon.Briefcase className="w-4 h-4 mr-2" />
-                    {`${user.state}, ${user.district}, ${user.area}`}
+                    {`${user?.state}, ${user?.area}`}
                   </div>
                 </div>
                 <div className=""></div>

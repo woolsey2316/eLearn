@@ -19,7 +19,7 @@ function ExamPage() {
 
   const fetchExamQuestions = useCallback(() => {
     dispatch(examActions.getUserExamQuestions(exam_id))
-  },[dispatch])
+  },[dispatch,exam_id])
   
   useEffect(() => {
     fetchExamQuestions()},
