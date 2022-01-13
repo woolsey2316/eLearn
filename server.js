@@ -6,6 +6,7 @@ const users = require("./routes/api/users");
 const courses = require("./routes/api/course");
 const exams = require("./routes/api/exam");
 const dashboard = require("./routes/api/dashboard");
+const activities = require("./routes/api/activity");
 const cors = require('cors');  
 const app = express();
 app.use(cors());
@@ -34,6 +35,7 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 app.use("/api/courses", courses);
+app.use("/api/activities", activities);
 app.use("/api/exams", exams);
 app.use("/api/dashboard", dashboard);
 

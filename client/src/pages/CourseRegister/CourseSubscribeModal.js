@@ -6,6 +6,9 @@ import * as Loading from 'react-spinners'
 
 import { useSelector } from 'react-redux'
 
+import { useDispatch } from 'react-redux'
+
+import { courseActions } from '../../actions'
 
 import { SuccessRegister } from './SuccessRegister'
 import { FailRegister } from './FailRegister'
@@ -17,15 +20,17 @@ function CourseSubscribeModal({
   chosenCourse,
 }) {
   const registering = useSelector((state) => state.courses.courseRegistering)
+  const alreadyRegistered = useSelector((state) => state.courses.alreadyRegistered)
   const alert = useSelector((state) => state.alert.type)
   const [outcome, setOutcome] = useState(false)
+  const dispatch = useDispatch()
 
   function status() {
     return alert === 'alert-success'
   }
 
   function attemptRegister() {
-    register()
+    dispatch(courseActions.register(chosenCourse))
     setTimeout(() => setOutcome(!outcome), 1000)
   }
 
@@ -46,8 +51,8 @@ function CourseSubscribeModal({
       }}
     >
       <div className="modal__content text-center">
-        {outcome && status(alert) && <SuccessRegister course={chosenCourse} />}
-        {outcome && !status(alert) && <FailRegister course={chosenCourse} />}
+        {outcome && alreadyRegistered && <SuccessRegister course={chosenCourse} />}
+        {outcome && !alreadyRegistered && <FailRegister course={chosenCourse} />}
         {!outcome && (
           <div className="text-center">
             <Icon.PlayCircle className="sm:w-10 sm:h-10 md:w-12 md:h-12 w-10 h-10 text-theme-7 mx-auto mt-3" />

@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 // Create Schema
 const examSchema = new Schema({
+  _id: {
+    type: mongoose.ObjectId,
+    required: true
+  },
   examName: {
     type: String,
     required: true

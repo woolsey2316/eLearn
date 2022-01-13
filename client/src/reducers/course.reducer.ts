@@ -15,9 +15,9 @@ export function courses(state = initialState, action: AnyAction) {
     case courseConstants.REGISTER_REQUEST:
       return { ...state, courseRegistering: true };
     case courseConstants.REGISTER_SUCCESS:
-      return { ...state, courseRegistering: false };
+      return { ...state, courseRegistering: false, registerOutcome: true };
     case courseConstants.REGISTER_FAILURE:
-      return { ...state, courseRegistering: false };
+      return { ...state, courseRegistering: false, registerOutcome: false };
     case courseConstants.COURSE_INFO_SUCCESS:
       return { courseRegistering: false, courseList: action.courses.data || [] };
     case courseConstants.USER_COURSE_INFO_SUCCESS:

@@ -17,7 +17,7 @@ import { ShowingFirstToLast } from './ShowingFirstToLast'
 function CourseRegister(props) {
   const dispatch = useDispatch()
   const courses = useSelector((state) => state.courses)
-
+  console.log("courses", courses)
   const [search, setSearch] = useState('')
   const [chosenCourse, setCourse] = useState({})
   const [page, setPage] = useState(1)
@@ -25,7 +25,6 @@ function CourseRegister(props) {
 
   const [modalIsOpen, setIsOpen] = useState(false)
   function openModal() {
-    console.log('open modal request')
     setIsOpen(true)
   }
 
@@ -73,8 +72,6 @@ function CourseRegister(props) {
   function incrementPage() {
     navigatePage(page + 1)
   }
-
-  console.log("resultsPerPage", resultsPerPage)
 
   return (
     <div className="app">

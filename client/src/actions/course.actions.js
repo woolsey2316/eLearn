@@ -20,10 +20,16 @@ function register(course) {
   return (dispatch) => {
     dispatch(request(course))
 
-    courseService.addCourse(course).then(
-      (course) => {
+    courseService.register(course).then(
+      (alreadyRegistered) => {
+        console.log("alreadyRegistered", alreadyRegistered)
         dispatch(success())
-        dispatch(alertActions.success('Registration successful'))
+        if (alreadyRegistered) {
+          dispatch(failure('User is already registered'))
+        } else {
+          dispatch(alertActions.success('Registration successful'))
+        }
+        
       },
       (error) => {
         dispatch(failure(error.toString()))

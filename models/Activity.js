@@ -1,26 +1,26 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 // Create Schema
-const examResultSchema = new Schema({
+const activitySchema = new Schema({
   _id: {
     type: mongoose.ObjectId,
     required: true
   },
-  examName: {
+  instructor: {
     type: String,
     required: true
   },
-  score: {
-    type: Number,
+  description: {
+    type: String,
     required: true
   },
-  total: {
-    type: Number,
+  date: {
+    type: Date,
     required: true
   },
-  weight: {
-    type: Number,
+  courseId: {
+    type: mongoose.ObjectId,
     required: true
-  }
+  },
 });
-module.exports = examResult = mongoose.model("examResult", examResultSchema);
+module.exports = activity = mongoose.model("activity", activitySchema);

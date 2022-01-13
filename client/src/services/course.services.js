@@ -7,7 +7,7 @@ import { API_URL } from './index';
 export const courseService = {
   getAllCourses,
   getAllUserCourses,
-  addCourse,
+  register,
 }
 
 /* 
@@ -45,19 +45,20 @@ async function getAllCourses(page, size) {
 /* 
   User registers for a course
   */
-async function addCourse(courseDTO) {
+async function register(courseDTO) {
   const requestOptions = {
-    method: 'POST',
+    method: 'PUT',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
     body: JSON.stringify(courseDTO),
   }
   const userID = getUserId()
 
   const response = await fetch(
-    `${API_URL}/users/${userID}/courses`,
+    `${API_URL}/courses/${courseDTO.id}/${userID}`,
     requestOptions
   )
   const user = await handleResponse(response)
+  console.log(user)
   return user
 }
 

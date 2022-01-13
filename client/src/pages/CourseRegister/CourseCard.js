@@ -10,14 +10,14 @@ function CourseCard({
 }) {
   const courseDTO = {
     category: course.category,
-    description: course.description,
     expires: new Date(course.expires).getTime(),
-    id: course.id,
-    name: course.name,
-    reference: course.reference,
+    id: course._id,
+    name: course.CourseName,
+    instructor: course.instructor,
     status: course.status,
   }
-  function selectCourse() {
+
+  function register() {
     setCourse(courseDTO)
     openModal()
   }
@@ -38,7 +38,7 @@ function CourseCard({
               {course.expires ? (
                 <React.Fragment>
                   <div className="px-3 py-2 bg-theme-14 text-theme-10 rounded font-medium">
-                    {course.expires.split(' ')[0]}
+                    {course.expires.substring(0,10)}
                   </div>
                   <h2 className="py-2 px-3 text-gray-600">End Date</h2>
                 </React.Fragment>
@@ -53,7 +53,7 @@ function CourseCard({
           </div>
           <div className="flex mt-4 lg:mt-0">
             <button
-              onClick={selectCourse}
+              onClick={register}
               className="button button--sm text-white bg-theme-1 mr-2 w-20 align-bottom"
             >
               Register

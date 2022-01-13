@@ -65,6 +65,27 @@ router.get('/:id', (req, res) => {
       .catch(err => res.status(404).json({ nocoursefound: 'No Course found' }));
 });
 
+// @route PUT api/courses/:id/:user_id
+// @description add new user to course
+// @access Public
+router.put('/:course_id/:user_id', (req, res) => {
+    Course.findById(req.params.course_id)
+      .then(course => {
+        let alreadyRegistered = false 
+        course.subscribers.forEach(user => {
+            if (user == req.params.user_id) {
+                alreadyRegistered = true
+            }
+        }) 
+        if (!alreadyRegistered) {
+            course.subscribers.push(req.params.user_id)
+        }
+        course.save()
+        return res.json(alreadyRegistered)
+        })
+      .catch(err => res.status(404).json({ nocoursefound: 'No Course found' }));
+});
+
 // @route GET api/courses/:id
 // @description Get all courses a user is subscribed to
 // @access Public
