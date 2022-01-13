@@ -4,8 +4,7 @@ import * as Icon from 'react-feather'
 function Course({ course }) {
   return (
     <tr>
-      <td className="border-b">{course._id}</td>
-      <td className="border-b">{course.course_name}</td>
+      <td className="border-b">{course.courseName}</td>
       <td className="border-b">{course.category}</td>
       {course.status ? (
         <td className="border-b ">

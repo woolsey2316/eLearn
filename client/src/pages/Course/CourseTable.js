@@ -8,7 +8,6 @@ function CourseTable({ courses }) {
     <table className="table">
       <thead>
         <tr className="bg-gray-700 text-white">
-          <th className="whitespace-no-wrap">#</th>
           <th className="whitespace-no-wrap">Course Name</th>
           <th className="whitespace-no-wrap">Category</th>
           <th className="whitespace-no-wrap">Course Status</th>
@@ -16,7 +15,7 @@ function CourseTable({ courses }) {
         </tr>
       </thead>
       <tbody>
-        {courses?.courseList?.courses?.courses.map(elem => <Course course={elem}></Course>)}
+        {courses.courseList?.map(elem => <Course course={elem}></Course>)}
       </tbody>
     </table>
   )
