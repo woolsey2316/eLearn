@@ -3,7 +3,6 @@ import React from 'react'
 import { format } from 'date-fns'
 
 function Activity({activity}) {
-    console.log(activity.date)
     return (
         <div className="intro-x relative flex items-center mb-3">
             <div className="report-timeline__image">

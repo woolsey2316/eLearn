@@ -18,8 +18,6 @@ function Overview() {
   const page = 0
   const size = 20
 
-  console.log("dashboard",dashboard)
-
   const fetchCourses = useCallback(() => {
     dispatch(courseActions.getAllUserCourses())
   },[dispatch])

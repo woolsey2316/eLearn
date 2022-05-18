@@ -2,7 +2,6 @@ import React from 'react'
 
 function CourseCard({
   course,
-  register,
   modalIsOpen,
   closeModal,
   setCourse,

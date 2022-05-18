@@ -130,7 +130,6 @@ router.put("/:user_id/password", (req, res) => {
 // @desc Retrieve user details
 // @access Public
 router.put("/:user_id/profile", (req, res) => {
-  console.log("here")
   const filter = {email: req.body.email}
   User.findOneAndUpdate(filter, {
     email: req.body.email,

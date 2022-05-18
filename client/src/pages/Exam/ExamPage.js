@@ -11,8 +11,23 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { examActions } from '../../actions'
 
-import { useParams } from "react-router";
+import { useParams } from 'react-router';
 
+function initialiseQuestionsArray(quizQuestions) {
+  return Array(quizQuestions.length)
+    .fill([])
+    .map((_, index) =>
+      Array(quizQuestions[index].length)
+        .fill(null)
+        .map((u, i) => i)
+    )
+}
+
+function initialiseAnswersList(quizQuestions) {
+  return Array(quizQuestions.length)
+    .fill('')
+    .map((_, index) => Array(quizQuestions[index].length).fill(''))
+}
 function ExamPage() {
   const dispatch = useDispatch()
   const { exam_id } = useParams();
@@ -32,21 +47,9 @@ function ExamPage() {
     
   const [questionId, setQuestionId] = useState(0)
   const [selectedOption, setSelectedOption] = useState('')
-  const [answerList, setAnswerList] = useState(
-    Array(quizQuestions.length)
-      .fill('')
-      .map((el, index) => Array(quizQuestions[index].length).fill(''))
-  )
+  const [answerList, setAnswerList] = useState(initialiseAnswersList(quizQuestions))
   const [finished, setFinished] = useState(false)
-  const [MarkedQuestionIds, setMarkedQuestionIds] = useState(
-    Array(quizQuestions.length)
-      .fill([])
-      .map((el, index) =>
-        Array(quizQuestions[index].length)
-          .fill(null)
-          .map((u, i) => i)
-      )
-  )
+  const [MarkedQuestionIds, setMarkedQuestionIds] = useState(initialiseQuestionsArray(quizQuestions))
   const [section, setActive] = React.useState(0)
   const [show, setShow] = React.useState(true)
 
@@ -70,19 +73,16 @@ function ExamPage() {
   },[answerList, section])
   
   const loadNextQuestionIfAny = useCallback(() => {
-    var qId
     if (MarkedQuestionIds[section].length) {
-      qId = MarkedQuestionIds[section][0]
       setTimeout(() => {
-        setQuestionId(qId)
-        findSavedAnswers(qId)
+        setQuestionId(MarkedQuestionIds[section][0])
+        findSavedAnswers(MarkedQuestionIds[section][0])
       }, 300)
     } else {
       setFinished(true)
-      qId = 0
       setTimeout(() => {
-        setQuestionId(qId)
-        findSavedAnswers(qId)
+        setQuestionId(0)
+        findSavedAnswers(0)
       }, 300)
     }
   }, [MarkedQuestionIds, findSavedAnswers, section])
@@ -137,53 +137,52 @@ function ExamPage() {
       Object.assign([[]], MarkedQuestionIds, {
         [section]: removeCurrentQuestion,
       })
+    )
+  }
+    
+  function markQuestion() {
+    // perhaps question is already marked for review
+    var alreadyMarked = MarkedQuestionIds[section].filter(
+      (elem) => questionId === elem
       )
+    if (!alreadyMarked) {
+      setMarkedQuestionIds([...MarkedQuestionIds[section], questionId])
+    } else {
+      sendQuestionToEnd()
     }
-    
-    
-    function markQuestion() {
-      // perhaps question is already marked for review
-      var alreadyMarked = MarkedQuestionIds[section].filter(
-        (elem) => questionId === elem
-        )
-        if (!alreadyMarked) {
-          setMarkedQuestionIds([...MarkedQuestionIds[section], questionId])
-        } else {
-          sendQuestionToEnd()
-        }
-      }
+  }
       
-      function sendQuestionToEnd() {
-        var curr = MarkedQuestionIds[section].indexOf(questionId)
-        var pushToEnd = [
-          ...MarkedQuestionIds[section].slice(0, curr),
-          ...MarkedQuestionIds[section].slice(curr + 1),
-          questionId,
-        ]
-        setMarkedQuestionIds(
-          Object.assign([[]], MarkedQuestionIds, { [section]: pushToEnd })
-          )
-        }
+  function sendQuestionToEnd() {
+    var curr = MarkedQuestionIds[section].indexOf(questionId)
+    var pushToEnd = [
+      ...MarkedQuestionIds[section].slice(0, curr),
+      ...MarkedQuestionIds[section].slice(curr + 1),
+      questionId,
+    ]
+    setMarkedQuestionIds(
+      Object.assign([[]], MarkedQuestionIds, { [section]: pushToEnd })
+    )
+  }
         
-        function markForReview() {
-          setUserAnswer()
-          markQuestion()
-        }
+  function markForReview() {
+    setUserAnswer()
+    markQuestion()
+  }
         
-        function renderQuiz() {
-          return (
-            <Quiz
-            selectedOption={selectedOption}
-            answerOptions={quizQuestions[section][questionId].possibleAnswers}
-            questionId={questionId}
-            question={quizQuestions[section][questionId].question}
-            questionTotal={answerList[section].length}
-            getUserAnswer={handleChange}
-            />
-            )
-          }
-          
-          function renderResult() {
+  function renderQuiz() {
+    return (
+      <Quiz
+      selectedOption={selectedOption}
+      answerOptions={quizQuestions[section][questionId].possibleAnswers}
+      questionId={questionId}
+      question={quizQuestions[section][questionId].question}
+      questionTotal={answerList[section].length}
+      getUserAnswer={handleChange}
+      />
+    )
+  }
+  
+  function renderResult() {
     return (
       <SectionCompleteModal modalIsOpen={finished} closeModal={closeModal} />
     )

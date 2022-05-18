@@ -21,13 +21,13 @@ function CourseSubscribeModal({
 }) {
   const registering = useSelector((state) => state.courses.courseRegistering)
   const alreadyRegistered = useSelector((state) => state.courses.alreadyRegistered)
-  const alert = useSelector((state) => state.alert.type)
+  //const alert = useSelector((state) => state.alert.type)
   const [outcome, setOutcome] = useState(false)
   const dispatch = useDispatch()
 
-  function status() {
-    return alert === 'alert-success'
-  }
+  // function status() {
+  //   return alert === 'alert-success'
+  // }
 
   function attemptRegister() {
     dispatch(courseActions.register(chosenCourse))

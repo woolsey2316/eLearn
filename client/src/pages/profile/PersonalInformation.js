@@ -37,7 +37,7 @@ function PersonalInformation() {
   useEffect(() => {
     dispatch(userActions.getUserDetails())
     
-  },[])
+  },[dispatch])
 
   useEffect(() => {
     setDetails(user)

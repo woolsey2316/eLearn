@@ -78,7 +78,6 @@ function getAllUserCourses() {
     dispatch(request())
     courseService.getAllUserCourses().then(
       (courseList) => {
-        console.log("user courses", courseList)
         dispatch(success(courseList))
         dispatch(alertActions.success('Successfully fetched courses'))
       },

@@ -2,7 +2,6 @@ import React from 'react'
 import * as Icon from 'react-feather'
 
 function FailRegister({ course }) {
-  console.log(course)
   return (
     <div className="text-center">
       <Icon.XCircle className="sm:w-10 sm:h-10 md:w-12 md:h-12 w-10 h-10 text-theme-6 mx-auto mt-3" />

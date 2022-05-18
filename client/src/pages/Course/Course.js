@@ -17,12 +17,6 @@ function Course({ course }) {
           <h2 className="text-theme-6 inline">No Active exams</h2>
         </td>
       )}
-
-      <td className="border-b">
-        <div className="px-3 py-2 bg-theme-14 text-theme-10 rounded font-medium inline">
-          {course.expires && course.expires.split(' ')[0]}
-        </div>
-      </td>
     </tr>
   )
 }

@@ -21,7 +21,7 @@ function Profile(props) {
   useEffect(() => {
     dispatch(userActions.getUserDetails())
     
-  },[])
+  },[dispatch])
 
   //const verified = useSelector((state) => state.user.verifyEmail)
   const role = ['Student', 'Admin']
