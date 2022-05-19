@@ -6,7 +6,7 @@ import { TopBar } from '../../components'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { examActions } from '../../actions'
+import { examResultActions } from '../../actions'
 import { courseActions } from '../../actions'
 
 import { ExamResultCard } from './ExamResultCard'
@@ -15,7 +15,7 @@ function weightedAverage(examResults) {
   if (examResults) {
     return Object.values(examResults).reduce(
       (acc, elem) => acc + elem?.score/elem?.total*elem?.weight,0
-      ).toFixed(2)
+    ).toFixed(2)
   }
   else {
     return ""
@@ -25,8 +25,9 @@ function weightedAverage(examResults) {
 function ExamResults(props) {
   const dispatch = useDispatch()
   const courses = useSelector((state) => state.courses.userCourseList)
-  const userExamResults = useSelector((state) => state.exams.examList.examResults)
-  const exams = useSelector((state) => state.exams.examResults)
+  const userExamResults = useSelector((state) => state.examResult.examList.examResults)
+  const exams = useSelector((state) => state.examResult.examResults)
+  console.log("exams: ", exams)
   const page = 0
   const size = 20
   
@@ -49,7 +50,7 @@ function ExamResults(props) {
   const courseId = courseList?.filter(elem => elem.courseName === course)[0]?._id
 
   const fetchExams = useCallback(() => {
-    dispatch(examActions.getUserExamResultsByCourse(courseId))
+    dispatch(examResultActions.getUserExamResultsByCourse(courseId))
   },[courseId, dispatch])
   
   useEffect(() => {
@@ -57,7 +58,7 @@ function ExamResults(props) {
   }, [fetchExams])
 
   const fetchExamResults = useCallback(() => {
-    dispatch(examActions.getAllExamResults(courseId))
+    dispatch(examResultActions.getAllExamResults(courseId))
   },[courseId, dispatch])
   
   useEffect(() => {

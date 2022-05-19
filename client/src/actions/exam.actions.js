@@ -10,10 +10,7 @@ import { alertActions } from '.'
 export const examActions = {
   submit,
   getUserExams,
-  getUserExamQuestions,
   getCurrentExamInfo,
-  getAllExamResults,
-  getUserExamResultsByCourse,
 }
 
 function submit(exam) {
@@ -43,33 +40,6 @@ function submit(exam) {
   }
 }
 
-function getUserExamResultsByCourse(courseId) {
-  return (dispatch) => {
-    dispatch(request(courseId))
-
-    examService.getAllUserExams(courseId).then(
-      (examList) => {
-        dispatch(success(examList))
-        dispatch(alertActions.success('Successfully fetched exams'))
-      },
-      (error) => {
-        dispatch(failure(error.toString()))
-        dispatch(alertActions.error(error.toString()))
-      }
-    )
-  }
-
-  function request(examList) {
-    return { type: examConstants.EXAM_INFO_REQUEST, examList }
-  }
-  function success(examList) {
-    return { type: examConstants.EXAM_INFO_SUCCESS, examList }
-  }
-  function failure(error) {
-    return { type: examConstants.EXAM_INFO_FAILURE, error }
-  }
-}
-
 function getUserExams() {
   return (dispatch) => {
     dispatch(request())
@@ -94,61 +64,6 @@ function getUserExams() {
   }
   function failure(error) {
     return { type: examConstants.EXAM_SUMMARY_FAILURE, error }
-  }
-}
-
-function getUserExamQuestions(examId) {
-  return (dispatch) => {
-    dispatch(request())
-
-    examService.getExamQuestions(examId).then(
-      (questionList) => {
-        dispatch(success(questionList))
-        console.log("api call", questionList)
-        dispatch(alertActions.success('Successfully fetched exams'))
-      },
-      (error) => {
-        dispatch(failure(error.toString()))
-        dispatch(alertActions.error(error.toString()))
-      }
-    )
-  }
-
-  function request(questionList) {
-    return { type: examConstants.EXAM_QUESTIONS_REQUEST, questionList }
-  }
-  function success(questionList) {
-    return { type: examConstants.EXAM_QUESTIONS_SUCCESS, questionList }
-  }
-  function failure(error) {
-    return { type: examConstants.EXAM_QUESTIONS_FAILURE, error }
-  }
-}
-
-function getAllExamResults(courseId) {
-  return (dispatch) => {
-    dispatch(request(courseId))
-
-    examService.getExamResultsByCourse(courseId).then(
-      (examResults) => {
-        dispatch(success(examResults))
-        dispatch(alertActions.success('Successfully fetched exams'))
-      },
-      (error) => {
-        dispatch(failure(error.toString()))
-        dispatch(alertActions.error(error.toString()))
-      }
-    )
-  }
-
-  function request(examResults) {
-    return { type: examConstants.EXAM_RESULT_REQUEST, examResults }
-  }
-  function success(examResults) {
-    return { type: examConstants.EXAM_RESULT_SUCCESS, examResults }
-  }
-  function failure(error) {
-    return { type: examConstants.EXAM_RESULT_FAILURE, error }
   }
 }
 

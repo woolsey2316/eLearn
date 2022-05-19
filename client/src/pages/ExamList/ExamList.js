@@ -47,7 +47,7 @@ function ExamList(props) {
   for (let month of months.values()) {
     ExamList.push(
       // A white box that contains all exams for the month
-      <MonthContainer month={month}>
+      <MonthContainer month={month} key={month}>
         {examData
           .filter((elem) => monthNames[new Date(elem.due).getMonth()] === month)
           // Remove last years exams so they don't appear in current month

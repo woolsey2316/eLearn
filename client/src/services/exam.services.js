@@ -10,7 +10,6 @@ export const examService = {
   getAllUserExams,
   getExamResultsByCourse,
   getExamResult,
-  getExamQuestions,
   submitExam,
 }
 
@@ -73,21 +72,6 @@ async function getExamResult(examId) {
   const userId = getUserId()
   const response = await fetch(
     `${API_URL}/users/${userId}/exams/${examId}/result`,
-    requestOptions
-  )
-  return handleResponse(response)
-}
-
-/* 
-  fetches all questions of an exam
-  */
-async function getExamQuestions(examId) {
-  const requestOptions = {
-    method: 'GET',
-    headers: { ...authHeader(), 'Content-Type': 'application/json' },
-  }
-  const response = await fetch(
-    `${API_URL}/exams/${examId}/questions`,
     requestOptions
   )
   return handleResponse(response)

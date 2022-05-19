@@ -33,7 +33,7 @@ function LogoutModal(props) {
           </button>
           <a
             href="/login"
-            class="mt-2 sm:mt-0 button bg-theme-6 text-white md:text-xl sm:text-lg text-medium"
+            className="mt-2 sm:mt-0 button bg-theme-6 text-white md:text-xl sm:text-lg text-medium"
           >
             Log Out
           </a>

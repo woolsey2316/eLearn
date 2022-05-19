@@ -1,6 +1,6 @@
 import React from 'react'
-import { CalendarContainer } from '../components'
-import { ActivityFeed } from '../components'
+import { CalendarContainer } from '../../components'
+import { ActivityFeed } from '../../components'
 import { Overview } from './Overview'
 import { ExamType } from './ExamType'
 

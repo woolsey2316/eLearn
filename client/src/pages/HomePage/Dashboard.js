@@ -1,10 +1,10 @@
 import React from "react"
 
-import { MobileMenu } from '../components'
+import { MobileMenu } from '../../components'
 
 import { MainContent } from './MainContent'
 
-import { TopBar } from '../components'
+import { TopBar } from '../../components'
 
 function Dashboard(props) {
   /*

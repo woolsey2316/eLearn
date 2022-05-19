@@ -229,7 +229,6 @@ router.get("/courses/:course_id/:user_id/exams", (req, res) => {
         }
       })
     })
-  
     const result = examResults.examResults.filter(exam => exam.userId == req.params.user_id)
     return res.status(200).json({ examResults: result })
   })

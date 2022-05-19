@@ -9,7 +9,7 @@ import { history } from './helpers/history'
 
 import { RegisterPage } from './components/RegisterPage'
 import { LoginPage } from './components/LoginPage'
-import { Dashboard } from './HomePage'
+import { Dashboard } from './pages/HomePage'
 import { AdminDashboard } from './pages/AdminDashboard'
 import { CreateExam } from './pages/CreateExam'
 import { ChangePassword, UpdateProfile } from './pages/profile'

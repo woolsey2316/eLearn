@@ -65,7 +65,7 @@ router.get('/:id', (req, res) => {
       .catch(err => res.status(404).json({ nocoursefound: 'No Course found' }));
 });
 
-// @route PUT api/courses/:id/:user_id
+// @route PUT api/courses/:course_id/:user_id
 // @description add new user to course
 // @access Public
 router.put('/:course_id/:user_id', (req, res) => {
