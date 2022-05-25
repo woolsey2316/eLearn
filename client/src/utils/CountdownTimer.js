@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react'
 import Tooltip from '@reach/tooltip'
 
-const calculateTimeLeft = () => {
-  const difference = +new Date(1642469097000) - +new Date()
+Date.prototype.addHours = function(h) {
+  this.setTime(this.getTime() + (h*60*60*1000));
+  return this;
+}
+
+const calculateTimeLeft = (duration) => {
+  const difference = +duration - +new Date()
   let timeLeft = {}
 
   if (difference > 0) {
@@ -17,10 +22,10 @@ const calculateTimeLeft = () => {
   return timeLeft
 }
 
-function CountdownTimer({ timeLeft, setTimeLeft }) {
+function CountdownTimer({ timeLeft, setTimeLeft, date }) {
   useEffect(() => {
     setTimeout(() => {
-      setTimeLeft(calculateTimeLeft())
+      setTimeLeft(calculateTimeLeft(date))
     }, 1000)
   })
 

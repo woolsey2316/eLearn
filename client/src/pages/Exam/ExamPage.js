@@ -4,14 +4,17 @@ import Quiz from './Quiz'
 import SectionCompleteModal from './SectionCompleteModal'
 import { CourseSection } from './CourseSection'
 import { RightPanel } from './RightPanel'
-import { calculateTimeLeft } from './CountdownTimer'
+import { calculateTimeLeft, oneHourAhead } from '../../utils/CountdownTimer'
 import * as Icon from 'react-feather'
+import { SubmitModal } from '../../components'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { examQuestionActions } from '../../actions'
 
 import { useParams } from 'react-router';
+
+import { getUserId } from '../../helpers'
 
 function initialiseQuestionsArray(quizQuestions) {
   return Array(quizQuestions.length)
@@ -52,15 +55,19 @@ function ExamPage() {
   const [MarkedQuestionIds, setMarkedQuestionIds] = useState(initialiseQuestionsArray(quizQuestions))
   const [section, setActive] = React.useState(0)
   const [show, setShow] = React.useState(true)
+  const [showSubmitModal, setShowSubmitModal] = React.useState(false)
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
+  const [duration, _] = useState(new Date().addHours(1))
   
   React.useEffect(() => {
     if (Object.keys(timeLeft).length === 0) submitExam()
   }, [timeLeft])
   
   function submitExam() {
-    console.log('submit exam!')
+    console.log({...answerList, userId: getUserId(), examId: exam_id})
+    setShowSubmitModal(true)
+    return 
   }
   
   function closeModal() {
@@ -182,7 +189,7 @@ function ExamPage() {
     )
   }
   
-  function renderResult() {
+  function showSectionCompleteModal() {
     return (
       <SectionCompleteModal modalIsOpen={finished} closeModal={closeModal} />
     )
@@ -192,12 +199,14 @@ function ExamPage() {
     <div className="content rounded-none p-2">
       <div className="box flex justify-between">
         <div className="flex flex-col flex-grow">
+          {showSubmitModal && <SubmitModal closeModal={closeModal}></SubmitModal>}
           <CourseSection
             section={section}
             clicked={setSection}
             sections={QuizData.sections}
             timeLeft={timeLeft}
             setTimeLeft={setTimeLeft}
+            duration={duration}
           />
           <div className="items-center p-5 border-b border-gray-200">
             <h2 className="font-medium text-base mr-auto">
@@ -208,7 +217,7 @@ function ExamPage() {
               <span>{' ' + answerList[section].length}</span>
             </div>
           </div>
-          {finished ? renderResult() : renderQuiz()}
+          {finished ? showSectionCompleteModal() : renderQuiz()}
           <div className="intro-y mt-5">
             <div className="items-center p-5 border-b border-gray-200">
               <button
