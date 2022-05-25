@@ -1,5 +1,6 @@
 import { authHeader, IsValidJSONString, getUserId } from '../helpers'
 import { API_URL } from './index';
+import { handleResponse } from './services-util'
 /*
   The services layer handles all http communication with the back-end apis.
   This section of the services layer relates to course data.
@@ -60,15 +61,4 @@ async function register(courseDTO) {
   const user = await handleResponse(response)
   console.log(user)
   return user
-}
-
-function handleResponse(response) {
-  return response.text().then((text) => {
-    const data = IsValidJSONString(text) ? JSON.parse(text) : text
-
-    if (!response.ok) {
-      return Promise.reject(response.status + " " + response.statusText)
-    }
-    return data
-  })
 }

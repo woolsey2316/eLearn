@@ -4,7 +4,7 @@
   and wait for the response before completing.
 */
 import { examQuestionConstants } from '../constants'
-import { examService } from '../services'
+import { examQuestionService } from '../services'
 import { alertActions } from '.'
 
 export const examQuestionActions = {
@@ -15,7 +15,7 @@ function getUserExamQuestions(examId) {
     return (dispatch) => {
       dispatch(request())
   
-      examService.getExamQuestions(examId).then(
+      examQuestionService.getExamQuestions(examId).then(
         (questionList) => {
           dispatch(success(questionList))
           console.log("api call", questionList)

@@ -9,7 +9,7 @@ import * as Icon from 'react-feather'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { examActions } from '../../actions'
+import { examQuestionActions } from '../../actions'
 
 import { useParams } from 'react-router';
 
@@ -33,7 +33,7 @@ function ExamPage() {
   const { exam_id } = useParams();
 
   const fetchExamQuestions = useCallback(() => {
-    dispatch(examActions.getUserExamQuestions(exam_id))
+    dispatch(examQuestionActions.getUserExamQuestions(exam_id))
   },[dispatch,exam_id])
   
   useEffect(() => {
@@ -41,7 +41,7 @@ function ExamPage() {
     [fetchExamQuestions]
   )
   
-  const quizQuestions = useSelector((state) => state.exams.examQuestions.quizQuestions)
+  const quizQuestions = useSelector((state) => state.examQuestion.examQuestions.quizQuestions)
 
   console.log("quizQuestions", quizQuestions)
     

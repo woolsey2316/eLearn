@@ -1,5 +1,6 @@
 import { authHeader, getUserId, IsValidJSONString } from '../helpers'
 import { API_URL } from './index';
+import { handleResponse } from './services-util'
 
 export const activityService = {
     getActivityFeed
@@ -19,15 +20,4 @@ export const activityService = {
       requestOptions
     )
     return handleResponse(response)
-  }
-
-  function handleResponse(response) {
-    return response.text().then((text) => {
-      const data = IsValidJSONString(text) ? JSON.parse(text) : text
-  
-      if (!response.ok) {
-        return Promise.reject(response.status + " " + response.statusText)
-      }
-      return data
-    })
   }

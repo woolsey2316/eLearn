@@ -1,5 +1,6 @@
-import { authHeader, IsValidJSONString, getUserId } from '../helpers'
+import { authHeader, getUserId } from '../helpers'
 import { API_URL } from './index';
+import { handleResponse } from './services-util'
 /*
   The services layer handles all http communication with the back-end apis.
   This section of the services layer relates to user data. CRUD operations
@@ -92,23 +93,4 @@ async function submitExam(exam) {
     requestOptions
   )
   return handleResponse(response)
-}
-
-function handleResponse(response) {
-  return response.text().then((text) => {
-    const data = IsValidJSONString(text) ? JSON.parse(text) : text
-
-    if (!response.ok) {
-      console.log(`response: ${JSON.stringify(response)}`)
-      // trying to get as much information about the error as I can get
-      const error =
-        response.statusText ||
-        (data.message + data.error && data.error + ': ' + data.message) ||
-        data.message ||
-        data.error ||
-        data
-      return Promise.reject(error)
-    }
-    return data
-  })
 }

@@ -52,10 +52,10 @@ function ExamList(props) {
           .filter((elem) => monthNames[new Date(elem.due).getMonth()] === month)
           // Remove last years exams so they don't appear in current month
           // but allow January, February... of next year to show
-          .filter(
-            (elem) =>
-              new Date(elem.due).getFullYear() >= new Date().getFullYear()
-          )
+          // .filter(
+          //   (elem) =>
+          //     new Date(elem.due).getFullYear() >= new Date().getFullYear()
+          // )
           .map((exam) => (
             <ExamCard key={exam.id} exam={exam} />
           ))}
