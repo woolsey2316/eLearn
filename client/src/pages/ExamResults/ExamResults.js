@@ -25,9 +25,10 @@ function weightedAverage(examResults) {
 function ExamResults(props) {
   const dispatch = useDispatch()
   const courses = useSelector((state) => state.courses.userCourseList)
-  const userExamResults = useSelector((state) => state.examResult.examList.examResults)
-  const exams = useSelector((state) => state.examResult.examResults)
+  const userExamResults = useSelector((state) => state.examResults.examList.examResults)
+  const exams = useSelector((state) => state.examResults.examResults)
   console.log("exams: ", exams)
+  console.log("userExamResults: ", userExamResults)
   const page = 0
   const size = 20
   
@@ -42,8 +43,6 @@ function ExamResults(props) {
   const [course, setCourse] = useState("Select Course")
 
   const courseList = courses?.courseList
-
-  console.log("examResults", userExamResults)
 
   const instructor = courseList?.filter(elem => elem.courseName === course)[0]?.instructor
   const category = courseList?.filter(elem => elem.courseName === course)[0]?.category
@@ -60,10 +59,18 @@ function ExamResults(props) {
   const fetchExamResults = useCallback(() => {
     dispatch(examResultActions.getAllExamResults(courseId))
   },[courseId, dispatch])
-  
+
+  const fetchExamResultsbyCourse = useCallback(() => {
+    dispatch(examResultActions.getExamResultsByCourse(courseId))
+  },[courseId, dispatch])
+
   useEffect(() => {
     fetchExamResults()
   }, [fetchExamResults])
+  
+  useEffect(() => {
+    fetchExamResultsbyCourse()
+  }, [fetchExamResultsbyCourse])
 
   return (
     <body className="app">
@@ -110,9 +117,10 @@ function ExamResults(props) {
                     </tr>
                   </thead>
                   <tbody>
-                    {userExamResults?.map(elem =>{
+                    {userExamResults?.map((elem, index) => {
                     return ( 
                       <ExamResultCard
+                        key={index}
                         examInfo={elem}
                         average={exams?.average[elem.exam_name]}
                       />

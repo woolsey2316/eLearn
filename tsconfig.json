@@ -19,7 +19,11 @@
         }
     },
     "include": [
-        "server/**/*",
-        "client/core/src/models/**/*"
+        "client/**/*",
+        "db/**/*",
+        "models/**/*",
+        "routes/**/*",
+        "validation/**/*",
+
     ]
 }

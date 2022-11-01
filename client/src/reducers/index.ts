@@ -5,7 +5,7 @@ import { courses } from "./course.reducer";
 import { dashboard } from "./dashboard.reducer";
 import { exams } from "./exam.reducer";
 import { examQuestion } from "./examQuestion.reducer";
-import { examResult } from "./examResults.reducer";
+import { examResults } from "./examResults.reducer";
 import { registration } from "./registration.reducer";
 import { users } from "./users.reducer";
 import { activity } from "./activity.reducer";
@@ -17,7 +17,7 @@ const reducer = combineReducers({
     dashboard,
     exams,
     examQuestion,
-    examResult,
+    examResults,
     registration,
     users,
     activity

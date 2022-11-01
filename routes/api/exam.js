@@ -4,7 +4,7 @@ const router = express.Router();
 const Exam = require("../../models/Exam");
 const Course = require("../../models/Course");
 
-// @route GET /users/:id/courses/:courseId/exams
+// @route GET /courses/:course_id
 // @desc Retrieve user courses
 // @access Public
 router.get("/courses/:course_id", (req, res) => {
