@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 
-import { Alert } from '../../components'
-import { InputField } from './InputField'
+import { Alert } from "../../components";
+import { InputField } from "./InputField";
 
-import { AnswerField } from './AnswerField'
-import { QuestionNumberField } from './QuestionNumberField'
-import { QuestionField } from './QuestionField'
-
+import { AnswerField } from "./AnswerField";
+import { QuestionNumberField } from "./QuestionNumberField";
+import { QuestionField } from "./QuestionField";
 
 function ExamCreationForm({
   quiz,
@@ -14,20 +13,20 @@ function ExamCreationForm({
   updateQuestionList,
   questionList,
   success,
-  setSuccess
+  setSuccess,
 }) {
-  const [submitted, setSubmitted] = useState(false)
+  const [submitted, setSubmitted] = useState(false);
   const [alert, setAlert] = useState({
-    type: '',
-    message: '',
-  })
+    type: "",
+    message: "",
+  });
 
   useEffect(() => {
     setQuestion((quiz) => ({
       ...quiz,
       number: questionList.length + 1,
-    }))
-  }, [questionList, setQuestion])
+    }));
+  }, [questionList, setQuestion]);
 
   function answerAmongOptions() {
     return (
@@ -35,7 +34,7 @@ function ExamCreationForm({
       quiz.answer === quiz.option[1] ||
       quiz.answer === quiz.option[2] ||
       quiz.answer === quiz.option[3]
-    )
+    );
   }
 
   function allFieldsExist() {
@@ -46,7 +45,7 @@ function ExamCreationForm({
       quiz.option[1] &&
       quiz.option[2] &&
       quiz.option[3]
-    )
+    );
   }
 
   function eachAnswerUnique() {
@@ -57,28 +56,28 @@ function ExamCreationForm({
       quiz.option[1] !== quiz.option[2] &&
       quiz.option[1] !== quiz.option[3] &&
       quiz.option[2] !== quiz.option[3]
-    )
+    );
   }
 
   function handleQuestionChange(content, delta, source, editor) {
-    console.log(editor.getHTML())
+    console.log(editor.getHTML());
     setQuestion((quiz) => ({
       ...quiz,
       question: editor.getHTML(),
-    }))
+    }));
   }
 
   function handleChange(e) {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setQuestion((quiz) => ({
       ...quiz,
       [name]: value,
-    }))
+    }));
   }
 
   function changeAnswerOption(e) {
-    const { name, value } = e.target
-    console.log(`changing index ${name}, to value ${value}`)
+    const { name, value } = e.target;
+    console.log(`changing index ${name}, to value ${value}`);
     setQuestion((quiz) => ({
       ...quiz,
       option: [
@@ -86,55 +85,55 @@ function ExamCreationForm({
         value,
         ...quiz.option.slice(parseInt(name, 10) + 1),
       ],
-    }))
+    }));
   }
 
   function handleValidation() {
     if (!allFieldsExist()) {
       setAlert({
-        'type': 'alert-danger',
-        'message': 'Empty fields present',
-      })
-      setSuccess(false)
+        type: "alert-danger",
+        message: "Empty fields present",
+      });
+      setSuccess(false);
     } else if (!eachAnswerUnique()) {
       setAlert({
-        'type': 'alert-danger',
-        'message': 'Answer options must be unique',
-      })
-      setSuccess(false)
+        type: "alert-danger",
+        message: "Answer options must be unique",
+      });
+      setSuccess(false);
     } else if (!answerAmongOptions()) {
       setAlert({
-        'type': 'alert-danger',
-        'message': 'Correct answer is not among 4 options',
-      })
-      setSuccess(false)
+        type: "alert-danger",
+        message: "Correct answer is not among 4 options",
+      });
+      setSuccess(false);
     }
   }
   // dispatch an action to the redux store, updates 'user' object
   function handleSubmit(e) {
-    e.preventDefault()
-    console.log(`%cquiz details: ${JSON.stringify(quiz)}`, 'color:green')
-    setSubmitted(true)
+    e.preventDefault();
+    console.log(`%cquiz details: ${JSON.stringify(quiz)}`, "color:green");
+    setSubmitted(true);
     if (allFieldsExist() && answerAmongOptions() && eachAnswerUnique()) {
-      updateQuestionList(quiz)
+      updateQuestionList(quiz);
       setQuestion({
-        question: '',
-        answer: '',
-        option: ['', '', '', ''],
-      })
+        question: "",
+        answer: "",
+        option: ["", "", "", ""],
+      });
       setAlert({
-        'type': 'alert-success',
-        'message': 'Question was successfully added to test!',
-      })
-      setSuccess(true)
-      setSubmitted(false)
+        type: "alert-success",
+        message: "Question was successfully added to test!",
+      });
+      setSuccess(true);
+      setSubmitted(false);
     } else {
-      handleValidation()
+      handleValidation();
     }
   }
   return (
     <form
-      style={{ margin: 'auto' }}
+      style={{ margin: "auto" }}
       className="validate-form"
       onSubmit={handleSubmit}
     >
@@ -161,7 +160,7 @@ function ExamCreationForm({
                 handleChange={handleChange}
                 submitted={submitted}
               />
-              {new Array(4).fill('').map((elem, i) => (
+              {new Array(4).fill("").map((elem, i) => (
                 <InputField
                   key={i}
                   changeAnswerOption={changeAnswerOption}
@@ -185,8 +184,7 @@ function ExamCreationForm({
           </div>
         </div>
       </div>
-      
     </form>
-  )
+  );
 }
-export { ExamCreationForm }
+export { ExamCreationForm };

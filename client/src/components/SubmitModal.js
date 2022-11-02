@@ -1,6 +1,6 @@
-import React from 'react'
-import Modal from 'react-modal'
-import * as Icon from 'react-feather'
+import React from "react";
+import Modal from "react-modal";
+import * as Icon from "react-feather";
 
 function SubmitModal(props) {
   return (
@@ -10,7 +10,7 @@ function SubmitModal(props) {
       contentLabel="Example Modal"
       style={{
         overlay: { zIndex: 9999 },
-        content: { bottom: '20%', top: '20%' },
+        content: { bottom: "20%", top: "20%" },
       }}
     >
       <div className="modal__content">
@@ -34,7 +34,7 @@ function SubmitModal(props) {
         </div>
       </div>
     </Modal>
-  )
+  );
 }
 
-export { SubmitModal }
+export { SubmitModal };

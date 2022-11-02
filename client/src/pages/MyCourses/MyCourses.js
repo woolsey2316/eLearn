@@ -1,82 +1,84 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import * as Icon from 'react-feather'
-import { MobileMenu } from '../../components'
-import { TopBar } from '../../components'
+import React, { useState, useEffect, useCallback } from "react";
+import * as Icon from "react-feather";
+import { MobileMenu } from "../../components";
+import { TopBar } from "../../components";
 
-import { CourseItem } from './CourseItem'
+import { CourseItem } from "./CourseItem";
 
-import { ShowingFirstToLast, CourseSubscribeModal } from '../CourseRegister'
+import { ShowingFirstToLast, CourseSubscribeModal } from "../CourseRegister";
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 
-import { courseActions } from '../../actions'
+import { courseActions } from "../../actions";
 
-import { Pagination } from '../../components'
+import { Pagination } from "../../components";
 
-import { CourseExams } from './CourseExams'
+import { CourseExams } from "./CourseExams";
 
 function MyCourses(props) {
-  const dispatch = useDispatch()
-  const courses = useSelector((state) => state.courses)
+  const dispatch = useDispatch();
+  const courses = useSelector((state) => state.courses);
 
-  const [search, setSearch] = useState('')
-  const [chosenCourse, setCourse] = useState({})
-  const [courseName] = useState('')
-  const [page, setPage] = useState(1)
-  const [resultsPerPage, setResultsPerPage] = useState(10)
+  const [search, setSearch] = useState("");
+  const [chosenCourse, setCourse] = useState({});
+  const [courseName] = useState("");
+  const [page, setPage] = useState(1);
+  const [resultsPerPage, setResultsPerPage] = useState(10);
 
-  const [modalIsOpen, setIsOpen] = useState(false)
+  const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
-    console.log('open modal request')
-    setIsOpen(true)
+    console.log("open modal request");
+    setIsOpen(true);
   }
 
   function closeModal() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
 
   const fetchCourses = useCallback(() => {
-    dispatch(courseActions.getAllCourses(page - 1, resultsPerPage))
-  },[dispatch, page, resultsPerPage])
+    dispatch(courseActions.getAllCourses(page - 1, resultsPerPage));
+  }, [dispatch, page, resultsPerPage]);
 
   useEffect(() => {
-    fetchCourses()
-  }, [fetchCourses])
+    fetchCourses();
+  }, [fetchCourses]);
 
   function decrementPage() {
-    navigatePage(page - 1)
+    navigatePage(page - 1);
   }
   function incrementPage() {
-    navigatePage(page + 1)
+    navigatePage(page + 1);
   }
   // Reasonable page values: 0 -> max page
-  const navigatePage = useCallback((page_) => {
-    var max = Math.ceil(
-      courses &&
-        courses.courseList &&
-        courses.courseList.list?.length / resultsPerPage
-    )
-    if (page_ > 0 && page_ <= max) return setPage(page_)
-    else return setPage(1)
-  },[courses, resultsPerPage])
-  
+  const navigatePage = useCallback(
+    (page_) => {
+      const max = Math.ceil(
+        courses &&
+          courses.courseList &&
+          courses.courseList.list?.length / resultsPerPage
+      );
+      if (page_ > 0 && page_ <= max) return setPage(page_);
+      else return setPage(1);
+    },
+    [courses, resultsPerPage]
+  );
+
   useEffect(() => {
-    navigatePage(page)
-  }, [navigatePage, page, resultsPerPage])
+    navigatePage(page);
+  }, [navigatePage, page, resultsPerPage]);
 
   function handleChange(event) {
-    setResultsPerPage(parseInt(event.target.value, 10))
+    setResultsPerPage(parseInt(event.target.value, 10));
   }
 
   function registerCourse() {
-    dispatch(courseActions.register(chosenCourse))
+    dispatch(courseActions.register(chosenCourse));
   }
 
   function handleSearchChange(e) {
-    const { value } = e.target
-    setSearch(value)
+    const { value } = e.target;
+    setSearch(value);
   }
-
 
   return (
     <div className="app">
@@ -148,6 +150,6 @@ function MyCourses(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }
-export { MyCourses }
+export { MyCourses };

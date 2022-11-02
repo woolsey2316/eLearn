@@ -1,9 +1,12 @@
 function uppercaseFirstLetter(string) {
-    if (!string) {
-        return ""
-    }
-    let res = string.split("_").map(elem => elem[0].toUpperCase() + elem.slice(1)).join(" ")
-    return res
+  if (!string) {
+    return "";
+  }
+  const properNoun = string
+    .split("_")
+    .map((elem) => elem[0].toUpperCase() + elem.slice(1))
+    .join(" ");
+  return properNoun;
 }
 
-export { uppercaseFirstLetter }
+export { uppercaseFirstLetter };

@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import * as Icon from 'react-feather'
+import React, { useState } from "react";
+import * as Icon from "react-feather";
 
 function CourseDropdown(props) {
-  const [show, showMore] = useState(false)
+  const [show, showMore] = useState(false);
   function chooseCourse(name) {
-    props.setCourse(name)
-    showMore(!show)
+    props.setCourse(name);
+    showMore(!show);
   }
 
   return (
@@ -23,12 +23,13 @@ function CourseDropdown(props) {
               Select a Course
             </div>
             <div className="p-2">
-              {props.courseList?.map(elem => (
+              {props.courseList?.map((elem) => (
                 <button
                   onClick={() => chooseCourse(elem.courseName)}
                   className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
                 >
-                  <Icon.Box className="w-4 h-4 text-gray-700 mr-2" /> {elem.courseName}
+                  <Icon.Box className="w-4 h-4 text-gray-700 mr-2" />{" "}
+                  {elem.courseName}
                 </button>
               ))}
             </div>
@@ -36,6 +37,6 @@ function CourseDropdown(props) {
         </div>
       )}
     </div>
-  )
+  );
 }
-export { CourseDropdown }
+export { CourseDropdown };

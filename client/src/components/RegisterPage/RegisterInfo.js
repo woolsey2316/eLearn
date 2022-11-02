@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 function RegisterInfo() {
   return (
@@ -7,15 +7,17 @@ function RegisterInfo() {
         <img
           alt="Midone Tailwind HTML Admin Template"
           className="w-6"
-          src='/logo.svg'
+          src="/logo.svg"
         />
-        <span className="text-white text-lg ml-3">e<span className="font-medium">Learn</span></span>
+        <span className="text-white text-lg ml-3">
+          e<span className="font-medium">Learn</span>
+        </span>
       </a>
       <div className="my-auto">
         <img
           alt="Midone Tailwind HTML Admin Template"
           className="-intro-x w-1/2 -mt-16"
-          src='/images/illustration.svg'
+          src="/images/illustration.svg"
         />
         <div className="-intro-x text-white font-medium text-4xl leading-tight mt-10">
           A few more clicks to
@@ -27,7 +29,7 @@ function RegisterInfo() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export { RegisterInfo }
+export { RegisterInfo };

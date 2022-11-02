@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 function OtherInstructions() {
   return (
@@ -23,6 +23,6 @@ function OtherInstructions() {
       considered as final. ప్రశ్న మరియు ఎంపికల యొక్క తెలుగు వెర్షన్‌లో ఏదైనా
       అస్పష్టత ఉంటే, ఇంగ్లీష్ వెర్షన్ ఫైనల్‌గా పరిగణించబడుతుంది.
     </div>
-  )
+  );
 }
-export { OtherInstructions }
+export { OtherInstructions };

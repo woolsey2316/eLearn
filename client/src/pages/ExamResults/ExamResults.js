@@ -1,76 +1,83 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from "react";
 
-import { CourseDropdown } from '../../components'
-import { MobileMenu } from '../../components'
-import { TopBar } from '../../components'
+import { CourseDropdown } from "../../components";
+import { MobileMenu } from "../../components";
+import { TopBar } from "../../components";
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 
-import { examResultActions } from '../../actions'
-import { courseActions } from '../../actions'
+import { examResultActions } from "../../actions";
+import { courseActions } from "../../actions";
 
-import { ExamResultCard } from './ExamResultCard'
+import { ExamResultCard } from "./ExamResultCard";
 
 function weightedAverage(examResults) {
   if (examResults) {
-    return Object.values(examResults).reduce(
-      (acc, elem) => acc + elem?.score/elem?.total*elem?.weight,0
-    ).toFixed(2)
-  }
-  else {
-    return ""
+    return Object.values(examResults)
+      .reduce(
+        (acc, elem) => acc + (elem?.score / elem?.total) * elem?.weight,
+        0
+      )
+      .toFixed(2);
+  } else {
+    return "";
   }
 }
 
 function ExamResults(props) {
-  const dispatch = useDispatch()
-  const courses = useSelector((state) => state.courses.userCourseList)
-  const userExamResults = useSelector((state) => state.examResults.examList.examResults)
-  const exams = useSelector((state) => state.examResults.examResults)
-  console.log("exams: ", exams)
-  console.log("userExamResults: ", userExamResults)
-  const page = 0
-  const size = 20
-  
+  const dispatch = useDispatch();
+  const courses = useSelector((state) => state.courses.userCourseList);
+  const userExamResults = useSelector(
+    (state) => state.examResults.examList.examResults
+  );
+  const exams = useSelector((state) => state.examResults.examResults);
+  console.log("exams: ", exams);
+  console.log("userExamResults: ", userExamResults);
+  const page = 0;
+  const size = 20;
+
   const fetchCourses = useCallback(() => {
-    dispatch(courseActions.getAllUserCourses(page, size))
-  }, [dispatch, page, size])
+    dispatch(courseActions.getAllUserCourses(page, size));
+  }, [dispatch, page, size]);
 
   useEffect(() => {
-    fetchCourses()
-  }, [fetchCourses])
-  
-  const [course, setCourse] = useState("Select Course")
+    fetchCourses();
+  }, [fetchCourses]);
 
-  const courseList = courses?.courseList
+  const [course, setCourse] = useState("Select Course");
 
-  const instructor = courseList?.filter(elem => elem.courseName === course)[0]?.instructor
-  const category = courseList?.filter(elem => elem.courseName === course)[0]?.category
-  const courseId = courseList?.filter(elem => elem.courseName === course)[0]?._id
+  const courseList = courses?.courseList;
+
+  const instructor = courseList?.filter((elem) => elem.courseName === course)[0]
+    ?.instructor;
+  const category = courseList?.filter((elem) => elem.courseName === course)[0]
+    ?.category;
+  const courseId = courseList?.filter((elem) => elem.courseName === course)[0]
+    ?._id;
 
   const fetchExams = useCallback(() => {
-    dispatch(examResultActions.getUserExamResultsByCourse(courseId))
-  },[courseId, dispatch])
-  
+    dispatch(examResultActions.getUserExamResultsByCourse(courseId));
+  }, [courseId, dispatch]);
+
   useEffect(() => {
-    fetchExams()
-  }, [fetchExams])
+    fetchExams();
+  }, [fetchExams]);
 
   const fetchExamResults = useCallback(() => {
-    dispatch(examResultActions.getAllExamResults(courseId))
-  },[courseId, dispatch])
+    dispatch(examResultActions.getAllExamResults(courseId));
+  }, [courseId, dispatch]);
 
   const fetchExamResultsbyCourse = useCallback(() => {
-    dispatch(examResultActions.getExamResultsByCourse(courseId))
-  },[courseId, dispatch])
+    dispatch(examResultActions.getExamResultsByCourse(courseId));
+  }, [courseId, dispatch]);
 
   useEffect(() => {
-    fetchExamResults()
-  }, [fetchExamResults])
-  
+    fetchExamResults();
+  }, [fetchExamResults]);
+
   useEffect(() => {
-    fetchExamResultsbyCourse()
-  }, [fetchExamResultsbyCourse])
+    fetchExamResultsbyCourse();
+  }, [fetchExamResultsbyCourse]);
 
   return (
     <body className="app">
@@ -84,7 +91,11 @@ function ExamResults(props) {
           </div>
           <div className="intro-y box overflow-hidden mt-5">
             <div className="flex flex-col lg:flex-row pt-10 px-5 sm:px-20 sm:pt-20 lg:pb-20 text-center sm:text-left">
-              <CourseDropdown courseList={courseList} course={course} setCourse={setCourse} />
+              <CourseDropdown
+                courseList={courseList}
+                course={course}
+                setCourse={setCourse}
+              />
             </div>
             <div className="flex flex-col lg:flex-row border-b px-5 sm:px-20 pt-10 pb-10 sm:pb-20 text-center sm:text-left">
               <div>
@@ -92,8 +103,12 @@ function ExamResults(props) {
                 <div className="text-lg font-medium text-theme-1 mt-2">
                   Instructor: {instructor}
                 </div>
-                {instructor && <div className="mt-1">{instructor}@gmail.com</div>}
-                <div className="mt-1">260 W. Storm Street New York, NY 10025.</div>
+                {instructor && (
+                  <div className="mt-1">{instructor}@gmail.com</div>
+                )}
+                <div className="mt-1">
+                  260 W. Storm Street New York, NY 10025.
+                </div>
               </div>
             </div>
             <div className="px-5 sm:px-16 py-10 sm:py-20">
@@ -101,7 +116,9 @@ function ExamResults(props) {
                 <table className="table">
                   <thead>
                     <tr>
-                      <th className="border-b-2 whitespace-no-wrap">DESCRIPTION</th>
+                      <th className="border-b-2 whitespace-no-wrap">
+                        DESCRIPTION
+                      </th>
                       <th className="border-b-2 text-right whitespace-no-wrap">
                         Rank
                       </th>
@@ -118,13 +135,13 @@ function ExamResults(props) {
                   </thead>
                   <tbody>
                     {userExamResults?.map((elem, index) => {
-                    return ( 
-                      <ExamResultCard
-                        key={index}
-                        examInfo={elem}
-                        average={exams?.average[elem.exam_name]}
-                      />
-                    )
+                      return (
+                        <ExamResultCard
+                          key={index}
+                          examInfo={elem}
+                          average={exams?.average[elem.exam_name]}
+                        />
+                      );
                     })}
                   </tbody>
                 </table>
@@ -140,7 +157,9 @@ function ExamResults(props) {
               </div>
               <div className="text-center sm:text-right sm:ml-auto">
                 <div className="text-base text-gray-600">Weighted Average</div>
-                <div className="text-xl text-theme-1 font-medium mt-2">{weightedAverage(userExamResults)}</div>
+                <div className="text-xl text-theme-1 font-medium mt-2">
+                  {weightedAverage(userExamResults)}
+                </div>
                 <div className="mt-1 tetx-xs">Class Rank: 7</div>
               </div>
             </div>
@@ -148,7 +167,7 @@ function ExamResults(props) {
         </div>
       </div>
     </body>
-  )
+  );
 }
 
-export { ExamResults }
+export { ExamResults };

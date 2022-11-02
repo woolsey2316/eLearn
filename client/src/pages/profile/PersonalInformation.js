@@ -1,60 +1,59 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
-import { history } from '../../helpers'
+import { history } from "../../helpers";
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 
-import { userActions } from '../../actions'
-import { alertActions } from '../../actions'
+import { userActions } from "../../actions";
+import { alertActions } from "../../actions";
 
-import { Alert } from '../../components'
+import { Alert } from "../../components";
 
 function PersonalInformation() {
-  const alert = useSelector((state) => state.alert)
-  const user = useSelector((state) => state.users.user)
-  const dispatch = useDispatch()
+  const alert = useSelector((state) => state.alert);
+  const user = useSelector((state) => state.users.user);
+  const dispatch = useDispatch();
 
   const [userDetails, setDetails] = useState({
-    address: '',
-    area: '',
-    className: '',
-    gender: '',
-    email: '',
-    mobile: '',
-    name: '',
-    pincode: '',
-    school: '',
-    state: '',
-  })
+    address: "",
+    area: "",
+    className: "",
+    gender: "",
+    email: "",
+    mobile: "",
+    name: "",
+    pincode: "",
+    school: "",
+    state: "",
+  });
 
   useEffect(() => {
     history.listen((location, action) => {
       // clear alert on location change
-      dispatch(alertActions.clear())
-    })
-  }, [dispatch])
+      dispatch(alertActions.clear());
+    });
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(userActions.getUserDetails())
-    
-  },[dispatch])
+    dispatch(userActions.getUserDetails());
+  }, [dispatch]);
 
   useEffect(() => {
-    setDetails(user)
-  },[user])
+    setDetails(user);
+  }, [user]);
 
   function handleChange(event) {
-    const { name, value } = event.target
-    setDetails(userDetails => ({
+    const { name, value } = event.target;
+    setDetails((userDetails) => ({
       ...userDetails,
       [name]: value,
-    }))
+    }));
   }
 
   function handleSubmit(event) {
-    event.preventDefault()
-    console.log("submitted user", userDetails)
-    dispatch(userActions.setUserDetails(userDetails))
+    event.preventDefault();
+    console.log("submitted user", userDetails);
+    dispatch(userActions.setUserDetails(userDetails));
   }
   return (
     <div className="intro-y box lg:mt-5">
@@ -173,6 +172,6 @@ function PersonalInformation() {
         </form>
       </div>
     </div>
-  )
+  );
 }
-export { PersonalInformation }
+export { PersonalInformation };

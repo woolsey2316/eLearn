@@ -1,7 +1,7 @@
-import React from 'react'
-import { Breadcrumb } from '.'
-import { FullName } from '.'
-import { UserIcon } from '.'
+import React from "react";
+import { Breadcrumb } from ".";
+import { FullName } from ".";
+import { UserIcon } from ".";
 
 function TopBar(props) {
   return (
@@ -10,7 +10,7 @@ function TopBar(props) {
       <FullName />
       <UserIcon open={props.open} />
     </div>
-  )
+  );
 }
 
-export { TopBar }
+export { TopBar };

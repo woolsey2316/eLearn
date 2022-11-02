@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const PasswordField = ({
   forgotPassword,
@@ -10,7 +10,7 @@ const PasswordField = ({
     <React.Fragment>
       {!forgotPassword && (
         <input
-          style={{ padding: '0.75em 1em' }}
+          style={{ padding: "0.75em 1em" }}
           type="password"
           className="intro-x login__input input input--lg border border-gray-300 block mt-4"
           placeholder="Password"
@@ -23,7 +23,7 @@ const PasswordField = ({
         <h2 className="mt-1 text-theme-6">Password is required</h2>
       )}
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default PasswordField
+export default PasswordField;

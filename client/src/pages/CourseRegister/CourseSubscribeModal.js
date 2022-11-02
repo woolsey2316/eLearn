@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-import Modal from 'react-modal'
-import * as Icon from 'react-feather'
-import * as Loading from 'react-spinners'
+import Modal from "react-modal";
+import * as Icon from "react-feather";
+import * as Loading from "react-spinners";
 
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 
-import { courseActions } from '../../actions'
+import { courseActions } from "../../actions";
 
-import { SuccessRegister } from './SuccessRegister'
-import { FailRegister } from './FailRegister'
+import { SuccessRegister } from "./SuccessRegister";
+import { FailRegister } from "./FailRegister";
 
 function CourseSubscribeModal({
   modalIsOpen,
@@ -19,25 +19,27 @@ function CourseSubscribeModal({
   register,
   chosenCourse,
 }) {
-  const registering = useSelector((state) => state.courses.courseRegistering)
-  const alreadyRegistered = useSelector((state) => state.courses.alreadyRegistered)
-  //const alert = useSelector((state) => state.alert.type)
-  const [outcome, setOutcome] = useState(false)
-  const dispatch = useDispatch()
+  const registering = useSelector((state) => state.courses.courseRegistering);
+  const alreadyRegistered = useSelector(
+    (state) => state.courses.alreadyRegistered
+  );
+  // const alert = useSelector((state) => state.alert.type)
+  const [outcome, setOutcome] = useState(false);
+  const dispatch = useDispatch();
 
   // function status() {
   //   return alert === 'alert-success'
   // }
 
   function attemptRegister() {
-    dispatch(courseActions.register(chosenCourse))
-    setTimeout(() => setOutcome(!outcome), 1000)
+    dispatch(courseActions.register(chosenCourse));
+    setTimeout(() => setOutcome(!outcome), 1000);
   }
 
   function closeAndExit() {
-    closeModal()
-    window.location = '/student/courses'
-    window.reload()
+    closeModal();
+    window.location = "/student/courses";
+    window.reload();
   }
 
   return (
@@ -47,12 +49,16 @@ function CourseSubscribeModal({
       contentLabel="Example Modal"
       style={{
         overlay: { zIndex: 9999 },
-        content: { bottom: '25%', top: '25%', left: '25%', right: '25%' },
+        content: { bottom: "25%", top: "25%", left: "25%", right: "25%" },
       }}
     >
       <div className="modal__content text-center">
-        {outcome && alreadyRegistered && <SuccessRegister course={chosenCourse} />}
-        {outcome && !alreadyRegistered && <FailRegister course={chosenCourse} />}
+        {outcome && alreadyRegistered && (
+          <SuccessRegister course={chosenCourse} />
+        )}
+        {outcome && !alreadyRegistered && (
+          <FailRegister course={chosenCourse} />
+        )}
         {!outcome && (
           <div className="text-center">
             <Icon.PlayCircle className="sm:w-10 sm:h-10 md:w-12 md:h-12 w-10 h-10 text-theme-7 mx-auto mt-3" />
@@ -85,7 +91,7 @@ function CourseSubscribeModal({
                 {registering && (
                   <Loading.PulseLoader
                     size={5}
-                    color={'#ffffff'}
+                    color={"#ffffff"}
                     loading={registering}
                     className="ml-5"
                   />
@@ -104,7 +110,7 @@ function CourseSubscribeModal({
         </div>
       </div>
     </Modal>
-  )
+  );
 }
 
-export { CourseSubscribeModal }
+export { CourseSubscribeModal };

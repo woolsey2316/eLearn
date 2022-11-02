@@ -1,50 +1,50 @@
-import React, { useCallback, useEffect } from 'react'
-import { MobileMenu } from '../../components'
-import { TopBar } from '../../components'
-import { ExamCard } from './ExamCard'
-import { MonthContainer } from './MonthContainer'
+import React, { useCallback, useEffect } from "react";
+import { MobileMenu } from "../../components";
+import { TopBar } from "../../components";
+import { ExamCard } from "./ExamCard";
+import { MonthContainer } from "./MonthContainer";
 
-import { examActions } from '../../actions'
+import { examActions } from "../../actions";
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 
 const monthNames = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-]
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
-/* 
+/*
   A web page that shows all exams grouped by month, Users go here to select an exam
   and take it.
 */
 function ExamList(props) {
-  const dispatch = useDispatch()
-  const examData = useSelector((state) => state.exams.examList)
+  const dispatch = useDispatch();
+  const examData = useSelector((state) => state.exams.examList);
 
   const fetchExams = useCallback(() => {
-    dispatch(examActions.getUserExams())
-  },[dispatch])
+    dispatch(examActions.getUserExams());
+  }, [dispatch]);
 
   useEffect(() => {
-    fetchExams()
-  }, [fetchExams])
+    fetchExams();
+  }, [fetchExams]);
 
-  examData.sort((a, b) => Date.parse(a.due) - Date.parse(b.due))
+  examData.sort((a, b) => Date.parse(a.due) - Date.parse(b.due));
   const months = new Set(
     examData.map((elem) => monthNames[new Date(elem.due).getMonth()])
-  )
-  var ExamList = []
-  for (let month of months.values()) {
+  );
+  const ExamList = [];
+  for (const month of months.values()) {
     ExamList.push(
       // A white box that contains all exams for the month
       <MonthContainer month={month} key={month}>
@@ -60,7 +60,7 @@ function ExamList(props) {
             <ExamCard key={exam.id} exam={exam} />
           ))}
       </MonthContainer>
-    )
+    );
   }
   return (
     <div className="app">
@@ -78,7 +78,7 @@ function ExamList(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export { ExamList }
+export { ExamList };

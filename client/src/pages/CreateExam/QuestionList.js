@@ -1,38 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-import * as Icon from 'react-feather'
+import * as Icon from "react-feather";
 
-import { QuestionCard } from './QuestionCard'
+import { QuestionCard } from "./QuestionCard";
 
-import { Pagination } from '../../components/Pagination'
+import { Pagination } from "../../components/Pagination";
 
 function QuestionList({ questionList, setQuestion, removeItem }) {
-  const [search, setSearch] = useState('')
-  const [page, setPage] = useState(1)
-  const [resultsPerPage, setResultsPerPage] = useState(10)
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [resultsPerPage, setResultsPerPage] = useState(10);
 
   function handleChange(event) {
-    setResultsPerPage(event.target.value)
+    setResultsPerPage(event.target.value);
   }
   function handleSearchChange(e) {
-    const { value } = e.target
-    setSearch(value)
+    const { value } = e.target;
+    setSearch(value);
   }
   function decrementPage() {
-    navigatePage(page - 1)
+    navigatePage(page - 1);
   }
   function incrementPage() {
-    navigatePage(page + 1)
+    navigatePage(page + 1);
   }
   // Reasonable page values: 0 -> max page
   function navigatePage(page_) {
-    var max = Math.floor(questionList.length / resultsPerPage)
-    if (page_ > 0 && page_ <= max) return setPage(page_)
-    else return setPage(1)
+    const max = Math.floor(questionList.length / resultsPerPage);
+    if (page_ > 0 && page_ <= max) return setPage(page_);
+    else return setPage(1);
   }
 
   function appendQuestion() {
-    window.scroll(0, 100)
+    window.scroll(0, 100);
   }
   return (
     <React.Fragment>
@@ -102,11 +102,11 @@ function QuestionList({ questionList, setQuestion, removeItem }) {
                   ))}
             </tbody>
           </table>
-          {!questionList.length &&
+          {!questionList.length && (
             <h2 className="box font-medium my-auto p-5 w-full">
               There are currently no Questions for this test
             </h2>
-          }
+          )}
         </div>
       </div>
       <div className="intro-y col-span-9 col-start-4 overflow-auto lg:overflow-visible">
@@ -122,6 +122,6 @@ function QuestionList({ questionList, setQuestion, removeItem }) {
         />
       </div>
     </React.Fragment>
-  )
+  );
 }
-export { QuestionList }
+export { QuestionList };

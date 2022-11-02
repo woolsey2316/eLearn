@@ -1,8 +1,8 @@
-import React from 'react'
-import * as Icon from 'react-feather'
+import React from "react";
+import * as Icon from "react-feather";
 
 function NotificationIcon() {
-  const [isPressed, setPressed] = React.useState(false)
+  const [isPressed, setPressed] = React.useState(false);
   return (
     <div className="intro-x dropdown relative mr-auto sm:mr-6">
       <div
@@ -13,8 +13,8 @@ function NotificationIcon() {
       </div>
       <div
         className={
-          'notification-content dropdown-box mt-8 absolute top-0 left-0 sm:left-auto sm:right-0 z-20 -ml-10 sm:ml-0' +
-          (isPressed ? ' show' : '')
+          "notification-content dropdown-box mt-8 absolute top-0 left-0 sm:left-auto sm:right-0 z-20 -ml-10 sm:ml-0" +
+          (isPressed ? " show" : "")
         }
       >
         <div className="notification-content__box dropdown-box__content box">
@@ -24,7 +24,7 @@ function NotificationIcon() {
               <img
                 alt="Midone Tailwind HTML Admin Template"
                 className="rounded-full"
-                src='/images/profile-15.jpg'
+                src="/images/profile-15.jpg"
               />
               <div className="w-3 h-3 bg-theme-9 absolute right-0 bottom-0 rounded-full border-2 border-white"></div>
             </div>
@@ -49,7 +49,7 @@ function NotificationIcon() {
               <img
                 alt="Midone Tailwind HTML Admin Template"
                 className="rounded-full"
-                src='/images/profile-5.jpg'
+                src="/images/profile-5.jpg"
               />
               <div className="w-3 h-3 bg-theme-9 absolute right-0 bottom-0 rounded-full border-2 border-white"></div>
             </div>
@@ -74,7 +74,7 @@ function NotificationIcon() {
               <img
                 alt="Midone Tailwind HTML Admin Template"
                 className="rounded-full"
-                src='/images/profile-12.jpg'
+                src="/images/profile-12.jpg"
               />
               <div className="w-3 h-3 bg-theme-9 absolute right-0 bottom-0 rounded-full border-2 border-white"></div>
             </div>
@@ -99,7 +99,7 @@ function NotificationIcon() {
               <img
                 alt="Midone Tailwind HTML Admin Template"
                 className="rounded-full"
-                src='/images/profile-12.jpg'
+                src="/images/profile-12.jpg"
               />
               <div className="w-3 h-3 bg-theme-9 absolute right-0 bottom-0 rounded-full border-2 border-white"></div>
             </div>
@@ -124,7 +124,7 @@ function NotificationIcon() {
               <img
                 alt="Midone Tailwind HTML Admin Template"
                 className="rounded-full"
-                src='/images/profile-14.jpg'
+                src="/images/profile-14.jpg"
               />
               <div className="w-3 h-3 bg-theme-9 absolute right-0 bottom-0 rounded-full border-2 border-white"></div>
             </div>
@@ -147,7 +147,7 @@ function NotificationIcon() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export { NotificationIcon }
+export { NotificationIcon };

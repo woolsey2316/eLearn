@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const RememberMe = ({ forgotPassword, onChangeCheckbox, isChecked }) => {
   return (
@@ -18,7 +18,7 @@ const RememberMe = ({ forgotPassword, onChangeCheckbox, isChecked }) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default RememberMe
+export default RememberMe;

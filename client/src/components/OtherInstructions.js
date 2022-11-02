@@ -1,5 +1,5 @@
-import React from 'react'
-import { ExamDetails } from '.ExamDetails'
+import React from "react";
+import { ExamDetails } from ".ExamDetails";
 
 function OtherInstructions() {
   return (
@@ -24,6 +24,6 @@ function OtherInstructions() {
       తెలుగు వెర్షన్‌లో ఏదైనా అస్పష్టత ఉంటే, ఇంగ్లీష్ వెర్షన్ ఫైనల్‌గా
       పరిగణించబడుతుంది.
     </div>
-  )
+  );
 }
-export { OtherInstructions }
+export { OtherInstructions };

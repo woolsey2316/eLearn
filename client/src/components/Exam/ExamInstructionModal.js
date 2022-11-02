@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-import Modal from 'react-modal'
+import Modal from "react-modal";
 
-import { OtherInstructions } from './OtherInstructions'
-import { ExamInstructions } from './ExamInstructions'
+import { OtherInstructions } from "./OtherInstructions";
+import { ExamInstructions } from "./ExamInstructions";
 
 function ExamInstructionModal(props) {
-  const [page] = useState(true)
+  const [page] = useState(true);
   return (
     <Modal
       isOpen={props.open}
@@ -14,7 +14,7 @@ function ExamInstructionModal(props) {
       contentLabel="Example Modal"
       style={{
         overlay: { zIndex: 9999 },
-        content: { bottom: '2%', top: '2%', left: '2%', right: '2%' },
+        content: { bottom: "2%", top: "2%", left: "2%", right: "2%" },
       }}
     >
       <div className="modal__content">
@@ -23,7 +23,9 @@ function ExamInstructionModal(props) {
             <div className="content rounded-none p-2">
               <div className="box text-left p-10 m-2">
                 {page && <ExamInstructions instruction={props.instructions} />}
-                {!page && <OtherInstructions instruction={props.instructions} />}
+                {!page && (
+                  <OtherInstructions instruction={props.instructions} />
+                )}
                 <div className="flex flex-col sm:flex-row items-center justify-center text-center mt-5">
                   <button
                     type="button"
@@ -37,14 +39,12 @@ function ExamInstructionModal(props) {
               </div>
             </div>
           </div>
-          
+
           <div className="text-gray-600 mt-2"></div>
-          
         </div>
-        
       </div>
     </Modal>
-  )
+  );
 }
 
-export { ExamInstructionModal }
+export { ExamInstructionModal };

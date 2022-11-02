@@ -25,5 +25,8 @@
         "routes/**/*",
         "validation/**/*",
 
+    ],
+    "exclude": [
+        "client/build/**/*"
     ]
 }

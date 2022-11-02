@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 function TopMenu() {
   return (
@@ -7,7 +7,6 @@ function TopMenu() {
         <li>
           <a href="top-menu-dashboard.html" class="top-menu">
             <div class="top-menu__icon">
-              
               <i data-feather="home"></i>
             </div>
             <div class="top-menu__title"> Dashboard </div>
@@ -16,23 +15,17 @@ function TopMenu() {
         <li>
           <a href="/" class="top-menu">
             <div class="top-menu__icon">
-              
               <i data-feather="box"></i>
             </div>
             <div class="top-menu__title">
-              
               Menu Layout
-              <i
-                data-feather="chevron-down"
-                class="top-menu__sub-icon"
-              ></i>
+              <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
             </div>
           </a>
           <ul class="">
             <li>
               <a href="index.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Side Menu </div>
@@ -41,7 +34,6 @@ function TopMenu() {
             <li>
               <a href="simple-menu-dashboard.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Simple Menu </div>
@@ -50,7 +42,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-dashboard.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Top Menu </div>
@@ -61,39 +52,28 @@ function TopMenu() {
         <li>
           <a href="/.html" class="top-menu top-menu--active">
             <div class="top-menu__icon">
-              
               <i data-feather="activity"></i>
             </div>
             <div class="top-menu__title">
-              
               Apps
-              <i
-                data-feather="chevron-down"
-                class="top-menu__sub-icon"
-              ></i>
+              <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
             </div>
           </a>
           <ul class="top-menu__sub-open">
             <li>
               <a href="/" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title">
-                  
                   Users
-                  <i
-                    data-feather="chevron-down"
-                    class="top-menu__sub-icon"
-                  ></i>
+                  <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
                 </div>
               </a>
               <ul class="">
                 <li>
                   <a href="top-menu-users-layout-1.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Layout 1</div>
@@ -102,7 +82,6 @@ function TopMenu() {
                 <li>
                   <a href="top-menu-users-layout-2.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Layout 2</div>
@@ -111,7 +90,6 @@ function TopMenu() {
                 <li>
                   <a href="top-menu-users-layout-3.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Layout 3</div>
@@ -122,23 +100,17 @@ function TopMenu() {
             <li>
               <a href="/" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title">
-                  
                   Profile
-                  <i
-                    data-feather="chevron-down"
-                    class="top-menu__sub-icon"
-                  ></i>
+                  <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
                 </div>
               </a>
               <ul class="top-menu__sub-open">
                 <li>
                   <a href="top-menu-profile-overview-1.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Overview 1</div>
@@ -147,7 +119,6 @@ function TopMenu() {
                 <li>
                   <a href="top-menu-profile-overview-2.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Overview 2</div>
@@ -156,7 +127,6 @@ function TopMenu() {
                 <li>
                   <a href="top-menu-profile-overview-3.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Overview 3</div>
@@ -167,7 +137,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-inbox.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Inbox </div>
@@ -176,7 +145,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-file-manager.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> File Manager </div>
@@ -185,7 +153,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-point-of-sale.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Point of Sale </div>
@@ -194,7 +161,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-chat.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Chat </div>
@@ -203,7 +169,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-post.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Post </div>
@@ -212,23 +177,17 @@ function TopMenu() {
             <li>
               <a href="/" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title">
-                  
                   Crud
-                  <i
-                    data-feather="chevron-down"
-                    class="top-menu__sub-icon"
-                  ></i>
+                  <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
                 </div>
               </a>
               <ul class="">
                 <li>
                   <a href="side-menu-crud-data-list.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Data List</div>
@@ -237,7 +196,6 @@ function TopMenu() {
                 <li>
                   <a href="side-menu-crud-form.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Form</div>
@@ -250,39 +208,28 @@ function TopMenu() {
         <li>
           <a href="/" class="top-menu">
             <div class="top-menu__icon">
-              
               <i data-feather="layout"></i>
             </div>
             <div class="top-menu__title">
-              
               Pages
-              <i
-                data-feather="chevron-down"
-                class="top-menu__sub-icon"
-              ></i>
+              <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
             </div>
           </a>
           <ul class="">
             <li>
               <a href="/" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title">
-                  
                   Wizards
-                  <i
-                    data-feather="chevron-down"
-                    class="top-menu__sub-icon"
-                  ></i>
+                  <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
                 </div>
               </a>
               <ul class="">
                 <li>
                   <a href="top-menu-wizard-layout-1.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Layout 1</div>
@@ -291,7 +238,6 @@ function TopMenu() {
                 <li>
                   <a href="top-menu-wizard-layout-2.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Layout 2</div>
@@ -300,7 +246,6 @@ function TopMenu() {
                 <li>
                   <a href="top-menu-wizard-layout-3.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Layout 3</div>
@@ -311,23 +256,17 @@ function TopMenu() {
             <li>
               <a href="/" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title">
-                  
                   Blog
-                  <i
-                    data-feather="chevron-down"
-                    class="top-menu__sub-icon"
-                  ></i>
+                  <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
                 </div>
               </a>
               <ul class="">
                 <li>
                   <a href="top-menu-blog-layout-1.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Layout 1</div>
@@ -336,7 +275,6 @@ function TopMenu() {
                 <li>
                   <a href="top-menu-blog-layout-2.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Layout 2</div>
@@ -345,7 +283,6 @@ function TopMenu() {
                 <li>
                   <a href="top-menu-blog-layout-3.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Layout 3</div>
@@ -356,23 +293,17 @@ function TopMenu() {
             <li>
               <a href="/" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title">
-                  
                   Pricing
-                  <i
-                    data-feather="chevron-down"
-                    class="top-menu__sub-icon"
-                  ></i>
+                  <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
                 </div>
               </a>
               <ul class="">
                 <li>
                   <a href="top-menu-pricing-layout-1.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Layout 1</div>
@@ -381,7 +312,6 @@ function TopMenu() {
                 <li>
                   <a href="top-menu-pricing-layout-2.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Layout 2</div>
@@ -392,23 +322,17 @@ function TopMenu() {
             <li>
               <a href="/" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title">
-                  
                   Invoice
-                  <i
-                    data-feather="chevron-down"
-                    class="top-menu__sub-icon"
-                  ></i>
+                  <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
                 </div>
               </a>
               <ul class="">
                 <li>
                   <a href="top-menu-invoice-layout-1.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Layout 1</div>
@@ -417,7 +341,6 @@ function TopMenu() {
                 <li>
                   <a href="top-menu-invoice-layout-2.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Layout 2</div>
@@ -428,23 +351,17 @@ function TopMenu() {
             <li>
               <a href="/" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title">
-                  
                   FAQ
-                  <i
-                    data-feather="chevron-down"
-                    class="top-menu__sub-icon"
-                  ></i>
+                  <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
                 </div>
               </a>
               <ul class="">
                 <li>
                   <a href="top-menu-faq-layout-1.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Layout 1</div>
@@ -453,7 +370,6 @@ function TopMenu() {
                 <li>
                   <a href="top-menu-faq-layout-2.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Layout 2</div>
@@ -462,7 +378,6 @@ function TopMenu() {
                 <li>
                   <a href="top-menu-faq-layout-3.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Layout 3</div>
@@ -473,7 +388,6 @@ function TopMenu() {
             <li>
               <a href="login-login.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Login </div>
@@ -482,7 +396,6 @@ function TopMenu() {
             <li>
               <a href="login-register.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Register </div>
@@ -491,7 +404,6 @@ function TopMenu() {
             <li>
               <a href="main-error-page.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Error Page </div>
@@ -500,7 +412,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-update-profile.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Update profile </div>
@@ -509,7 +420,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-change-password.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Change Password </div>
@@ -520,39 +430,28 @@ function TopMenu() {
         <li>
           <a href="/" class="top-menu">
             <div class="top-menu__icon">
-              
               <i data-feather="inbox"></i>
             </div>
             <div class="top-menu__title">
-              
               Components
-              <i
-                data-feather="chevron-down"
-                class="top-menu__sub-icon"
-              ></i>
+              <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
             </div>
           </a>
           <ul class="">
             <li>
               <a href="/" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title">
-                  
                   Grid
-                  <i
-                    data-feather="chevron-down"
-                    class="top-menu__sub-icon"
-                  ></i>
+                  <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
                 </div>
               </a>
               <ul class="">
                 <li>
                   <a href="top-menu-regular-table.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Regular Table</div>
@@ -561,7 +460,6 @@ function TopMenu() {
                 <li>
                   <a href="top-menu-datatable.html" class="top-menu">
                     <div class="top-menu__icon">
-                      
                       <i data-feather="zap"></i>
                     </div>
                     <div class="top-menu__title">Datatable</div>
@@ -572,7 +470,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-accordion.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Accordion </div>
@@ -581,7 +478,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-button.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Button </div>
@@ -590,7 +486,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-modal.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Modal </div>
@@ -599,7 +494,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-alert.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Alert </div>
@@ -608,7 +502,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-progress-bar.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Progress Bar </div>
@@ -617,7 +510,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-tooltip.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Tooltip </div>
@@ -626,7 +518,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-dropdown.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Dropdown </div>
@@ -635,7 +526,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-toast.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Toast </div>
@@ -644,7 +534,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-typography.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Typography </div>
@@ -653,7 +542,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-icon.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Icon </div>
@@ -662,7 +550,6 @@ function TopMenu() {
             <li>
               <a href="side-menu-loading-icon.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Loading Icon </div>
@@ -673,23 +560,17 @@ function TopMenu() {
         <li>
           <a href="/" class="top-menu">
             <div class="top-menu__icon">
-              
               <i data-feather="sidebar"></i>
             </div>
             <div class="top-menu__title">
-              
               Forms
-              <i
-                data-feather="chevron-down"
-                class="top-menu__sub-icon"
-              ></i>
+              <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
             </div>
           </a>
           <ul class="">
             <li>
               <a href="top-menu-regular-form.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Regular Form </div>
@@ -698,7 +579,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-datepicker.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Datepicker </div>
@@ -707,7 +587,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-select2.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Select2 </div>
@@ -716,7 +595,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-file-upload.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> File Upload </div>
@@ -725,7 +603,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-wysiwyg-editor.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Wysiwyg Editor </div>
@@ -734,7 +611,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-validation.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Validation </div>
@@ -745,23 +621,17 @@ function TopMenu() {
         <li>
           <a href="/" class="top-menu">
             <div class="top-menu__icon">
-              
               <i data-feather="hard-drive"></i>
             </div>
             <div class="top-menu__title">
-              
               Widgets
-              <i
-                data-feather="chevron-down"
-                class="top-menu__sub-icon"
-              ></i>
+              <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
             </div>
           </a>
           <ul class="">
             <li>
               <a href="top-menu-chart.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Chart </div>
@@ -770,7 +640,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-slider.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Slider </div>
@@ -779,7 +648,6 @@ function TopMenu() {
             <li>
               <a href="top-menu-image-zoom.html" class="top-menu">
                 <div class="top-menu__icon">
-                  
                   <i data-feather="activity"></i>
                 </div>
                 <div class="top-menu__title"> Image Zoom </div>
@@ -789,7 +657,7 @@ function TopMenu() {
         </li>
       </ul>
     </nav>
-  )
+  );
 }
 
-export { TopMenu }
+export { TopMenu };

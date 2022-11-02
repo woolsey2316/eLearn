@@ -1,32 +1,32 @@
 // password strength 0 - weakest, 4 strongest
 function evaluatePasswordScore() {
-  return zxcvbn(user.password).score
+  return zxcvbn(user.password).score;
 }
 // green is best, orange moderate, red is weak
 function passwordStrengthColour() {
-  var score = evaluatePasswordScore()
-  if (score >= 3) return 'theme-9'
-  else if (score > 1 && score < 3) return 'theme-11'
-  else return 'theme-6'
+  var score = evaluatePasswordScore();
+  if (score >= 3) return "theme-9";
+  else if (score > 1 && score < 3) return "theme-11";
+  else return "theme-6";
 }
 function passwordQuality() {
-  var score = evaluatePasswordScore()
+  var score = evaluatePasswordScore();
   // empty password does not get assessed
-  score = user.password === '' ? -1 : score
+  score = user.password === "" ? -1 : score;
   switch (score) {
     case 4:
-      return 'Very Strong password'
+      return "Very Strong password";
     case 3:
-      return 'Strong password'
+      return "Strong password";
     case 2:
-      return 'Moderate password'
+      return "Moderate password";
     case 1:
-      return 'Weak password'
+      return "Weak password";
     case 0:
-      return 'Very Weak password'
+      return "Very Weak password";
     default:
-      return ''
+      return "";
   }
 }
 
-export { evaluatePasswordScore, passwordStrengthColour, passwordQuality }
+export { evaluatePasswordScore, passwordStrengthColour, passwordQuality };

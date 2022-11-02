@@ -1,27 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-import { MobileMenu } from '../../components'
-import { TopBar } from '../../components'
+import { MobileMenu } from "../../components";
+import { TopBar } from "../../components";
 
-import { ExamCreationForm } from './ExamCreationForm'
-import { PreviewQuestion } from './PreviewQuestion'
+import { ExamCreationForm } from "./ExamCreationForm";
+import { PreviewQuestion } from "./PreviewQuestion";
 
-import { QuestionList } from './QuestionList'
+import { QuestionList } from "./QuestionList";
 
-import { ToastAlert } from './ToastAlert'
+import { ToastAlert } from "./ToastAlert";
 
 function CreateExam(props) {
-  const [questionList, updateList] = useState([])
+  const [questionList, updateList] = useState([]);
   const [quiz, setQuestion] = useState({
-    question: '',
-    answer: '',
-    option: ['', '', '', ''],
+    question: "",
+    answer: "",
+    option: ["", "", "", ""],
     number: questionList.length + 1,
-  })
-  const [success, setSuccess] = useState(false)
+  });
+  const [success, setSuccess] = useState(false);
 
   function removeItem(id) {
-    updateList(questionList.filter((item, index) => index !== id))
+    updateList(questionList.filter((item, index) => index !== id));
   }
 
   function updateQuestionList(question) {
@@ -29,7 +29,7 @@ function CreateExam(props) {
       ...questionList.slice(0, question.number - 1),
       question,
       ...questionList.slice(question.number, questionList.length),
-    ])
+    ]);
   }
 
   return (
@@ -73,12 +73,12 @@ function CreateExam(props) {
               questionList={questionList}
               setQuestion={setQuestion}
             />
-            {success && <ToastAlert message={alert.message}/>}
+            {success && <ToastAlert message={alert.message} />}
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export { CreateExam }
+export { CreateExam };

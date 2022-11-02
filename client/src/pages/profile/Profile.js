@@ -1,30 +1,29 @@
-import React, { useEffect } from 'react'
-import { MobileMenu } from '../../components/MobileMenu'
-import { TopBar } from '../../components/TopBar'
+import React, { useEffect } from "react";
+import { MobileMenu } from "../../components/MobileMenu";
+import { TopBar } from "../../components/TopBar";
 
-import * as Icon from 'react-feather'
+import * as Icon from "react-feather";
 
-import { ProfileOptions } from './ProfileOptions'
+import { ProfileOptions } from "./ProfileOptions";
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 
-import { userActions } from '../../actions'
+import { userActions } from "../../actions";
 
 function Profile(props) {
-  const dispatch = useDispatch()
-  const user = useSelector((state) => state.users.user)
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.users.user);
 
   useEffect(() => {
-    dispatch(userActions.verifyEmail())
-  }, [dispatch])
+    dispatch(userActions.verifyEmail());
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(userActions.getUserDetails())
-    
-  },[dispatch])
+    dispatch(userActions.getUserDetails());
+  }, [dispatch]);
 
-  //const verified = useSelector((state) => state.user.verifyEmail)
-  const role = ['Student', 'Admin']
+  // const verified = useSelector((state) => state.user.verifyEmail)
+  const role = ["Student", "Admin"];
 
   return (
     <div className="app">
@@ -44,14 +43,16 @@ function Profile(props) {
                     <img
                       alt="Midone Tailwind HTML Admin Template"
                       className="rounded-full"
-                      src='/images/profile-8.png'
+                      src="/images/profile-8.png"
                     />
                   </div>
                   <div className="ml-5">
                     <div className="sm:whitespace-normal font-medium text-lg break-all">
                       {user?.name}
                     </div>
-                    <div className="text-gray-600">{role[user?.roleId - 1]}</div>
+                    <div className="text-gray-600">
+                      {role[user?.roleId - 1]}
+                    </div>
                     <div className="flex mt-1">
                       <div
                         className="truncate sm:whitespace-normal flex items-center text-theme-9 tooltip"
@@ -124,7 +125,7 @@ function Profile(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export { Profile }
+export { Profile };

@@ -1,74 +1,74 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { history } from '../../helpers'
+import { history } from "../../helpers";
 
-import { alertActions } from '../../actions'
-import { userActions } from '../../actions'
+import { alertActions } from "../../actions";
+import { userActions } from "../../actions";
 
-import { Alert } from '../../components'
+import { Alert } from "../../components";
 
-import EmailField from './EmailField'
-import PasswordField from './PasswordField'
-import RememberMe from './RememberMe'
-import ForgotPassword from './ForgotPassword'
-import MainButtons from './MainButtons'
-import FormHeading from './FormHeading'
+import EmailField from "./EmailField";
+import PasswordField from "./PasswordField";
+import RememberMe from "./RememberMe";
+import ForgotPassword from "./ForgotPassword";
+import MainButtons from "./MainButtons";
+import FormHeading from "./FormHeading";
 
 const LoginForm = () => {
   const [inputs, setInputs] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     rememberMe: false,
-  })
-  const [forgotPassword, setForgotPassword] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
-  const { email, password, rememberMe } = inputs
-  const dispatch = useDispatch()
-  const alert = useSelector((state) => state.alert)
+  });
+  const [forgotPassword, setForgotPassword] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const { email, password, rememberMe } = inputs;
+  const dispatch = useDispatch();
+  const alert = useSelector((state) => state.alert);
 
   useEffect(() => {
     history.listen((location, action) => {
       // clear alert on location change
-      dispatch(alertActions.clear())
-    })
-  }, [dispatch])
+      dispatch(alertActions.clear());
+    });
+  }, [dispatch]);
 
   function handleChange(e) {
-    const { name, value } = e.target
-    setInputs((inputs) => ({ ...inputs, [name]: value }))
+    const { name, value } = e.target;
+    setInputs((inputs) => ({ ...inputs, [name]: value }));
   }
 
   function onChangeCheckbox(event) {
-    setInputs({ ...inputs, rememberMe: event.target.checked })
-    console.log(event.target.checked)
+    setInputs({ ...inputs, rememberMe: event.target.checked });
+    console.log(event.target.checked);
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     console.log(
       `%cemail : ${email}, password: ${password}`,
-      'color: blue,font-weight:bold'
-    )
+      "color: blue,font-weight:bold"
+    );
 
-    setSubmitted(true)
+    setSubmitted(true);
     if (email && password) {
       // Dispatches a login action, if successful redirects current URL
       // to Home page.
-      dispatch(userActions.login(email, password, rememberMe))
+      dispatch(userActions.login(email, password, rememberMe));
     } else if (email && !password) {
-      dispatch(userActions.resetPassword(email, password))
+      dispatch(userActions.resetPassword(email, password));
     }
-    if (rememberMe && email !== '') {
-      localStorage.email = email
-      localStorage.password = password
-      localStorage.checkbox = rememberMe
+    if (rememberMe && email !== "") {
+      localStorage.email = email;
+      localStorage.password = password;
+      localStorage.checkbox = rememberMe;
     }
   }
   return (
     <div className="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0 mx-3">
       <div className="my-auto mx-auto xl:ml-20 bg-white xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/3 xl:w-auto">
-        <form style={{ display: 'block' }} name="form" onSubmit={handleSubmit}>
+        <form style={{ display: "block" }} name="form" onSubmit={handleSubmit}>
           <FormHeading />
           <div className="intro-x mt-8">
             <EmailField
@@ -101,7 +101,7 @@ const LoginForm = () => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;

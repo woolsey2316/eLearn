@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
-import RegisterForm from './RegisterForm'
-import { RegisterInfo } from './RegisterInfo'
+import RegisterForm from "./RegisterForm";
+import { RegisterInfo } from "./RegisterInfo";
 
 function RegisterPage() {
   return (
@@ -13,7 +13,7 @@ function RegisterPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export { RegisterPage }
+export { RegisterPage };

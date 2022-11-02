@@ -1,14 +1,12 @@
-import React from 'react'
+import React from "react";
 
-import { MobileMenu } from '../../components'
+import { MobileMenu } from "../../components";
 
-import { TopBar } from '../../components'
+import { TopBar } from "../../components";
 
-import { PersonalInformation } from './PersonalInformation'
+import { PersonalInformation } from "./PersonalInformation";
 
 function UpdateProfile(props) {
-
-  
   return (
     <body className="app">
       <MobileMenu />
@@ -28,7 +26,7 @@ function UpdateProfile(props) {
         </div>
       </div>
     </body>
-  )
+  );
 }
 
-export { UpdateProfile }
+export { UpdateProfile };

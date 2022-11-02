@@ -1,26 +1,29 @@
-import React from 'react'
-import * as Icon from 'react-feather'
+import React from "react";
+import * as Icon from "react-feather";
 
 function UserIcon(props) {
-  const [isPressed, setPressed] = React.useState(false)
+  const [isPressed, setPressed] = React.useState(false);
   return (
     <div className="intro-x dropdown w-8 h-8 relative">
       <div
         onClick={() => setPressed(!isPressed)}
         className="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in"
       >
-        <img alt="Midone Tailwind HTML Admin Template" src='/images/profile.png' />
+        <img
+          alt="Midone Tailwind HTML Admin Template"
+          src="/images/profile.png"
+        />
       </div>
       <div
         className={
-          'dropdown-box mt-10 absolute w-56 top-0 right-0 z-20' +
-          (isPressed ? ' show' : '')
+          "dropdown-box mt-10 absolute w-56 top-0 right-0 z-20" +
+          (isPressed ? " show" : "")
         }
       >
         <div className="dropdown-box__content box bg-theme-38 text-white">
           <div className="p-4 border-b border-theme-40">
             <div className="text-xs text-theme-41">
-              {localStorage.getItem('EMAIL')}
+              {localStorage.getItem("EMAIL")}
             </div>
           </div>
           <div className="p-2">
@@ -48,6 +51,6 @@ function UserIcon(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }
-export { UserIcon }
+export { UserIcon };

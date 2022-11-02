@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const FormHeading = () => {
   return (
@@ -11,7 +11,7 @@ const FormHeading = () => {
         exams in one place
       </div>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default FormHeading
+export default FormHeading;

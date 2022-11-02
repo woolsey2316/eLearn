@@ -1,51 +1,50 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { history } from '../helpers'
+import { history } from "../helpers";
 
-import { alertActions } from '../actions'
-import { userActions } from '../actions'
+import { alertActions } from "../actions";
+import { userActions } from "../actions";
 
-import { Alert } from '.'
-
+import { Alert } from ".";
 
 function ChangePasswordForm() {
   const [user, setUser] = useState({
-    confirmPassword: '',
-    email: '',
-    password: '',
-  })
+    confirmPassword: "",
+    email: "",
+    password: "",
+  });
 
-  const alert = useSelector((state) => state.alert)
-  const dispatch = useDispatch()
+  const alert = useSelector((state) => state.alert);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     history.listen((location, action) => {
       // clear alert on location change
-      dispatch(alertActions.clear())
-    })
-  }, [dispatch])
+      dispatch(alertActions.clear());
+    });
+  }, [dispatch]);
 
   function handleChange(e) {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setUser((user) => ({
       ...user,
       [name]: value,
-    }))
+    }));
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     if (user.confirmPassword && user.email && user.password) {
-      dispatch(userActions.resetPassword(user))
+      dispatch(userActions.resetPassword(user));
     }
   }
 
   return (
     <div className="intro-y box lg:mt-5">
       <form
-        style={{ margin: 'auto' }}
+        style={{ margin: "auto" }}
         name="form"
         onSubmit={handleSubmit}
         className="validate-form"
@@ -88,7 +87,7 @@ function ChangePasswordForm() {
         </div>
       </form>
     </div>
-  )
+  );
 }
 
-export { ChangePasswordForm }
+export { ChangePasswordForm };

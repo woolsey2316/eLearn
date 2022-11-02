@@ -1,14 +1,12 @@
-import React from 'react';
+import React from "react";
 
 const StudentMenuContainer = (props) => {
-  return ( 
+  return (
     <React.Fragment>
       <div className="side-nav__devider my-6"></div>
-        <ul>
-        {props.children}
-        </ul>
+      <ul>{props.children}</ul>
     </React.Fragment>
-   );
-}
- 
+  );
+};
+
 export { StudentMenuContainer };

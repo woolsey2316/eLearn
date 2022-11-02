@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 function Logo() {
   return (
@@ -12,7 +12,7 @@ function Logo() {
         Mid<span className="font-medium">one</span>
       </span>
     </a>
-  )
+  );
 }
 
-export { Logo }
+export { Logo };

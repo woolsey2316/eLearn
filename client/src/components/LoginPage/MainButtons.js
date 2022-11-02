@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const MainButtons = ({ forgotPassword }) => {
   return (
@@ -24,7 +24,7 @@ const MainButtons = ({ forgotPassword }) => {
         Sign up
       </a>
     </div>
-  )
-}
+  );
+};
 
-export default MainButtons
+export default MainButtons;

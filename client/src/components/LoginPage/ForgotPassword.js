@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const ForgotPassword = ({ forgotPassword, setForgotPassword }) => {
   return (
     <React.Fragment>
       {!forgotPassword && (
         <h4
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
           onClick={() => setForgotPassword(!forgotPassword)}
         >
           Forgot Password?
@@ -13,14 +13,14 @@ const ForgotPassword = ({ forgotPassword, setForgotPassword }) => {
       )}
       {forgotPassword && (
         <h4
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
           onClick={() => setForgotPassword(!forgotPassword)}
         >
           Show Password Field
         </h4>
       )}
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default ForgotPassword
+export default ForgotPassword;

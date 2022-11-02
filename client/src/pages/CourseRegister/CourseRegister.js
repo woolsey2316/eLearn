@@ -1,76 +1,75 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import * as Icon from 'react-feather'
-import { MobileMenu } from '../../components'
-import { TopBar } from '../../components'
+import React, { useState, useEffect, useCallback } from "react";
+import * as Icon from "react-feather";
+import { MobileMenu } from "../../components";
+import { TopBar } from "../../components";
 
-import { CourseCard } from './CourseCard'
+import { CourseCard } from "./CourseCard";
 
-import { CourseSubscribeModal } from './CourseSubscribeModal'
+import { CourseSubscribeModal } from "./CourseSubscribeModal";
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 
-import { courseActions } from '../../actions'
+import { courseActions } from "../../actions";
 
-import { Pagination } from '../../components'
-import { ShowingFirstToLast } from './ShowingFirstToLast'
+import { Pagination } from "../../components";
+import { ShowingFirstToLast } from "./ShowingFirstToLast";
 
 function CourseRegister(props) {
-  const dispatch = useDispatch()
-  const courses = useSelector((state) => state.courses)
-  console.log("courses", courses)
-  const [search, setSearch] = useState('')
-  const [chosenCourse, setCourse] = useState({})
-  const [page, setPage] = useState(1)
-  const [resultsPerPage, setResultsPerPage] = useState(10)
+  const dispatch = useDispatch();
+  const courses = useSelector((state) => state.courses);
+  console.log("courses", courses);
+  const [search, setSearch] = useState("");
+  const [chosenCourse, setCourse] = useState({});
+  const [page, setPage] = useState(1);
+  const [resultsPerPage, setResultsPerPage] = useState(10);
 
-  const [modalIsOpen, setIsOpen] = useState(false)
+  const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
-    setIsOpen(true)
+    setIsOpen(true);
   }
 
   function closeModal() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
 
   const fetchCourses = useCallback(() => {
-    dispatch(courseActions.getAllCourses(page, resultsPerPage))
-  },[page, resultsPerPage, dispatch])
+    dispatch(courseActions.getAllCourses(page, resultsPerPage));
+  }, [page, resultsPerPage, dispatch]);
 
   useEffect(() => {
-    fetchCourses()
-  }, [fetchCourses])
+    fetchCourses();
+  }, [fetchCourses]);
 
   // Reasonable page values: 0 -> max page
   const navigatePage = useCallback((page) => {
     if (page > 0) {
-      setPage(page)
+      setPage(page);
     } else {
-      setPage(1)
+      setPage(1);
     }
-  }, [])
-  
+  }, []);
+
   useEffect(() => {
-    navigatePage(page)
-    
-  }, [navigatePage, page, resultsPerPage])
+    navigatePage(page);
+  }, [navigatePage, page, resultsPerPage]);
 
   function handleChange(event) {
-    setResultsPerPage(parseInt(event.target.value, 10))
+    setResultsPerPage(parseInt(event.target.value, 10));
   }
 
   function registerCourse() {
-    dispatch(courseActions.register(chosenCourse))
+    dispatch(courseActions.register(chosenCourse));
   }
 
   function handleSearchChange(e) {
-    const { value } = e.target
-    setSearch(value)
+    const { value } = e.target;
+    setSearch(value);
   }
   function decrementPage() {
-    navigatePage(page - 1)
+    navigatePage(page - 1);
   }
   function incrementPage() {
-    navigatePage(page + 1)
+    navigatePage(page + 1);
   }
 
   return (
@@ -111,7 +110,11 @@ function CourseRegister(props) {
             </div>
             {courses.courseList &&
               courses.courseList
-                .filter((elem) => elem.CourseName.includes(search) || elem.CourseName.toLowerCase().includes(search))
+                .filter(
+                  (elem) =>
+                    elem.CourseName.includes(search) ||
+                    elem.CourseName.toLowerCase().includes(search)
+                )
                 .map((course) => (
                   <CourseCard
                     modalIsOpen={modalIsOpen}
@@ -138,6 +141,6 @@ function CourseRegister(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }
-export { CourseRegister }
+export { CourseRegister };

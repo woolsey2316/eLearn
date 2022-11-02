@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-import * as Icon from 'react-feather'
+import * as Icon from "react-feather";
 
 function ProfileOptions() {
   return (
@@ -28,9 +28,9 @@ function ProfileOptions() {
           </div>
         </div>
       </div>
-      {/*<!-- END: Profile Menu -->*/}
+      {/* <!-- END: Profile Menu --> */}
       <div className="col-span-12 lg:col-span-8 xxl:col-span-9">
-        {/*<!-- BEGIN: Latest Tasks -->*/}
+        {/* <!-- BEGIN: Latest Tasks --> */}
         <div className="intro-y box">
           <div className="flex items-center px-5 py-5 sm:py-0 border-b border-gray-200">
             <h2 className="font-medium text-base mr-auto">Latest Tasks</h2>
@@ -123,6 +123,6 @@ function ProfileOptions() {
         </div>
       </div>
     </>
-  )
+  );
 }
-export { ProfileOptions }
+export { ProfileOptions };

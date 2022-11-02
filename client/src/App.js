@@ -1,45 +1,45 @@
-import React, { useState } from 'react'
-import { Router, Switch, Route } from 'react-router-dom'
+import React, { useState } from "react";
+import { Router, Switch, Route } from "react-router-dom";
 
-// midOne html + css template file provided  
-import './midone-assets/dist/css/app.css'
-import './index.css'
+// midOne html + css template file provided
+import "./midone-assets/dist/css/app.css";
+import "./index.css";
 
-import { history } from './helpers/history'
+import { history } from "./helpers/history";
 
-import { RegisterPage } from './components/RegisterPage'
-import { LoginPage } from './components/LoginPage'
-import { Dashboard } from './pages/HomePage'
-import { AdminDashboard } from './pages/AdminDashboard'
-import { CreateExam } from './pages/CreateExam'
-import { ChangePassword, UpdateProfile } from './pages/profile'
-import { Profile } from './pages'
-import { ExamResults } from './pages/ExamResults'
-import { ExamPage } from './pages/Exam'
-import { ExamList } from './pages/ExamList'
-import { Courses } from './pages/Course'
-import { MyCourses } from './pages/MyCourses'
-import { CourseRegister } from './pages/CourseRegister'
-import { PageNotFound } from './pages/NotFound'
+import { RegisterPage } from "./components/RegisterPage";
+import { LoginPage } from "./components/LoginPage";
+import { Dashboard } from "./pages/HomePage";
+import { AdminDashboard } from "./pages/AdminDashboard";
+import { CreateExam } from "./pages/CreateExam";
+import { ChangePassword, UpdateProfile } from "./pages/profile";
+import { Profile } from "./pages";
+import { ExamResults } from "./pages/ExamResults";
+import { ExamPage } from "./pages/Exam";
+import { ExamList } from "./pages/ExamList";
+import { Courses } from "./pages/Course";
+import { MyCourses } from "./pages/MyCourses";
+import { CourseRegister } from "./pages/CourseRegister";
+import { PageNotFound } from "./pages/NotFound";
 
-import { SideMenu } from './components'
+import { SideMenu } from "./components";
 
-import { LogoutModal } from './components'
+import { LogoutModal } from "./components";
 
-import { PrivateRoute } from './components'
+import { PrivateRoute } from "./components";
 
 function App() {
-  const [modalIsOpen, setIsOpen] = useState(false)
+  const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
-    console.log('open modal request')
-    setIsOpen(true)
+    console.log("open modal request");
+    setIsOpen(true);
   }
 
   function closeModal() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
 
-  const sideMenu = <SideMenu permissions={true} open={openModal} />
+  const sideMenu = <SideMenu permissions={true} open={openModal} />;
   return (
     <Router history={history}>
       <LogoutModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
@@ -93,9 +93,8 @@ function App() {
         <Route exact path="/login" component={LoginPage} />
         <Route path="*" exact component={PageNotFound} />
       </Switch>
-      
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 
-import * as Icon from 'react-feather'
+import * as Icon from "react-feather";
 
-import { NumberSelector } from '../pages/CourseRegister'
+import { NumberSelector } from "../pages/CourseRegister";
 
-/* a single row of navigation buttons which traverses through a list of results 
+/* a single row of navigation buttons which traverses through a list of results
   << < 0 1 2 > >>
 */
 
@@ -81,7 +81,7 @@ function Pagination({
         handleChange={handleChange}
       />
     </div>
-  )
+  );
 }
 
-export { Pagination }
+export { Pagination };

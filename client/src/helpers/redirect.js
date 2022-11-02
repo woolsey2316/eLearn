@@ -1,8 +1,8 @@
-import { history } from './history'
+import { history } from "./history";
 
 function redirect(path) {
-  history.push(path)
-  window.location.reload()
+  history.push(path);
+  window.location.reload();
 }
 
-export { redirect }
+export { redirect };

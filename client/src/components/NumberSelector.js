@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 function NumberSelector({ name, value, handleChange }) {
   return (
@@ -14,7 +14,7 @@ function NumberSelector({ name, value, handleChange }) {
       <option value={35}>35</option>
       <option value={50}>50</option>
     </select>
-  )
+  );
 }
 
-export { NumberSelector }
+export { NumberSelector };

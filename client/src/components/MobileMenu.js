@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-import * as Icon from 'react-feather'
+import * as Icon from "react-feather";
 
 function MobileMenu() {
   return (
@@ -10,7 +10,7 @@ function MobileMenu() {
           <img
             alt="Midone Tailwind HTML Admin Template"
             className="w-6 ml-1"
-            src='/images/logo.svg'
+            src="/images/logo.svg"
           />
         </a>
         <a href="/" id="mobile-menu-toggler">
@@ -660,7 +660,7 @@ function MobileMenu() {
         </li>
       </ul>
     </div>
-  )
+  );
 }
 
-export { MobileMenu }
+export { MobileMenu };
