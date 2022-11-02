@@ -54,7 +54,7 @@ const RegisterForm = () => {
     else return "theme-6";
   }
   function passwordQuality() {
-    const score = evaluatePasswordScore();
+    let score = evaluatePasswordScore();
     // empty password does not get assessed because user hasn't begun typing yet
     score = user.password === "" ? -1 : score;
     switch (score) {

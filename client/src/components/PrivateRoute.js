@@ -1,6 +1,7 @@
 import React from "react";
-import { Route, Redirect } from "react-router";
+import { Route, Redirect } from "react-router-dom";
 import { LoginPage } from "./LoginPage";
+import { RegisterPage } from "./RegisterPage";
 /*
   url paths are protected by redirecting the user to the /login page if
   the user is not logged in. A user is determined to be logged in if there
