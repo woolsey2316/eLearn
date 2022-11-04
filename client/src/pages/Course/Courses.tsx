@@ -1,30 +1,33 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback } from "react";
 
-import * as Icon from 'react-feather'
+import * as Icon from "react-feather";
 
-import { MobileMenu } from '../../components'
-import { TopBar } from '../../components'
+import { MobileMenu } from "../../components";
+import { TopBar } from "../../components";
 
-import { useDispatch, useSelector } from 'react-redux'
+import { courseActions } from "../../actions";
 
-import { courseActions } from '../../actions'
+import { CourseTable } from "./CourseTable";
 
-import { CourseTable } from './CourseTable'
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
-function Courses(props) {
-  const dispatch = useDispatch()
-  const courses = useSelector((state) => state.courses.userCourseList)
-  const page = 0
-  const size = 20
+import { PageComponentProps } from "../../types/PageComponentProps";
+
+function Courses(props: PageComponentProps) {
+  const dispatch = useAppDispatch();
+  const courses = useAppSelector(
+    (state) => state.courses.userCourseList?.courseList
+  );
+  const page = 0;
+  const size = 20;
 
   const fetchCourses = useCallback(() => {
-    dispatch(courseActions.getAllUserCourses(page, size))
-  },[page, size, dispatch])
+    dispatch(courseActions.getAllUserCourses());
+  }, [page, size, dispatch]);
 
   useEffect(() => {
-    fetchCourses()
-  }, [fetchCourses])
-
+    fetchCourses();
+  }, [fetchCourses]);
 
   return (
     <div className="app">
@@ -53,7 +56,7 @@ function Courses(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export { Courses }
+export { Courses };

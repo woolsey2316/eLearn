@@ -1,38 +1,35 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback } from "react";
 
-import {Activity,
-  AlertCircle,
-  Monitor,
-  Grid} from 'react-feather'
+import { Activity, AlertCircle, Monitor, Grid } from "react-feather";
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 
-import { dashboardActions } from '../../actions'
+import { dashboardActions } from "../../actions";
 
-import { courseActions } from '../../actions'
+import { courseActions } from "../../actions";
 
 function Overview() {
-  const dispatch = useDispatch()
-  const courses = useSelector((state) => state.courses.userCourseList)
-  const dashboard = useSelector((state) => state.dashboard)
-  const page = 0
-  const size = 20
+  const dispatch = useDispatch();
+  const courses = useSelector((state) => state.courses.userCourseList);
+  const dashboard = useSelector((state) => state.dashboard);
+  const page = 0;
+  const size = 20;
 
   const fetchCourses = useCallback(() => {
-    dispatch(courseActions.getAllUserCourses())
-  },[dispatch])
+    dispatch(courseActions.getAllUserCourses());
+  }, [dispatch]);
 
   const fetchDashboard = useCallback(() => {
-    dispatch(dashboardActions.getUserDashboard(page, size))
-  }, [page, size, dispatch])
+    dispatch(dashboardActions.getUserDashboard(page, size));
+  }, [page, size, dispatch]);
 
   useEffect(() => {
-    fetchCourses()
-  }, [fetchCourses])
+    fetchCourses();
+  }, [fetchCourses]);
 
   useEffect(() => {
-    fetchDashboard()
-  }, [fetchDashboard])
+    fetchDashboard();
+  }, [fetchDashboard]);
 
   return (
     <div className="col-span-12 mt-8">
@@ -55,7 +52,10 @@ function Overview() {
                 </div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard?.dashboard?.total !== 0 ? dashboard?.dashboard?.completed / dashboard?.dashboard?.total : 0}
+                {dashboard?.dashboard?.total !== 0
+                  ? dashboard?.dashboard?.completed /
+                    dashboard?.dashboard?.total
+                  : 0}
               </div>
               <div className="text-base text-gray-600 mt-1">
                 Total completion rate
@@ -71,11 +71,11 @@ function Overview() {
                 <div className="ml-auto"></div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard && dashboard.dashboard && dashboard?.dashboard?.active}
+                {dashboard &&
+                  dashboard.dashboard &&
+                  dashboard?.dashboard?.active}
               </div>
-              <div className="text-base text-gray-600 mt-1">
-                Active Tests
-              </div>
+              <div className="text-base text-gray-600 mt-1">Active Tests</div>
             </div>
           </div>
         </div>
@@ -87,7 +87,9 @@ function Overview() {
                 <div className="ml-auto"></div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard && dashboard.dashboard && dashboard?.dashboard?.completed}
+                {dashboard &&
+                  dashboard.dashboard &&
+                  dashboard?.dashboard?.completed}
               </div>
               <div className="text-base text-gray-600 mt-1">
                 Completed Tests
@@ -102,7 +104,7 @@ function Overview() {
                 <Grid className="report-box__icon text-theme-11" />
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {courses?.courseList.length}
+                {courses?.length}
               </div>
               <div className="text-base text-gray-600 mt-1">
                 Total Enrolled Courses
@@ -112,7 +114,7 @@ function Overview() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export { Overview }
+export { Overview };

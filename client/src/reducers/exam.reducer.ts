@@ -6,13 +6,13 @@ import { AnyAction } from "redux";
 */
 interface ExamState {
   submittingExam: boolean;
-  examList?: Array<any>;
+  examList: Array<any>;
 }
 
 export function exams(
-  state: ExamState = { submittingExam: false, examList: [] },
+  state: Partial<ExamState> = { submittingExam: false, examList: [] },
   action: AnyAction
-): ExamState {
+): Partial<ExamState> {
   switch (action.type) {
     case examConstants.SUBMIT_REQUEST:
       return { ...state, submittingExam: true };

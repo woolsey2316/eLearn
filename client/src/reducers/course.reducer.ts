@@ -1,17 +1,17 @@
 import { courseConstants } from "../constants";
 import { AnyAction } from "redux";
+
+import { CourseState } from "../types/CourseState";
 /*
   Student registers for a course and becomes enrolled.
   access to any exams belonging to said course.
 */
-interface CourseState {
-  courseRegistering: Boolean;
-  userCourseList?: any;
-  courseList?: any;
-  registerOutcome?: boolean;
-}
-const initialState: CourseState = { courseRegistering: false };
-export function courses(state = initialState, action: AnyAction): CourseState {
+
+const initialState: Partial<CourseState> = { courseRegistering: false };
+export function courses(
+  state = initialState,
+  action: AnyAction
+): Partial<CourseState> {
   switch (action.type) {
     case courseConstants.REGISTER_REQUEST:
       return { ...state, courseRegistering: true };
@@ -27,7 +27,7 @@ export function courses(state = initialState, action: AnyAction): CourseState {
     case courseConstants.USER_COURSE_INFO_SUCCESS:
       return {
         courseRegistering: false,
-        userCourseList: action,
+        userCourseList: action.courseList,
       };
     default:
       return state;

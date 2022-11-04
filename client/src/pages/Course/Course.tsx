@@ -1,12 +1,18 @@
-import React from 'react'
-import * as Icon from 'react-feather'
+import React from "react";
+import * as Icon from "react-feather";
 
-function Course({ course }) {
+import { CourseType } from "../../types/CourseState";
+
+type CourseProps = {
+  course: CourseType;
+};
+
+function Course({ course }: CourseProps) {
   return (
     <tr>
       <td className="border-b">{course.courseName}</td>
       <td className="border-b">{course.category}</td>
-      {course.status ? (
+      {course.activeExams ? (
         <td className="border-b ">
           <Icon.CheckSquare className="text-theme-9 mr-2 h-5 w-5 inline" />
           <h2 className="text-theme-9 inline">Active exams</h2>
@@ -18,6 +24,6 @@ function Course({ course }) {
         </td>
       )}
     </tr>
-  )
+  );
 }
-export { Course }
+export { Course };

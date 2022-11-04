@@ -1,4 +1,5 @@
 type UserInfo = {
+  _id: string;
   address: string;
   area: string;
   className: string;
