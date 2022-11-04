@@ -11,16 +11,16 @@ import { users } from "./users.reducer";
 import { activity } from "./activity.reducer";
 
 const reducer = combineReducers({
-    alert,
-    authentication,
-    courses,
-    dashboard,
-    exams,
-    examQuestion,
-    examResults,
-    registration,
-    users,
-    activity
+  users,
+  alert,
+  authentication,
+  courses,
+  dashboard,
+  exams,
+  examQuestion,
+  examResults,
+  registration,
+  activity,
 });
 
 export default reducer;

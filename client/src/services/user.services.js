@@ -32,6 +32,7 @@ async function getUserDetails() {
     `${API_URL}/users/${userId}/profile`,
     requestOptions
   );
+  console.log("user details", response);
   return handleResponse(response);
 }
 

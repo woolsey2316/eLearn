@@ -10,7 +10,10 @@ interface ActivityState {
   activityList?: Activity[];
 }
 const initialState: ActivityState = { activityList: [] };
-export function activity(state = initialState, action: AnyAction) {
+export function activity(
+  state = initialState,
+  action: AnyAction
+): ActivityState {
   switch (action.type) {
     case activityConstants.USER_ACTIVITY_INFO_REQUEST:
       return { ...state };

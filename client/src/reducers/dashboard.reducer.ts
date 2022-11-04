@@ -4,6 +4,7 @@ import { AnyAction } from "redux";
   Manages the dashboard data section of the application. Student has an overview of their overall performance.
 */
 interface DashboardState {
+  dashboard: any;
   total: {
     totalCompletionRate: number;
     activeTests: number;
@@ -28,7 +29,10 @@ const initialState: Partial<DashboardState> = {
   },
 };
 
-export function dashboard(state = initialState, action: AnyAction) {
+export function dashboard(
+  state = initialState,
+  action: AnyAction
+): Partial<DashboardState> {
   switch (action.type) {
     case dashboardConstants.DASHBOARD_INFO_SUCCESS:
       return { ...state, dashboard: action.dashboard || initialState };

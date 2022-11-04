@@ -10,11 +10,15 @@ import { AnyAction } from "redux";
 const user = JSON.parse(localStorage.getItem("user") as string);
 interface AuthState {
   loggedIn: boolean;
+  loggingIn: boolean;
   user: any;
 }
-const initialState: AuthState = { loggedIn: false, user };
+const initialState: AuthState = { loggedIn: false, loggingIn: false, user };
 
-export function authentication(state = initialState, action: AnyAction) {
+export function authentication(
+  state = initialState,
+  action: AnyAction
+): AuthState {
   switch (action.type) {
     case userConstants.LOGIN_REQUEST:
       return { ...initialState, loggingIn: true, user: action.user };
@@ -28,12 +32,14 @@ export function authentication(state = initialState, action: AnyAction) {
     case userConstants.LOGIN_FAILURE:
       return {
         loggedIn: false,
-        loggingIn: false
+        loggingIn: false,
+        user: "",
       };
     case userConstants.LOGOUT:
       return {
         loggedIn: false,
-        loggingIn: false
+        loggingIn: false,
+        user: "",
       };
     default:
       return state;

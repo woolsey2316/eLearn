@@ -1,30 +1,32 @@
-import { alertConstants } from '../constants'
-import { AnyAction } from 'redux'
+import { alertConstants } from "../constants";
+import { AnyAction } from "redux";
 interface Alert {
-  type: string,
-  message: string,
-
+  type: string;
+  message: string;
 }
-export function alert(state:Partial<Alert> = {}, action: AnyAction) {
+export function alert(
+  state: Partial<Alert> = {},
+  action: AnyAction
+): Partial<Alert> {
   switch (action.type) {
     case alertConstants.SUCCESS:
       return {
-        type: 'alert-success',
+        type: "alert-success",
         message: action.message,
-      }
+      };
     case alertConstants.ERROR:
       return {
-        type: 'alert-danger',
+        type: "alert-danger",
         message: action.message,
-      }
+      };
     case alertConstants.MODERATE:
       return {
-        type: 'alert-moderate',
+        type: "alert-moderate",
         message: action.message,
-      }
+      };
     case alertConstants.CLEAR:
-      return {}
+      return {};
     default:
-      return state
+      return state;
   }
 }

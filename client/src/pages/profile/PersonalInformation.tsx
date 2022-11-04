@@ -1,8 +1,10 @@
+import { UserInfo } from "../../types/UserForm";
+
 import React, { useEffect, useState } from "react";
 
 import { history } from "../../helpers";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
 import { userActions } from "../../actions";
 import { alertActions } from "../../actions";
@@ -10,11 +12,11 @@ import { alertActions } from "../../actions";
 import { Alert } from "../../components";
 
 function PersonalInformation() {
-  const alert = useSelector((state) => state.alert);
-  const user = useSelector((state) => state.users.user);
-  const dispatch = useDispatch();
+  const alert = useAppSelector((state) => state.alert);
+  const user = useAppSelector((state) => state.users.user);
+  const dispatch = useAppDispatch();
 
-  const [userDetails, setDetails] = useState({
+  const [userDetails, setDetails] = useState<Partial<UserInfo> | undefined>({
     address: "",
     area: "",
     className: "",
@@ -28,7 +30,7 @@ function PersonalInformation() {
   });
 
   useEffect(() => {
-    history.listen((location, action) => {
+    history.listen((listener) => {
       // clear alert on location change
       dispatch(alertActions.clear());
     });
@@ -42,19 +44,19 @@ function PersonalInformation() {
     setDetails(user);
   }, [user]);
 
-  function handleChange(event) {
-    const { name, value } = event.target;
+  const handleChange: React.FormEventHandler<HTMLInputElement> = (event) => {
+    const { name, value } = event.currentTarget;
     setDetails((userDetails) => ({
       ...userDetails,
       [name]: value,
     }));
-  }
+  };
 
-  function handleSubmit(event) {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     console.log("submitted user", userDetails);
     dispatch(userActions.setUserDetails(userDetails));
-  }
+  };
   return (
     <div className="intro-y box lg:mt-5">
       <div className="flex items-center p-5 border-b border-gray-200">
@@ -164,9 +166,9 @@ function PersonalInformation() {
               >
                 Update Details
               </button>
-              {alert.message && (
+              {alert.message ? (
                 <Alert type={alert.type} message={alert.message} />
-              )}
+              ) : null}
             </div>
           </div>
         </form>
