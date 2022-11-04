@@ -1,10 +1,12 @@
-import React from 'react'
-import { MobileMenu } from '../../components'
-import { ChangePasswordForm } from '../../components'
+import React from "react";
+import { MobileMenu } from "../../components";
+import { ChangePasswordForm } from "../../components";
 
-import { TopBar } from '../../components'
+import { TopBar } from "../../components";
 
-function ChangePassword(props) {
+import { PageComponentProps } from "../../types/PageComponentProps";
+
+function ChangePassword(props: PageComponentProps) {
   return (
     <>
       <div className="app">
@@ -25,6 +27,6 @@ function ChangePassword(props) {
         </div>
       </div>
     </>
-  )
+  );
 }
-export { ChangePassword }
+export { ChangePassword };

@@ -9,6 +9,7 @@ type UserInfo = {
   pincode: string;
   school: string;
   state: string;
+  roleId: number;
 };
 
 export const UserInfo;

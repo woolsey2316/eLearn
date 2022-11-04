@@ -6,13 +6,15 @@ import * as Icon from "react-feather";
 
 import { ProfileOptions } from "./ProfileOptions";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
 import { userActions } from "../../actions";
 
-function Profile(props) {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.users.user);
+import { PageComponentProps } from "../../types/PageComponentProps";
+
+function Profile(props: PageComponentProps) {
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.users.user);
 
   useEffect(() => {
     dispatch(userActions.verifyEmail());
@@ -51,7 +53,7 @@ function Profile(props) {
                       {user?.name}
                     </div>
                     <div className="text-gray-600">
-                      {role[user?.roleId - 1]}
+                      {user && user.roleId != null ? role[user.roleId] : null}
                     </div>
                     <div className="flex mt-1">
                       <div
@@ -83,7 +85,7 @@ function Profile(props) {
                     {user?.email}
                   </div>
                   <div className="truncate sm:whitespace-normal flex items-center mt-3">
-                    <Icon.Home className="w-4 h-4 mr-2" /> {user?.address1}
+                    <Icon.Home className="w-4 h-4 mr-2" /> {user?.address}
                   </div>
                   <div className="truncate sm:whitespace-normal flex items-center mt-3">
                     <Icon.Phone className="w-4 h-4 mr-2" /> {user?.mobile}

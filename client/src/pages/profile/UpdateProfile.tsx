@@ -6,7 +6,9 @@ import { TopBar } from "../../components";
 
 import { PersonalInformation } from "./PersonalInformation";
 
-function UpdateProfile(props) {
+import { PageComponentProps } from "../../types/PageComponentProps";
+
+function UpdateProfile(props: PageComponentProps) {
   return (
     <body className="app">
       <MobileMenu />
