@@ -7,6 +7,7 @@ import { CourseType } from "../../types/CourseState";
 type CourseTableProps = {
   courses: CourseType[] | undefined;
 };
+
 function CourseTable({ courses }: CourseTableProps) {
   return (
     <table className="table">

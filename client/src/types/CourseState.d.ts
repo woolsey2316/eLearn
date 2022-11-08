@@ -18,9 +18,7 @@ type CourseType = {
 
 type CourseState = {
   courseRegistering: boolean;
-  userCourseList: {
-    courseList: Array<CourseType>;
-  };
+  userCourseList: Array<CourseType>;
   courseList: Array<Course>;
   registerOutcome: boolean;
 };

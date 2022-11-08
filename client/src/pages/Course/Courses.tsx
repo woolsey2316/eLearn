@@ -15,9 +15,7 @@ import { PageComponentProps } from "../../types/PageComponentProps";
 
 function Courses(props: PageComponentProps) {
   const dispatch = useAppDispatch();
-  const courses = useAppSelector(
-    (state) => state.courses.userCourseList?.courseList
-  );
+  const courses = useAppSelector((state) => state.courses.userCourseList);
   const page = 0;
   const size = 20;
 
