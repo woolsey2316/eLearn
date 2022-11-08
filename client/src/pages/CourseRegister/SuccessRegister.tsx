@@ -1,7 +1,11 @@
-import React from 'react'
-import * as Icon from 'react-feather'
+import React from "react";
+import * as Icon from "react-feather";
+import { CourseDTO } from "../../types/CourseState";
 
-function SuccessRegister({ course }) {
+type SuccessRegisterProps = {
+  course: Partial<CourseDTO>;
+};
+function SuccessRegister({ course }: SuccessRegisterProps) {
   return (
     <div className="text-center">
       <Icon.CheckCircle className="sm:w-10 sm:h-10 md:w-12 md:h-12 w-10 h-10 text-theme-9 mx-auto mt-3" />
@@ -10,6 +14,6 @@ function SuccessRegister({ course }) {
       </div>
       <div className="md:text-lg mt-5 text-gray-700">{course.name}</div>
     </div>
-  )
+  );
 }
-export { SuccessRegister }
+export { SuccessRegister };

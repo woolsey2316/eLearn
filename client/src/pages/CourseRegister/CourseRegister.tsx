@@ -7,19 +7,23 @@ import { CourseCard } from "./CourseCard";
 
 import { CourseSubscribeModal } from "./CourseSubscribeModal";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
 import { courseActions } from "../../actions";
 
 import { Pagination } from "../../components";
 import { ShowingFirstToLast } from "./ShowingFirstToLast";
 
-function CourseRegister(props) {
-  const dispatch = useDispatch();
-  const courses = useSelector((state) => state.courses);
+import { PageComponentProps } from "../../types/PageComponentProps";
+
+import { CourseDTO } from "../../types/CourseState";
+
+function CourseRegister(props: PageComponentProps) {
+  const dispatch = useAppDispatch();
+  const courses = useAppSelector((state) => state.courses);
   console.log("courses", courses);
   const [search, setSearch] = useState("");
-  const [chosenCourse, setCourse] = useState({});
+  const [chosenCourse, setCourse] = useState<Partial<CourseDTO>>({});
   const [page, setPage] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(10);
 
@@ -53,15 +57,15 @@ function CourseRegister(props) {
     navigatePage(page);
   }, [navigatePage, page, resultsPerPage]);
 
-  function handleChange(event) {
-    setResultsPerPage(parseInt(event.target.value, 10));
-  }
+  const handleChange: React.FormEventHandler<HTMLInputElement> = (event) => {
+    setResultsPerPage(parseInt(event.currentTarget.value, 10));
+  };
 
   function registerCourse() {
     dispatch(courseActions.register(chosenCourse));
   }
 
-  function handleSearchChange(e) {
+  function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { value } = e.target;
     setSearch(value);
   }
@@ -115,14 +119,12 @@ function CourseRegister(props) {
                     elem.CourseName.includes(search) ||
                     elem.CourseName.toLowerCase().includes(search)
                 )
-                .map((course) => (
+                .map((course, index) => (
                   <CourseCard
-                    modalIsOpen={modalIsOpen}
                     openModal={openModal}
                     setCourse={setCourse}
                     course={course}
-                    key={course.id}
-                    register={registerCourse}
+                    key={index}
                   />
                 ))}
             <div className="intro-y col-span-9 col-start-4">

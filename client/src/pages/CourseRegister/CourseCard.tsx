@@ -1,24 +1,24 @@
-import React from 'react'
+import React from "react";
 
-function CourseCard({
-  course,
-  modalIsOpen,
-  closeModal,
-  setCourse,
-  openModal,
-}) {
+import { Course, CourseDTO } from "../../types/CourseState";
+type CourseCardProps = {
+  course: Course;
+  setCourse: (courseDTO: CourseDTO) => void;
+  openModal: () => void;
+};
+function CourseCard({ course, setCourse, openModal }: CourseCardProps) {
   const courseDTO = {
     category: course.category,
-    expires: new Date(course.expires).getTime(),
+    expires: course.expires,
     id: course._id,
     name: course.CourseName,
     instructor: course.instructor,
     status: course.status,
-  }
+  };
 
   function register() {
-    setCourse(courseDTO)
-    openModal()
+    setCourse(courseDTO);
+    openModal();
   }
 
   return (
@@ -37,7 +37,7 @@ function CourseCard({
               {course.expires ? (
                 <React.Fragment>
                   <div className="px-3 py-2 bg-theme-14 text-theme-10 rounded font-medium">
-                    {course.expires.substring(0,10)}
+                    {course.expires.toString().substring(0, 10)}
                   </div>
                   <h2 className="py-2 px-3 text-gray-600">End Date</h2>
                 </React.Fragment>
@@ -61,6 +61,6 @@ function CourseCard({
         </div>
       </div>
     </div>
-  )
+  );
 }
-export { CourseCard }
+export { CourseCard };

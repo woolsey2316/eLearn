@@ -148,6 +148,13 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
   integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
 
+"@types/react-modal@^3.13.1":
+  version "3.13.1"
+  resolved "https://registry.yarnpkg.com/@types/react-modal/-/react-modal-3.13.1.tgz#5b9845c205fccc85d9a77966b6e16dc70a60825a"
+  integrity sha512-iY/gPvTDIy6Z+37l+ibmrY+GTV4KQTHcCyR5FIytm182RQS69G5ps4PH2FxtC7bAQ2QRHXMevsBgck7IQruHNg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-router-redux@^5.0.19":
   version "5.0.21"
   resolved "https://registry.yarnpkg.com/@types/react-router-redux/-/react-router-redux-5.0.21.tgz#4615aaaa0d5dbf65c699fca1991b535d6e0ec22f"

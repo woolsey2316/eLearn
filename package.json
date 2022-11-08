@@ -34,6 +34,7 @@
     "validator": "^10.9.0"
   },
   "devDependencies": {
+    "@types/react-modal": "^3.13.1",
     "@types/react-router": "^5.1.16",
     "@types/react-router-redux": "^5.0.19",
     "@typescript-eslint/eslint-plugin": "^5.42.0",

@@ -4,32 +4,38 @@ import Modal from "react-modal";
 import * as Icon from "react-feather";
 import * as Loading from "react-spinners";
 
-import { useSelector } from "react-redux";
-
-import { useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 
 import { courseActions } from "../../actions";
 
 import { SuccessRegister } from "./SuccessRegister";
 import { FailRegister } from "./FailRegister";
 
+import { history } from "../../helpers";
+
+import { CourseDTO } from "../../types/CourseState";
+
+type CourseSubscribeModalProps = {
+  modalIsOpen: boolean;
+  closeModal: () => void;
+  register: () => void;
+  openModal: () => void;
+  chosenCourse: Partial<CourseDTO>;
+};
 function CourseSubscribeModal({
   modalIsOpen,
   closeModal,
-  register,
   chosenCourse,
-}) {
-  const registering = useSelector((state) => state.courses.courseRegistering);
-  const alreadyRegistered = useSelector(
+}: CourseSubscribeModalProps) {
+  const registering = useAppSelector(
+    (state) => state.courses.courseRegistering
+  );
+  const alreadyRegistered = useAppSelector(
     (state) => state.courses.alreadyRegistered
   );
   // const alert = useSelector((state) => state.alert.type)
   const [outcome, setOutcome] = useState(false);
-  const dispatch = useDispatch();
-
-  // function status() {
-  //   return alert === 'alert-success'
-  // }
+  const dispatch = useAppDispatch();
 
   function attemptRegister() {
     dispatch(courseActions.register(chosenCourse));
@@ -38,8 +44,8 @@ function CourseSubscribeModal({
 
   function closeAndExit() {
     closeModal();
-    window.location = "/student/courses";
-    window.reload();
+    history.push("/student/courses/CourseRegister");
+    window.location.reload();
   }
 
   return (
@@ -53,12 +59,12 @@ function CourseSubscribeModal({
       }}
     >
       <div className="modal__content text-center">
-        {outcome && alreadyRegistered && (
+        {outcome && alreadyRegistered ? (
           <SuccessRegister course={chosenCourse} />
-        )}
-        {outcome && !alreadyRegistered && (
+        ) : null}
+        {outcome && !alreadyRegistered ? (
           <FailRegister course={chosenCourse} />
-        )}
+        ) : null}
         {!outcome && (
           <div className="text-center">
             <Icon.PlayCircle className="sm:w-10 sm:h-10 md:w-12 md:h-12 w-10 h-10 text-theme-7 mx-auto mt-3" />
@@ -93,7 +99,7 @@ function CourseSubscribeModal({
                     size={5}
                     color={"#ffffff"}
                     loading={registering}
-                    className="ml-5"
+                    // className="ml-5"
                   />
                 )}
               </button>
