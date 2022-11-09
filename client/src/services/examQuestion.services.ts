@@ -11,7 +11,7 @@ export const examQuestionService = { getExamQuestions };
 /*
   fetches all questions of an exam
   */
-async function getExamQuestions(examId) {
+async function getExamQuestions(examId: string) {
   const requestOptions = {
     method: "GET",
     headers: { ...authHeader(), "Content-Type": "application/json" },

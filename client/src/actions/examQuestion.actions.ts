@@ -6,13 +6,16 @@
 import { examQuestionConstants } from "../constants";
 import { examQuestionService } from "../services";
 import { alertActions } from ".";
+import { ThunkDispatch } from "redux-thunk";
+import { AnyAction } from "redux";
+import { ExamQuestions } from "../types/ExamState";
 
 export const examQuestionActions = {
   getUserExamQuestions,
 };
 
-function getUserExamQuestions(examId) {
-  return (dispatch) => {
+function getUserExamQuestions(examId: string) {
+  return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
     dispatch(request());
 
     examQuestionService.getExamQuestions(examId).then(
@@ -28,13 +31,13 @@ function getUserExamQuestions(examId) {
     );
   };
 
-  function request(questionList) {
-    return { type: examQuestionConstants.EXAM_QUESTIONS_REQUEST, questionList };
+  function request() {
+    return { type: examQuestionConstants.EXAM_QUESTIONS_REQUEST };
   }
-  function success(questionList) {
+  function success(questionList: ExamQuestions) {
     return { type: examQuestionConstants.EXAM_QUESTIONS_SUCCESS, questionList };
   }
-  function failure(error) {
+  function failure(error: string) {
     return { type: examQuestionConstants.EXAM_QUESTIONS_FAILURE, error };
   }
 }

@@ -1,60 +1,46 @@
 import { authHeader, getUserId } from "../helpers";
 import { API_URL } from "./index";
 import { handleResponse } from "./services-util";
+
+import { ExamAnswerSheet } from "../types/ExamState";
 /*
   The services layer handles all http communication with the back-end apis.
   This section of the services layer relates to user data. CRUD operations
   are performed here, as well as login/register.
 */
-export const examResultsService = {
-  getAllUserExams,
-  getExamResultsByCourse,
-  getExamResult,
+export const examService = {
+  getAllExams,
+  submitExam,
 };
 
 /*
-  fetches all exams a User has registered to in a particular course
+  fetches all exams a User has registered to
   */
-async function getAllUserExams(courseId) {
+async function getAllExams() {
   const requestOptions = {
     method: "GET",
     headers: { ...authHeader(), "Content-Type": "application/json" },
   };
   const userId = getUserId();
   const response = await fetch(
-    `${API_URL}/users/courses/${courseId}/${userId}/exams`,
+    `${API_URL}/courses/exams/${userId}`,
     requestOptions
   );
   return handleResponse(response);
 }
 
 /*
-  fetches all exam results belonging to a course
-*/
-async function getExamResultsByCourse(courseId) {
-  const requestOptions = {
-    method: "GET",
-    headers: { ...authHeader(), "Content-Type": "application/json" },
-  };
-
-  const response = await fetch(
-    `${API_URL}/exams/courses/${courseId}`,
-    requestOptions
-  );
-  return handleResponse(response);
-}
-
-/*
-  fetches all results of an exam a User has
+  submit question of an exam a User has attended
   */
-async function getExamResult(examId) {
+async function submitExam(exam: ExamAnswerSheet) {
   const requestOptions = {
-    method: "GET",
+    method: "POST",
     headers: { ...authHeader(), "Content-Type": "application/json" },
+    body: JSON.stringify(exam),
   };
   const userId = getUserId();
   const response = await fetch(
-    `${API_URL}/users/${userId}/exams/${examId}/result`,
+    `${API_URL}/users/${userId}/exams/${exam.examId}/submit`,
     requestOptions
   );
   return handleResponse(response);

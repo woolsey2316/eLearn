@@ -1,6 +1,6 @@
 import { IsValidJSONString } from "../helpers";
 
-export function handleResponse(response) {
+export function handleResponse(response: Response) {
   return response.text().then((text) => {
     const data = IsValidJSONString(text) ? JSON.parse(text) : text;
 

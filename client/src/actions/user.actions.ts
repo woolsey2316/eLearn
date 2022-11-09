@@ -7,10 +7,13 @@ import { userConstants } from "../constants";
 import { userService } from "../services";
 import { alertActions } from ".";
 import { history, getUser } from "../helpers";
+import { ThunkDispatch } from "redux-thunk";
+import { AnyAction } from "redux";
+import { UserInfo } from "../types/UserForm";
 
-function registerUser(user) {
-  return (dispatch) => {
-    dispatch(request(user));
+function registerUser(user: UserInfo) {
+  return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
+    dispatch(request());
     userService.register(user).then(
       (user) => {
         dispatch(success(user));
@@ -27,25 +30,26 @@ function registerUser(user) {
     );
   };
 
-  function request(user) {
-    return { type: userConstants.REGISTER_REQUEST, user };
+  function request() {
+    return { type: userConstants.REGISTER_REQUEST };
   }
-  function success(user) {
+  function success(user: UserInfo) {
     return { type: userConstants.REGISTER_SUCCESS, user };
   }
-  function failure(error) {
+  function failure(error: string) {
     return { type: userConstants.REGISTER_FAILURE, error };
   }
 }
-function login(email, password, rememberMe) {
-  return (dispatch) => {
-    dispatch(request({ email }));
+function login(email: string, password: string, rememberMe: boolean) {
+  return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
+    dispatch(request());
 
     userService.login(email, password, rememberMe).then(
       (user) => {
         dispatch(success(user));
         history.push("/student/dashboard");
         window.location.reload();
+        console.log("user: ", { user });
       },
       (error) => {
         dispatch(failure(error.toString()));
@@ -54,13 +58,13 @@ function login(email, password, rememberMe) {
     );
   };
 
-  function request(user) {
-    return { type: userConstants.LOGIN_REQUEST, user };
+  function request() {
+    return { type: userConstants.LOGIN_REQUEST };
   }
-  function success(user) {
+  function success(user: any) {
     return { type: userConstants.LOGIN_SUCCESS, user };
   }
-  function failure(error) {
+  function failure(error: string) {
     return { type: userConstants.LOGIN_FAILURE, error };
   }
 }
@@ -68,19 +72,19 @@ function login(email, password, rememberMe) {
 function logout() {
   const user = getUser();
   if (user) {
-    userService.logout(user);
+    userService.logout();
   }
   return { type: userConstants.LOGOUT };
 }
 
 function getCurrentUserInfo() {
-  return (dispatch) => {
+  return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
     const user = localStorage.getItem("EMAIL");
     dispatch(request(user));
 
     userService.getUserDetails().then(
       (userInfo) => {
-        dispatch(success());
+        dispatch(success(userInfo));
         dispatch(alertActions.success("Successfully fetched user info"));
       },
       (error) => {
@@ -90,20 +94,20 @@ function getCurrentUserInfo() {
     );
   };
 
-  function request(user) {
+  function request(user: any) {
     return { type: userConstants.USER_INFO_REQUEST, user };
   }
-  function success(user) {
+  function success(user: any) {
     return { type: userConstants.USER_INFO_SUCCESS, user };
   }
-  function failure(error) {
+  function failure(error: string) {
     return { type: userConstants.USER_INFO_FAILURE, error };
   }
 }
 
-function verifyEmail(user) {
-  return (dispatch) => {
-    dispatch(request(user));
+function verifyEmail() {
+  return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
+    dispatch(request());
 
     userService.verifyEmail().then(
       (res) => {
@@ -119,20 +123,20 @@ function verifyEmail(user) {
     );
   };
 
-  function request(verify) {
-    return { type: userConstants.VERIFICATION_REQUEST, verify };
+  function request() {
+    return { type: userConstants.VERIFICATION_REQUEST };
   }
-  function success(verify) {
+  function success(verify: boolean) {
     return { type: userConstants.VERIFICATION_SUCCESS, verify };
   }
-  function failure(error) {
+  function failure(error: string) {
     return { type: userConstants.VERIFICATION_FAILURE, error };
   }
 }
 
-function resetPassword(user) {
-  return (dispatch) => {
-    dispatch(request(user));
+function resetPassword(user: any) {
+  return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
+    dispatch(request());
 
     userService.changePassword(user).then(
       () => {
@@ -146,26 +150,23 @@ function resetPassword(user) {
     );
   };
 
-  function request(user) {
-    return { type: userConstants.CHANGE_PASSWORD_REQUEST, user };
+  function request() {
+    return { type: userConstants.CHANGE_PASSWORD_REQUEST };
   }
-  function success(user) {
-    return { type: userConstants.CHANGE_PASSWORD_SUCCESS, user };
+  function success() {
+    return { type: userConstants.CHANGE_PASSWORD_SUCCESS };
   }
-  function failure(error) {
+  function failure(error: string) {
     return { type: userConstants.CHANGE_PASSWORD_FAILURE, error };
   }
 }
 
-function setUserDetails(userDTO) {
-  return (dispatch) => {
-    dispatch(request({ userDTO }));
-
+function setUserDetails(userDTO: UserInfo) {
+  return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
     userService.setUserDetails(userDTO).then(
       (user) => {
-        dispatch(success(user));
         // API request to retrieve all user info from server, eg. profile image
-        dispatch(getCurrentUserInfo(user));
+        dispatch(getCurrentUserInfo());
       },
       (error) => {
         dispatch(failure(error.toString()));
@@ -173,20 +174,13 @@ function setUserDetails(userDTO) {
       }
     );
   };
-
-  function request(user) {
-    return { type: userConstants.USER_UPDATE_REQUEST, user };
-  }
-  function success(user) {
-    return { type: userConstants.USER_UPDATE_SUCCESS, user };
-  }
-  function failure(error) {
+  function failure(error: string) {
     return { type: userConstants.USER_UPDATE_FAILURE, error };
   }
 }
 
 function getUserDetails() {
-  return (dispatch) => {
+  return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
     dispatch(request());
 
     userService.getUserDetails().then(
@@ -194,25 +188,25 @@ function getUserDetails() {
         dispatch(success(user));
       },
       (error) => {
-        dispatch(failure(error.toString()));
+        dispatch(failure());
         dispatch(alertActions.error(error.toString()));
       }
     );
   };
 
-  function request(user) {
-    return { type: userConstants.USER_DETAILS_REQUEST, user };
+  function request() {
+    return { type: userConstants.USER_DETAILS_REQUEST };
   }
-  function success(user) {
+  function success(user: any) {
     return { type: userConstants.USER_DETAILS_SUCCESS, user };
   }
-  function failure(error) {
-    return { type: userConstants.USER_DETAILS_FAILURE, error };
+  function failure() {
+    return { type: userConstants.USER_DETAILS_FAILURE };
   }
 }
 
-function _delete(id) {
-  return (dispatch) => {
+function _delete(id: string) {
+  return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
     dispatch(request(id));
 
     userService.delete(id).then(
@@ -221,13 +215,13 @@ function _delete(id) {
     );
   };
 
-  function request(id) {
+  function request(id: string) {
     return { type: userConstants.DELETE_REQUEST, id };
   }
-  function success(id) {
+  function success(id: string) {
     return { type: userConstants.DELETE_SUCCESS, id };
   }
-  function failure(id, error) {
+  function failure(id: string, error: string) {
     return { type: userConstants.DELETE_FAILURE, id, error };
   }
 }

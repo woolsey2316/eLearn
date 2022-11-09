@@ -1,5 +1,6 @@
 type UserInfo = {
   _id: string;
+  roleId: number;
   address: string;
   area: string;
   className: string;
@@ -10,7 +11,6 @@ type UserInfo = {
   pincode: string;
   school: string;
   state: string;
-  roleId: number;
 };
 
 export const UserInfo;

@@ -24,10 +24,20 @@ export function courses(
         courseRegistering: false,
         courseList: action.courses.data || [],
       };
+    case courseConstants.USER_COURSE_INFO_REQUEST:
+      return {
+        ...state,
+        gettingUserCourses: true,
+      };
     case courseConstants.USER_COURSE_INFO_SUCCESS:
       return {
-        courseRegistering: false,
+        gettingUserCourses: false,
         userCourseList: action.courseList,
+      };
+    case courseConstants.USER_COURSE_INFO_FAILURE:
+      return {
+        ...state,
+        gettingUserCourses: false,
       };
     default:
       return state;

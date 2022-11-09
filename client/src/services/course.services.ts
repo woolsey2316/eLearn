@@ -1,4 +1,5 @@
 import { authHeader, IsValidJSONString, getUserId } from "../helpers";
+import { CourseDTO } from "../types/CourseState";
 import { API_URL } from "./index";
 import { handleResponse } from "./services-util";
 /*
@@ -30,7 +31,7 @@ async function getAllUserCourses() {
 /*
   fetches all courses available on Elearn
   */
-async function getAllCourses(page, size) {
+async function getAllCourses(page: number, size: number) {
   const requestOptions = {
     method: "GET",
     headers: { "Content-Type": "application/json", mode: "no-cors" },
@@ -46,7 +47,7 @@ async function getAllCourses(page, size) {
 /*
   User registers for a course
   */
-async function register(courseDTO) {
+async function register(courseDTO: CourseDTO) {
   const requestOptions = {
     method: "PUT",
     headers: { ...authHeader(), "Content-Type": "application/json" },

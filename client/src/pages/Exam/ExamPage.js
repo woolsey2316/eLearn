@@ -54,6 +54,7 @@ function ExamPage() {
   const [answerList, setAnswerList] = useState(
     initialiseAnswersList(quizQuestions)
   );
+  console.log("answerList = " + answerList);
   const [finished, setFinished] = useState(false);
   const [MarkedQuestionIds, setMarkedQuestionIds] = useState(
     initialiseQuestionsArray(quizQuestions)
@@ -65,9 +66,10 @@ function ExamPage() {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
   const [duration, _] = useState(new Date().addHours(1));
 
-  React.useEffect(() => {
-    if (Object.keys(timeLeft).length === 0) submitExam();
-  }, [timeLeft]);
+  // React.useEffect(() => {
+  //   // exam time ran out
+  //   if (Object.keys(timeLeft).length === 0) submitExam();
+  // }, [timeLeft]);
 
   function submitExam() {
     console.log({ ...answerList, userId: getUserId(), examId: exam_id });
@@ -116,8 +118,8 @@ function ExamPage() {
   }
 
   function handleChange(event) {
-    setSelectedOption(event.target.value);
-    console.log(event.target.value);
+    setSelectedOption(parseInt(event.target.value));
+    console.log(parseInt(event.target.value));
   }
 
   function confirmAnswer() {
@@ -193,7 +195,6 @@ function ExamPage() {
         answerOptions={quizQuestions[section][questionId].possibleAnswers}
         questionId={questionId}
         question={quizQuestions[section][questionId].question}
-        questionTotal={answerList[section].length}
         getUserAnswer={handleChange}
       />
     );

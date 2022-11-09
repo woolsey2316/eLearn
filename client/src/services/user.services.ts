@@ -1,4 +1,5 @@
 import { authHeader, IsValidJSONString, getUserId } from "../helpers";
+import { UserInfo } from "../types/UserForm";
 import { API_URL } from "./index";
 /*
   The services layer handles all http communication with the back-end apis.
@@ -49,7 +50,7 @@ async function verifyEmail() {
   return handleResponse(response);
 }
 
-async function login(email, password, rememberMe, dispatch) {
+async function login(email: string, password: string, rememberMe: boolean) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -89,10 +90,9 @@ async function logout() {
   return user;
 }
 
-async function register(user) {
+async function register(user: UserInfo) {
   const requestOptions = {
     method: "POST",
-    mode: "cors",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
   };
@@ -103,7 +103,7 @@ async function register(user) {
   return handleResponse(response);
 }
 // asks for permission to change password
-async function requestPasswordChange(user) {
+async function requestPasswordChange(user: UserInfo) {
   const requestOptions = {
     method: "POST",
     headers: { ...authHeader(), "Content-Type": "application/json" },
@@ -113,13 +113,11 @@ async function requestPasswordChange(user) {
   const response = await fetch(
     `${API_URL}/oauth2/password/reset`,
     requestOptions
-  ).then((response) => {
-    return response.text();
-  });
+  );
   return handleResponse(response);
 }
 
-async function changePassword(user) {
+async function changePassword(user: UserInfo) {
   const requestOptions = {
     method: "PUT",
     headers: { ...authHeader(), "Content-Type": "application/json" },
@@ -133,7 +131,7 @@ async function changePassword(user) {
   return handleResponse(response);
 }
 
-async function setUserDetails(user) {
+async function setUserDetails(user: UserInfo) {
   const requestOptions = {
     method: "PUT",
     headers: { ...authHeader(), "Content-Type": "application/json" },
@@ -148,7 +146,7 @@ async function setUserDetails(user) {
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-async function _delete(id) {
+async function _delete(id: string) {
   const requestOptions = {
     method: "DELETE",
     headers: authHeader(),
@@ -163,7 +161,7 @@ async function _delete(id) {
   automatically logs the user out. This handles if the JWT token expires
   or is no longer valid for any reason.
 */
-function handleResponse(response) {
+function handleResponse(response: Response) {
   return response.text().then((text) => {
     const data = IsValidJSONString(text) ? JSON.parse(text) : text;
 

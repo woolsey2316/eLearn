@@ -6,39 +6,55 @@ import { handleResponse } from "./services-util";
   This section of the services layer relates to user data. CRUD operations
   are performed here, as well as login/register.
 */
-export const examService = {
-  getAllExams,
-  submitExam,
+export const examResultsService = {
+  getAllUserExams,
+  getExamResultsByCourse,
+  getExamResult,
 };
 
 /*
-  fetches all exams a User has registered to
+  fetches all exams a User has registered to in a particular course
   */
-async function getAllExams() {
+async function getAllUserExams(courseId: string) {
   const requestOptions = {
     method: "GET",
     headers: { ...authHeader(), "Content-Type": "application/json" },
   };
   const userId = getUserId();
   const response = await fetch(
-    `${API_URL}/courses/exams/${userId}`,
+    `${API_URL}/users/courses/${courseId}/${userId}/exams`,
     requestOptions
   );
   return handleResponse(response);
 }
 
 /*
-  submit question of an exam a User has attended
-  */
-async function submitExam(exam) {
+  fetches all exam results belonging to a course
+*/
+async function getExamResultsByCourse(courseId: string) {
   const requestOptions = {
-    method: "POST",
+    method: "GET",
     headers: { ...authHeader(), "Content-Type": "application/json" },
-    body: JSON.stringify(exam),
+  };
+
+  const response = await fetch(
+    `${API_URL}/exams/courses/${courseId}`,
+    requestOptions
+  );
+  return handleResponse(response);
+}
+
+/*
+  fetches all results of an exam a User has
+  */
+async function getExamResult(examId: string) {
+  const requestOptions = {
+    method: "GET",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
   };
   const userId = getUserId();
   const response = await fetch(
-    `${API_URL}/users/${userId}/exams/${exam.examId}/submit`,
+    `${API_URL}/users/${userId}/exams/${examId}/result`,
     requestOptions
   );
   return handleResponse(response);

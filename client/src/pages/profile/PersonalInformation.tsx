@@ -16,7 +16,7 @@ function PersonalInformation() {
   const user = useAppSelector((state) => state.users.user);
   const dispatch = useAppDispatch();
 
-  const [userDetails, setDetails] = useState<Partial<UserInfo> | undefined>({
+  const [userDetails, setDetails] = useState<UserInfo>({
     address: "",
     area: "",
     className: "",
@@ -27,6 +27,8 @@ function PersonalInformation() {
     pincode: "",
     school: "",
     state: "",
+    _id: "",
+    roleId: 0,
   });
 
   useEffect(() => {
@@ -41,7 +43,7 @@ function PersonalInformation() {
   }, [dispatch]);
 
   useEffect(() => {
-    setDetails(user);
+    setDetails(user as UserInfo);
   }, [user]);
 
   const handleChange: React.FormEventHandler<HTMLInputElement> = (event) => {

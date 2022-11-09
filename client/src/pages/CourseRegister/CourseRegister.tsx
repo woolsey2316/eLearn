@@ -23,7 +23,14 @@ function CourseRegister(props: PageComponentProps) {
   const courses = useAppSelector((state) => state.courses);
   console.log("courses", courses);
   const [search, setSearch] = useState("");
-  const [chosenCourse, setCourse] = useState<Partial<CourseDTO>>({});
+  const [chosenCourse, setCourse] = useState<CourseDTO>({
+    category: "",
+    expires: new Date(),
+    id: "",
+    instructor: "",
+    name: "",
+    status: false,
+  });
   const [page, setPage] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(10);
 
@@ -62,7 +69,16 @@ function CourseRegister(props: PageComponentProps) {
   };
 
   function registerCourse() {
-    dispatch(courseActions.register(chosenCourse));
+    if (
+      chosenCourse.category &&
+      chosenCourse.expires &&
+      chosenCourse.id &&
+      chosenCourse.instructor &&
+      chosenCourse.name &&
+      chosenCourse.status
+    ) {
+      dispatch(courseActions.register(chosenCourse));
+    }
   }
 
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {

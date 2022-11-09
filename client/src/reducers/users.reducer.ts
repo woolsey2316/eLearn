@@ -5,6 +5,7 @@ interface UsersState {
   items: Array<{ id: string; deleting: boolean; deleteError: boolean }>;
   user: Partial<UserInfo>;
   emailVerified: boolean;
+  retrievingUser: boolean;
 }
 const INITIAL_STATE: Partial<UsersState> = {};
 export function users(
@@ -37,8 +38,12 @@ export function users(
       };
     case userConstants.VERIFICATION_SUCCESS:
       return { ...state, emailVerified: action.verify };
+    case userConstants.USER_DETAILS_REQUEST:
+      return { ...state, retrievingUser: true };
     case userConstants.USER_DETAILS_SUCCESS:
-      return { ...state, user: action.user };
+      return { ...state, user: action.user, retrievingUser: false };
+    case userConstants.USER_DETAILS_FAILURE:
+      return { ...state, retrievingUser: false };
     default:
       return state;
   }

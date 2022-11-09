@@ -19,7 +19,7 @@ export function examResults(
       return {
         ...state,
         submittingExam: false,
-        examList: action.examResultList,
+        examList: action.examResultList.examResults,
       };
     case examResultConstants.EXAM_RESULT_SUCCESS:
       return {

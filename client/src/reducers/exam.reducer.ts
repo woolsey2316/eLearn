@@ -1,13 +1,10 @@
 import { examConstants } from "../constants";
 import { AnyAction } from "redux";
+import { ExamState } from "../types/ExamState";
 /*
   Manages the registration section of the application. The state is limited to
   a submitting flag which is only used for loading animation purposes.
 */
-interface ExamState {
-  submittingExam: boolean;
-  examList: Array<any>;
-}
 
 export function exams(
   state: Partial<ExamState> = { submittingExam: false, examList: [] },

@@ -22,7 +22,7 @@ function SideMenuGroup({ children, name, path, subMenu, open, setOpen }) {
           onClick={() => {
             open === name ? setOpen(false) : setOpen(name);
           }}
-          className="flex cursor-pointer"
+          className="flex cursor-pointer w-48"
         >
           <div className="side-menu__icon">{children}</div>
           <div className="side-menu__title"> {name} </div>

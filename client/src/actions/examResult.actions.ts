@@ -6,6 +6,9 @@
 import { examResultConstants } from "../constants";
 import { examResultsService } from "../services";
 import { alertActions } from ".";
+import { ThunkDispatch } from "redux-thunk";
+import { AnyAction } from "redux";
+import { ExamAverage, ExamResultsList } from "../types/ExamState";
 
 export const examResultActions = {
   getAllExamResults,
@@ -13,9 +16,9 @@ export const examResultActions = {
   getExamResultsByCourse,
 };
 
-function getUserExamResultsByCourse(courseId) {
-  return (dispatch) => {
-    dispatch(request(courseId));
+function getUserExamResultsByCourse(courseId: string) {
+  return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
+    dispatch(request());
 
     examResultsService.getAllUserExams(courseId).then(
       (examResultList) => {
@@ -29,20 +32,20 @@ function getUserExamResultsByCourse(courseId) {
     );
   };
 
-  function request(examResultList) {
-    return { type: examResultConstants.EXAM_INFO_REQUEST, examResultList };
+  function request() {
+    return { type: examResultConstants.EXAM_INFO_REQUEST };
   }
-  function success(examResultList) {
+  function success(examResultList: ExamResultsList) {
     return { type: examResultConstants.EXAM_INFO_SUCCESS, examResultList };
   }
-  function failure(error) {
+  function failure(error: string) {
     return { type: examResultConstants.EXAM_INFO_FAILURE, error };
   }
 }
 
-function getExamResultsByCourse(courseId) {
-  return (dispatch) => {
-    dispatch(request(courseId));
+function getExamResultsByCourse(courseId: string) {
+  return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
+    dispatch(request());
 
     examResultsService.getExamResultsByCourse(courseId).then(
       (examResultList) => {
@@ -56,20 +59,20 @@ function getExamResultsByCourse(courseId) {
     );
   };
 
-  function request(examResultList) {
-    return { type: examResultConstants.EXAM_AVERAGES_REQUEST, examResultList };
+  function request() {
+    return { type: examResultConstants.EXAM_AVERAGES_REQUEST };
   }
-  function success(examResultList) {
+  function success(examResultList: ExamAverage) {
     return { type: examResultConstants.EXAM_AVERAGES_SUCCESS, examResultList };
   }
-  function failure(error) {
+  function failure(error: string) {
     return { type: examResultConstants.EXAM_AVERAGES_FAILURE, error };
   }
 }
 
-function getAllExamResults(courseId) {
-  return (dispatch) => {
-    dispatch(request(courseId));
+function getAllExamResults(courseId: string) {
+  return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
+    dispatch(request());
 
     examResultsService.getExamResultsByCourse(courseId).then(
       (examResults) => {
@@ -83,13 +86,13 @@ function getAllExamResults(courseId) {
     );
   };
 
-  function request(examResults) {
-    return { type: examResultConstants.EXAM_RESULT_REQUEST, examResults };
+  function request() {
+    return { type: examResultConstants.EXAM_RESULT_REQUEST };
   }
-  function success(examResults) {
+  function success(examResults: any) {
     return { type: examResultConstants.EXAM_RESULT_SUCCESS, examResults };
   }
-  function failure(error) {
+  function failure(error: string) {
     return { type: examResultConstants.EXAM_RESULT_FAILURE, error };
   }
 }

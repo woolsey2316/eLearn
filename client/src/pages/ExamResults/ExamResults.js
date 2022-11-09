@@ -27,9 +27,7 @@ function weightedAverage(examResults) {
 function ExamResults(props) {
   const dispatch = useDispatch();
   const courses = useSelector((state) => state.courses.userCourseList);
-  const userExamResults = useSelector(
-    (state) => state.examResults.examList.examResults
-  );
+  const userExamResults = useSelector((state) => state.examResults.examList);
   const exams = useSelector((state) => state.examResults.examResults);
   console.log("exams: ", exams);
   console.log("userExamResults: ", userExamResults);
@@ -46,7 +44,7 @@ function ExamResults(props) {
 
   const [course, setCourse] = useState("Select Course");
 
-  const courseList = courses?.courseList;
+  const courseList = courses;
 
   const instructor = courseList?.filter((elem) => elem.courseName === course)[0]
     ?.instructor;

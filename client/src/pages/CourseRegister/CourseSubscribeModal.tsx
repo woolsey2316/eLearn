@@ -20,7 +20,7 @@ type CourseSubscribeModalProps = {
   closeModal: () => void;
   register: () => void;
   openModal: () => void;
-  chosenCourse: Partial<CourseDTO>;
+  chosenCourse: CourseDTO;
 };
 function CourseSubscribeModal({
   modalIsOpen,

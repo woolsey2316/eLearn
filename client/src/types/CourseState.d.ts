@@ -1,4 +1,4 @@
-type CourseDTO = {
+export type CourseDTO = {
   category: string;
   expires: Date;
   id: string;
@@ -32,9 +32,9 @@ type CourseState = {
   courseList: Array<Course>;
   registerOutcome: boolean;
   alreadyRegistered: boolean;
+  gettingUserCourses: boolean;
 };
 
 export const CourseState;
 export const CourseType;
 export const Course;
-export const CourseDTO;

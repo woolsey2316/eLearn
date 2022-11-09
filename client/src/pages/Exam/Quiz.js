@@ -4,8 +4,6 @@ import { Question } from "./Question";
 import { AnswerOption } from "./AnswerOption";
 
 function Quiz(props) {
-  console.log("answer options", props.answerOptions);
-
   return (
     <div
       style={{ height: "calc(100vh - 272px)" }}
@@ -14,11 +12,10 @@ function Quiz(props) {
       <Question content={props.question} />
       <ul className="answerOptions">
         {props.answerOptions.map((elem, index) => {
-          console.log("elem :", elem);
-
           return (
             <AnswerOption
               key={index}
+              answerIndex={index}
               answerContent={elem}
               questionId={props.questionId}
               getUserAnswer={props.getUserAnswer}
@@ -36,7 +33,6 @@ Quiz.propTypes = {
   answerOptions: PropTypes.array.isRequired,
   question: PropTypes.string.isRequired,
   questionId: PropTypes.number.isRequired,
-  questionTotal: PropTypes.number.isRequired,
   getUserAnswer: PropTypes.func.isRequired,
 };
 
