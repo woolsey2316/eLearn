@@ -4,36 +4,51 @@ import Quiz from "./Quiz";
 import SectionCompleteModal from "./SectionCompleteModal";
 import { CourseSection } from "./CourseSection";
 import { RightPanel } from "./RightPanel";
-import { calculateTimeLeft, oneHourAhead } from "../../utils/CountdownTimer";
+import { calculateTimeLeft } from "../../utils/CountdownTimer";
 import * as Icon from "react-feather";
 import { SubmitModal } from "../../components";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
 import { examQuestionActions } from "../../actions";
 
 import { useParams } from "react-router";
 
 import { getUserId } from "../../helpers";
+import { QuizQuestions } from "../../types/ExamState";
 
-function initialiseQuestionsArray(quizQuestions) {
+type QuizParams = {
+  exam_id: string;
+};
+
+function initialiseQuestionsArray(quizQuestions: QuizQuestions) {
+  // [
+  //   [0,1,2,3],
+  //   [0,1,2,3,4],
+  //   [0,1,2]
+  // ]
   return Array(quizQuestions.length)
     .fill([])
     .map((_, index) =>
       Array(quizQuestions[index].length)
         .fill(null)
-        .map((u, i) => i)
+        .map((_, i) => i)
     );
 }
 
-function initialiseAnswersList(quizQuestions) {
+function initialiseAnswersList(quizQuestions: QuizQuestions) {
+  // [
+  //   [-1,-1,-1,-1],
+  //   [-1,-1,-1,-1,-1],
+  //   [-1,-1,-1]
+  // ]
   return Array(quizQuestions.length)
-    .fill("")
-    .map((_, index) => Array(quizQuestions[index].length).fill(""));
+    .fill([])
+    .map((_, index) => Array(quizQuestions[index].length).fill(-1));
 }
 function ExamPage() {
-  const dispatch = useDispatch();
-  const { exam_id } = useParams();
+  const dispatch = useAppDispatch();
+  const { exam_id } = useParams<QuizParams>();
 
   const fetchExamQuestions = useCallback(() => {
     dispatch(examQuestionActions.getUserExamQuestions(exam_id));
@@ -43,28 +58,37 @@ function ExamPage() {
     fetchExamQuestions();
   }, [fetchExamQuestions]);
 
-  const quizQuestions = useSelector(
+  const quizQuestions = useAppSelector(
     (state) => state.examQuestion.examQuestions.quizQuestions
   );
 
-  console.log("quizQuestions", quizQuestions);
+  useEffect(() => {
+    setAnswerList(initialiseAnswersList(quizQuestions));
+    setMarkedQuestionIds(initialiseQuestionsArray(quizQuestions));
+  }, [quizQuestions]);
 
   const [questionId, setQuestionId] = useState(0);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState(-1);
+  // 2-D array
+  // dim1 -> section eg. science, chemistry
+  // dim2 -> question number
+  // value -> answer -1 -> not answered, 0,1,2,3 -> a,b,c,d
   const [answerList, setAnswerList] = useState(
     initialiseAnswersList(quizQuestions)
   );
-  console.log("answerList = " + answerList);
-  const [finished, setFinished] = useState(false);
+  // 2-D array
+  // dim1 -> section eg. science, chemistry
+  // dim2 -> question number
+  // value -> question number
   const [MarkedQuestionIds, setMarkedQuestionIds] = useState(
     initialiseQuestionsArray(quizQuestions)
   );
+  const [finished, setFinished] = useState(false);
   const [section, setActive] = React.useState(0);
   const [show, setShow] = React.useState(true);
   const [showSubmitModal, setShowSubmitModal] = React.useState(false);
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-  const [duration, _] = useState(new Date().addHours(1));
 
   // React.useEffect(() => {
   //   // exam time ran out
@@ -108,16 +132,16 @@ function ExamPage() {
     loadNextQuestionIfAny();
   }, [MarkedQuestionIds, loadNextQuestionIfAny, section]);
 
-  function setSection(sectionId) {
+  function setSection(sectionId: number) {
     setActive(sectionId);
     console.log(sectionId);
   }
 
-  function onClickQuestion(qid) {
+  function onClickQuestion(qid: number) {
     loadQuestion(qid);
   }
 
-  function handleChange(event) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setSelectedOption(parseInt(event.target.value));
     console.log(parseInt(event.target.value));
   }
@@ -125,13 +149,13 @@ function ExamPage() {
   function confirmAnswer() {
     console.log("confirmed answer: " + selectedOption);
     // don't load next question if user did not select an answer to current question!
-    if (selectedOption) {
+    if (selectedOption !== -1) {
       setUserAnswer();
       removeMarkFromCurrentQuestion();
     }
   }
 
-  function loadQuestion(qId) {
+  function loadQuestion(qId: number) {
     setQuestionId(qId);
     findSavedAnswers(qId);
   }
@@ -164,8 +188,8 @@ function ExamPage() {
     const alreadyMarked = MarkedQuestionIds[section].filter(
       (elem) => questionId === elem
     );
-    if (!alreadyMarked) {
-      setMarkedQuestionIds([...MarkedQuestionIds[section], questionId]);
+    if (!alreadyMarked.length) {
+      setMarkedQuestionIds([[...MarkedQuestionIds[section], questionId]]);
     } else {
       sendQuestionToEnd();
     }
@@ -219,7 +243,6 @@ function ExamPage() {
             sections={QuizData.sections}
             timeLeft={timeLeft}
             setTimeLeft={setTimeLeft}
-            duration={duration}
           />
           <div className="items-center p-5 border-b border-gray-200">
             <h2 className="font-medium text-base mr-auto">
@@ -241,7 +264,7 @@ function ExamPage() {
               </button>
               <button
                 className="button w-30 shadow-md mr-1 mb-2 bg-theme-2 text-blue border border-gray-700"
-                onClick={() => setSelectedOption("")}
+                onClick={() => setSelectedOption(-1)}
               >
                 Clear response
               </button>

@@ -10,7 +10,6 @@ class AnswerOption extends React.Component {
   }
 
   render() {
-    console.log("selected option" + this.props.selectedOption);
     return (
       <div className="flex items-center text-gray-700 mt-2">
         <li className="flex items-center">

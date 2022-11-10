@@ -11,8 +11,9 @@ type QuestionAndAnswerList = {
   question: string;
   possibleAnswers: Array<string>;
 };
+type QuizQuestions = Array<Array<QuestionAndAnswerList>>;
 type ExamQuestions = {
-  quizQuestions: Array<Array<QuestionAndAnswerList>>;
+  quizQuestions: QuizQuestions;
   _id: string;
   courseId: string;
   instructor: string;
@@ -38,3 +39,4 @@ export const ExamState;
 export const ExamAnswerSheet;
 export const ExamQuestions;
 export const ExamAverage;
+export const QuizQuestions;

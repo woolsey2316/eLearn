@@ -1,6 +1,6 @@
-import React from 'react'
-import { SectionTab } from './SectionTab'
-import { CountdownTimer } from '../../utils/CountdownTimer'
+import React from "react";
+import { SectionTab } from "./SectionTab";
+import { CountdownTimer } from "../../utils/CountdownTimer";
 
 function CourseSection(props) {
   return (
@@ -10,7 +10,6 @@ function CourseSection(props) {
         <CountdownTimer
           setTimeLeft={props.setTimeLeft}
           timeLeft={props.timeLeft}
-          duration={props.duration}
         />
       </div>
       <div className="flex flex-wrap items-center">
@@ -25,7 +24,7 @@ function CourseSection(props) {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
-export { CourseSection }
+export { CourseSection };

@@ -1,9 +1,10 @@
 import { examQuestionConstants } from "../constants";
 import { AnyAction } from "redux";
+import { QuizQuestions } from "../types/ExamState";
 interface ExamState {
   submittingExam: boolean;
   examQuestions: {
-    quizQuestions: Array<Array<any>>;
+    quizQuestions: QuizQuestions;
   };
 }
 const defaultValues = { question: "", possibleAnswers: ["", "", "", ""] };

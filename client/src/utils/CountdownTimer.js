@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react'
-import Tooltip from '@reach/tooltip'
+import React, { useEffect, useState } from "react";
+import Tooltip from "@reach/tooltip";
 
-Date.prototype.addHours = function(h) {
-  this.setTime(this.getTime() + (h*60*60*1000));
+Date.prototype.addHours = function (h) {
+  this.setTime(this.getTime() + h * 60 * 60 * 1000);
   return this;
-}
+};
 
 const calculateTimeLeft = (duration) => {
-  const difference = +duration - +new Date()
-  let timeLeft = {}
+  const difference = +duration - +new Date();
+  let timeLeft = {};
 
   if (difference > 0) {
     timeLeft = {
@@ -16,42 +16,44 @@ const calculateTimeLeft = (duration) => {
       hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
       minutes: Math.floor((difference / 1000 / 60) % 60),
       seconds: Math.floor((difference / 1000) % 60),
-    }
+    };
   }
 
-  return timeLeft
-}
+  return timeLeft;
+};
 
-function CountdownTimer({ timeLeft, setTimeLeft, date }) {
+function CountdownTimer({ timeLeft, setTimeLeft }) {
+  const [duration, _] = useState(new Date().addHours(1));
+
   useEffect(() => {
     setTimeout(() => {
-      setTimeLeft(calculateTimeLeft(date))
-    }, 1000)
-  })
+      setTimeLeft(calculateTimeLeft(duration));
+    }, 1000);
+  });
 
-  const timerComponents = []
+  const timerComponents = [];
 
   Object.keys(timeLeft).forEach((interval) => {
     if (!timeLeft[interval]) {
-      return
+      return;
     }
 
     timerComponents.push(
       <h2 className="font-medium items-center px-2">
         {timeLeft[interval]} {interval}
       </h2>
-    )
-  })
+    );
+  });
 
   return (
     <Tooltip
       style={{
-        background: 'hsla(0, 0%, 0%, 0.75)',
-        color: 'white',
-        border: 'none',
-        borderRadius: '4px',
-        padding: '0.5em 1em',
-        zIndex: '10000',
+        background: "hsla(0, 0%, 0%, 0.75)",
+        color: "white",
+        border: "none",
+        borderRadius: "4px",
+        padding: "0.5em 1em",
+        zIndex: "10000",
       }}
       label="All Answers will automatically submit when timer ends"
     >
@@ -65,7 +67,7 @@ function CountdownTimer({ timeLeft, setTimeLeft, date }) {
         )}
       </div>
     </Tooltip>
-  )
+  );
 }
 
-export { CountdownTimer, calculateTimeLeft }
+export { CountdownTimer, calculateTimeLeft };
