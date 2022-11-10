@@ -1,4 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  ChangeEventHandler,
+} from "react";
 import { QuizData } from "./quizQuestions";
 import Quiz from "./Quiz";
 import SectionCompleteModal from "./SectionCompleteModal";
@@ -141,10 +146,10 @@ function ExamPage() {
     loadQuestion(qid);
   }
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSelectedOption(parseInt(event.target.value));
     console.log(parseInt(event.target.value));
-  }
+  };
 
   function confirmAnswer() {
     console.log("confirmed answer: " + selectedOption);

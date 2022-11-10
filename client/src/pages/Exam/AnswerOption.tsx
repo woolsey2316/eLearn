@@ -1,8 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { ChangeEventHandler } from "react";
 
-class AnswerOption extends React.Component {
-  constructor(props) {
+type Props = {
+  // using `interface` is also ok
+  answerIndex: number;
+  selectedOption: number;
+  answerContent: string;
+  getUserAnswer: ChangeEventHandler<HTMLInputElement>;
+};
+type State = {
+  checked: boolean; // like this
+};
+
+class AnswerOption extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       checked: false,
@@ -20,19 +30,11 @@ class AnswerOption extends React.Component {
             checked={this.props.selectedOption === this.props.answerIndex}
             onChange={this.props.getUserAnswer}
           />
-          <label className="radioCustomLabel" htmlFor={this.props.answerType}>
-            {this.props.answerContent}
-          </label>
+          <label className="radioCustomLabel">{this.props.answerContent}</label>
         </li>
       </div>
     );
   }
 }
-
-AnswerOption.propTypes = {
-  answerContent: PropTypes.string.isRequired,
-  selectedOption: PropTypes.string.isRequired,
-  getUserAnswer: PropTypes.func.isRequired,
-};
 
 export { AnswerOption };

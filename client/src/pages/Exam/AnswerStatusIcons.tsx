@@ -2,7 +2,14 @@ import React from "react";
 import * as Icon from "react-feather";
 import Tooltip from "@reach/tooltip";
 
-function answered(message) {
+type Props = {
+  answer: number;
+  marked: number[];
+  visited: boolean;
+  currentQuestion: number;
+  questionId: number;
+};
+function answered(message: string) {
   return (
     <div>
       <Tooltip
@@ -12,7 +19,6 @@ function answered(message) {
           border: "none",
           borderRadius: "4px",
           padding: "0.5em 1em",
-          zIndex: "10000",
         }}
         label={message}
       >
@@ -21,7 +27,7 @@ function answered(message) {
     </div>
   );
 }
-function notAnswered(message) {
+function notAnswered(message: string) {
   return (
     <div>
       <Tooltip
@@ -31,7 +37,6 @@ function notAnswered(message) {
           border: "none",
           borderRadius: "4px",
           padding: "0.5em 1em",
-          zIndex: "10000",
         }}
         label={message}
       >
@@ -40,7 +45,7 @@ function notAnswered(message) {
     </div>
   );
 }
-function marked(message) {
+function marked(message: string) {
   return (
     <div>
       <Tooltip
@@ -50,7 +55,6 @@ function marked(message) {
           border: "none",
           borderRadius: "4px",
           padding: "0.5em 1em",
-          zIndex: "10000",
         }}
         label={message}
       >
@@ -59,7 +63,7 @@ function marked(message) {
     </div>
   );
 }
-function answeredAndMarked(message) {
+function answeredAndMarked(message: string) {
   return (
     <div>
       <Tooltip
@@ -69,7 +73,6 @@ function answeredAndMarked(message) {
           border: "none",
           borderRadius: "4px",
           padding: "0.5em 1em",
-          zIndex: "10000",
         }}
         label={message}
       >
@@ -78,7 +81,7 @@ function answeredAndMarked(message) {
     </div>
   );
 }
-function notVisited(message) {
+function notVisited(message: string) {
   return (
     <div>
       <Tooltip
@@ -88,7 +91,6 @@ function notVisited(message) {
           border: "none",
           borderRadius: "4px",
           padding: "0.5em 1em",
-          zIndex: "10000",
         }}
         label={message}
       >
@@ -97,7 +99,7 @@ function notVisited(message) {
     </div>
   );
 }
-function defaultStatus(message) {
+function defaultStatus(message: string) {
   return (
     <div>
       <Tooltip
@@ -107,7 +109,6 @@ function defaultStatus(message) {
           border: "none",
           borderRadius: "4px",
           padding: "0.5em 1em",
-          zIndex: "10000",
         }}
         label={message}
       >
@@ -117,7 +118,7 @@ function defaultStatus(message) {
   );
 }
 
-function AnswerStatusIcon(props) {
+function AnswerStatusIcon(props: Props) {
   if (props.answer != -1 && props.marked.includes(props.questionId)) {
     return answeredAndMarked("Question was answered AND marked for review");
   } else if (props.answer != -1) {

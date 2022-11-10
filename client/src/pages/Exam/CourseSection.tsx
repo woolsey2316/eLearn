@@ -2,7 +2,14 @@ import React from "react";
 import { SectionTab } from "./SectionTab";
 import { CountdownTimer } from "../../utils/CountdownTimer";
 
-function CourseSection(props) {
+type Props = {
+  section: number;
+  clicked: (sectionId: number) => void;
+  sections: string[];
+  timeLeft: {};
+  setTimeLeft: React.Dispatch<React.SetStateAction<{}>>;
+};
+function CourseSection(props: Props) {
   return (
     <div className="ml-5">
       <div className="flex justify-between items-end">

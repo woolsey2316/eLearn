@@ -1,8 +1,11 @@
-import React from 'react'
-import Modal from 'react-modal'
-import * as Icon from 'react-feather'
-
-function SectionCompleteModal(props) {
+import React from "react";
+import Modal from "react-modal";
+import * as Icon from "react-feather";
+type Props = {
+  modalIsOpen: boolean;
+  closeModal: () => void;
+};
+function SectionCompleteModal(props: Props) {
   return (
     <Modal
       isOpen={props.modalIsOpen}
@@ -10,7 +13,7 @@ function SectionCompleteModal(props) {
       contentLabel="Example Modal"
       style={{
         overlay: { zIndex: 9999 },
-        content: { bottom: '20%', top: '20%' },
+        content: { bottom: "20%", top: "20%" },
       }}
     >
       <div className="modal__content">
@@ -18,7 +21,7 @@ function SectionCompleteModal(props) {
           <Icon.CheckCircle className="w-16 h-16 text-theme-9 mx-auto mt-3" />
           <div className="text-3xl mt-5">Good job!</div>
           <div className="text-gray-600 mt-2">
-            You Completed a section! <br />
+            You completed a section! <br />
             Make sure all other sections are completed
           </div>
         </div>
@@ -34,7 +37,7 @@ function SectionCompleteModal(props) {
         </div>
       </div>
     </Modal>
-  )
+  );
 }
 
-export default SectionCompleteModal
+export default SectionCompleteModal;

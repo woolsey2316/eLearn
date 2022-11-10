@@ -1,7 +1,12 @@
 import React from "react";
 import { QuestionButton } from "./QuestionButton";
-
-function QuestionNavigation(props) {
+type Props = {
+  answerList: number[];
+  onClickQuestion: (qId: number) => void;
+  markedQuestions: number[];
+  currentQuestion: number;
+};
+function QuestionNavigation(props: Props) {
   return (
     <div className="intro-x box">
       <div className="p-1">

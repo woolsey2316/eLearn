@@ -18,7 +18,7 @@ function SubmitModal(props) {
           <Icon.CheckCircle className="w-16 h-16 text-theme-9 mx-auto mt-3" />
           <div className="text-3xl mt-5">Good job!</div>
           <div className="text-gray-600 mt-2">
-            You Completed a section! <br />
+            You completed the test! <br />
             Make sure all other sections are completed
           </div>
         </div>

@@ -1,10 +1,17 @@
-import React, { useState } from 'react'
-import * as Icon from 'react-feather'
-import { QuestionNavigation } from './QuestionNavigation'
-import Tooltip from '@reach/tooltip'
-import { getUser } from '../../helpers'
-import { ExamInstructionModal } from '../../components/Exam'
-
+import React, { useState } from "react";
+import * as Icon from "react-feather";
+import { QuestionNavigation } from "./QuestionNavigation";
+import Tooltip from "@reach/tooltip";
+import { getUser } from "../../helpers";
+import { ExamInstructionModal } from "../../components/Exam";
+type Props = {
+  onClickQuestion: (qid: number) => void;
+  markedQuestions: number[];
+  currentQuestion: number;
+  answerList: number[];
+  section: string;
+  submitExam: () => void;
+};
 function RightPanel({
   onClickQuestion,
   markedQuestions,
@@ -12,33 +19,32 @@ function RightPanel({
   answerList,
   section,
   submitExam,
-}) {
-  const user = getUser()
+}: Props) {
+  const user = getUser();
 
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   function openModal() {
-    console.log('open modal request')
-    setOpen(true)
+    console.log("open modal request");
+    setOpen(true);
   }
 
   function closeModal() {
-    setOpen(false)
+    setOpen(false);
   }
   return (
     <div
-      style={{ width: '22em' }}
+      style={{ width: "22em" }}
       className="sm:box sm:bg-theme-1 box sm:hidden md:block mt-2 mb-2 mr-2 px-3 flex flex-col justify-between"
     >
       <div className="ml-2 mt-5 flex justify-between">
         <div className="font-medium text-white">{user && user.name}</div>
         <Tooltip
           style={{
-            background: 'hsla(0, 0%, 0%, 0.75)',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            padding: '0.5em 1em',
-            zIndex: '10000',
+            background: "hsla(0, 0%, 0%, 0.75)",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            padding: "0.5em 1em",
           }}
           label="Examination Instructions"
         >
@@ -93,7 +99,7 @@ function RightPanel({
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-export { RightPanel }
+export { RightPanel };

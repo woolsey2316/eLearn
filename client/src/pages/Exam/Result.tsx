@@ -1,7 +1,7 @@
-import React from 'react'
-import * as Icon from 'react-feather'
+import React from "react";
+import * as Icon from "react-feather";
 
-function Result(props) {
+function Result() {
   return (
     <div>
       <div className="p-5 text-center">
@@ -23,7 +23,7 @@ function Result(props) {
         </a>
       </div>
     </div>
-  )
+  );
 }
 
-export default Result
+export default Result;

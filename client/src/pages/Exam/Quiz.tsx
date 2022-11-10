@@ -1,9 +1,15 @@
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 import PropTypes from "prop-types";
 import { Question } from "./Question";
 import { AnswerOption } from "./AnswerOption";
-
-function Quiz(props) {
+type Props = {
+  selectedOption: number;
+  answerOptions: string[];
+  question: string;
+  questionId: number;
+  getUserAnswer: ChangeEventHandler<HTMLInputElement>;
+};
+function Quiz(props: Props) {
   return (
     <div
       style={{ height: "calc(100vh - 272px)" }}
@@ -17,7 +23,6 @@ function Quiz(props) {
               key={index}
               answerIndex={index}
               answerContent={elem}
-              questionId={props.questionId}
               getUserAnswer={props.getUserAnswer}
               selectedOption={props.selectedOption}
             />
@@ -28,12 +33,6 @@ function Quiz(props) {
   );
 }
 
-Quiz.propTypes = {
-  selectedOption: PropTypes.number.isRequired,
-  answerOptions: PropTypes.array.isRequired,
-  question: PropTypes.string.isRequired,
-  questionId: PropTypes.number.isRequired,
-  getUserAnswer: PropTypes.func.isRequired,
-};
+Quiz.propTypes = {};
 
 export default Quiz;
