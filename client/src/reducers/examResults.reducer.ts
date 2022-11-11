@@ -4,6 +4,7 @@ interface ExamState {
   examQuestions: any;
   submittingExam: boolean;
   examList: any;
+  examResults: any;
   average: any;
 }
 export function examResults(

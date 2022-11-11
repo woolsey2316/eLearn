@@ -6,7 +6,8 @@ import { MonthContainer } from "./MonthContainer";
 
 import { examActions } from "../../actions";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { PageComponentProps } from "../../types/PageComponentProps";
 
 const monthNames = [
   "January",
@@ -27,9 +28,9 @@ const monthNames = [
   A web page that shows all exams grouped by month, Users go here to select an exam
   and take it.
 */
-function ExamList(props) {
-  const dispatch = useDispatch();
-  const examData = useSelector((state) => state.exams.examList);
+function ExamList(props: PageComponentProps) {
+  const dispatch = useAppDispatch();
+  const examData = useAppSelector((state) => state.exams.examList);
 
   const fetchExams = useCallback(() => {
     dispatch(examActions.getUserExams());
@@ -38,6 +39,8 @@ function ExamList(props) {
   useEffect(() => {
     fetchExams();
   }, [fetchExams]);
+
+  if (examData === undefined) return null;
 
   examData.sort((a, b) => Date.parse(a.due) - Date.parse(b.due));
   const months = new Set(

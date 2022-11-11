@@ -1,39 +1,47 @@
-import React from 'react'
-import { DateIcon } from './DateIcon'
-import * as Icon from 'react-feather'
-
-function ExamCard({ exam }) {
-  const [description, show] = React.useState(false)
-  console.table({ exam })
+import React from "react";
+import { DateIcon } from "./DateIcon";
+import * as Icon from "react-feather";
+type ExamCardProps = {
+  exam: {
+    due: string;
+    examName: string;
+    duration: number;
+    sections: number;
+    description: string;
+  };
+};
+function ExamCard({ exam }: ExamCardProps) {
+  const [description, show] = React.useState(false);
+  console.table({ exam });
 
   function determineUrgency() {
     if (new Date(exam.due).getMonth() === new Date().getMonth()) {
       if (new Date(exam.due).getDate() - new Date().getDate() < 0) {
-        return 4
+        return 4;
       }
       if (new Date(exam.due).getDate() - new Date().getDate() < 2) {
-        return 3
+        return 3;
       }
       if (new Date(exam.due).getDate() - new Date().getDate() < 8) {
-        return 2
+        return 2;
       }
       if (new Date(exam.due).getDate() - new Date().getDate() < 30) {
-        return 1
+        return 1;
       }
     }
   }
   function urgencyDot() {
     if (determineUrgency() === 4) {
-      return <div className="mt-3 w-2 h-2 bg-theme-9 rounded-full ml-2"></div>
+      return <div className="mt-3 w-2 h-2 bg-theme-9 rounded-full ml-2"></div>;
     }
     if (determineUrgency() === 3) {
-      return <div className="mt-3 w-2 h-2 bg-theme-6 rounded-full ml-2"></div>
+      return <div className="mt-3 w-2 h-2 bg-theme-6 rounded-full ml-2"></div>;
     }
     if (determineUrgency() === 2) {
-      return <div className="mt-3 w-2 h-2 bg-theme-11 rounded-full ml-2"></div>
+      return <div className="mt-3 w-2 h-2 bg-theme-11 rounded-full ml-2"></div>;
     }
     if (determineUrgency() === 1) {
-      return <div className="mt-3 w-2 h-2 bg-theme-12 rounded-full ml-2"></div>
+      return <div className="mt-3 w-2 h-2 bg-theme-12 rounded-full ml-2"></div>;
     }
   }
   return (
@@ -52,7 +60,7 @@ function ExamCard({ exam }) {
           </h2>
           <div className="flex px-5 py-1">
             <h2 className="font-medium text-gray-700 leading-none mr-2">
-              {'due: ' + exam.due}
+              {"due: " + exam.due}
             </h2>
             <h2 className="font-medium leading-none">|</h2>
             <div className="flex" onClick={() => show(!description)}>
@@ -76,7 +84,10 @@ function ExamCard({ exam }) {
         <div className="flex ml-auto mr-5">
           <a
             href={`/student/exams/61c1652e14fdaabab1842464`}
-            className={"button w-24 inline-block my-auto mr-1 bg-theme-1 text-white" + (determineUrgency() === 4 ? " invisible" : "") }
+            className={
+              "button w-24 inline-block my-auto mr-1 bg-theme-1 text-white" +
+              (determineUrgency() === 4 ? " invisible" : "")
+            }
           >
             Take Exam
           </a>
@@ -95,7 +106,7 @@ function ExamCard({ exam }) {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export { ExamCard }
+export { ExamCard };

@@ -1,32 +1,26 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "esModuleInterop": true,
-        "target": "es6",
-        "strict": true,
-        "moduleResolution": "node",
-        "sourceMap": true,
-        "outDir": "dist",
-        "baseUrl": ".",
-        "jsx": "react",
-        "allowJs": true,
-        "skipLibCheck": true,
-        "paths": {
-            "*": [
-                "node_modules/*",
-                "server/types/*",
-            ],
-        }
-    },
-    "include": [
-        "client/**/*",
-        "db/**/*",
-        "models/**/*",
-        "routes/**/*",
-        "validation/**/*",
-
-    ],
-    "exclude": [
-        "client/build/**/*"
-    ]
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es2015",
+    "strict": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "jsx": "react",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "paths": {
+      "*": ["node_modules/*", "server/types/*"]
+    }
+  },
+  "include": [
+    "client/**/*",
+    "db/**/*",
+    "models/**/*",
+    "routes/**/*",
+    "validation/**/*"
+  ],
+  "exclude": ["client/build/**/*"]
 }

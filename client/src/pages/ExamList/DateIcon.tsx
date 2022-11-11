@@ -1,6 +1,8 @@
 import React from "react";
-
-function DateIcon(props) {
+type Props = {
+  due: string;
+};
+function DateIcon(props: Props) {
   const date = new Date(props.due);
   return (
     <div className="m-3 relative text-gray-700 border border-gray-300 box overflow-hidden">

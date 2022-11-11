@@ -4,14 +4,15 @@ import { CourseDropdown } from "../../components";
 import { MobileMenu } from "../../components";
 import { TopBar } from "../../components";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
 import { examResultActions } from "../../actions";
 import { courseActions } from "../../actions";
 
 import { ExamResultCard } from "./ExamResultCard";
+import { PageComponentProps } from "../../types/PageComponentProps";
 
-function weightedAverage(examResults) {
+function weightedAverage(examResults: any[]) {
   if (examResults) {
     return Object.values(examResults)
       .reduce(
@@ -24,18 +25,17 @@ function weightedAverage(examResults) {
   }
 }
 
-function ExamResults(props) {
-  const dispatch = useDispatch();
-  const courses = useSelector((state) => state.courses.userCourseList);
-  const userExamResults = useSelector((state) => state.examResults.examList);
-  const exams = useSelector((state) => state.examResults.examResults);
-  console.log("exams: ", exams);
-  console.log("userExamResults: ", userExamResults);
+function ExamResults(props: PageComponentProps) {
+  const dispatch = useAppDispatch();
+  const courses = useAppSelector((state) => state.courses.userCourseList);
+  const userExamResults = useAppSelector((state) => state.examResults.examList);
+  const average = useAppSelector((state) => state.examResults.average);
+
   const page = 0;
   const size = 20;
 
   const fetchCourses = useCallback(() => {
-    dispatch(courseActions.getAllUserCourses(page, size));
+    dispatch(courseActions.getAllUserCourses());
   }, [dispatch, page, size]);
 
   useEffect(() => {
@@ -54,7 +54,9 @@ function ExamResults(props) {
     ?._id;
 
   const fetchExams = useCallback(() => {
-    dispatch(examResultActions.getUserExamResultsByCourse(courseId));
+    if (courseId) {
+      dispatch(examResultActions.getUserExamResultsByCourse(courseId));
+    }
   }, [courseId, dispatch]);
 
   useEffect(() => {
@@ -62,11 +64,15 @@ function ExamResults(props) {
   }, [fetchExams]);
 
   const fetchExamResults = useCallback(() => {
-    dispatch(examResultActions.getAllExamResults(courseId));
+    if (courseId) {
+      dispatch(examResultActions.getAllExamResults(courseId));
+    }
   }, [courseId, dispatch]);
 
   const fetchExamResultsbyCourse = useCallback(() => {
-    dispatch(examResultActions.getExamResultsByCourse(courseId));
+    if (courseId) {
+      dispatch(examResultActions.getExamResultsByCourse(courseId));
+    }
   }, [courseId, dispatch]);
 
   useEffect(() => {
@@ -132,12 +138,12 @@ function ExamResults(props) {
                     </tr>
                   </thead>
                   <tbody>
-                    {userExamResults?.map((elem, index) => {
+                    {userExamResults?.map((elem: any, index: number) => {
                       return (
                         <ExamResultCard
                           key={index}
                           examInfo={elem}
-                          average={exams?.average[elem.exam_name]}
+                          average={average?.average[elem?.exam_name]}
                         />
                       );
                     })}
