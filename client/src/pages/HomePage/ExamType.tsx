@@ -1,24 +1,24 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback } from "react";
 
-import * as Icon from 'react-feather'
+import * as Icon from "react-feather";
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
-import { dashboardActions } from '../../actions'
+import { dashboardActions } from "../../actions";
 
 function ExamType() {
-  const dispatch = useDispatch()
-  const dashboard = useSelector((state) => state.dashboard)
-  const page = 0
-  const size = 20
+  const dispatch = useAppDispatch();
+  const dashboard = useAppSelector((state) => state.dashboard);
+  const page = 0;
+  const size = 20;
 
   const fetchDashboard = useCallback(() => {
-    dispatch(dashboardActions.getUserDashboard(page, size))
-  },[page, size, dispatch])
+    dispatch(dashboardActions.getUserDashboard());
+  }, [page, size, dispatch]);
 
   useEffect(() => {
-    fetchDashboard()
-  }, [fetchDashboard])
+    fetchDashboard();
+  }, [fetchDashboard]);
 
   return (
     <div className="col-span-12 mt-8">
@@ -36,16 +36,12 @@ function ExamType() {
                     className="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                     title="Total assignments"
                   >
-                    {dashboard &&
-                      dashboard.dashboard &&
-                      dashboard.total.exam}
+                    {dashboard && dashboard.dashboard && dashboard.total.exam}
                   </div>
                 </div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard &&
-                  dashboard.dashboard &&
-                  dashboard.month.assignment}
+                {dashboard && dashboard.dashboard && dashboard.month.assignment}
               </div>
               <div className="text-base text-gray-600 mt-1">Assignments</div>
             </div>
@@ -88,16 +84,12 @@ function ExamType() {
                     className="report-box__indicator bg-theme-9 tooltip cursor-pointer text-center"
                     title="Total exams"
                   >
-                    {dashboard &&
-                      dashboard.dashboard &&
-                      dashboard.total.exam}
+                    {dashboard && dashboard.dashboard && dashboard.total.exam}
                   </div>
                 </div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard &&
-                  dashboard.dashboard &&
-                  dashboard.month.exam}
+                {dashboard && dashboard.dashboard && dashboard.month.exam}
               </div>
               <div className="text-base text-gray-600 mt-1">Exams</div>
             </div>
@@ -110,7 +102,9 @@ function ExamType() {
                 <Icon.Grid className="report-box__icon text-theme-11" />
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard.month.exam + dashboard.month.multiChoiceQuestion + dashboard.month.assignment}
+                {dashboard.month.exam +
+                  dashboard.month.multiChoiceQuestion +
+                  dashboard.month.assignment}
               </div>
               <div className="text-base text-gray-600 mt-1">Monthly Total</div>
             </div>
@@ -118,7 +112,7 @@ function ExamType() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export { ExamType }
+export { ExamType };

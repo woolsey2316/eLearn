@@ -3,8 +3,8 @@ import React from "react";
 import { examData } from "../ExamList";
 import { ExamItem } from "./ExamItem";
 
-function CourseExams({ chosenCourse }) {
-  examData.sort((a, b) => a - b);
+function CourseExams({ chosenCourse }: any) {
+  examData.sort((a: any, b: any) => a - b);
 
   const ExamList = [];
   ExamList.push(

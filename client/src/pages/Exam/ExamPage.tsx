@@ -93,7 +93,9 @@ function ExamPage() {
   const [show, setShow] = React.useState(true);
   const [showSubmitModal, setShowSubmitModal] = React.useState(false);
 
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [timeLeft, setTimeLeft] = useState(
+    calculateTimeLeft(new Date().addHours(1))
+  );
 
   // React.useEffect(() => {
   //   // exam time ran out

@@ -14,6 +14,8 @@ const initialState: DashboardState = {
     totalCompletionRate: 0,
     activeTests: 0,
     completedTests: 0,
+    multiChoiceQuestion: 0,
+    exam: 0,
   },
   month: {
     multiChoiceQuestion: 0,

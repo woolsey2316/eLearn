@@ -1,10 +1,18 @@
-import React from 'react'
-import { DateIcon } from '../ExamList'
-import * as Icon from 'react-feather'
-
-function ExamItem({ exam }) {
-  const [description, show] = React.useState(false)
-  console.table({ exam })
+import React from "react";
+import { DateIcon } from "../ExamList";
+import * as Icon from "react-feather";
+type Props = {
+  exam: {
+    due: string;
+    duration: number;
+    sections: number;
+    examName: string;
+    description: string;
+  };
+};
+function ExamItem({ exam }: Props) {
+  const [description, show] = React.useState(false);
+  console.table({ exam });
   return (
     <div className="mb-5">
       <div className="intro-x flex items-center rounded bg-gray-200">
@@ -20,7 +28,7 @@ function ExamItem({ exam }) {
           </h2>
           <div className="flex px-5 py-1">
             <h2 className="font-medium text-gray-700 leading-none mr-2">
-              {'due: ' + exam.due}
+              {"due: " + exam.due}
             </h2>
             <h2 className="font-medium leading-none">|</h2>
             <div className="flex" onClick={() => show(!description)}>
@@ -49,7 +57,7 @@ function ExamItem({ exam }) {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export { ExamItem }
+export { ExamItem };

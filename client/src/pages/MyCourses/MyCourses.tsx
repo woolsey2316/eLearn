@@ -7,20 +7,29 @@ import { CourseItem } from "./CourseItem";
 
 import { ShowingFirstToLast, CourseSubscribeModal } from "../CourseRegister";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
 import { courseActions } from "../../actions";
 
 import { Pagination } from "../../components";
 
 import { CourseExams } from "./CourseExams";
+import { PageComponentProps } from "../../types/PageComponentProps";
+import { CourseDTO } from "../../types/CourseState";
 
-function MyCourses(props) {
-  const dispatch = useDispatch();
-  const courses = useSelector((state) => state.courses);
+function MyCourses(props: PageComponentProps) {
+  const dispatch = useAppDispatch();
+  const courses = useAppSelector((state) => state.courses);
 
   const [search, setSearch] = useState("");
-  const [chosenCourse, setCourse] = useState({});
+  const [chosenCourse, setCourse] = useState<CourseDTO>({
+    category: "",
+    expires: new Date(),
+    id: "",
+    name: "",
+    instructor: "",
+    status: false,
+  });
   const [courseName] = useState("");
   const [page, setPage] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(10);
@@ -52,11 +61,12 @@ function MyCourses(props) {
   // Reasonable page values: 0 -> max page
   const navigatePage = useCallback(
     (page_) => {
-      const max = Math.ceil(
-        courses &&
-          courses.courseList &&
-          courses.courseList.list?.length / resultsPerPage
-      );
+      let max = 0;
+      if (courses?.courseList?.length === undefined) {
+        max = 0;
+      } else {
+        max = Math.ceil(courses.courseList.length / resultsPerPage);
+      }
       if (page_ > 0 && page_ <= max) return setPage(page_);
       else return setPage(1);
     },
@@ -67,15 +77,24 @@ function MyCourses(props) {
     navigatePage(page);
   }, [navigatePage, page, resultsPerPage]);
 
-  function handleChange(event) {
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setResultsPerPage(parseInt(event.target.value, 10));
-  }
+  };
 
   function registerCourse() {
-    dispatch(courseActions.register(chosenCourse));
+    if (
+      chosenCourse.category !== undefined &&
+      chosenCourse.expires !== undefined &&
+      chosenCourse.id !== undefined &&
+      chosenCourse.name !== undefined &&
+      chosenCourse.instructor !== undefined &&
+      chosenCourse.status !== undefined
+    ) {
+      dispatch(courseActions.register(chosenCourse));
+    }
   }
 
-  function handleSearchChange(e) {
+  function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>): void {
     const { value } = e.target;
     setSearch(value);
   }
@@ -115,22 +134,19 @@ function MyCourses(props) {
               </div>
             </div>
             {courses.courseList &&
-              courses?.courseList?.list
+              courses?.courseList
                 ?.filter((elem) => elem.name.includes(search))
                 ?.filter(
-                  (elem, index) =>
+                  (_, index) =>
                     // Navigate pages
                     index < resultsPerPage * page &&
                     index >= resultsPerPage * (page - 1)
                 )
                 .map((course) => (
                   <CourseItem
-                    modalIsOpen={modalIsOpen}
-                    openModal={openModal}
-                    setCourse={setCourse}
                     course={course}
-                    key={course.id}
-                    register={registerCourse}
+                    key={course._id}
+                    showExams={() => {}}
                   />
                 ))}
             <div className="intro-y col-span-9 col-start-4">
@@ -140,7 +156,7 @@ function MyCourses(props) {
                 incrementPage={incrementPage}
                 navigatePage={navigatePage}
                 page={page}
-                list={courses && courses.courseList && courses.courseList.list}
+                list={courses && courses.courseList && courses.courseList}
                 resultsPerPage={resultsPerPage}
                 handleChange={handleChange}
               />

@@ -5,8 +5,9 @@ import { MobileMenu } from '../../components'
 import { MainContent } from './MainContent'
 
 import { TopBar } from '../../components'
+import { PageComponentProps } from "../../types/PageComponentProps"
 
-function Dashboard(props) {
+function Dashboard(props: PageComponentProps) {
   /*
   const access_token = useSelector(state => state.authentication.user.token.access_token)
   const refresh_token = useSelector(state => state.authentication.user.token.refresh_token)

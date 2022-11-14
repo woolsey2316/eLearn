@@ -2,16 +2,16 @@ import React, { useEffect, useCallback } from "react";
 
 import { Activity, AlertCircle, Monitor, Grid } from "react-feather";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
 import { dashboardActions } from "../../actions";
 
 import { courseActions } from "../../actions";
 
 function Overview() {
-  const dispatch = useDispatch();
-  const courses = useSelector((state) => state.courses.userCourseList);
-  const dashboard = useSelector((state) => state.dashboard);
+  const dispatch = useAppDispatch();
+  const courses = useAppSelector((state) => state.courses.userCourseList);
+  const dashboard = useAppSelector((state) => state.dashboard);
   const page = 0;
   const size = 20;
 
@@ -20,7 +20,7 @@ function Overview() {
   }, [dispatch]);
 
   const fetchDashboard = useCallback(() => {
-    dispatch(dashboardActions.getUserDashboard(page, size));
+    dispatch(dashboardActions.getUserDashboard());
   }, [page, size, dispatch]);
 
   useEffect(() => {

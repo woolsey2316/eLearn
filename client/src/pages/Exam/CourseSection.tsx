@@ -1,13 +1,14 @@
 import React from "react";
 import { SectionTab } from "./SectionTab";
 import { CountdownTimer } from "../../utils/CountdownTimer";
+import { TimeLeft } from "../../types/Utils";
 
 type Props = {
   section: number;
   clicked: (sectionId: number) => void;
   sections: string[];
-  timeLeft: {};
-  setTimeLeft: React.Dispatch<React.SetStateAction<{}>>;
+  timeLeft: Partial<TimeLeft>;
+  setTimeLeft: React.Dispatch<React.SetStateAction<Partial<TimeLeft>>>;
 };
 function CourseSection(props: Props) {
   return (

@@ -7,6 +7,7 @@ export type CourseDTO = {
   status: boolean;
 };
 type Course = {
+  name: string;
   examResults: Array<>;
   subscriber: Array<string>;
   exams: Array<>;

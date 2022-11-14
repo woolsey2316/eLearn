@@ -1,12 +1,19 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Tooltip from "@reach/tooltip";
+import { CountdownTimerProps, TimeLeft } from "../types/Utils";
 
-Date.prototype.addHours = function (h) {
+declare global {
+  interface Date {
+    addHours(h: number): Date;
+  }
+}
+
+Date.prototype.addHours = function (h: number) {
   this.setTime(this.getTime() + h * 60 * 60 * 1000);
   return this;
 };
 
-const calculateTimeLeft = (duration) => {
+function calculateTimeLeft(duration: Date): Partial<TimeLeft> {
   const difference = +duration - +new Date();
   let timeLeft = {};
 
@@ -20,9 +27,9 @@ const calculateTimeLeft = (duration) => {
   }
 
   return timeLeft;
-};
+}
 
-function CountdownTimer({ timeLeft, setTimeLeft }) {
+function CountdownTimer({ timeLeft, setTimeLeft }: CountdownTimerProps) {
   const [duration, _] = useState(new Date().addHours(1));
 
   useEffect(() => {
@@ -31,16 +38,16 @@ function CountdownTimer({ timeLeft, setTimeLeft }) {
     }, 1000);
   });
 
-  const timerComponents = [];
+  const timerComponents: JSX.Element[] = [];
 
-  Object.keys(timeLeft).forEach((interval) => {
-    if (!timeLeft[interval]) {
+  Object.entries(timeLeft).forEach(([key, value], index) => {
+    if (!value) {
       return;
     }
 
     timerComponents.push(
       <h2 className="font-medium items-center px-2">
-        {timeLeft[interval]} {interval}
+        {value} {key}
       </h2>
     );
   });
@@ -53,7 +60,6 @@ function CountdownTimer({ timeLeft, setTimeLeft }) {
         border: "none",
         borderRadius: "4px",
         padding: "0.5em 1em",
-        zIndex: "10000",
       }}
       label="All Answers will automatically submit when timer ends"
     >

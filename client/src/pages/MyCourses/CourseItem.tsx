@@ -1,14 +1,12 @@
-import React from 'react'
-
-function CourseItem({
-  course,
-  showExams,
-  modalIsOpen,
-  closeModal,
-  setCourse,
-  openModal,
-}) {
-
+import React from "react";
+type Props = {
+  course: {
+    name: string;
+    category: string;
+  };
+  showExams: () => void;
+};
+function CourseItem({ course, showExams }: Props) {
   return (
     <div className="intro-y col-span-12 md:col-span-6">
       <div className="box">
@@ -31,6 +29,6 @@ function CourseItem({
         </div>
       </div>
     </div>
-  )
+  );
 }
-export { CourseItem }
+export { CourseItem };

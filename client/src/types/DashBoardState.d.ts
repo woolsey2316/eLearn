@@ -8,6 +8,8 @@ type DashboardState = {
     totalCompletionRate: number;
     activeTests: number;
     completedTests: number;
+    exam: number;
+    multiChoiceQuestion: number;
   };
   month: {
     multiChoiceQuestion: number;
