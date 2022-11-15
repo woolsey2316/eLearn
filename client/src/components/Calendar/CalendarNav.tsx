@@ -1,8 +1,11 @@
 import React from "react";
 import * as Icon from "react-feather";
 import Calendar from "./Calendar";
-
-const CalendarNav = ({ today, setDate }) => {
+type Props = {
+  today: Date,
+  setDate: React.Dispatch<React.SetStateAction<Date>>,
+};
+const CalendarNav = ({ today, setDate }: Props) => {
   const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(
     today
   );

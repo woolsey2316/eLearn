@@ -242,7 +242,10 @@ function ExamPage() {
       <div className="box flex justify-between">
         <div className="flex flex-col flex-grow">
           {showSubmitModal && (
-            <SubmitModal closeModal={closeModal}></SubmitModal>
+            <SubmitModal
+              modalIsOpen={finished}
+              closeModal={closeModal}
+            ></SubmitModal>
           )}
           <CourseSection
             section={section}

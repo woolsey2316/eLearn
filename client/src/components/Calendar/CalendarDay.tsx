@@ -1,6 +1,10 @@
 import React from "react";
-
-function CalendarDay(props) {
+type Props = {
+  month: Number;
+  day: Number;
+  disabled: Boolean;
+};
+function CalendarDay(props: Props) {
   function isTodayDate() {
     return (
       new Date().getDate() === props.day &&

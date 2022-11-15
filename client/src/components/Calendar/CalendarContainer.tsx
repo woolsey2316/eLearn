@@ -28,7 +28,7 @@ function CalendarContainer() {
               <CalendarDateTile today={today} />
             </div>
           </div>
-          <EventsList eventsList={eventsList} setEventsList={setEventsList} />
+          <EventsList eventsList={eventsList} />
         </div>
       </div>
     </div>

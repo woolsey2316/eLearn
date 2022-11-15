@@ -1,15 +1,10 @@
 import React from "react";
-const EventItem = ({ event }) => {
-  function ordinalNumber(num) {
-    if (num % 10 === 1) {
-      return num + "st";
-    } else if (num % 10 === 2) {
-      return num + "nd";
-    } else if (num % 10 === 3) {
-      return num + "rd";
-    }
-    return num + "th";
-  }
+import { ordinalNumber } from "../../utils/OrdinalNumber";
+import { Event } from "../../types/Event";
+type Props = {
+  event: Event;
+};
+const EventItem = ({ event }: Props) => {
   return (
     <div className="flex items-center mt-4">
       <div className="w-2 h-2 bg-theme-11 rounded-full mr-3"></div>
