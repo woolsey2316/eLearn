@@ -1,8 +1,11 @@
 import React from "react";
 import Modal from "react-modal";
 import * as Icon from "react-feather";
-
-function SubmitModal(props) {
+type Props = {
+  modalIsOpen: boolean;
+  closeModal: () => void;
+};
+function SubmitModal(props: Props) {
   return (
     <Modal
       isOpen={props.modalIsOpen}

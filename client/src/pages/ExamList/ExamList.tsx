@@ -59,8 +59,8 @@ function ExamList(props: PageComponentProps) {
           //   (elem) =>
           //     new Date(elem.due).getFullYear() >= new Date().getFullYear()
           // )
-          .map((exam) => (
-            <ExamCard key={exam.id} exam={exam} />
+          .map((exam, index) => (
+            <ExamCard key={index} exam={exam} />
           ))}
       </MonthContainer>
     );

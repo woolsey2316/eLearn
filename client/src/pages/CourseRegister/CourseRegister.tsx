@@ -64,7 +64,7 @@ function CourseRegister(props: PageComponentProps) {
     navigatePage(page);
   }, [navigatePage, page, resultsPerPage]);
 
-  const handleChange: React.FormEventHandler<HTMLInputElement> = (event) => {
+  const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
     setResultsPerPage(parseInt(event.currentTarget.value, 10));
   };
 
@@ -114,7 +114,7 @@ function CourseRegister(props: PageComponentProps) {
               <ShowingFirstToLast
                 resultsPerPage={resultsPerPage}
                 page={page}
-                courses={courses}
+                collection={courses.courseList}
               />
               <div className="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div className="w-56 relative text-gray-700">

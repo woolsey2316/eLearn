@@ -2,8 +2,10 @@ import React from "react";
 import { Breadcrumb } from ".";
 import { FullName } from ".";
 import { UserIcon } from ".";
-
-function TopBar(props) {
+type Props = {
+  open: () => void;
+};
+function TopBar(props: Props) {
   return (
     <div className="top-bar">
       <Breadcrumb />

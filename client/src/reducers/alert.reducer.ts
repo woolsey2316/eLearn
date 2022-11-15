@@ -1,7 +1,8 @@
 import { alertConstants } from "../constants";
 import { AnyAction } from "redux";
+import { AlertLevel } from "../enums/Alert";
 interface Alert {
-  type: string;
+  type: AlertLevel;
   message: string;
 }
 export function alert(
@@ -11,17 +12,17 @@ export function alert(
   switch (action.type) {
     case alertConstants.SUCCESS:
       return {
-        type: "alert-success",
+        type: AlertLevel.alert_success,
         message: action.message,
       };
     case alertConstants.ERROR:
       return {
-        type: "alert-danger",
+        type: AlertLevel.alert_danger,
         message: action.message,
       };
     case alertConstants.MODERATE:
       return {
-        type: "alert-moderate",
+        type: AlertLevel.alert_moderate,
         message: action.message,
       };
     case alertConstants.CLEAR:

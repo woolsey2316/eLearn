@@ -1,7 +1,9 @@
 import React from "react";
 import * as Icon from "react-feather";
-
-function UserIcon(props) {
+type Props = {
+  open: () => void;
+};
+function UserIcon(props: Props) {
   const [isPressed, setPressed] = React.useState(false);
   return (
     <div className="intro-x dropdown w-8 h-8 relative">

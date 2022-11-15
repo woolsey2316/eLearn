@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 
 import * as Icon from "react-feather";
+import { AlertLevel } from "../enums/Alert";
 
-function Alert({ type, message }) {
+type Props = {
+  type: AlertLevel | undefined;
+  message: string;
+};
+function Alert({ type, message }: Props) {
   // the alert is displayed by default
   const [alert, setAlert] = useState(true);
 
@@ -12,40 +17,32 @@ function Alert({ type, message }) {
       setAlert(false);
     }, 3000);
   }, []);
-  const ALERT_SUCCESS =
-    "intro-x rounded-md flex items-center px-5 py-4 mt-4 bg-theme-9 text-white";
-  const ALERT_MODERATE =
-    "intro-x rounded-md flex items-center px-5 py-4 mt-4 bg-theme-12 text-white";
-  const ALERT_ERROR =
-    "intro-x rounded-md flex items-center px-5 py-4 mt-4 bg-theme-6 text-white";
-  const DEFAULT =
-    "intro-x  rounded-md flex items-center px-5 py-4 mt-4 bg-gray-200 text-gray-600";
   switch (type) {
-    case "alert-success":
+    case AlertLevel.alert_success:
       return alert ? (
-        <div className={ALERT_SUCCESS}>
+        <div className="intro-x rounded-md flex items-center px-5 py-4 mt-4 bg-theme-9 text-white">
           <Icon.AlertCircle className="mr-4" />
           {message}
         </div>
       ) : null;
-    case "alert-moderate":
+    case AlertLevel.alert_moderate:
       return alert ? (
-        <div className={ALERT_MODERATE}>
+        <div className="intro-x rounded-md flex items-center px-5 py-4 mt-4 bg-theme-12 text-white">
           <Icon.AlertOctagon className="mr-4" />
           {message}
         </div>
       ) : null;
-    case "alert-danger":
+    case AlertLevel.alert_danger:
       return alert ? (
-        <div className={ALERT_ERROR}>
+        <div className="intro-x rounded-md flex items-center px-5 py-4 mt-4 bg-theme-6 text-white">
           <Icon.AlertOctagon className="mr-4" />
           {message}
         </div>
       ) : null;
-    case "":
-      return <></>;
     default:
-      return <div className={DEFAULT}></div>;
+      return (
+        <div className="intro-x  rounded-md flex items-center px-5 py-4 mt-4 bg-gray-200 text-gray-600"></div>
+      );
   }
 }
 export { Alert };

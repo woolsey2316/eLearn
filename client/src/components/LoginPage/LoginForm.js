@@ -95,9 +95,9 @@ const LoginForm = () => {
             />
           </div>
           <MainButtons forgotPassword={forgotPassword} />
-          {alert && alert.message && (
+          {alert && alert.message ? (
             <Alert type={alert.type} message={alert.message} />
-          )}
+          ) : null}
         </form>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { getUser } from "../helpers";
 
-function FullName({ firstName, lastName }) {
+function FullName() {
   const user = getUser();
   return (
     <div className="flex">

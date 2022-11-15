@@ -1,10 +1,14 @@
 import React from "react";
-
-function NumberSelector({ name, value, handleChange }) {
+type Props = {
+  name: string;
+  resultsPerPage: number;
+  handleChange: React.ChangeEventHandler<HTMLSelectElement>;
+};
+function NumberSelector({ name, resultsPerPage, handleChange }: Props) {
   return (
     <select
       name={name}
-      value={value}
+      value={resultsPerPage}
       onChange={handleChange}
       className="w-20 input box mt-3 sm:mt-0"
     >

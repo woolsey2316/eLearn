@@ -1,14 +1,14 @@
 import React, { useCallback, useEffect } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 
 import { activityActions } from "../actions";
 
-import Activity from "../components/Activity";
+import Activity from "./Activity";
 
 function ActivityFeed() {
-  const dispatch = useDispatch();
-  const activities = useSelector((state) => state.activity.activityList);
+  const dispatch = useAppDispatch();
+  const activities = useAppSelector((state) => state.activity.activityList);
   console.log("activity feed", activities);
 
   const fetchActivityFeed = useCallback(() => {
@@ -25,7 +25,7 @@ function ActivityFeed() {
         <h2 className="text-lg font-medium truncate mr-5">Recent Activities</h2>
       </div>
       <div className="report-timeline mt-5 relative">
-        {activities.map((activity, index) => (
+        {activities?.map((activity, index) => (
           <Activity key={index} activity={activity} />
         ))}
       </div>

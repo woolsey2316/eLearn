@@ -3,7 +3,7 @@ import { CourseState } from "../../types/CourseState";
 type ShowingFirstToLastProps = {
   resultsPerPage: number;
   page: number;
-  courses: Partial<CourseState>;
+  collection: any[] | undefined;
 };
 /*
   the string "showing x to y of N results"
@@ -11,17 +11,17 @@ type ShowingFirstToLastProps = {
 function ShowingFirstToLast({
   resultsPerPage,
   page,
-  courses,
+  collection,
 }: ShowingFirstToLastProps) {
   function first() {
     return resultsPerPage * (page - 1) + 1;
   }
   function last() {
-    let courseListLength = 0;
-    if (courses && courses.courseList && courses.courseList.length) {
-      courseListLength = courses.courseList.length;
+    let length = 0;
+    if (collection && collection.length) {
+      length = collection.length;
     }
-    return Math.min(resultsPerPage * page, courseListLength);
+    return Math.min(resultsPerPage * page, length);
   }
   function total() {
     return resultsPerPage;

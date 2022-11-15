@@ -2,8 +2,11 @@ import React from "react";
 
 import Modal from "react-modal";
 import * as Icon from "react-feather";
-
-function LogoutModal(props) {
+type Props = {
+  modalIsOpen: boolean;
+  closeModal: () => void;
+};
+function LogoutModal(props: Props) {
   return (
     <Modal
       isOpen={props.modalIsOpen}
@@ -11,7 +14,14 @@ function LogoutModal(props) {
       contentLabel="Example Modal"
       style={{
         overlay: { zIndex: 9999 },
-        content: { bottom: "25%", top: "25%", inset: "25% 25%" },
+        content: {
+          bottom: "25%",
+          top: "25%",
+          inset: "25% 25%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        },
       }}
     >
       <div className="modal__content">

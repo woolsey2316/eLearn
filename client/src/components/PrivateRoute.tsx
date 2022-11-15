@@ -10,22 +10,12 @@ import { RegisterPage } from "./RegisterPage";
   data from the server api because a valid jwt token is required.
 */
 
-export const PrivateRoute = ({ children: Children, ...rest }) => {
+export const PrivateRoute = ({ ...rest }) => {
   const loggedIn = localStorage.getItem("EMAIL") ? true : false;
   console.log("logged in? " + loggedIn);
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        loggedIn ? (
-          Children
-        ) : (
-          <Redirect
-            to={{ pathname: "/login", state: { from: props.location } }}
-            component={LoginPage}
-          />
-        )
-      }
-    />
-  );
+  if (loggedIn) {
+    return <Route {...rest} />;
+  } else {
+    return <Redirect to={{ pathname: "/login" }} />;
+  }
 };

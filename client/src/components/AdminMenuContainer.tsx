@@ -1,6 +1,8 @@
 import React from "react";
-
-const AdminMenuContainer = (props) => {
+type Props = {
+  children: JSX.Element[];
+};
+const AdminMenuContainer = (props: Props) => {
   return (
     <nav className="side-nav">
       <div className="side-menu font-lg">Admin</div>

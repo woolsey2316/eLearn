@@ -7,8 +7,11 @@ import { alertActions } from "../../actions";
 import { Alert } from "../../components";
 
 import { history } from "../../helpers";
-
-import zxcvbn from "zxcvbn";
+import {
+  evaluatePasswordScore,
+  passwordStrengthColour,
+  passwordQuality,
+} from "../../components/PasswordQuality";
 
 const RegisterForm = () => {
   const [user, setUser] = useState({
@@ -42,36 +45,6 @@ const RegisterForm = () => {
   useEffect(() => {
     dispatch(userActions.logout());
   }, [dispatch]);
-  // password strength 0 - weakest, 4 strongest
-  function evaluatePasswordScore() {
-    return zxcvbn(user.password).score;
-  }
-  // green is best, orange moderate, red is weak
-  function passwordStrengthColour() {
-    const score = evaluatePasswordScore();
-    if (score >= 3) return "theme-9";
-    else if (score > 1 && score < 3) return "theme-11";
-    else return "theme-6";
-  }
-  function passwordQuality() {
-    let score = evaluatePasswordScore();
-    // empty password does not get assessed because user hasn't begun typing yet
-    score = user.password === "" ? -1 : score;
-    switch (score) {
-      case 4:
-        return "Very Strong password";
-      case 3:
-        return "Strong password";
-      case 2:
-        return "Moderate password";
-      case 1:
-        return "Weak password";
-      case 0:
-        return "Very Weak password";
-      default:
-        return "";
-    }
-  }
   function isValidEmail() {
     return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(user.email);
   }
@@ -263,29 +236,37 @@ const RegisterForm = () => {
             <div className="intro-x w-full grid grid-cols-12 gap-4 h-1 mt-3">
               <div
                 className={
-                  evaluatePasswordScore() > 0
-                    ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}`
+                  evaluatePasswordScore(user.password) > 0
+                    ? `col-span-3 h-full rounded bg-${passwordStrengthColour(
+                        user.password
+                      )}`
                     : `col-span-3 h-full rounded bg-gray-200`
                 }
               ></div>
               <div
                 className={
-                  evaluatePasswordScore() > 1
-                    ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}`
+                  evaluatePasswordScore(user.password) > 1
+                    ? `col-span-3 h-full rounded bg-${passwordStrengthColour(
+                        user.password
+                      )}`
                     : `col-span-3 h-full rounded bg-gray-200`
                 }
               ></div>
               <div
                 className={
-                  evaluatePasswordScore() > 2
-                    ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}`
+                  evaluatePasswordScore(user.password) > 2
+                    ? `col-span-3 h-full rounded bg-${passwordStrengthColour(
+                        user.password
+                      )}`
                     : `col-span-3 h-full rounded bg-gray-200`
                 }
               ></div>
               <div
                 className={
-                  evaluatePasswordScore() > 3
-                    ? `col-span-3 h-full rounded bg-${passwordStrengthColour()}`
+                  evaluatePasswordScore(user.password) > 3
+                    ? `col-span-3 h-full rounded bg-${passwordStrengthColour(
+                        user.password
+                      )}`
                     : `col-span-3 h-full rounded bg-gray-200`
                 }
               ></div>
@@ -304,8 +285,10 @@ const RegisterForm = () => {
             {submitted && !user.password2 && (
               <div className="text-theme-6 mt-2">Password is required</div>
             )}
-            <label className={`text-${passwordStrengthColour()} mt-2`}>
-              {passwordQuality()}
+            <label
+              className={`text-${passwordStrengthColour(user.password)} mt-2`}
+            >
+              {passwordQuality(user.password)}
             </label>
             <div className="flex">
               <h4
@@ -347,9 +330,9 @@ const RegisterForm = () => {
               Register
             </button>
           </div>
-          {alert && alert.message && (
+          {alert && alert.message ? (
             <Alert type={alert.type} message={alert.message} />
-          )}
+          ) : null}
         </div>
       </div>
     </form>

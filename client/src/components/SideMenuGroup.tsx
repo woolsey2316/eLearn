@@ -1,7 +1,21 @@
 import React from "react";
 import * as Icon from "react-feather";
-
-function SideMenuGroup({ children, name, path, subMenu, open, setOpen }) {
+type Props = {
+  children: JSX.Element;
+  name: string;
+  path: string;
+  subMenu: JSX.Element;
+  open: boolean | string;
+  setOpen: React.Dispatch<React.SetStateAction<boolean | string>>;
+};
+function SideMenuGroup({
+  children,
+  name,
+  path,
+  subMenu,
+  open,
+  setOpen,
+}: Props) {
   const collapse =
     open === name || window.location.pathname.includes(path) ? (
       <Icon.ChevronUp className="h-10 w-10" />
@@ -11,7 +25,6 @@ function SideMenuGroup({ children, name, path, subMenu, open, setOpen }) {
   return (
     <li>
       <div
-        type="button"
         className={
           window.location.pathname.includes(path)
             ? "side-menu side-menu--active w-full"

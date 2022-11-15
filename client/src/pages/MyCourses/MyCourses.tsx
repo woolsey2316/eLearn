@@ -36,7 +36,6 @@ function MyCourses(props: PageComponentProps) {
 
   const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
-    console.log("open modal request");
     setIsOpen(true);
   }
 
@@ -77,7 +76,7 @@ function MyCourses(props: PageComponentProps) {
     navigatePage(page);
   }, [navigatePage, page, resultsPerPage]);
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+  const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
     setResultsPerPage(parseInt(event.target.value, 10));
   };
 
@@ -119,7 +118,14 @@ function MyCourses(props: PageComponentProps) {
               <ShowingFirstToLast
                 resultsPerPage={resultsPerPage}
                 page={page}
-                courses={courses}
+                collection={courses?.courseList
+                  ?.filter((elem) => elem?.CourseName?.includes(search))
+                  ?.filter(
+                    (_, index) =>
+                      // Navigate pages
+                      index < resultsPerPage * page &&
+                      index >= resultsPerPage * (page - 1)
+                  )}
               />
               <div className="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div className="w-56 relative text-gray-700">
@@ -135,7 +141,7 @@ function MyCourses(props: PageComponentProps) {
             </div>
             {courses.courseList &&
               courses?.courseList
-                ?.filter((elem) => elem.name.includes(search))
+                ?.filter((elem) => elem?.CourseName?.includes(search))
                 ?.filter(
                   (_, index) =>
                     // Navigate pages

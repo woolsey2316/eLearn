@@ -179,8 +179,12 @@ function ExamCreationForm({
             >
               Save and Next Question
             </button>
-            {submitted && <Alert type={alert.type} message={alert.message} />}
-            {success && <Alert type={alert.type} message={alert.message} />}
+            {submitted && alert.message ? (
+              <Alert type={alert.type} message={alert.message} />
+            ) : null}
+            {success && alert.message ? (
+              <Alert type={alert.type} message={alert.message} />
+            ) : null}
           </div>
         </div>
       </div>

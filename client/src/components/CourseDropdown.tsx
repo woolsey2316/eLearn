@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import * as Icon from "react-feather";
-
-function CourseDropdown(props) {
+import { CourseType } from "../types/CourseState";
+type Props = {
+  course: string;
+  setCourse: React.Dispatch<React.SetStateAction<string>>;
+  courseList: CourseType[] | undefined;
+};
+function CourseDropdown(props: Props) {
   const [show, showMore] = useState(false);
-  function chooseCourse(name) {
+  function chooseCourse(name: string) {
     props.setCourse(name);
     showMore(!show);
   }

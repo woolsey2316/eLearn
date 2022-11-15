@@ -4,7 +4,7 @@ import * as Icon from "react-feather";
 function Breadcrumb() {
   const path = window.location.pathname.split("/");
   // finds the url link from a given URL section, eg. grades => /student/grades
-  function findURL(section) {
+  function findURL(section: string) {
     const n = window.location.pathname.search(section);
     return window.location.pathname.substring(0, n + section.length);
   }

@@ -8,12 +8,16 @@ import { StudentMenuContainer } from "./StudentMenuContainer";
 import ProfileSubMenu from "./ProfileSubMenu";
 import CourseSubMenu from "./CourseSubMenu";
 import { SideMenuGroup } from "./SideMenuGroup";
-
-function SideMenu(props) {
+import { LogoutMenuItem } from "./LogoutMenuItem";
+type SideMenuProps = {
+  permissions: boolean;
+  open: () => void;
+};
+function SideMenu(props: SideMenuProps) {
   const profileSubMenu = <ProfileSubMenu />;
   const courseSubMenu = <CourseSubMenu />;
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean | string>(false);
 
   return (
     <nav className="side-nav">
@@ -50,9 +54,9 @@ function SideMenu(props) {
         <SideMenuItem name="Exam List" path="/student/exam_list">
           <Icon.Layers className="side-menu__icon" />
         </SideMenuItem>
-        <SideMenuItem name="Logout" path={props.open}>
+        <LogoutMenuItem name="Logout" onClick={props.open}>
           <Icon.LogOut className="side-menu__icon" />
-        </SideMenuItem>
+        </LogoutMenuItem>
       </StudentMenuContainer>
       {props.permissions && (
         <AdminMenuContainer>
@@ -61,11 +65,6 @@ function SideMenu(props) {
           </SideMenuItem>
 
           <SideMenuItem name="My Courses" path="/admin/my_courses">
-            {/* <FontAwesomeIcon
-              className="mt-1 -ml-1"
-              icon={faChalkboardTeacher}
-              style={{ fontSize: '1.5em' }}
-              /> */}
             <img
               className="w-6 h-6"
               src="/assets/icons/chalkboard-teacher-solid.svg"

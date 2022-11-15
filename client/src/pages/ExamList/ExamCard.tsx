@@ -12,7 +12,6 @@ type ExamCardProps = {
 };
 function ExamCard({ exam }: ExamCardProps) {
   const [description, show] = React.useState(false);
-  console.table({ exam });
 
   function determineUrgency() {
     if (new Date(exam.due).getMonth() === new Date().getMonth()) {

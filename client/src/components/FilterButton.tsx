@@ -1,6 +1,11 @@
 import React from "react";
-
-function FilterButton(props) {
+type Props = {
+  setActive: React.Dispatch<React.SetStateAction<string>>;
+  active: string;
+  name: string;
+  children: JSX.Element;
+};
+function FilterButton(props: Props) {
   return (
     <h2
       onClick={() => props.setActive(props.name)}

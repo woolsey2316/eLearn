@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 
 import { history } from "../helpers";
 
@@ -7,6 +7,7 @@ import { alertActions } from "../actions";
 import { userActions } from "../actions";
 
 import { Alert } from ".";
+import { State } from "history";
 
 function ChangePasswordForm() {
   const [user, setUser] = useState({
@@ -15,25 +16,25 @@ function ChangePasswordForm() {
     password: "",
   });
 
-  const alert = useSelector((state) => state.alert);
-  const dispatch = useDispatch();
+  const alert = useAppSelector((state) => state.alert);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    history.listen((location, action) => {
+    history.listen(({ location, action }) => {
       // clear alert on location change
       dispatch(alertActions.clear());
     });
   }, [dispatch]);
 
-  function handleChange(e) {
-    const { name, value } = e.target;
+  function handleChange(e: React.FormEvent<HTMLInputElement>): void {
+    const { name, value } = e.currentTarget;
     setUser((user) => ({
       ...user,
       [name]: value,
     }));
   }
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
 
     if (user.confirmPassword && user.email && user.password) {
@@ -83,7 +84,9 @@ function ChangePasswordForm() {
           <button type="submit" className="button bg-theme-1 text-white mt-4">
             Change Password
           </button>
-          {alert.message && <Alert type={alert.type} message={alert.message} />}
+          {alert.message ? (
+            <Alert type={alert.type} message={alert.message} />
+          ) : null}
         </div>
       </form>
     </div>

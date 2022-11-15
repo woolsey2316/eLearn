@@ -7,7 +7,16 @@ import { NumberSelector } from "../pages/CourseRegister";
 /* a single row of navigation buttons which traverses through a list of results
   << < 0 1 2 > >>
 */
-
+type Props = {
+  setPage: (page: number) => void;
+  decrementPage: () => void;
+  incrementPage: () => void;
+  navigatePage: (page: number) => void;
+  page: number;
+  list: any[] | undefined;
+  resultsPerPage: number;
+  handleChange: React.ChangeEventHandler<HTMLSelectElement>;
+};
 function Pagination({
   setPage,
   decrementPage,
@@ -17,7 +26,7 @@ function Pagination({
   list,
   resultsPerPage,
   handleChange,
-}) {
+}: Props) {
   return (
     <div className="intro-y flex my-5">
       <ul className="pagination">
@@ -69,7 +78,9 @@ function Pagination({
         <li>
           <button
             className="pagination__link"
-            onClick={() => setPage(Math.floor(list.length / resultsPerPage))}
+            onClick={() =>
+              setPage(list ? Math.floor(list.length / resultsPerPage) : 0)
+            }
           >
             <Icon.ChevronsRight className="w-4 h-4" />
           </button>
@@ -77,7 +88,7 @@ function Pagination({
       </ul>
       <NumberSelector
         name="pages"
-        value={resultsPerPage}
+        resultsPerPage={resultsPerPage}
         handleChange={handleChange}
       />
     </div>
