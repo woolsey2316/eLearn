@@ -1,6 +1,6 @@
 import React from "react";
 type Props = {
-  setActive: React.Dispatch<React.SetStateAction<string>>;
+  setActive: (name: string) => void;
   active: string;
   name: string;
   children: JSX.Element;

@@ -1,6 +1,10 @@
 import React from "react";
-
-const RememberMe = ({ forgotPassword, onChangeCheckbox, isChecked }) => {
+type Props = {
+  forgotPassword: boolean;
+  onChangeCheckbox: React.ChangeEventHandler<HTMLInputElement>;
+  isChecked: boolean;
+};
+const RememberMe = ({ forgotPassword, onChangeCheckbox, isChecked }: Props) => {
   return (
     <div className="flex items-center mr-auto">
       {!forgotPassword && (

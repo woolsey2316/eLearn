@@ -1,6 +1,8 @@
 import React from "react";
-
-const MainButtons = ({ forgotPassword }) => {
+type Props = {
+  forgotPassword: boolean;
+};
+const MainButtons = ({ forgotPassword }: Props) => {
   return (
     <div className="flex flex-col xl:flex-row intro-x mt-5 xl:mt-8 text-center xl:text-left">
       {!forgotPassword && (

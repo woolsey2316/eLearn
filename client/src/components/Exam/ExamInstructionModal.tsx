@@ -4,8 +4,12 @@ import Modal from "react-modal";
 
 import { OtherInstructions } from "./OtherInstructions";
 import { ExamInstructions } from "./ExamInstructions";
-
-function ExamInstructionModal(props) {
+type Props = {
+  open: boolean;
+  closeModal: () => void;
+  instructions: string;
+};
+function ExamInstructionModal(props: Props) {
   const [page] = useState(true);
   return (
     <Modal
@@ -22,10 +26,8 @@ function ExamInstructionModal(props) {
           <div className="md:text-xl text-lg text-gray-700 overflow-y-auto">
             <div className="content rounded-none p-2">
               <div className="box text-left p-10 m-2">
-                {page && <ExamInstructions instruction={props.instructions} />}
-                {!page && (
-                  <OtherInstructions instruction={props.instructions} />
-                )}
+                {page && <ExamInstructions />}
+                {!page && <OtherInstructions />}
                 <div className="flex flex-col sm:flex-row items-center justify-center text-center mt-5">
                   <button
                     type="button"

@@ -5,7 +5,7 @@ import * as Icon from "react-feather";
 
 function ExamFilterPanel() {
   const [active, setActive] = useState("Active");
-  function setActiveFilter(name) {
+  function setActiveFilter(name: string) {
     setActive(name);
   }
   return (

@@ -8,6 +8,7 @@ import store from "./store";
 import "@reach/tooltip/styles.css";
 
 ReactDOM.render(
+  // @ts-ignore
   <Provider store={store}>
     <App />
   </Provider>,

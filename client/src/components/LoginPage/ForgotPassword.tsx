@@ -1,6 +1,9 @@
 import React from "react";
-
-const ForgotPassword = ({ forgotPassword, setForgotPassword }) => {
+type Props = {
+  forgotPassword: boolean;
+  setForgotPassword: React.Dispatch<React.SetStateAction<boolean>>;
+};
+const ForgotPassword = ({ forgotPassword, setForgotPassword }: Props) => {
   return (
     <React.Fragment>
       {!forgotPassword && (

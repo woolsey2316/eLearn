@@ -41,7 +41,7 @@ function App() {
 
   const sideMenu = <SideMenu permissions={true} open={openModal} />;
   return (
-    <BrowserRouter history={history}>
+    <BrowserRouter>
       <LogoutModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
       <Switch>
         <PrivateRoute exact path="/dashboard">

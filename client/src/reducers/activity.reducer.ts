@@ -1,11 +1,7 @@
 import { activityConstants } from "../constants";
 import { AnyAction } from "redux";
-interface Activity {
-  instructor: String;
-  description: String;
-  date: Date;
-  courseId: String;
-}
+import { Activity } from "../types/Activity";
+
 interface ActivityState {
   activityList?: Activity[];
   loadingActivity: boolean;

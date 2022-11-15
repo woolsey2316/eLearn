@@ -1,11 +1,16 @@
 import React from "react";
-
+type Props = {
+  forgotPassword: boolean;
+  submitted: boolean;
+  password: string;
+  handleChange: React.ChangeEventHandler<HTMLInputElement>;
+};
 const PasswordField = ({
   forgotPassword,
   submitted,
   password,
   handleChange,
-}) => {
+}: Props) => {
   return (
     <React.Fragment>
       {!forgotPassword && (

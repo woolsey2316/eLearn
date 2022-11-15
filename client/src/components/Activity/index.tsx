@@ -1,8 +1,11 @@
 import React from "react";
 
 import { format } from "date-fns";
-
-function Activity({ activity }) {
+import { Activity } from "../../types/Activity";
+type Props = {
+  activity: Activity;
+};
+function Activity({ activity }: Props) {
   return (
     <div className="intro-x relative flex items-center mb-3">
       <div className="report-timeline__image">

@@ -1,12 +1,13 @@
-import React from 'react'
+import React from "react";
 
-import { MobileMenu } from '../../components'
+import { MobileMenu } from "../../components";
 
-import { AdminMainContent } from './AdminMainContent'
+import { AdminMainContent } from "./AdminMainContent";
 
-import { TopBar } from '../../components'
+import { TopBar } from "../../components";
+import { PageComponentProps } from "../../types/PageComponentProps";
 
-function AdminDashboard(props) {
+function AdminDashboard(props: PageComponentProps) {
   /*
   const access_token = useSelector(state => state.authentication.user.token.access_token)
   const refresh_token = useSelector(state => state.authentication.user.token.refresh_token)
@@ -23,7 +24,7 @@ function AdminDashboard(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export { AdminDashboard }
+export { AdminDashboard };

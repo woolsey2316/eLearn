@@ -134,11 +134,11 @@ function verifyEmail() {
   }
 }
 
-function resetPassword(user: any) {
+function resetPassword(email: string, password: string) {
   return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
     dispatch(request());
 
-    userService.changePassword(user).then(
+    userService.changePassword(email, password).then(
       () => {
         dispatch(success());
         dispatch(alertActions.success("password change successful"));

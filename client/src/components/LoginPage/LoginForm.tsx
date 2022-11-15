@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
 import { history } from "../../helpers";
 
 import { alertActions } from "../../actions";
 import { userActions } from "../../actions";
 
-import { Alert } from "../../components";
+import { Alert } from "..";
 
 import EmailField from "./EmailField";
 import PasswordField from "./PasswordField";
@@ -16,6 +16,8 @@ import MainButtons from "./MainButtons";
 import FormHeading from "./FormHeading";
 
 const LoginForm = () => {
+  const dispatch = useAppDispatch();
+  const alert = useAppSelector((state) => state.alert);
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -24,27 +26,25 @@ const LoginForm = () => {
   const [forgotPassword, setForgotPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { email, password, rememberMe } = inputs;
-  const dispatch = useDispatch();
-  const alert = useSelector((state) => state.alert);
 
   useEffect(() => {
-    history.listen((location, action) => {
+    history.listen(({}) => {
       // clear alert on location change
       dispatch(alertActions.clear());
     });
   }, [dispatch]);
 
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   }
 
-  function onChangeCheckbox(event) {
+  function onChangeCheckbox(event: React.ChangeEvent<HTMLInputElement>) {
     setInputs({ ...inputs, rememberMe: event.target.checked });
     console.log(event.target.checked);
   }
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     console.log(
       `%cemail : ${email}, password: ${password}`,

@@ -38,7 +38,7 @@ function ChangePasswordForm() {
     e.preventDefault();
 
     if (user.confirmPassword && user.email && user.password) {
-      dispatch(userActions.resetPassword(user));
+      dispatch(userActions.resetPassword(user.email, user.password));
     }
   }
 

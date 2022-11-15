@@ -1,6 +1,10 @@
 import React from "react";
-
-const EmailField = ({ submitted, email, handleChange }) => {
+type Props = {
+  submitted: boolean;
+  email: string;
+  handleChange: React.ChangeEventHandler<HTMLInputElement>;
+};
+const EmailField = ({ submitted, email, handleChange }: Props) => {
   return (
     <React.Fragment>
       <input

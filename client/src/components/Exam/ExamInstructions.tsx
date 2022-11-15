@@ -33,22 +33,24 @@ function ExamInstructions() {
         <br />
         <br />
         <div className="flex items-start ml-5">
-          {notVisited()}
+          {notVisited("You have not visited the question yet.")}
           <h2 className="ml-2 -mt-1">You have not visited the question yet.</h2>
         </div>
         <br />
         <div className="flex items-start ml-5">
-          {notAnswered()}
+          {notAnswered("You have not answered the question.")}
           <h2 className="ml-2 -mt-1">You have not answered the question.</h2>
         </div>
         <br />
         <div className="flex items-start ml-5">
-          {answered()}
+          {answered("You have answered the question.")}
           <h2 className="ml-2 -mt-1">You have answered the question.</h2>
         </div>
         <br />
         <div className="flex items-start ml-5">
-          {marked()}
+          {marked(
+            "You have NOT answered the question, but have marked the question for review, this will NOT be considered for evaluation."
+          )}
           <h2 className="ml-2 -mt-1">
             You have NOT answered the question, but have marked the question for
             review, this will NOT be considered for evaluation.
@@ -56,7 +58,9 @@ function ExamInstructions() {
         </div>
         <br />
         <div className="flex items-start ml-5">
-          {answeredAndMarked()}
+          {answeredAndMarked(
+            "You have answered the question, but marked it for review."
+          )}
           <h2 className="ml-2 -mt-1">
             You have answered the question, but marked it for review.
           </h2>
@@ -66,22 +70,24 @@ function ExamInstructions() {
         <br />
         <br />
         <div className="flex items-start ml-5">
-          {notVisited()}
+          {notVisited("మీరు ప్రశ్నను ఇంకా సందర్శించ లేదు.")}
           <h2 className="ml-2 -mt-1">మీరు ప్రశ్నను ఇంకా సందర్శించ లేదు.</h2>
         </div>
         <br />
         <div className="flex items-start ml-5">
-          {notAnswered()}
+          {notAnswered("మీరు ప్రశ్నకు జవాబు ఇంకా ఇవ్వలేదు.")}
           <h2 className="ml-2 -mt-1">మీరు ప్రశ్నకు జవాబు ఇంకా ఇవ్వలేదు.</h2>
         </div>
         <br />
         <div className="flex items-start ml-5">
-          {answered()}
+          {answered("మీరు ప్రశ్నకు జవాబు ఇచ్చారు.")}
           <h2 className="ml-2 -mt-1">మీరు ప్రశ్నకు జవాబు ఇచ్చారు.</h2>
         </div>
         <br />
         <div className="flex items-start ml-5">
-          {marked()}
+          {marked(
+            "మీరు ప్రశ్నకు జవాబు ఇవ్వలేదు, కాని ప్రశ్నకు పునరాలోచన కోసం మార్క్. ఈ ప్రశ్నకు మీ జవాబు మూల్యాంకనం కోసం పరిగణలోనికి తీసుకోబడదు."
+          )}
           <h2 className="ml-2 -mt-1">
             మీరు ప్రశ్నకు జవాబు ఇవ్వలేదు, కాని ప్రశ్నకు పునరాలోచన కోసం మార్క్. ఈ
             ప్రశ్నకు మీ జవాబు మూల్యాంకనం కోసం పరిగణలోనికి తీసుకోబడదు.
@@ -89,7 +95,9 @@ function ExamInstructions() {
         </div>
         <br />
         <div className="flex items-start ml-5">
-          {answeredAndMarked()}
+          {answeredAndMarked(
+            "మీరు ప్రశ్నకు జవాబు ఇచ్చారు, కాని పునరాలోచన కోసం మార్క్ చేసారు."
+          )}
           <h2 className="ml-2 -mt-1">
             మీరు ప్రశ్నకు జవాబు ఇచ్చారు, కాని పునరాలోచన కోసం మార్క్ చేసారు.
           </h2>

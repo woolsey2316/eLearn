@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../hooks/hooks";
 
 import LoginForm from "./LoginForm";
 import { RegisterInfo } from "../RegisterPage";
@@ -10,7 +10,7 @@ import { withRouter } from "react-router";
 
 function LoginPage() {
   // reset login status
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(userActions.logout());
