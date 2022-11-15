@@ -1,9 +1,9 @@
 import { activityConstants } from "../constants";
 import { AnyAction } from "redux";
-import { Activity } from "../types/Activity";
+import { ActivityProps } from "../types/Activity";
 
 interface ActivityState {
-  activityList?: Activity[];
+  activityList?: ActivityProps[];
   loadingActivity: boolean;
 }
 const initialState: ActivityState = {

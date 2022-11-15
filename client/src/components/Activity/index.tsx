@@ -1,9 +1,9 @@
 import React from "react";
 
 import { format } from "date-fns";
-import { Activity } from "../../types/Activity";
+import { ActivityProps } from "../../types/Activity";
 type Props = {
-  activity: Activity;
+  activity: ActivityProps;
 };
 function Activity({ activity }: Props) {
   return (

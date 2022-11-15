@@ -117,11 +117,11 @@ async function requestPasswordChange(user: UserInfo) {
   return handleResponse(response);
 }
 
-async function changePassword(user: UserInfo) {
+async function changePassword(email: string, password: string) {
   const requestOptions = {
     method: "PUT",
     headers: { ...authHeader(), "Content-Type": "application/json" },
-    body: JSON.stringify(user),
+    body: JSON.stringify({ email: email, password: password }),
   };
   const userId = getUserId();
   const response = await fetch(

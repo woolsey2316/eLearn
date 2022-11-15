@@ -7,7 +7,6 @@ import { ExamInstructions } from "./ExamInstructions";
 type Props = {
   open: boolean;
   closeModal: () => void;
-  instructions: string;
 };
 function ExamInstructionModal(props: Props) {
   const [page] = useState(true);

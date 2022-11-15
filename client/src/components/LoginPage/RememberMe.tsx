@@ -2,9 +2,13 @@ import React from "react";
 type Props = {
   forgotPassword: boolean;
   onChangeCheckbox: React.ChangeEventHandler<HTMLInputElement>;
-  isChecked: boolean;
+  rememberMe: boolean;
 };
-const RememberMe = ({ forgotPassword, onChangeCheckbox, isChecked }: Props) => {
+const RememberMe = ({
+  forgotPassword,
+  onChangeCheckbox,
+  rememberMe,
+}: Props) => {
   return (
     <div className="flex items-center mr-auto">
       {!forgotPassword && (
@@ -14,7 +18,7 @@ const RememberMe = ({ forgotPassword, onChangeCheckbox, isChecked }: Props) => {
             className="input border mr-2"
             id="remember-me"
             onChange={onChangeCheckbox}
-            checked={isChecked}
+            checked={rememberMe}
           />
           <label className="cursor-pointer select-none" htmlFor="remember-me">
             Remember me
