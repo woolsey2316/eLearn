@@ -12,6 +12,7 @@ const UserSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   name: {
     type: String,
@@ -63,6 +64,18 @@ const UserSchema = new Schema({
   },
   resetPasswordExpires: {
     type: Date,
+    required: false,
+  },
+  OTP: {
+    type: String,
+    required: false,
+  },
+  otpExpireTime: {
+    type: Date,
+    required: false,
+  },
+  invitationCode: {
+    type: String,
     required: false,
   },
 });

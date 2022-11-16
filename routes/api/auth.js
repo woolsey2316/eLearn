@@ -132,21 +132,26 @@ router.post("/password/update", (req, res, next) => {
 });
 
 router.post("/password/reset", (req, res, next) => {
-  if (!FLAG_ENABLE_OTP_FOR_VERIFICATION) {
-    return res.sendStatus(404);
-  }
   const invalid = validationErrorResponse(res, validationResult(req));
   if (invalid) {
     return invalid;
   }
+  console.log("body = ", req.body);
   User.findOne({ email: req.body.email, OTP: req.body.OTP })
     .exec()
     .then((user) => {
+      console.log({ user });
       if (!user) {
         return Promise.reject(res.sendStatus(404));
       }
-      user.password = req.body.password;
-      return user.save();
+      // user.password = req.body.password;
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(req.body.password, salt, (err, hash) => {
+          if (err) throw err;
+          user.password = hash;
+          return user.save();
+        });
+      });
     })
     .then(() => {
       return res.sendStatus(200);

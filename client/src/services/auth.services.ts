@@ -83,7 +83,6 @@ async function sendOTP(email: string) {
   const requestOptions = {
     method: "GET",
     headers: { ...authHeader(), "Content-Type": "application/json" },
-    body: JSON.stringify({ email }),
   };
 
   const response = await fetch(
@@ -121,7 +120,7 @@ async function resetPassword(
   confirmPassword: string
 ) {
   const requestOptions = {
-    method: "PUT",
+    method: "POST",
     headers: { ...authHeader(), "Content-Type": "application/json" },
     body: JSON.stringify({
       email: email,
@@ -130,7 +129,6 @@ async function resetPassword(
       confirmPassword: confirmPassword,
     }),
   };
-  const userId = getUserId();
   const response = await fetch(
     `${API_URL}/auth/password/reset`,
     requestOptions
