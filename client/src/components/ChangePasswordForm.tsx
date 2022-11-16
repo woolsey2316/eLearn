@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { history } from "../helpers";
 
 import { alertActions } from "../actions";
-import { userActions } from "../actions";
+import { authActions } from "../actions";
 
 import { Alert } from ".";
 import { State } from "history";
@@ -37,8 +37,19 @@ function ChangePasswordForm() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
 
-    if (user.confirmPassword && user.email && user.password) {
-      dispatch(userActions.resetPassword(user.email, user.password));
+    if (
+      user.confirmPassword &&
+      user.email &&
+      user.password &&
+      user.confirmPassword
+    ) {
+      dispatch(
+        authActions.updatePassword(
+          user.email,
+          user.password,
+          user.confirmPassword
+        )
+      );
     }
   }
 

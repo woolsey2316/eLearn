@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { history } from "../../helpers";
 
 import { alertActions } from "../../actions";
-import { userActions } from "../../actions";
+import { authActions } from "../../actions";
 
 import { Alert } from "..";
 
@@ -52,12 +52,12 @@ const LoginForm = () => {
     );
 
     setSubmitted(true);
-    if (email && password) {
+    if (email && password && !forgotPassword) {
       // Dispatches a login action, if successful redirects current URL
       // to Home page.
-      dispatch(userActions.login(email, password, rememberMe));
-    } else if (email && !password) {
-      dispatch(userActions.resetPassword(email, password));
+      dispatch(authActions.login(email, password, rememberMe));
+    } else if (email && forgotPassword) {
+      dispatch(authActions.sendOtp(email));
     }
     if (rememberMe && email !== "") {
       localStorage.email = email;

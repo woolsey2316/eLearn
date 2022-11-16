@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { userActions } from "../../actions";
+import { authActions } from "../../actions";
 import { alertActions } from "../../actions";
 
 import { Alert } from "../../components";
@@ -43,7 +43,7 @@ const RegisterForm = () => {
 
   // Always logs out current user before loading signup form page
   useEffect(() => {
-    dispatch(userActions.logout());
+    dispatch(authActions.logout());
   }, [dispatch]);
   function isValidEmail() {
     return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(user.email);
@@ -69,7 +69,7 @@ const RegisterForm = () => {
 
     setSubmitted(true);
     if (allFieldsExist()) {
-      dispatch(userActions.registerUser(user));
+      dispatch(authActions.registerUser(user));
     }
     event.preventDefault();
   }

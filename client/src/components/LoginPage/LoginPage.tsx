@@ -4,7 +4,7 @@ import { useAppDispatch } from "../../hooks/hooks";
 import LoginForm from "./LoginForm";
 import { RegisterInfo } from "../RegisterPage";
 
-import { userActions } from "../../actions";
+import { authActions } from "../../actions";
 
 import { withRouter } from "react-router";
 
@@ -13,7 +13,7 @@ function LoginPage() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(userActions.logout());
+    dispatch(authActions.logout());
   }, [dispatch]);
 
   return (

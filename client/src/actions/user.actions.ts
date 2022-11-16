@@ -11,100 +11,6 @@ import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
 import { UserInfo } from "../types/UserForm";
 
-function registerUser(user: UserInfo) {
-  return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
-    dispatch(request());
-    userService.register(user).then(
-      (user) => {
-        dispatch(success(user));
-        // API request to retrieve all user info from server, eg. profile image
-        dispatch(getCurrentUserInfo());
-
-        history.push("/login");
-        window.location.reload();
-      },
-      (error) => {
-        dispatch(failure(error.toString()));
-        dispatch(alertActions.error(error.toString()));
-      }
-    );
-  };
-
-  function request() {
-    return { type: userConstants.REGISTER_REQUEST };
-  }
-  function success(user: UserInfo) {
-    return { type: userConstants.REGISTER_SUCCESS, user };
-  }
-  function failure(error: string) {
-    return { type: userConstants.REGISTER_FAILURE, error };
-  }
-}
-function login(email: string, password: string, rememberMe: boolean) {
-  return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
-    dispatch(request());
-
-    userService.login(email, password, rememberMe).then(
-      (user) => {
-        dispatch(success(user));
-        history.push("/student/dashboard");
-        window.location.reload();
-        console.log("user: ", { user });
-      },
-      (error) => {
-        dispatch(failure(error.toString()));
-        dispatch(alertActions.error(error.toString()));
-      }
-    );
-  };
-
-  function request() {
-    return { type: userConstants.LOGIN_REQUEST };
-  }
-  function success(user: any) {
-    return { type: userConstants.LOGIN_SUCCESS, user };
-  }
-  function failure(error: string) {
-    return { type: userConstants.LOGIN_FAILURE, error };
-  }
-}
-
-function logout() {
-  const user = getUser();
-  if (user) {
-    userService.logout();
-  }
-  return { type: userConstants.LOGOUT };
-}
-
-function getCurrentUserInfo() {
-  return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
-    const user = localStorage.getItem("EMAIL");
-    dispatch(request(user));
-
-    userService.getUserDetails().then(
-      (userInfo) => {
-        dispatch(success(userInfo));
-        dispatch(alertActions.success("Successfully fetched user info"));
-      },
-      (error) => {
-        dispatch(failure(error.toString()));
-        dispatch(alertActions.error(error.toString()));
-      }
-    );
-  };
-
-  function request(user: any) {
-    return { type: userConstants.USER_INFO_REQUEST, user };
-  }
-  function success(user: any) {
-    return { type: userConstants.USER_INFO_SUCCESS, user };
-  }
-  function failure(error: string) {
-    return { type: userConstants.USER_INFO_FAILURE, error };
-  }
-}
-
 function verifyEmail() {
   return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
     dispatch(request());
@@ -134,14 +40,15 @@ function verifyEmail() {
   }
 }
 
-function resetPassword(email: string, password: string) {
+function getCurrentUserInfo() {
   return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
-    dispatch(request());
+    const user = localStorage.getItem("EMAIL");
+    dispatch(request(user));
 
-    userService.changePassword(email, password).then(
-      () => {
-        dispatch(success());
-        dispatch(alertActions.success("password change successful"));
+    userService.getUserDetails().then(
+      (userInfo) => {
+        dispatch(success(userInfo));
+        dispatch(alertActions.success("Successfully fetched user info"));
       },
       (error) => {
         dispatch(failure(error.toString()));
@@ -150,14 +57,14 @@ function resetPassword(email: string, password: string) {
     );
   };
 
-  function request() {
-    return { type: userConstants.CHANGE_PASSWORD_REQUEST };
+  function request(user: any) {
+    return { type: userConstants.USER_INFO_REQUEST, user };
   }
-  function success() {
-    return { type: userConstants.CHANGE_PASSWORD_SUCCESS };
+  function success(user: any) {
+    return { type: userConstants.USER_INFO_SUCCESS, user };
   }
   function failure(error: string) {
-    return { type: userConstants.CHANGE_PASSWORD_FAILURE, error };
+    return { type: userConstants.USER_INFO_FAILURE, error };
   }
 }
 
@@ -227,13 +134,10 @@ function _delete(id: string) {
 }
 
 export const userActions = {
-  registerUser,
-  login,
-  logout,
-  resetPassword,
   verifyEmail,
   setUserDetails,
   getUserDetails,
+  getCurrentUserInfo,
   // 'delete' is reserved
   delete: _delete,
 };
