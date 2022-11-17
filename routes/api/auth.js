@@ -120,8 +120,13 @@ router.post("/password/update", (req, res, next) => {
       if (!user) {
         return Promise.reject(res.status(500).end());
       }
-      user.password = req.body.password;
-      return user.save();
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(req.body.password, salt, (err, hash) => {
+          if (err) throw err;
+          user.password = hash;
+          return user.save();
+        });
+      });
     })
     .then(() => {
       return res.sendStatus(200);
@@ -144,7 +149,6 @@ router.post("/password/reset", (req, res, next) => {
       if (!user) {
         return Promise.reject(res.sendStatus(404));
       }
-      // user.password = req.body.password;
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(req.body.password, salt, (err, hash) => {
           if (err) throw err;

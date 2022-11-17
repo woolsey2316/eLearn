@@ -1,30 +1,33 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import ForgotPassword from './ForgotPassword'
+import React from "react";
+import ForgotPassword from "./ForgotPassword";
+import { shallow, configure } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 
-describe('forgot password link', () => {
-  it('did not forget password', () => {
-    let forgotPassword = false
-    const app = shallow(<ForgotPassword forgotPassword={forgotPassword} />)
+configure({ adapter: new Adapter() });
+
+describe("forgot password link", () => {
+  it("did not forget password", () => {
+    let forgotPassword = false;
+    const app = shallow(<ForgotPassword forgotPassword={forgotPassword} />);
 
     expect(
       app.containsMatchingElement(
         <React.Fragment>
-          <h4 style={{ cursor: 'pointer' }}>Forgot Password?</h4>
+          <h4 style={{ cursor: "pointer" }}>Forgot Password?</h4>
         </React.Fragment>
       )
-    ).toEqual(true)
-  })
+    ).toEqual(true);
+  });
 
-  it('forgot password', () => {
-    let forgotPassword = true
-    const app = shallow(<ForgotPassword forgotPassword={forgotPassword} />)
+  it("forgot password", () => {
+    let forgotPassword = true;
+    const app = shallow(<ForgotPassword forgotPassword={forgotPassword} />);
     expect(
       app.containsMatchingElement(
         <React.Fragment>
-          <h4 style={{ cursor: 'pointer' }}>Show Password Field</h4>
+          <h4 style={{ cursor: "pointer" }}>Show Password Field</h4>
         </React.Fragment>
       )
-    ).toEqual(true)
-  })
-})
+    ).toEqual(true);
+  });
+});

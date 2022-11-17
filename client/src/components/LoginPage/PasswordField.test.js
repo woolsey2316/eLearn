@@ -1,25 +1,28 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import PasswordField from './PasswordField'
+import React from "react";
+import { shallow, configure } from "enzyme";
+import PasswordField from "./PasswordField";
+import Adapter from "enzyme-adapter-react-16";
 
-describe('password input field', () => {
+configure({ adapter: new Adapter() });
+
+describe("password input field", () => {
   it('password is actually the text "null"', () => {
-    let password = 'null'
-    let submitted = true
-    let forgotPassword = false
+    let password = "null";
+    let submitted = true;
+    let forgotPassword = false;
     const app = shallow(
       <PasswordField
         forgotPassword={forgotPassword}
         password={password}
         submitted={submitted}
       />
-    )
+    );
 
     expect(
       app.containsMatchingElement(
         <React.Fragment>
           <input
-            style={{ padding: '0.75em 1em' }}
+            style={{ padding: "0.75em 1em" }}
             type="password"
             className="intro-x login__input input input--lg border border-gray-300 block mt-4"
             placeholder="Password"
@@ -28,26 +31,26 @@ describe('password input field', () => {
           />
         </React.Fragment>
       )
-    ).toEqual(true)
-  })
+    ).toEqual(true);
+  });
 
-  it('password is empty', () => {
-    let password = ''
-    let submitted = true
-    let forgotPassword = false
+  it("password is empty", () => {
+    let password = "";
+    let submitted = true;
+    let forgotPassword = false;
     const app = shallow(
       <PasswordField
         forgotPassword={forgotPassword}
         password={password}
         submitted={submitted}
       />
-    )
+    );
     expect(
       app.containsMatchingElement(
         <React.Fragment>
           {!forgotPassword && (
             <input
-              style={{ padding: '0.75em 1em' }}
+              style={{ padding: "0.75em 1em" }}
               type="password"
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
               placeholder="Password"
@@ -58,6 +61,6 @@ describe('password input field', () => {
           <h2 className="mt-1 text-theme-6">Password is required</h2>
         </React.Fragment>
       )
-    ).toEqual(true)
-  })
-})
+    ).toEqual(true);
+  });
+});

@@ -1,14 +1,17 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import RememberMe from './RememberMe'
+import React from "react";
+import { shallow, configure } from "enzyme";
+import RememberMe from "./RememberMe";
+import Adapter from "enzyme-adapter-react-16";
 
-describe('remmeber me checkbox', () => {
-  it('rememebr me checkbox shows', () => {
-    let isChecked = true
-    let forgotPassword = false
+configure({ adapter: new Adapter() });
+
+describe("remmeber me checkbox", () => {
+  it("rememebr me checkbox shows", () => {
+    let isChecked = true;
+    let forgotPassword = false;
     const app = shallow(
-      <RememberMe forgotPassword={forgotPassword} isChecked={isChecked} />
-    )
+      <RememberMe forgotPassword={forgotPassword} rememberMe={isChecked} />
+    );
     expect(
       app.containsMatchingElement(
         <div className="flex items-center mr-auto">
@@ -25,6 +28,6 @@ describe('remmeber me checkbox', () => {
           </div>
         </div>
       )
-    ).toEqual(true)
-  })
-})
+    ).toEqual(true);
+  });
+});

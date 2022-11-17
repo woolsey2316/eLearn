@@ -1,10 +1,13 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import FormHeading from './FormHeading'
+import React from "react";
+import { shallow, configure } from "enzyme";
+import FormHeading from "./FormHeading";
+import Adapter from "enzyme-adapter-react-16";
 
-describe('Login form', () => {
-  it('contains a form heading', () => {
-    const app = shallow(<FormHeading />)
+configure({ adapter: new Adapter() });
+
+describe("Login form", () => {
+  it("contains a form heading", () => {
+    const app = shallow(<FormHeading />);
     expect(
       app.containsMatchingElement(
         <React.Fragment>
@@ -17,6 +20,6 @@ describe('Login form', () => {
           </div>
         </React.Fragment>
       )
-    ).toEqual(true)
-  })
-})
+    ).toEqual(true);
+  });
+});

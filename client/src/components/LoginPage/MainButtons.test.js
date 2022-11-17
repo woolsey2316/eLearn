@@ -1,10 +1,13 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import MainButtons from './MainButtons'
+import React from "react";
+import { shallow, configure } from "enzyme";
+import MainButtons from "./MainButtons";
+import Adapter from "enzyme-adapter-react-16";
 
-describe('Main Buttons change when user forgets password', () => {
-  it('user forgot password', () => {
-    const app = shallow(<MainButtons forgotPassword={true} />)
+configure({ adapter: new Adapter() });
+
+describe("Main Buttons change when user forgets password", () => {
+  it("user forgot password", () => {
+    const app = shallow(<MainButtons forgotPassword={true} />);
     expect(
       app.containsMatchingElement(
         <div className="flex flex-col xl:flex-row intro-x mt-5 xl:mt-8 text-center xl:text-left">
@@ -22,11 +25,11 @@ describe('Main Buttons change when user forgets password', () => {
           </a>
         </div>
       )
-    ).toEqual(true)
-  })
+    ).toEqual(true);
+  });
 
-  it('user did not forget password', () => {
-    const app = shallow(<MainButtons forgotPassword={false} />)
+  it("user did not forget password", () => {
+    const app = shallow(<MainButtons forgotPassword={false} />);
     expect(
       app.containsMatchingElement(
         <div className="flex flex-col xl:flex-row intro-x mt-5 xl:mt-8 text-center xl:text-left">
@@ -41,6 +44,6 @@ describe('Main Buttons change when user forgets password', () => {
           </a>
         </div>
       )
-    ).toEqual(true)
-  })
-})
+    ).toEqual(true);
+  });
+});

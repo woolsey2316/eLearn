@@ -16,9 +16,9 @@ const EmailField = ({ submitted, email, handleChange }: Props) => {
         value={email}
         onChange={handleChange}
       />
-      {submitted && !email && (
+      {submitted && !email ? (
         <h2 className="mt-1 text-theme-6">Email is required</h2>
-      )}
+      ) : null}
     </React.Fragment>
   );
 };

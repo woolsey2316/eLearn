@@ -18,7 +18,8 @@ const SideMenuItem = ({ children, name, path, subMenu }: SideMenuItemProps) => {
       <a
         href={path}
         className={
-          window.location.pathname.includes(path) && path != ""
+          window.location.pathname.includes(path) ||
+          (window.location.pathname === "/" && name === "Dashboard")
             ? "side-menu side-menu--active"
             : "side-menu"
         }
