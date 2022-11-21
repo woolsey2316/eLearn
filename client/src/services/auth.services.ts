@@ -1,5 +1,5 @@
 import { authHeader, IsValidJSONString, getUserId } from "../helpers";
-import { UserInfo } from "../types/UserForm";
+import { EditableUserInfo, UserInfo } from "../types/UserForm";
 import { API_URL } from "./index";
 export const authService = {
   login,
@@ -51,7 +51,7 @@ async function logout() {
   return user;
 }
 
-async function register(user: UserInfo) {
+async function register(user: EditableUserInfo) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },

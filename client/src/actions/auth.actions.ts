@@ -9,9 +9,9 @@ import { alertActions, userActions } from ".";
 import { history, getUser } from "../helpers";
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
-import { UserInfo } from "../types/UserForm";
+import { EditableUserInfo } from "../types/UserForm";
 
-function registerUser(user: UserInfo) {
+function registerUser(user: EditableUserInfo) {
   return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
     dispatch(request());
     authService.register(user).then(
@@ -33,7 +33,7 @@ function registerUser(user: UserInfo) {
   function request() {
     return { type: userConstants.REGISTER_REQUEST };
   }
-  function success(user: UserInfo) {
+  function success(user: EditableUserInfo) {
     return { type: userConstants.REGISTER_SUCCESS, user };
   }
   function failure(error: string) {

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
 import { authActions } from "../../actions";
 import { alertActions } from "../../actions";
 
-import { Alert } from "../../components";
+import { Alert } from "..";
 
 import { history } from "../../helpers";
 import {
   evaluatePasswordScore,
   passwordStrengthColour,
   passwordQuality,
-} from "../../components/PasswordQuality";
+} from "../PasswordQuality";
 
 const RegisterForm = () => {
   const [user, setUser] = useState({
@@ -31,11 +31,11 @@ const RegisterForm = () => {
 
   const [submitted, setSubmitted] = useState(false);
   const [passwordAdvice, showPasswordAdvice] = useState(false);
-  const dispatch = useDispatch();
-  const alert = useSelector((state) => state.alert);
+  const dispatch = useAppDispatch();
+  const alert = useAppSelector((state) => state.alert);
 
   useEffect(() => {
-    history.listen((location, action) => {
+    history.listen(({ location, action }) => {
       // clear alert on location change
       dispatch(alertActions.clear());
     });
@@ -48,7 +48,7 @@ const RegisterForm = () => {
   function isValidEmail() {
     return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(user.email);
   }
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
     const { name, value } = e.target;
     setUser((user) => ({
       ...user,
@@ -58,13 +58,13 @@ const RegisterForm = () => {
   // checks for empty fields in the form
   function allFieldsExist() {
     let allFieldsExist = true;
-    for (const [value] of Object.entries(user)) {
-      allFieldsExist = allFieldsExist && value;
+    for (const [_key, value] of Object.entries(user)) {
+      allFieldsExist = allFieldsExist && value !== "";
     }
     return allFieldsExist;
   }
   // dispatch an action to the redux store, updates 'user' object
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     console.log(`%cuser details: ${JSON.stringify(user)}`, "color:green");
 
     setSubmitted(true);
