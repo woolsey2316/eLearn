@@ -283,13 +283,17 @@ const RegisterForm = () => {
               onChange={handleChange}
             />
             {submitted && !user.password2 && (
-              <div className="text-theme-6 mt-2">Password is required</div>
+              <>
+                <div className="text-theme-6 mt-2">Password is required</div>
+                <label
+                  className={`text-${passwordStrengthColour(
+                    user.password
+                  )} mt-2`}
+                >
+                  {passwordQuality(user.password)}
+                </label>
+              </>
             )}
-            <label
-              className={`text-${passwordStrengthColour(user.password)} mt-2`}
-            >
-              {passwordQuality(user.password)}
-            </label>
             <div className="flex">
               <h4
                 onClick={() => showPasswordAdvice(!passwordAdvice)}

@@ -18,7 +18,7 @@ import FormHeading from "./FormHeading";
 const LoginForm = () => {
   const dispatch = useAppDispatch();
   const alert = useAppSelector((state) => state.alert);
-  const [step, setStep] = useState(1);
+  const [form, setForm] = useState(1);
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -63,7 +63,7 @@ const LoginForm = () => {
       dispatch(authActions.login(email, password, rememberMe));
     } else if (email && forgotPassword) {
       dispatch(authActions.sendOtp(email));
-      setStep(2);
+      setForm(2);
     }
     if (rememberMe && email !== "") {
       localStorage.email = email;
@@ -72,7 +72,7 @@ const LoginForm = () => {
     }
   }
 
-  function handleSubmitOTPForm(e: React.FormEvent<HTMLFormElement>): void {
+  function handleSubmitOTPForm(_event: React.FormEvent<HTMLFormElement>): void {
     if (email && otp && newPassword && confirmPassword) {
       // Dispatches a login action, if successful redirects current URL
       // to Home page.
@@ -84,9 +84,11 @@ const LoginForm = () => {
   return (
     <div className="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0 mx-3">
       <div className="my-auto mx-auto xl:ml-20 bg-white xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/3 xl:w-auto">
-        {step == 1 && (
+        {/* sign-in form */}
+        {form == 1 && (
           <form
             style={{ display: "block" }}
+            id="form1"
             name="form"
             onSubmit={handleSubmit}
           >
@@ -121,7 +123,8 @@ const LoginForm = () => {
             ) : null}
           </form>
         )}
-        {step == 2 && (
+        {/* reset password form using OTP */}
+        {form == 2 && (
           <form
             style={{ display: "block" }}
             name="form"

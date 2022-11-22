@@ -9,7 +9,8 @@ const ForgotPassword = ({ forgotPassword, setForgotPassword }: Props) => {
       {!forgotPassword && (
         <h4
           style={{ cursor: "pointer" }}
-          onClick={() => setForgotPassword(!forgotPassword)}
+          id="forgotPass"
+          onClick={() => setForgotPassword(true)}
         >
           Forgot Password?
         </h4>
@@ -17,7 +18,8 @@ const ForgotPassword = ({ forgotPassword, setForgotPassword }: Props) => {
       {forgotPassword && (
         <h4
           style={{ cursor: "pointer" }}
-          onClick={() => setForgotPassword(!forgotPassword)}
+          id="backToSignIn"
+          onClick={() => setForgotPassword(false)}
         >
           Show Password Field
         </h4>
