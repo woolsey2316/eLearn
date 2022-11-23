@@ -20,11 +20,17 @@ const LoginForm = () => {
   const alert = useAppSelector((state) => state.alert);
   const [form, setForm] = useState(1);
   const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
+    email:
+      localStorage.getItem("remmeberMe") === "true"
+        ? localStorage.getItem("email")
+        : "",
+    password:
+      localStorage.getItem("remmeberMe") === "true"
+        ? localStorage.getItem("password")
+        : "",
     newPassword: "",
     confirmPassword: "",
-    rememberMe: false,
+    rememberMe: localStorage.getItem("remmeberMe") === "true" ? true : false,
     otp: "",
   });
   const [forgotPassword, setForgotPassword] = useState(false);
@@ -65,10 +71,10 @@ const LoginForm = () => {
       dispatch(authActions.sendOtp(email));
       setForm(2);
     }
-    if (rememberMe && email !== "") {
+    if (rememberMe && email != "" && password != "") {
       localStorage.email = email;
       localStorage.password = password;
-      localStorage.checkbox = rememberMe;
+      localStorage.remmeberMe = rememberMe;
     }
   }
 
@@ -77,7 +83,7 @@ const LoginForm = () => {
       // Dispatches a login action, if successful redirects current URL
       // to Home page.
       dispatch(
-        authActions.resetPassword(email, otp, password, confirmPassword)
+        authActions.resetPassword(email, otp, newPassword, confirmPassword)
       );
     }
   }
@@ -96,13 +102,13 @@ const LoginForm = () => {
             <div className="intro-x mt-8">
               <EmailField
                 submitted={submitted}
-                email={email}
+                email={email ?? ""}
                 handleChange={handleChange}
               />
               <PasswordField
                 forgotPassword={forgotPassword}
                 submitted={submitted}
-                password={password}
+                password={password ?? ""}
                 handleChange={handleChange}
               />
             </div>

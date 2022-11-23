@@ -1,14 +1,14 @@
 import React from "react";
 
 import RegisterForm from "./RegisterForm";
-import { RegisterInfo } from "./RegisterInfo";
+import { SplashPage } from "./SplashPage";
 
 function RegisterPage() {
   return (
     <div className="login">
       <div className="container px-5">
         <div className="block xl:grid grid-cols-2 gap-4">
-          <RegisterInfo />
+          <SplashPage />
           <RegisterForm />
         </div>
       </div>

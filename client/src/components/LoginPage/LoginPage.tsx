@@ -2,11 +2,9 @@ import React, { useEffect } from "react";
 import { useAppDispatch } from "../../hooks/hooks";
 
 import LoginForm from "./LoginForm";
-import { RegisterInfo } from "../RegisterPage";
+import { SplashPage } from "../RegisterPage";
 
 import { authActions } from "../../actions";
-
-import { withRouter } from "react-router";
 
 function LoginPage() {
   // reset login status
@@ -20,7 +18,7 @@ function LoginPage() {
     <div className="login">
       <div className="container sm:px-10">
         <div className="block xl:grid grid-cols-2 gap-4">
-          <RegisterInfo />
+          <SplashPage />
           <LoginForm />
         </div>
       </div>
@@ -28,5 +26,5 @@ function LoginPage() {
   );
 }
 
-const Login = withRouter(LoginPage);
-export { Login as LoginPage };
+// const Login = withRouter(LoginPage);
+export { LoginPage };

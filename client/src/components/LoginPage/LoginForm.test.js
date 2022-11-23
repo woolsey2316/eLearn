@@ -122,7 +122,8 @@ describe("Login form", () => {
     emailField.simulate("change");
 
     // submit 1st form
-    const form = loginForm.find("form").first();
+    const form = loginForm.find("#requestPass").first();
+    // The form submits if you use the submit event on the button. NOT the click method
     form.simulate("submit");
 
     const resetPassword = (

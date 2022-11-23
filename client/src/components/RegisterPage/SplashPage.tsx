@@ -1,6 +1,6 @@
 import React from "react";
 
-function RegisterInfo() {
+function SplashPage() {
   return (
     <div className="hidden xl:flex flex-col min-h-screen">
       <a href="/" className="-intro-x flex items-center pt-5">
@@ -32,4 +32,4 @@ function RegisterInfo() {
   );
 }
 
-export { RegisterInfo };
+export { SplashPage };

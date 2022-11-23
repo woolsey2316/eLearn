@@ -47,10 +47,8 @@ function login(email: string, password: string, rememberMe: boolean) {
 
     authService.login(email, password, rememberMe).then(
       (user) => {
-        dispatch(success(user));
         history.push("/student/dashboard");
         window.location.reload();
-        console.log("user: ", { user });
       },
       (error) => {
         dispatch(failure(error.toString()));
@@ -62,8 +60,8 @@ function login(email: string, password: string, rememberMe: boolean) {
   function request() {
     return { type: userConstants.LOGIN_REQUEST };
   }
-  function success(user: any) {
-    return { type: userConstants.LOGIN_SUCCESS, user };
+  function success() {
+    return { type: userConstants.LOGIN_SUCCESS };
   }
   function failure(error: string) {
     return { type: userConstants.LOGIN_FAILURE, error };
