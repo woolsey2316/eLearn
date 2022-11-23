@@ -12,6 +12,7 @@ import {
   passwordStrengthColour,
   passwordQuality,
 } from "../PasswordQuality";
+import ErrorMessage from "./ErrorMessage";
 
 const RegisterForm = () => {
   const [user, setUser] = useState({
@@ -96,9 +97,10 @@ const RegisterForm = () => {
               value={user.email}
               onChange={handleChange}
             />
-            {submitted && !user.email && (
-              <div className="text-theme-6 mt-2">Email is required</div>
-            )}
+            <ErrorMessage
+              message="Email is required"
+              show={submitted && user.email == ""}
+            ></ErrorMessage>
             <input
               type="text"
               name="name"
@@ -108,9 +110,10 @@ const RegisterForm = () => {
               value={user.name}
               onChange={handleChange}
             />
-            {submitted && !user.name && (
-              <div className="text-theme-6 mt-2">Full Name is required</div>
-            )}
+            <ErrorMessage
+              message="Full Name is required"
+              show={submitted && user.name == ""}
+            ></ErrorMessage>
             <input
               type="text"
               name="address"
@@ -122,9 +125,10 @@ const RegisterForm = () => {
               value={user.address}
               onChange={handleChange}
             />
-            {submitted && !user.address && (
-              <div className="text-theme-6 mt-2">Address is required</div>
-            )}
+            <ErrorMessage
+              message="Address is required"
+              show={submitted && user.address == ""}
+            ></ErrorMessage>
             <input
               type="text"
               name="gender"
@@ -136,9 +140,10 @@ const RegisterForm = () => {
               value={user.gender}
               onChange={handleChange}
             />
-            {submitted && !user.gender && (
-              <div className="text-theme-6 mt-2">gender is required</div>
-            )}
+            <ErrorMessage
+              message="Gender is required"
+              show={submitted && user.gender == ""}
+            ></ErrorMessage>
             <input
               type="text"
               name="area"
@@ -148,9 +153,10 @@ const RegisterForm = () => {
               value={user.area}
               onChange={handleChange}
             />
-            {submitted && !user.area && (
-              <div className="text-theme-6 mt-2">Address is required</div>
-            )}
+            <ErrorMessage
+              message="Area is required"
+              show={submitted && user.area == ""}
+            ></ErrorMessage>
             <input
               type="text"
               name="state"
@@ -160,9 +166,10 @@ const RegisterForm = () => {
               value={user.state}
               onChange={handleChange}
             />
-            {submitted && !user.state && (
-              <div className="text-theme-6 mt-2">Address is required</div>
-            )}
+            <ErrorMessage
+              message="State is required"
+              show={submitted && user.state == ""}
+            ></ErrorMessage>
             <input
               type="text"
               name="className"
@@ -174,9 +181,10 @@ const RegisterForm = () => {
               value={user.className}
               onChange={handleChange}
             />
-            {submitted && !user.className && (
-              <div className="text-theme-6 mt-2">className is required</div>
-            )}
+            <ErrorMessage
+              message="ClassName is required"
+              show={submitted && user.className == ""}
+            ></ErrorMessage>
             <input
               type="text"
               name="mobile"
@@ -188,9 +196,10 @@ const RegisterForm = () => {
               value={user.mobile}
               onChange={handleChange}
             />
-            {submitted && !user.mobile && (
-              <div className="text-theme-6 mt-2">Mobile is required</div>
-            )}
+            <ErrorMessage
+              message="Mobile is required"
+              show={submitted && user.mobile == ""}
+            ></ErrorMessage>
             <input
               type="text"
               name="pincode"
@@ -202,9 +211,29 @@ const RegisterForm = () => {
               value={user.pincode}
               onChange={handleChange}
             />
-            {submitted && !user.pincode && (
-              <div className="text-theme-6 mt-2">Pincode is required</div>
-            )}
+            <ErrorMessage
+              message="Pincode is required"
+              show={submitted && user.pincode == ""}
+            ></ErrorMessage>
+            <ErrorMessage
+              message="Pincode must be 6 digits long"
+              show={submitted && user.pincode.length != 6}
+            ></ErrorMessage>
+            <ErrorMessage
+              message="Pincode must be only composed of digits"
+              show={
+                submitted &&
+                !user.pincode
+                  .split("")
+                  .reduce(
+                    (acc, curr) =>
+                      acc &&
+                      curr.charCodeAt(0) >= 48 &&
+                      curr.charCodeAt(0) <= 57,
+                    true
+                  )
+              }
+            ></ErrorMessage>
             <input
               type="text"
               name="school"
@@ -216,9 +245,10 @@ const RegisterForm = () => {
               value={user.school}
               onChange={handleChange}
             />
-            {submitted && !user.school && (
-              <div className="text-theme-6 mt-2">School is required</div>
-            )}
+            <ErrorMessage
+              message="School is required"
+              show={submitted && user.school == ""}
+            ></ErrorMessage>
             <input
               type="password"
               name="password"
@@ -230,9 +260,10 @@ const RegisterForm = () => {
               value={user.password}
               onChange={handleChange}
             />
-            {submitted && !user.password && (
-              <div className="text-theme-6 mt-2">Password is required</div>
-            )}
+            <ErrorMessage
+              message="Password is required"
+              show={submitted && user.password == ""}
+            ></ErrorMessage>
             <div className="intro-x w-full grid grid-cols-12 gap-4 h-1 mt-3">
               <div
                 className={
@@ -315,7 +346,7 @@ const RegisterForm = () => {
                   - Avoid common substitutions
                 </h3>
                 <h3 className="intro-x text-gray-600 block mt-2 text-xs sm:text-sm">
-                  - Don’t use memorable keyboard paths
+                  - Don't use memorable keyboard paths
                 </h3>
               </div>
             )}
