@@ -1,4 +1,4 @@
-function IsValidJSONString(str) {
+function IsValidJSONString(str: string) {
   try {
     JSON.parse(str);
   } catch (e) {

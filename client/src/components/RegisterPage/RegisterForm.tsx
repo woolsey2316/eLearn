@@ -36,7 +36,7 @@ const RegisterForm = () => {
   const alert = useAppSelector((state) => state.alert);
 
   useEffect(() => {
-    history.listen(({ location, action }) => {
+    history.listen((location, action) => {
       // clear alert on location change
       dispatch(alertActions.clear());
     });

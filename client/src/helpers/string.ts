@@ -1,4 +1,4 @@
-function uppercaseFirstLetter(string) {
+function uppercaseFirstLetter(string: string) {
   if (!string) {
     return "";
   }

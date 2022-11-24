@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Router } from "react-router-dom";
 
 // midOne html + css template file provided
 import "./midone-assets/dist/css/app.css";
@@ -41,7 +41,7 @@ function App() {
 
   const sideMenu = <SideMenu permissions={true} open={openModal} />;
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <LogoutModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
       <Switch>
         <PrivateRoute exact path="/dashboard">
@@ -93,7 +93,7 @@ function App() {
         <Route exact path="/login" component={LoginPage} />
         <Route path="*" exact component={PageNotFound} />
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 }
 

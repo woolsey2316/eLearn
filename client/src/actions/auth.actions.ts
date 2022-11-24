@@ -48,7 +48,8 @@ function login(email: string, password: string, rememberMe: boolean) {
     authService.login(email, password, rememberMe).then(
       (user) => {
         history.push("/student/dashboard");
-        window.location.reload();
+        // window.location.reload();
+        dispatch(success());
       },
       (error) => {
         dispatch(failure(error.toString()));

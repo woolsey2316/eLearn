@@ -7,7 +7,6 @@ import { alertActions } from "../actions";
 import { authActions } from "../actions";
 
 import { Alert } from ".";
-import { State } from "history";
 
 function ChangePasswordForm() {
   const [user, setUser] = useState({
@@ -20,7 +19,7 @@ function ChangePasswordForm() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    history.listen(({ location, action }) => {
+    history.listen((location, action) => {
       // clear alert on location change
       dispatch(alertActions.clear());
     });
