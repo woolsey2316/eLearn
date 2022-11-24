@@ -27,6 +27,7 @@ export function authentication(
         ...initialState,
         loggedIn: true,
         loggingIn: false,
+        user: action.user,
       };
     case userConstants.LOGIN_FAILURE:
       return {

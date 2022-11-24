@@ -9,7 +9,6 @@ import Activity from "./Activity";
 function ActivityFeed() {
   const dispatch = useAppDispatch();
   const activities = useAppSelector((state) => state.activity.activityList);
-  console.log("activity feed", activities);
 
   const fetchActivityFeed = useCallback(() => {
     dispatch(activityActions.getActivityFeed());

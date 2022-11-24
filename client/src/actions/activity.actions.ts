@@ -13,7 +13,6 @@ function getActivityFeed() {
     dispatch(request());
     activityService.getActivityFeed().then(
       (activityList) => {
-        console.log("user activities", activityList);
         dispatch(success(activityList));
         dispatch(alertActions.success("Successfully fetched activities"));
       },

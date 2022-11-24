@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { LoginPage } from "./LoginPage";
 import { RegisterPage } from "./RegisterPage";
+import store from "../store";
 /*
   url paths are protected by redirecting the user to the /login page if
   the user is not logged in. A user is determined to be logged in if there
@@ -11,8 +12,8 @@ import { RegisterPage } from "./RegisterPage";
 */
 
 export const PrivateRoute = ({ ...rest }) => {
-  const loggedIn = localStorage.getItem("EMAIL") ? true : false;
-  console.log("logged in? " + loggedIn);
+  // const loggedIn = localStorage.getItem("EMAIL") ? true : false;
+  const { loggedIn } = store.getState().authentication;
   if (loggedIn) {
     return <Route {...rest} />;
   } else {

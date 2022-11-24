@@ -18,22 +18,19 @@ async function login(email: string, password: string, rememberMe: boolean) {
     body: JSON.stringify({ email, password, rememberMe }),
   };
 
-  await fetch(`${API_URL}/auth/login`, requestOptions).then((response) => {
-    if (response.ok === true) {
-      response.json().then((data) => {
-        setTimeout(() => console.log({ data }), 6000);
-        if (data.success === true) {
-          localStorage.setItem("USER_ID", data.id);
-          localStorage.setItem("EMAIL", data.email);
-          return localStorage.setItem("ACCESS_TOKEN_KEY", data.token);
-        } else {
-          return Promise.reject(new Error("toast.user.general_error"));
-        }
-      });
-    } else {
-      return Promise.reject(new Error(response.statusText));
-    }
-  });
+  const response = await fetch(`${API_URL}/auth/login`, requestOptions);
+
+  if (!response.ok) return new Error(response.statusText);
+
+  const data = await response.json();
+
+  if (data.success !== true) return new Error("toast.user.general_error");
+
+  localStorage.setItem("USER_ID", data.id);
+  localStorage.setItem("EMAIL", data.email);
+  localStorage.setItem("ACCESS_TOKEN_KEY", data.token);
+
+  return data;
 }
 
 async function logout() {
