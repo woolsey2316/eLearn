@@ -1,5 +1,7 @@
+import store from "../store";
+
 function getUserId() {
-  return localStorage.getItem("USER_ID");
+  return store.getState().authentication.user.id;
 }
 
 function getUser() {

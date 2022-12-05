@@ -44,13 +44,11 @@ function ExamResults(props: PageComponentProps) {
 
   const [course, setCourse] = useState("Select Course");
 
-  const courseList = courses;
-
-  const instructor = courseList?.filter((elem) => elem.courseName === course)[0]
+  const instructor = courses?.filter((elem) => elem.courseName === course)[0]
     ?.instructor;
-  const category = courseList?.filter((elem) => elem.courseName === course)[0]
+  const category = courses?.filter((elem) => elem.courseName === course)[0]
     ?.category;
-  const courseId = courseList?.filter((elem) => elem.courseName === course)[0]
+  const courseId = courses?.filter((elem) => elem.courseName === course)[0]
     ?._id;
 
   const fetchExams = useCallback(() => {
@@ -96,7 +94,7 @@ function ExamResults(props: PageComponentProps) {
           <div className="intro-y box overflow-hidden mt-5">
             <div className="flex flex-col lg:flex-row pt-10 px-5 sm:px-20 sm:pt-20 lg:pb-20 text-center sm:text-left">
               <CourseDropdown
-                courseList={courseList}
+                courseList={courses}
                 course={course}
                 setCourse={setCourse}
               />

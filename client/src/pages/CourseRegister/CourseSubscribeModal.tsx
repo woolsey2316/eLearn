@@ -45,7 +45,6 @@ function CourseSubscribeModal({
   function closeAndExit() {
     closeModal();
     history.push("/student/courses/CourseRegister");
-    window.location.reload();
   }
 
   return (

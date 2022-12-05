@@ -4,9 +4,16 @@
   empty object is returned. The auth header is used to make authenticated HTTP requests to the server
   api using JWT authentication.
 */
-export function authHeader() {
-  const user = JSON.parse(localStorage.getItem("user") ?? "");
+import store from "../store";
 
-  if (user && user.token) return { Authorization: "Bearer " + user.token };
-  return { Authorization: "" };
+export function authHeader() {
+  return {
+    Authorization: "Bearer " + store.getState().authentication.user.token,
+  };
 }
+// export function authHeader() {
+//   const user = JSON.parse(localStorage.getItem("user") ?? "");
+
+//   if (user && user.token) return { Authorization: "Bearer " + user.token };
+//   return { Authorization: "" };
+// }

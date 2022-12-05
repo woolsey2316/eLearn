@@ -20,7 +20,9 @@ async function getAllUserCourses() {
     method: "GET",
     headers: authHeader(),
   };
+
   const userId = getUserId();
+
   const response = await fetch(
     `${API_URL}/courses/user/${userId}`,
     requestOptions

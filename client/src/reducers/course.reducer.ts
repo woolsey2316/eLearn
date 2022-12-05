@@ -30,6 +30,7 @@ export function courses(
         gettingUserCourses: true,
       };
     case courseConstants.USER_COURSE_INFO_SUCCESS:
+      console.log(action.courseList);
       return {
         gettingUserCourses: false,
         userCourseList: action.courseList,

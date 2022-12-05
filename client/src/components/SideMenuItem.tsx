@@ -1,6 +1,6 @@
 import React from "react";
 import * as Icon from "react-feather";
-
+import { history } from "../helpers";
 type SideMenuItemProps = {
   children: JSX.Element;
   name: string;
@@ -16,7 +16,7 @@ const SideMenuItem = ({ children, name, path, subMenu }: SideMenuItemProps) => {
   return (
     <li>
       <a
-        href={path}
+        onClick={() => history.push(path)}
         className={
           window.location.pathname.includes(path) ||
           (window.location.pathname === "/" && name === "Dashboard")
