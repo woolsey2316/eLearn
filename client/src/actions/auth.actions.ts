@@ -76,19 +76,13 @@ function logout() {
   return { type: userConstants.LOGOUT };
 }
 
-function updatePassword(
-  oldPassword: string,
-  password: string,
-  confirmPassword: string
-) {
+function updatePassword(oldPassword: string, password: string) {
   return (dispatch: ThunkDispatch<{}, void, AnyAction>): void => {
     dispatch(request());
-    authService.updatePassword(oldPassword, password, confirmPassword).then(
+    authService.updatePassword(oldPassword, password).then(
       (res) => {
         dispatch(success());
-        dispatch(
-          alertActions.success("Successfully found verification status")
-        );
+        dispatch(alertActions.success(res));
       },
       (error) => {
         dispatch(failure(error.toString()));

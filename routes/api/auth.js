@@ -9,8 +9,11 @@ const validateLoginInput = require("../../validation/login");
 
 const { validationResult } = require("express-validator");
 const { validationErrorResponse } = require("./utils");
+const { verifyToken } = require("../../utils/verifyToken");
 
 const { User, refreshOtpThenSendToUser } = require("../../models/User");
+
+const jwtExpirySeconds = 300;
 // @route POST api/users/register
 // @desc Register user
 // @access Public
@@ -87,12 +90,18 @@ router.post("/login", (req, res) => {
             expiresIn: 31556926, // 1 year in seconds
           },
           (err, token) => {
-            res.json({
-              success: true,
-              id: user.id,
-              token: "Bearer " + token,
-              email: email,
-            });
+            res
+              .cookie("token", token, {
+                maxAge: jwtExpirySeconds * 1000,
+                httpOnly: true,
+                secure: true,
+              })
+              .json({
+                success: true,
+                id: user.id,
+                token: "Bearer " + token,
+                email: email,
+              });
           }
         );
       } else {
@@ -105,16 +114,13 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/password/update", (req, res, next) => {
-  const invalid = validationErrorResponse(res, validationResult(req));
-  if (invalid) {
-    return invalid;
+  const payload = verifyToken(req.cookies.token);
+
+  if (typeof payload.id !== "string") {
+    return payload;
   }
-  req.user.comparePassword(req.body.oldPassword, (err, isMatch) => {
-    if (err || !isMatch) {
-      return res.status(401).json({ message: "toast.user.old_password_error" });
-    }
-  });
-  User.findById(req.user._id)
+
+  User.findById(payload.id)
     .exec()
     .then((user) => {
       if (!user) {
@@ -123,13 +129,17 @@ router.post("/password/update", (req, res, next) => {
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(req.body.password, salt, (err, hash) => {
           if (err) throw err;
-          user.password = hash;
+          if (user.password === hash) {
+            throw "password is the same";
+          } else {
+            user.password = hash;
+          }
           return user.save();
         });
       });
     })
     .then(() => {
-      return res.sendStatus(200);
+      return res.status(200).json("updated password successfully");
     })
     .catch((error) => {
       return next(error);
@@ -141,7 +151,6 @@ router.post("/password/reset", (req, res, next) => {
   if (invalid) {
     return invalid;
   }
-  console.log("body = ", req.body);
   User.findOne({ email: req.body.email, OTP: req.body.OTP })
     .exec()
     .then((user) => {

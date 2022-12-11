@@ -20,7 +20,9 @@
     "db/**/*",
     "models/**/*",
     "routes/**/*",
-    "validation/**/*"
+    "validation/**/*",
+    "utils/**/*",
+    "server.js"
   ],
   "exclude": ["client/build/**/*"]
 }

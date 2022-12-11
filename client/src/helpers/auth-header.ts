@@ -6,14 +6,14 @@
 */
 import store from "../store";
 
-export function authHeader() {
-  return {
-    Authorization: "Bearer " + store.getState().authentication.user.token,
-  };
-}
 // export function authHeader() {
-//   const user = JSON.parse(localStorage.getItem("user") ?? "");
-
-//   if (user && user.token) return { Authorization: "Bearer " + user.token };
-//   return { Authorization: "" };
+//   return {
+//     Authorization: "Bearer " + store.getState().authentication.user.token,
+//   };
 // }
+export function authHeader() {
+  const user = JSON.parse(localStorage.getItem("user") ?? "");
+
+  if (user && user.token) return { Authorization: "Bearer " + user.token };
+  return { Authorization: "" };
+}

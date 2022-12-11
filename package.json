@@ -24,6 +24,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "concurrently": "^4.0.1",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "date-fns": "^2.28.0",
     "express": "^4.16.4",

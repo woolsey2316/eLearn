@@ -4,6 +4,7 @@ function uppercaseFirstLetter(string: string) {
   }
   const properNoun = string
     .split("_")
+    // uppercase first letter
     .map((elem) => elem[0].toUpperCase() + elem.slice(1))
     .join(" ");
   return properNoun;

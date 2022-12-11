@@ -11,7 +11,7 @@ import { Alert } from ".";
 function ChangePasswordForm() {
   const [user, setUser] = useState({
     confirmPassword: "",
-    email: "",
+    oldPassword: "",
     password: "",
   });
 
@@ -36,19 +36,13 @@ function ChangePasswordForm() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
 
-    if (
-      user.confirmPassword &&
-      user.email &&
-      user.password &&
-      user.confirmPassword
-    ) {
-      dispatch(
-        authActions.updatePassword(
-          user.email,
-          user.password,
-          user.confirmPassword
-        )
-      );
+    if (user.confirmPassword && user.oldPassword && user.password) {
+      if (user.password !== user.confirmPassword) {
+        console.log("passwords mismatch");
+      } else if (user.password === user.oldPassword) {
+        console.log("passwords are the same");
+      }
+      dispatch(authActions.updatePassword(user.oldPassword, user.password));
     }
   }
 
@@ -62,12 +56,12 @@ function ChangePasswordForm() {
       >
         <div className="p-5">
           <div>
-            <label>Email</label>
+            <label>Old Password</label>
             <input
-              type="text"
+              type="password"
               className="input w-full border mt-2"
               placeholder=""
-              name="email"
+              name="oldPassword"
               onChange={handleChange}
             />
           </div>

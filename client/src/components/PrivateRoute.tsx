@@ -1,8 +1,5 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import { LoginPage } from "./LoginPage";
-import { RegisterPage } from "./RegisterPage";
-import store from "../store";
 /*
   url paths are protected by redirecting the user to the /login page if
   the user is not logged in. A user is determined to be logged in if there
@@ -12,8 +9,8 @@ import store from "../store";
 */
 
 export const PrivateRoute = ({ ...rest }) => {
-  // const loggedIn = localStorage.getItem("EMAIL") ? true : false;
-  const { loggedIn } = store.getState().authentication;
+  const loggedIn = localStorage.getItem("ACCESS_TOKEN_KEY") ? true : false;
+  // const { loggedIn } = store.getState().authentication;
   if (loggedIn) {
     return <Route {...rest} />;
   } else {

@@ -79,7 +79,7 @@ router.get("/courses/:course_id/:user_id/exams", (req, res) => {
     }
 
     // group exams by exam type eg. half yearly, multiple choice
-    let grouped = examResults.examResults.reduce((prev, curr) => {
+    const grouped = examResults.examResults.reduce((prev, curr) => {
       if (prev[curr.exam_name]) {
         prev[curr.exam_name].push(curr);
         return prev;

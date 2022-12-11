@@ -1,4 +1,5 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
@@ -10,7 +11,11 @@ const dashboard = require("./routes/api/dashboard");
 const activities = require("./routes/api/activity");
 const cors = require("cors");
 const app = express();
-app.use(cors());
+const corsConfig = {
+  credentials: true,
+  origin: "http://localhost:3000",
+};
+app.use(cors(corsConfig));
 // Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
@@ -18,6 +23,7 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+app.use(cookieParser());
 // DB Config
 const db = require("./config/keys").mongoURI;
 // Connect to MongoDB

@@ -12,19 +12,26 @@ export const authService = {
 };
 
 async function login(email: string, password: string, rememberMe: boolean) {
-  const requestOptions = {
+  const requestOptions: RequestInit = {
     method: "POST",
+    credentials: "include",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password, rememberMe }),
   };
 
   const response = await fetch(`${API_URL}/auth/login`, requestOptions);
 
-  if (!response.ok) return new Error(response.statusText);
+  if (!response.ok) {
+    localStorage.removeItem("ACCESS_TOKEN_KEY");
+    return new Error(response.statusText);
+  }
 
   const data = await response.json();
 
-  if (data.success !== true) return new Error("toast.user.general_error");
+  if (data.success !== true) {
+    localStorage.removeItem("ACCESS_TOKEN_KEY");
+    return new Error("toast.user.general_error");
+  }
 
   localStorage.setItem("USER_ID", data.id);
   localStorage.setItem("EMAIL", data.email);
@@ -40,11 +47,10 @@ async function logout() {
     headers: { ...authHeader(), "Content-Type": "application/json" },
     body: JSON.stringify({ userId }),
   };
-  console.log("body:" + requestOptions.body);
   const response = await fetch(`${API_URL}/auth/logout`, requestOptions);
   const user = await handleResponse(response);
   // remove user from local storage to log user out
-  localStorage.removeItem("user");
+  localStorage.removeItem("ACCESS_TOKEN_KEY");
   return user;
 }
 
@@ -63,8 +69,9 @@ async function register(user: EditableUserInfo) {
 
 // asks for permission to change password
 async function requestPasswordChange(user: UserInfo) {
-  const requestOptions = {
+  const requestOptions: RequestInit = {
     method: "POST",
+    credentials: "include",
     headers: { ...authHeader(), "Content-Type": "application/json" },
     body: JSON.stringify(user),
   };
@@ -89,22 +96,18 @@ async function sendOTP(email: string) {
   return handleResponse(response);
 }
 
-async function updatePassword(
-  email: string,
-  password: string,
-  confirmPassword: string
-) {
-  const requestOptions = {
+async function updatePassword(oldPassword: string, password: string) {
+  const requestOptions: RequestInit = {
     method: "POST",
-    headers: { ...authHeader(), "Content-Type": "application/json" },
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      email: email,
+      oldPassword: oldPassword,
       password: password,
-      confirmPassword: confirmPassword,
     }),
   };
   const response = await fetch(
-    `${API_URL}/auth/password/reset`,
+    `${API_URL}/auth/password/update`,
     requestOptions
   );
   return handleResponse(response);
