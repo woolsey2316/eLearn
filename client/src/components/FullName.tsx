@@ -9,7 +9,7 @@ function FullName() {
         {user && `${user.email} | ${user.name}`}
       </h6>
       <h6 className="font-medium leading-none mt-3">
-        {localStorage.getItem("fullname")}
+        {sessionStorage.getItem("fullname")}
       </h6>
     </div>
   );

@@ -44,7 +44,11 @@ router.get("/:exam_id/questions", async (req, res) => {
     .then((examQuestions) => {
       return res.json(examQuestions);
     })
-    .catch((err) => res.status(404).json({ nocoursefound: "No Course found" }));
+    .catch((err) =>
+      res
+        .status(404)
+        .json({ nocoursefound: "Failed fetching questions for exam" })
+    );
 });
 
 module.exports = router;

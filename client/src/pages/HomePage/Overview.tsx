@@ -104,7 +104,7 @@ function Overview() {
                 <Grid className="report-box__icon text-theme-11" />
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {courses?.length}
+                {courses?.length ?? "None"}
               </div>
               <div className="text-base text-gray-600 mt-1">
                 Total Enrolled Courses

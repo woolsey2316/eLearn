@@ -1,13 +1,23 @@
 const express = require("express");
 const router = express.Router();
 
+const { verifyToken } = require("../../utils/verifyToken");
+
 const Exam = require("../../models/Exam");
 const Course = require("../../models/Course");
 
-// @route GET /dashboard/:user_id/
+// @route GET /dashboard/
 // @desc Retrieve overview dashboard data
 // @access Public
-router.get("/:user_id", (req, res) => {
+router.get("/", (req, res) => {
+  const jwt = req.headers.authorisation.split(" ")[1];
+  const { payload } = verifyToken(jwt, res);
+  const userID = payload?.id;
+
+  if (typeof userID !== "string") {
+    return res.status(401).json("jwt token needs an 'id' field");
+  }
+
   const CoursePromise = [];
   let total = (active = 0);
   Exam.find({})
@@ -18,7 +28,7 @@ router.get("/:user_id", (req, res) => {
             // check if user is subscribed to the course
             if (course[0].subscribers) {
               course[0].subscribers.forEach((userId) => {
-                if (req.params.user_id == userId) {
+                if (userID === userId) {
                   total++;
                   if (exam.due >= Date.now) {
                     active++;

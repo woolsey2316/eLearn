@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const { verifyToken } = require("../../utils/verifyToken");
+
 const Course = require("../../models/Course");
 
 // @route GET api/courses/
@@ -56,16 +58,20 @@ router.get("/exams/:user_id", async (req, res) => {
       );
       return res.json(examList);
     })
-    .catch((err) => res.status(404).json({ nocoursefound: "No Course found" }));
+    .catch((err) =>
+      res.status(404).json({ nocoursefound: "error finding exams" })
+    );
 });
 
 // @route GET api/courses/:id
 // @description Get single course by id
 // @access Public
-router.get("/:id", (req, res) => {
+router.get("/course/:id", (req, res) => {
   Course.findById(req.params.id)
     .then((course) => res.json(course))
-    .catch((err) => res.status(404).json({ nocoursefound: "No Course found" }));
+    .catch((err) =>
+      res.status(404).json({ nocoursefound: "failed to find single course" })
+    );
 });
 
 // @route PUT api/courses/:course_id/:user_id
@@ -86,14 +92,24 @@ router.put("/:course_id/:user_id", (req, res) => {
       course.save();
       return res.json(alreadyRegistered);
     })
-    .catch((err) => res.status(404).json({ nocoursefound: "No Course found" }));
+    .catch((err) =>
+      res.status(404).json({ nocoursefound: "failed to add user to course" })
+    );
 });
 
-// @route GET api/courses/:id
+// @route GET api/courses/user
 // @description Get all courses a user is subscribed to
 // @access Public
-router.get("/user/:user_id", (req, res) => {
-  Course.find({ subscribers: req.params.user_id })
+router.get("/user", (req, res) => {
+  const jwt = req.headers.authorisation.split(" ")[1];
+  const { payload } = verifyToken(jwt, res);
+  const userID = payload?.id;
+
+  if (typeof userID !== "string") {
+    return res.status(401).json("jwt token needs an 'id' field");
+  }
+
+  Course.find({ subscribers: userID })
     .then((courseList) => {
       // console.log(courseList)
       const courseIds = Object.keys(courseList).map((key) => {

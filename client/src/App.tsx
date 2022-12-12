@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route, Router } from "react-router-dom";
 
 // midOne html + css template file provided

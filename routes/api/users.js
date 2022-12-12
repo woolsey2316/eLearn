@@ -1,13 +1,21 @@
 const express = require("express");
 const router = express.Router();
-// Load User model
-const User = require("../../models/User");
+const { User } = require("../../models/User");
 const Course = require("../../models/Course");
+
+const { verifyToken } = require("../../utils/verifyToken");
 
 // @route PUT api/user/:user_id/profile
 // @desc Retrieve user details
 // @access Public
 router.put("/:user_id/profile", (req, res) => {
+  const jwt = req.headers.authorisation.split(" ")[1];
+  const { payload } = verifyToken(jwt, res);
+  const userID = payload?.id;
+
+  if (typeof userID !== "string") {
+    return res.status(401).json("jwt token needs an 'id' field");
+  }
   const filter = { email: req.body.email };
   User.findOneAndUpdate(filter, {
     email: req.body.email,
@@ -72,7 +80,6 @@ router.get("/courses/:course_id/:user_id/exams", (req, res) => {
   if (req.params.course_id == "undefined") {
     return res.status(404).json({ idnotfound: "no courseId was given" });
   }
-  console.log(req.params.course_id);
   Course.findById(req.params.course_id, "examResults").then((examResults) => {
     if (!examResults) {
       return res.status(404).json({ idnotfound: "examResults are not found" });

@@ -10,14 +10,10 @@ export const activityService = {
   fetches all activity notifications a User has
   */
 async function getActivityFeed() {
-  const requestOptions = {
+  const requestOptions: RequestInit = {
     method: "GET",
-    headers: authHeader(),
+    headers: { ...authHeader(), "Content-Type": "application/json" },
   };
-  const userId = getUserId();
-  const response = await fetch(
-    `${API_URL}/activities/${userId}`,
-    requestOptions
-  );
+  const response = await fetch(`${API_URL}/activities`, requestOptions);
   return handleResponse(response);
 }

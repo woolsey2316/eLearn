@@ -42,7 +42,7 @@ function verifyEmail() {
 
 function getCurrentUserInfo() {
   return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
-    const user = localStorage.getItem("EMAIL");
+    const user = sessionStorage.getItem("EMAIL");
     dispatch(request(user));
 
     userService.getUserDetails().then(

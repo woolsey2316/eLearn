@@ -7,7 +7,7 @@ import { AnyAction } from "redux";
   There is also an intermediate logging in state between login request and success/failure
   made just for loading animations.
 */
-const user = JSON.parse(localStorage.getItem("user") as string);
+const user = JSON.parse(sessionStorage.getItem("user") as string);
 interface AuthState {
   loggedIn: boolean;
   loggingIn: boolean;

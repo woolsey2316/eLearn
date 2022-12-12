@@ -1,4 +1,13 @@
-import { authHeader, IsValidJSONString, getUserId } from "../helpers";
+import {
+  authHeader,
+  IsValidJSONString,
+  getUserId,
+  setEmail,
+  setJWT,
+  setUserId,
+  removeJWTToken,
+  setRefreshTokenExpiryTime,
+} from "../helpers";
 import { EditableUserInfo, UserInfo } from "../types/UserForm";
 import { API_URL } from "./index";
 export const authService = {
@@ -22,20 +31,21 @@ async function login(email: string, password: string, rememberMe: boolean) {
   const response = await fetch(`${API_URL}/auth/login`, requestOptions);
 
   if (!response.ok) {
-    localStorage.removeItem("ACCESS_TOKEN_KEY");
+    removeJWTToken();
     return new Error(response.statusText);
   }
 
   const data = await response.json();
 
   if (data.success !== true) {
-    localStorage.removeItem("ACCESS_TOKEN_KEY");
+    removeJWTToken();
     return new Error("toast.user.general_error");
   }
 
-  localStorage.setItem("USER_ID", data.id);
-  localStorage.setItem("EMAIL", data.email);
-  localStorage.setItem("ACCESS_TOKEN_KEY", data.token);
+  setUserId(data.id);
+  setEmail(data.email);
+  setJWT(data.token);
+  setRefreshTokenExpiryTime(data.expires);
 
   return data;
 }
@@ -49,8 +59,8 @@ async function logout() {
   };
   const response = await fetch(`${API_URL}/auth/logout`, requestOptions);
   const user = await handleResponse(response);
-  // remove user from local storage to log user out
-  localStorage.removeItem("ACCESS_TOKEN_KEY");
+  // remove JWT token from session storage to log user out
+  removeJWTToken();
   return user;
 }
 
@@ -60,8 +70,6 @@ async function register(user: EditableUserInfo) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
   };
-
-  console.log(JSON.stringify(user));
 
   const response = await fetch(`${API_URL}/auth/register`, requestOptions);
   return handleResponse(response);
@@ -100,7 +108,7 @@ async function updatePassword(oldPassword: string, password: string) {
   const requestOptions: RequestInit = {
     method: "POST",
     credentials: "include",
-    headers: { "Content-Type": "application/json" },
+    headers: { ...authHeader(), "Content-Type": "application/json" },
     body: JSON.stringify({
       oldPassword: oldPassword,
       password: password,

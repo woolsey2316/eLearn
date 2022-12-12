@@ -25,7 +25,7 @@ function UserIcon(props: Props) {
         <div className="dropdown-box__content box bg-theme-38 text-white">
           <div className="p-4 border-b border-theme-40">
             <div className="text-xs text-theme-41">
-              {localStorage.getItem("EMAIL")}
+              {sessionStorage.getItem("EMAIL")}
             </div>
           </div>
           <div className="p-2">

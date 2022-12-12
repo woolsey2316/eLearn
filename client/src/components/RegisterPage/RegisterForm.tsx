@@ -66,8 +66,6 @@ const RegisterForm = () => {
   }
   // dispatch an action to the redux store, updates 'user' object
   function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
-    console.log(`%cuser details: ${JSON.stringify(user)}`, "color:green");
-
     setSubmitted(true);
     if (allFieldsExist()) {
       dispatch(authActions.registerUser(user));

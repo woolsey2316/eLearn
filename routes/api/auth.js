@@ -13,7 +13,8 @@ const { verifyToken } = require("../../utils/verifyToken");
 
 const { User, refreshOtpThenSendToUser } = require("../../models/User");
 
-const jwtExpirySeconds = 300;
+const jwtExpirySeconds = 900;
+const jwtRefreshExpirySeconds = 3600;
 // @route POST api/users/register
 // @desc Register user
 // @access Public
@@ -58,7 +59,7 @@ router.post("/register", (req, res) => {
 // @route POST api/auth/login
 // @desc Login user and return JWT token
 // @access Public
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
   // Form validation
   const { errors, isValid } = validateLoginInput(req.body);
   // Check validation
@@ -68,63 +69,120 @@ router.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   // Find user by email
-  User.findOne({ email }).then((user) => {
-    // Check if user exists
-    if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" });
-    }
-    // Check password
-    bcrypt.compare(password, user.password).then((isMatch) => {
-      if (isMatch) {
-        // User matched
-        // Create JWT Payload
-        const payload = {
-          id: user.id,
-          name: user.name,
-        };
-        // Sign token
-        jwt.sign(
-          payload,
-          keys.secretOrKey,
-          {
-            expiresIn: 31556926, // 1 year in seconds
-          },
-          (err, token) => {
-            res
-              .cookie("token", token, {
-                maxAge: jwtExpirySeconds * 1000,
-                httpOnly: true,
-                secure: true,
-              })
-              .json({
-                success: true,
-                id: user.id,
-                token: "Bearer " + token,
-                email: email,
-              });
-          }
-        );
-      } else {
-        return res
-          .status(400)
-          .json({ passwordincorrect: "Password incorrect" });
+  const foundUser = await User.findOne({ email }).exec();
+
+  if (!foundUser) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  const match = await bcrypt.compare(password, foundUser.password);
+
+  if (!match) return res.status(401).json({ message: "Unauthorized" });
+  const expireTime = Date.now() + jwtExpirySeconds * 1000;
+  const accessToken = jwt.sign(
+    {
+      payload: {
+        email: foundUser.email,
+        roles: foundUser.roles,
+        id: foundUser.id,
+        expires: expireTime,
+      },
+    },
+    keys.ACCESS_TOKEN_SECRET,
+    { expiresIn: "30s" }
+  );
+
+  const refreshToken = jwt.sign(
+    { email: foundUser.email },
+    keys.REFRESH_TOKEN_SECRET,
+    { expiresIn: "7d" }
+  );
+
+  // Create secure cookie with refresh token
+  res.cookie("jwt", refreshToken, {
+    httpOnly: true, // accessible only by web server
+    secure: true, // https
+    sameSite: "None", // cross-site cookie
+    maxAge: 7 * 24 * 60 * 60 * 1000, // cookie expiry: set to match rT
+  });
+
+  // Send accessToken containing username and roles
+  res.json({
+    token: accessToken,
+    id: foundUser.id,
+    email: foundUser.email,
+    expires: expireTime,
+    success: true,
+  });
+});
+// @desc Refresh
+// @route GET/auth/refresh
+// @access Public - because access token has expired
+router.post("/refresh", (req, res) => {
+  const cookies = req.cookies;
+
+  if (!cookies.jwt) return res.status(401).json({ message: "Unauthorised" });
+
+  const refreshToken = cookies.jwt;
+
+  jwt.verify(refreshToken, keys.REFRESH_TOKEN_SECRET, async (err, decoded) => {
+    if (err) return res.status(403).json({ message: "Forbidden" });
+    console.log(decoded.email);
+    const foundUser = await User.findOne({ email: decoded.email }).exec();
+
+    if (!foundUser)
+      return res.status(401).json({ message: "no authorised user found" });
+    const expireTime = Date.now() + jwtExpirySeconds * 1000;
+    jwt.sign(
+      {
+        payload: {
+          email: foundUser.email,
+          roles: foundUser.roles,
+          id: foundUser.id,
+          expires: expireTime,
+        },
+      },
+      keys.ACCESS_TOKEN_SECRET,
+      {
+        expiresIn: "15m",
+      },
+      (err, token) => {
+        if (!err) {
+          res.json({ token, expires: expireTime });
+        } else {
+          res.status(500).json(err);
+        }
       }
-    });
+    );
   });
 });
 
-router.post("/password/update", (req, res, next) => {
-  const payload = verifyToken(req.cookies.token);
+// @desc Logout
+// @route POST /auth/logout
+// @access Public - just to clear cookie if exists
+router.post("/logout", (req, res) => {
+  const cookies = req.cookies;
+  if (!cookies?.token) return res.sendStatus(204);
+  res.clearCookie("token", { httpOnly: true, secure: true });
+  res.json({ message: "Cookie cleared" });
+});
 
-  if (typeof payload.id !== "string") {
-    return payload;
+router.post("/password/update", (req, res, next) => {
+  const jwt = req.headers.authorisation.split(" ")[1];
+  const { payload } = verifyToken(jwt, res);
+  const userID = payload?.id;
+
+  if (typeof userID !== "string") {
+    return res.status(401).json("jwt token needs an 'id' field");
   }
 
-  User.findById(payload.id)
+  User.findById(userID)
     .exec()
     .then((user) => {
       if (!user) {
-        return Promise.reject(res.status(500).end());
+        return Promise.reject(
+          res.status(500).json("no Users found matching id").end()
+        );
       }
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(req.body.password, salt, (err, hash) => {

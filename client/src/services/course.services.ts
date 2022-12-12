@@ -1,4 +1,4 @@
-import { authHeader, IsValidJSONString, getUserId } from "../helpers";
+import { authHeader, getUserId } from "../helpers";
 import { CourseDTO } from "../types/CourseState";
 import { API_URL } from "./index";
 import { handleResponse } from "./services-util";
@@ -16,17 +16,12 @@ export const courseService = {
   fetches all courses a User has registered to
   */
 async function getAllUserCourses() {
-  const requestOptions = {
+  const requestOptions: RequestInit = {
     method: "GET",
-    headers: authHeader(),
+    headers: { ...authHeader() },
   };
 
-  const userId = getUserId();
-
-  const response = await fetch(
-    `${API_URL}/courses/user/${userId}`,
-    requestOptions
-  );
+  const response = await fetch(`${API_URL}/courses/user`, requestOptions);
   return handleResponse(response);
 }
 

@@ -21,16 +21,16 @@ const LoginForm = () => {
   const [form, setForm] = useState(1);
   const [inputs, setInputs] = useState({
     email:
-      localStorage.getItem("remmeberMe") === "true"
-        ? localStorage.getItem("email")
+      sessionStorage.getItem("remmeberMe") === "true"
+        ? sessionStorage.getItem("email")
         : "",
     password:
-      localStorage.getItem("remmeberMe") === "true"
-        ? localStorage.getItem("password")
+      sessionStorage.getItem("remmeberMe") === "true"
+        ? sessionStorage.getItem("password")
         : "",
     newPassword: "",
     confirmPassword: "",
-    rememberMe: localStorage.getItem("remmeberMe") === "true" ? true : false,
+    rememberMe: sessionStorage.getItem("remmeberMe") === "true" ? true : false,
     otp: "",
   });
   const [forgotPassword, setForgotPassword] = useState(false);
@@ -72,9 +72,9 @@ const LoginForm = () => {
       setForm(2);
     }
     if (rememberMe && email != "" && password != "") {
-      localStorage.email = email;
-      localStorage.password = password;
-      localStorage.remmeberMe = rememberMe;
+      sessionStorage.email = email;
+      sessionStorage.password = password;
+      sessionStorage.remmeberMe = rememberMe;
     }
   }
 
