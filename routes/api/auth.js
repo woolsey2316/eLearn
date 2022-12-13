@@ -89,7 +89,7 @@ router.post("/login", async (req, res) => {
       },
     },
     keys.ACCESS_TOKEN_SECRET,
-    { expiresIn: "30s" }
+    { expiresIn: jwtExpirySeconds }
   );
 
   const refreshToken = jwt.sign(
@@ -127,7 +127,7 @@ router.post("/refresh", (req, res) => {
 
   jwt.verify(refreshToken, keys.REFRESH_TOKEN_SECRET, async (err, decoded) => {
     if (err) return res.status(403).json({ message: "Forbidden" });
-    console.log(decoded.email);
+
     const foundUser = await User.findOne({ email: decoded.email }).exec();
 
     if (!foundUser)

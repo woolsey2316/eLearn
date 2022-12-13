@@ -10,6 +10,7 @@ function SubmitModal(props: Props) {
     <Modal
       isOpen={props.modalIsOpen}
       onRequestClose={props.closeModal}
+      appElement={document.getElementById("root") ?? undefined}
       contentLabel="Example Modal"
       style={{
         overlay: { zIndex: 9999 },

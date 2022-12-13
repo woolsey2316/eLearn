@@ -78,6 +78,13 @@ router.get("/course/:id", (req, res) => {
 // @description add new user to course
 // @access Public
 router.put("/:course_id/:user_id", (req, res) => {
+  const jwt = req.headers.authorisation.split(" ")[1];
+  const { payload } = verifyToken(jwt, res);
+  const userID = payload?.id;
+
+  if (typeof userID !== "string") {
+    return res.status(401).json("jwt token needs an 'id' field");
+  }
   Course.findById(req.params.course_id)
     .then((course) => {
       let alreadyRegistered = false;
@@ -90,7 +97,7 @@ router.put("/:course_id/:user_id", (req, res) => {
         course.subscribers.push(req.params.user_id);
       }
       course.save();
-      return res.json(alreadyRegistered);
+      return res.json({ alreadyRegistered });
     })
     .catch((err) =>
       res.status(404).json({ nocoursefound: "failed to add user to course" })

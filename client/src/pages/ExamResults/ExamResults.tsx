@@ -137,6 +137,7 @@ function ExamResults(props: PageComponentProps) {
                   </thead>
                   <tbody>
                     {userExamResults?.map((elem: any, index: number) => {
+                      console.log(average);
                       return (
                         <ExamResultCard
                           key={index}

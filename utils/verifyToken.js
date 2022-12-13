@@ -10,6 +10,7 @@ const verifyToken = (token, res) => {
   }
 
   let payload;
+
   try {
     // Parse the JWT string and store the result in `payload`.
     // Note that we are passing the key in this method as well. This method will throw an error
@@ -19,10 +20,10 @@ const verifyToken = (token, res) => {
   } catch (e) {
     if (e instanceof jwt.JsonWebTokenError) {
       // if the error thrown is because the JWT is unauthorized, return a 401 error
-      return res.status(401).json("jwt token is unauthorised").end();
+      throw res.status(401).json(e).end();
     }
     // otherwise, return a bad request error
-    return res.status(400).end();
+    throw res.status(400).end();
   }
   return payload;
 };

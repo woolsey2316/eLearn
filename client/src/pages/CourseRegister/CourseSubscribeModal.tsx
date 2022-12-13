@@ -30,19 +30,26 @@ function CourseSubscribeModal({
   const registering = useAppSelector(
     (state) => state.courses.courseRegistering
   );
-  const alreadyRegistered = useAppSelector(
-    (state) => state.courses.alreadyRegistered
+  const registerOutcome = useAppSelector(
+    (state) => state.courses.registerOutcome
   );
-  // const alert = useSelector((state) => state.alert.type)
-  const [outcome, setOutcome] = useState(false);
+  // made an attempt to register for a course
+  const [request, setRequest] = useState(false);
   const dispatch = useAppDispatch();
 
   function attemptRegister() {
-    dispatch(courseActions.register(chosenCourse));
-    setTimeout(() => setOutcome(!outcome), 1000);
+    const apiCall = new Promise<void>((resolve, reject) => {
+      dispatch(courseActions.register(chosenCourse));
+      resolve();
+    });
+
+    apiCall.then(() => {
+      setRequest(true);
+    });
   }
 
   function closeAndExit() {
+    setRequest(false);
     closeModal();
     history.push("/student/courses/CourseRegister");
   }
@@ -51,6 +58,7 @@ function CourseSubscribeModal({
     <Modal
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
+      appElement={document.getElementById("root") ?? undefined}
       contentLabel="Example Modal"
       style={{
         overlay: { zIndex: 9999 },
@@ -58,13 +66,13 @@ function CourseSubscribeModal({
       }}
     >
       <div className="modal__content text-center">
-        {outcome && alreadyRegistered ? (
+        {request && registerOutcome ? (
           <SuccessRegister course={chosenCourse} />
         ) : null}
-        {outcome && !alreadyRegistered ? (
+        {request && !registerOutcome ? (
           <FailRegister course={chosenCourse} />
         ) : null}
-        {!outcome && (
+        {!request && (
           <div className="text-center">
             <Icon.PlayCircle className="sm:w-10 sm:h-10 md:w-12 md:h-12 w-10 h-10 text-theme-7 mx-auto mt-3" />
             <div className="md:text-lg mt-5 text-gray-700">
@@ -78,7 +86,7 @@ function CourseSubscribeModal({
           </div>
         )}
         <div className="flex flex-col sm:flex-row items-center justify-center text-center mt-5">
-          {!outcome && (
+          {!request && (
             <React.Fragment>
               <button
                 type="button"
@@ -104,7 +112,7 @@ function CourseSubscribeModal({
               </button>
             </React.Fragment>
           )}
-          {outcome && (
+          {request && (
             <button
               onClick={closeAndExit}
               className="flex mt-2 sm:mt-0 button bg-theme-7 text-white md:text-lg sm:text-medium"

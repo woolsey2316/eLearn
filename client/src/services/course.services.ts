@@ -56,7 +56,7 @@ async function register(courseDTO: CourseDTO) {
     `${API_URL}/courses/${courseDTO.id}/${userID}`,
     requestOptions
   );
-  const user = await handleResponse(response);
-  console.log(user);
-  return user;
+  const { alreadyRegistered } = await handleResponse(response);
+
+  return alreadyRegistered;
 }

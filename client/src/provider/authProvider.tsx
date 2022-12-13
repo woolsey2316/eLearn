@@ -36,23 +36,20 @@ class AuthProvider extends React.Component<Props, State> {
       clearTimeout(this.state.refreshTimer);
     }
     try {
-      const expiryTimeMili = parseInt(getRefreshTokenExpiryTime() ?? "0");
-      if (isNaN(expiryTimeMili)) {
+      const accessTokExpiryTime = parseInt(getRefreshTokenExpiryTime() ?? "0");
+      if (isNaN(accessTokExpiryTime)) {
         return;
       }
-      console.log(
-        expiryTimeMili - Date.now() - this.props.refreshLeeway * 1000
-      );
       // Note that in case of JWT, expiration date is stored in token
       // itself, so I do not need to make network requests to check expiration
       // Otherwise you might want to store expiration date in _authStatus
       // and localStorage, to not spam your API with unneeded requests
       // every second
-      if (expiryTimeMili - Date.now() > this.props.refreshLeeway * 1000) {
+      if (accessTokExpiryTime - Date.now() > this.props.refreshLeeway * 1000) {
         // Access token is not due
         return;
       }
-      if (expiryTimeMili <= Date.now()) {
+      if (accessTokExpiryTime <= Date.now()) {
         // Both access token and refresh token (in my case they are the same) are expired
         setJWT(null);
         setRefreshTokenExpiryTime(null);

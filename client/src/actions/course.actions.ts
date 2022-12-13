@@ -24,11 +24,10 @@ function register(course: CourseDTO) {
 
     courseService.register(course).then(
       (alreadyRegistered) => {
-        console.log("alreadyRegistered", alreadyRegistered);
-        dispatch(success());
         if (alreadyRegistered) {
           dispatch(failure("User is already registered"));
         } else {
+          dispatch(success());
           dispatch(alertActions.success("Registration successful"));
         }
       },
@@ -99,24 +98,3 @@ function getAllUserCourses() {
     return { type: courseConstants.USER_COURSE_INFO_FAILURE, error };
   }
 }
-
-// function _delete(id) {
-//   return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
-//     dispatch(request(id));
-
-//     courseService.delete(id).then(
-//       (course) => dispatch(success(id)),
-//       (error) => dispatch(failure(id, error.toString()))
-//     );
-//   };
-
-//   function request(id) {
-//     return { type: courseConstants.DELETE_REQUEST, id };
-//   }
-//   function success(id) {
-//     return { type: courseConstants.DELETE_SUCCESS, id };
-//   }
-//   function failure(id, error) {
-//     return { type: courseConstants.DELETE_FAILURE, id, error };
-//   }
-// }

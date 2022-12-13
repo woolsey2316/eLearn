@@ -21,7 +21,7 @@ import { CourseDTO } from "../../types/CourseState";
 function CourseRegister(props: PageComponentProps) {
   const dispatch = useAppDispatch();
   const courses = useAppSelector((state) => state.courses);
-  console.log("courses", courses);
+
   const [search, setSearch] = useState("");
   const [chosenCourse, setCourse] = useState<CourseDTO>({
     category: "",
