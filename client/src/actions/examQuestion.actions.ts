@@ -21,7 +21,6 @@ function getUserExamQuestions(examId: string) {
     examQuestionService.getExamQuestions(examId).then(
       (questionList) => {
         dispatch(success(questionList));
-        console.log("api call", questionList);
         dispatch(alertActions.success("Successfully fetched exams"));
       },
       (error) => {

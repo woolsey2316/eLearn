@@ -3,4 +3,4 @@
 {"instructor":"Leonardo DiCaprio","description":"has extended the due date of the test","date": {"$date":"01/16/2022"},"courseId":{"$oid": "61c10f5814fdaabab184244b"}},
 {"instructor":"Kevin Spacey","description":"has extended due date of test","date": {"$date":"01/17/2022"},"courseId":{"$oid": "61d50f9a4e88c2cec2e0d672"}},
 {"instructor":"John Tavolta","description":"has scheduled a multiple choice test","date": {"$date":"01/09/2022"},"courseId":{"$oid": "61d50f9a4e88c2cec2e0d672"}},
-{"instructor":"John Tavolta","description":"has scheduled a multiple choice test","date": {"$date":"01/07/2022"},"courseId":{"$oid": "61d50f9a4e88c2cec2e0d65e"}},]
+{"instructor":"John Tavolta","description":"has scheduled a multiple choice test","date": {"$date":"01/07/2022"},"courseId":{"$oid": "61d50f9a4e88c2cec2e0d65e"}}]
