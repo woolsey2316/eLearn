@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 // Create Schema
 const examSchema = new Schema({
   _id: {
-    type: mongoose.ObjectId,
+    type: Schema.Types.ObjectId,
     required: true
   },
   examName: {
@@ -23,7 +23,7 @@ const examSchema = new Schema({
     type: Date
   },
   courseId: {
-    type: mongoose.ObjectId
+    type: Schema.Types.ObjectId
   }
 });
-module.exports = exam = mongoose.model("exam", examSchema);
+module.exports = mongoose.model("exam", examSchema);

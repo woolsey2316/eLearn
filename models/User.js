@@ -6,7 +6,7 @@ const { getExpireTime } = require("../utils/time");
 // Create Schema
 const UserSchema = new Schema({
   _id: {
-    type: mongoose.ObjectId,
+    type: Schema.Types.ObjectId,
     required: true,
   },
   email: {

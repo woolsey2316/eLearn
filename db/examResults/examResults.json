@@ -1,0 +1,258 @@
+[
+  {
+    "exam_name":"Half Yearly Exam",
+    "userId":{ "$oid":"61ad70a65080bfbd84f9548f"},
+    "courseId": {"$oid": "61d50f9a4e88c2cec2e0d672"},
+    "score":63,
+    "total":85,
+    "weight":25
+  },
+  {
+    "exam_name":"Half Yearly Exam",
+    "userId":{ "$oid":"61ad70a65080bfbd84f9548f"},
+    "courseId": {"$oid": "61d50f9a4e88c2cec2e0d672"},
+    "score":67,
+    "total":85,
+    "weight":25
+  },
+  {
+    "exam_name":"Multiple Choice",
+    "userId":{ "$oid":"61735818bb4f80176c13acf3"},
+    "courseId": {"$oid": "61d50f9a4e88c2cec2e0d672"},
+    "score":60,
+    "total":85,
+    "weight":25
+  },
+  {
+    "exam_name":"Multiple Choice",
+    "userId":{ "$oid":"61ad70a65080bfbd84f9548f"},
+    "courseId": {"$oid": "61d50f9a4e88c2cec2e0d672"},
+    "score":62,
+    "total":85,
+    "weight":25
+  },
+  {
+    "exam_name":"Multiple Choice",
+    "userId":{ "$oid":"61ad70a65080bfbd84f95564"},
+    "courseId": {"$oid": "61d50f9a4e88c2cec2e0d672"},
+    "score":65,
+    "total":85,
+    "weight":25
+  },
+  {
+    "exam_name": "Final Exam",
+    "userId": { "$oid": "61735818bb4f80176c13acf3" },
+    "courseId": { "$oid": "61c10eb614fdaabab184244a"},
+    "score": 35,
+    "total": 50,
+    "weight": 50
+  },
+  {
+    "exam_name": "Final Exam",
+    "courseId": { "$oid": "61c10eb614fdaabab184244a"},
+    "userId": { "$oid": "61ad70a65080bfbd84f9548f" },
+    "score": 49,
+    "total": 50,
+    "weight": 50
+  },
+  {
+    "exam_name": "Final Exam",
+    "courseId": { "$oid": "61c10eb614fdaabab184244a"},
+    "userId": { "$oid": "61ad70a65080bfbd84f9548f" },
+    "score": 38,
+    "total": 50,
+    "weight": 50
+  },
+  {
+    "exam_name": "Half Yearly",
+    "courseId": { "$oid": "61c10eb614fdaabab184244a"},
+    "userId": { "$oid": "61735818bb4f80176c13acf3" },
+    "score": 65,
+    "total": 75,
+    "weight": 25
+  },
+  {
+    "exam_name": "Half Yearly",
+    "courseId": { "$oid": "61c10eb614fdaabab184244a"},
+    "userId": { "$oid": "61ad70a65080bfbd84f9548f" },
+    "score": 65,
+    "total": 75,
+    "weight": 25
+  },
+  {
+    "exam_name": "Half Yearly",
+    "courseId": { "$oid": "61c10eb614fdaabab184244a"},
+    "userId": { "$oid": "61ad70a65080bfbd84f9548f" },
+    "score": 65,
+    "total": 75,
+    "weight": 25
+  },
+  {
+    "exam_name": "Multiple Choice",
+    "courseId": { "$oid": "61c10eb614fdaabab184244a"},
+    "userId": { "$oid": "61ad70a65080bfbd84f9548f" },
+    "score": 60,
+    "total": 70,
+    "weight": 25
+  },
+  {
+    "exam_name": "Multiple Choice",
+    "courseId": { "$oid": "61c10eb614fdaabab184244a"},
+    "userId": { "$oid": "61ad70a65080bfbd84f9548f" },
+    "score": 62,
+    "total": 70,
+    "weight": 25
+  },
+  {
+    "exam_name": "Multiple Choice",
+    "courseId": { "$oid": "61c10eb614fdaabab184244a"},
+    "userId": { "$oid": "61735818bb4f80176c13acf3" },
+    "score": 65,
+    "total": 70,
+    "weight": 25
+  },
+  {
+    "exam_name": "Final Exam",
+    "userId": { "$oid": "61735818bb4f80176c13acf3" },
+    "courseId": { "$oid": "61c10f5814fdaabab184244b" },
+    "score": 78,
+    "total": 100,
+    "weight": 50
+  },
+  {
+    "exam_name": "Final Exam",
+    "courseId": { "$oid": "61c10f5814fdaabab184244b" },
+    "userId": { "$oid": "61ad70a65080bfbd84f9548f" },
+    "score": 49,
+    "total": 100,
+    "weight": 50
+  },
+  {
+    "exam_name": "Final Exam",
+    "courseId": { "$oid": "61c10f5814fdaabab184244b" },
+    "userId": { "$oid": "61ad70a65080bfbd84f9548f" },
+    "score": 80,
+    "total": 100,
+    "weight": 50
+  },
+  {
+    "exam_name": "Half Yearly",
+    "courseId": { "$oid": "61c10f5814fdaabab184244b" },
+    "userId": { "$oid": "61735818bb4f80176c13acf3" },
+    "score": 65,
+    "total": 100,
+    "weight": 25
+  },
+  {
+    "exam_name": "Half Yearly",
+    "courseId": { "$oid": "61c10f5814fdaabab184244b" },
+    "userId": { "$oid": "61ad70a65080bfbd84f9548f" },
+    "score": 65,
+    "total": 75,
+    "weight": 25
+  },
+  {
+    "exam_name": "Half Yearly",
+    "courseId": { "$oid": "61c10f5814fdaabab184244b" },
+    "userId": { "$oid": "61ad70a65080bfbd84f9548f" },
+    "score": 65,
+    "total": 75,
+    "weight": 25
+  },
+  {
+    "exam_name": "Multiple Choice",
+    "courseId": { "$oid": "61c10f5814fdaabab184244b" },
+    "userId": { "$oid": "61735818bb4f80176c13acf3" },
+    "score": 60,
+    "total": 75,
+    "weight": 25
+  },
+  {
+    "exam_name": "Multiple Choice",
+    "courseId": { "$oid": "61c10f5814fdaabab184244b" },
+    "userId": { "$oid": "61ad70a65080bfbd84f9548f" },
+    "score": 62,
+    "total": 75,
+    "weight": 25
+  },
+  {
+    "exam_name": "Multiple Choice",
+    "courseId": { "$oid": "61c10f5814fdaabab184244b" },
+    "userId": { "$oid": "61ad70a65080bfbd84f9548f" },
+    "score": 65,
+    "total": 75,
+    "weight": 25
+  },
+  {
+    "exam_name": "Final Exam",
+    "userId": {"$oid": "61735818bb4f80176c13acf3"},
+    "courseId": {"$oid": "61c10f8f14fdaabab184244c"},
+    "score": 78,
+    "total": 80,
+    "weight": 50
+  },
+  {
+    "exam_name": "Final Exam",
+    "courseId": {"$oid": "61c10f8f14fdaabab184244c"},
+    "userId": {"$oid": "61ad70a65080bfbd84f9548f"},
+    "score": 49,
+    "total": 80,
+    "weight": 50
+  },
+  {
+    "exam_name": "Final Exam",
+    "courseId": {"$oid": "61c10f8f14fdaabab184244c"},
+    "userId": {"$oid": "61ad70a65080bfbd84f9548f"},
+    "score": 80,
+    "total": 80,
+    "weight": 50
+  },
+  {
+    "exam_name": "Half Yearly",
+    "courseId": {"$oid": "61c10f8f14fdaabab184244c"},
+    "userId": {"$oid": "61735818bb4f80176c13acf3"},
+    "score": 65,
+    "total": 80,
+    "weight": 25
+  },
+  {
+    "exam_name": "Half Yearly",
+    "courseId": {"$oid": "61c10f8f14fdaabab184244c"},
+    "userId": {"$oid": "61ad70a65080bfbd84f9548f"},
+    "score": 65,
+    "total": 80,
+    "weight": 25
+  },
+  {
+    "exam_name": "Half Yearly",
+    "courseId": {"$oid": "61c10f8f14fdaabab184244c"},
+    "userId": {"$oid": "61ad70a65080bfbd84f9548f"},
+    "score": 65,
+    "total": 80,
+    "weight": 25
+  },
+  {
+    "exam_name": "Multiple Choice",
+    "courseId": {"$oid": "61c10f8f14fdaabab184244c"},
+    "userId": {"$oid": "61735818bb4f80176c13acf3"},
+    "score": 60,
+    "total": 80,
+    "weight": 25
+  },
+  {
+    "exam_name": "Multiple Choice",
+    "courseId": {"$oid": "61c10f8f14fdaabab184244c"},
+    "userId": {"$oid": "61ad70a65080bfbd84f9548f"},
+    "score": 62,
+    "total": 80,
+    "weight": 25
+  },
+  {
+    "exam_name": "Multiple Choice",
+    "courseId": {"$oid": "61c10f8f14fdaabab184244c"},
+    "userId": {"$oid": "61ad70a65080bfbd84f9548f"},
+    "score": 65,
+    "total": 80,
+    "weight": 25
+  }
+]

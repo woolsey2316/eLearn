@@ -1,1 +1,210 @@
-[{"CourseName":"INFO5990","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"INFO5992","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"INFO6007","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"COMP5206","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"COMP5703","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"INFO6010","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"INFO6010","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"COMP5349","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"INFO5991","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"ISYS5050","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"INFO5060","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"COMP5116","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"COMP9007","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"COMP9103","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"COMP9120","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"COMP5045","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"COMP5313","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"COMP5424","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"COMP5426","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"COMP5338","category":"Computer Science","expires":{"$date":"2022-11-10T22:26:12.111Z"}},{"CourseName":"BABS1201","category":"Biology","instructor":"Neo","expires":{"$date":"2022-11-10T22:26:12.111Z"},"subscribers":[{"$oid":"61735818bb4f80176c13acf3"},{"$oid":"61ad70a65080bfbd84f9548f"}],"exams":[{"examName":"Half Yearly","due":{"$date":"2021-07-21"},"description":"Half Yearly Exam","sections":2,"duration":180},{"examName":"Multiple Choice","due":{"$date":"2021-07-21"},"description":"Multiple Choice Exam","sections":2,"duration":180},{"examName":"Final Exam","due":{"$date":"2021-07-21"},"description":"Final Exam Multiple choice format","sections":2,"duration":180}],"examResults":[{"exam_name":"Final Exam","userId":{"$oid":"61735818bb4f80176c13acf3"},"score":78,"total":85,"weight":50},{"exam_name":"Final Exam","userId":{"$oid":"61ad70a65080bfbd84f9548f"},"score":49,"total":85,"weight":50},{"exam_name":"Final Exam","userId":{"$oid":"61ad70a65080bfbd84f9548f"},"score":80,"total":85,"weight":50},{"exam_name":"Half Yearly Exam","userId":{"$oid":"61735818bb4f80176c13acf3"},"score":65,"total":85,"weight":25},{"exam_name":"Half Yearly Exam","userId":{"$oid":"61ad70a65080bfbd84f9548f"},"score":63,"total":85,"weight":25},{"exam_name":"Half Yearly Exam","userId":{"$oid":"61ad70a65080bfbd84f9548f"},"score":67,"total":85,"weight":25},{"exam_name":"Multiple Choice","userId":{"$oid":"61735818bb4f80176c13acf3"},"score":60,"total":85,"weight":25},{"exam_name":"Multiple Choice","userId":{"$oid":"61ad70a65080bfbd84f9548f"},"score":62,"total":85,"weight":25},{"exam_name":"Multiple Choice","userId":{"$oid":"61ad70a65080bfbd84f95564"},"score":65,"total":85,"weight":25}]}]
+[
+	{
+	  "_id": {"$oid": "61c10eb614fdaabab184244a"},
+      "CourseName":"PHYS1121",
+      "category":"Physics",
+      "instructor":"Morpheus",
+      "expires":{
+         "$date":"2024-11-10T22:26:12.111Z"
+      },
+      "subscribers":[
+         {
+            "$oid":"61735818bb4f80176c13acf3"
+         },
+         {
+            "$oid":"61ad70a65080bfbd84f9548f"
+         }
+      ]  
+   },
+   {
+      "_id": {"$oid": "61c10f5814fdaabab184244b"},
+      "CourseName":"MATH1131",
+      "category":"Mathematics",
+      "instructor":"Trinity",
+      "expires":{
+         "$date":"2024-11-10T22:26:12.111Z"
+      },
+      "subscribers":[
+         {
+            "$oid":"61735818bb4f80176c13acf3"
+         },
+         {
+            "$oid":"61ad70a65080bfbd84f9548f"
+         }
+      ] 
+   },
+   {
+      "_id": {"$oid": "61c10f8f14fdaabab184244c"},
+      "CourseName":"CHEM1031",
+      "category":"Chemistry",
+      "instructor":"Rick Sanchez",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      },
+      "subscribers":[
+         {
+            "$oid":"61735818bb4f80176c13acf3"
+         },
+         {
+            "$oid":"61ad70a65080bfbd84f9548f"
+         }
+      ]   
+   },
+	{
+      "_id": {"$oid": "61d50f9a4e88c2cec2e0d672"},
+      "CourseName":"BABS1201",
+      "category":"Biology",
+      "instructor":"Neo",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      },
+      "subscribers":[
+         {
+            "$oid":"61735818bb4f80176c13acf3"
+         },
+         {
+            "$oid":"61ad70a65080bfbd84f9548f"
+         }
+      ]  
+   },
+   {
+      "CourseName":"INFO5990",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"INFO5992",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"INFO6007",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"COMP5206",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"COMP5703",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"INFO6010",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"INFO6010",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"COMP5349",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"INFO5991",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"ISYS5050",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"INFO5060",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"COMP5116",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"COMP9007",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"COMP9103",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"COMP9120",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"COMP5045",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"COMP5313",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"COMP5424",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"COMP5426",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   },
+   {
+      "CourseName":"COMP5338",
+      "category":"Computer Science",
+      "expires":{
+         "$date":"2022-11-10T22:26:12.111Z"
+      }
+   }
+]

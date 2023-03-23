@@ -2,40 +2,49 @@ const express = require("express");
 const router = express.Router();
 
 const Exam = require("../../models/Exam");
-const Course = require("../../models/Course");
+const ExamResult = require("../../models/ExamResult")
+const { verifyToken } = require("../../utils/verifyToken");
 
-// @route GET /courses/:course_id
+
+// @route GET /exam/:course_id
 // @desc Retrieve user courses
 // @access Public
-router.get("/courses/:course_id", (req, res) => {
+router.get("/:course_id", (req, res) => {
+  const jwt = req.headers.authorisation.split(" ")[1];
+  const { payload } = verifyToken(jwt, res);
+  const userID = payload?.id;
+
   if (req.params.course_id == "undefined") {
     return res.status(404).json({ idnotfound: "no course id specified" });
   }
-  Course.findById(req.params.course_id, "examResults").then((examResults) => {
-    if (!examResults) {
-      return res.status(404).json({ idnotfound: "no exam results found" });
+  ExamResult.find({courseId: req.params.course_id}).then((examResults) => {
+    if (examResults.length === 0) {
+      return res.status(404).json({ examsNotFound: "no exam results found" });
     }
     // group exams by exam type eg. half yearly, multiple choice
-    const grouped = examResults.examResults.reduce((prev, curr) => {
-      if (prev[curr.exam_name]) {
-        prev[curr.exam_name].push(curr);
-        return prev;
-      } else {
-        return { ...prev, [curr.exam_name]: [curr] };
+    const result = examResults.map(result => {
+      return {
+        examName: result.examName,
+        score: result.score,
+        scorePercent: result.score / result.total * 100,
       }
-    }, []);
+    })
+    // calculate class rank
+    let userScore = 0
+    examResults.forEach(result => {
+      if (result.userId === userID) {
+        userScore = result.score
+      }
+    })
+    result.rank = examResults.reduce((rank, curr) => {
+      if (curr.userId !== userID) {
+        if (curr.score > userScore) {
+          return rank + 1
+        }
+      }
+    },1)
 
-    const average = new Object();
-    for (const [key, value] of Object.entries(grouped)) {
-      const total = grouped[key].reduce(
-        (prev, curr) => prev + curr.score / curr.total,
-        0
-      );
-      const n = grouped[key].reduce((prev, curr) => prev + 1, 0);
-      average.key = total / n;
-    }
-
-    return res.status(200).json({ exams: grouped, average: average });
+    return res.status(200).json({examResults: result});
   });
 });
 
@@ -47,7 +56,7 @@ router.get("/:exam_id/questions", async (req, res) => {
     .catch((err) =>
       res
         .status(404)
-        .json({ nocoursefound: "Failed fetching questions for exam" })
+        .json({ noExamFound: "Failed fetching questions for exam" })
     );
 });
 

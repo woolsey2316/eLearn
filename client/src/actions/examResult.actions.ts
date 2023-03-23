@@ -8,7 +8,7 @@ import { examResultsService } from "../services";
 import { alertActions } from ".";
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
-import { ExamAverage, ExamResultsList } from "../types/ExamState";
+import { Results } from "../types/ExamState";
 
 export const examResultActions = {
   getAllExamResults,
@@ -35,7 +35,7 @@ function getUserExamResultsByCourse(courseId: string) {
   function request() {
     return { type: examResultConstants.EXAM_INFO_REQUEST };
   }
-  function success(examResultList: ExamResultsList) {
+  function success(examResultList: any) {
     return { type: examResultConstants.EXAM_INFO_SUCCESS, examResultList };
   }
   function failure(error: string) {
@@ -62,7 +62,7 @@ function getExamResultsByCourse(courseId: string) {
   function request() {
     return { type: examResultConstants.EXAM_AVERAGES_REQUEST };
   }
-  function success(examResultList: ExamAverage) {
+  function success(examResultList: Results) {
     return { type: examResultConstants.EXAM_AVERAGES_SUCCESS, examResultList };
   }
   function failure(error: string) {

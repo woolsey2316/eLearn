@@ -16,6 +16,7 @@ function QuestionNavigation(props: Props) {
         >
           {props.answerList.map((ans, index) => (
             <QuestionButton
+              key={index}
               answer={ans}
               onClickQuestion={props.onClickQuestion}
               markedQuestions={props.markedQuestions}

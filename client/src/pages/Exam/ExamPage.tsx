@@ -20,11 +20,7 @@ import { examQuestionActions } from "../../actions";
 import { useParams } from "react-router";
 
 import { getUserId } from "../../helpers";
-import { QuizQuestions } from "../../types/ExamState";
-
-type QuizParams = {
-  exam_id: string;
-};
+import { QuizParams, QuizQuestions } from "../../types/ExamState";
 
 function initialiseQuestionsArray(quizQuestions: QuizQuestions) {
   // [
@@ -64,7 +60,7 @@ function ExamPage() {
   }, [fetchExamQuestions]);
 
   const quizQuestions = useAppSelector(
-    (state) => state.examQuestion.examQuestions.quizQuestions
+    (state) => state.examQuestion.examQuestions?.quizQuestions
   );
 
   useEffect(() => {

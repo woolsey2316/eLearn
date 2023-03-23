@@ -46,7 +46,7 @@ function CountdownTimer({ timeLeft, setTimeLeft }: CountdownTimerProps) {
     }
 
     timerComponents.push(
-      <h2 className="font-medium items-center px-2">
+      <h2 key={key} className="font-medium items-center px-2">
         {value} {key}
       </h2>
     );

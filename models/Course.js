@@ -3,19 +3,15 @@ const Schema = mongoose.Schema;
 // Create Schema
 const courseSchema = new Schema({
   _id: {
-    type: mongoose.ObjectId,
+    type: Schema.Types.ObjectId,
     required: true
   },
   CourseName: {
     type: String,
     required: true
   },
-  examResults: {
-    type: Array(Object),
-    required: false
-  },
   subscribers: {
-    type: Array(mongoose.ObjectId)
+    type: Array(Schema.Types.ObjectId)
   },
   category: {
     type: String
@@ -23,8 +19,5 @@ const courseSchema = new Schema({
   instructor: {
     type: String
   },
-  exams: {
-    type: Array(Object)
-  }
 });
-module.exports = course = mongoose.model("course", courseSchema);
+module.exports = mongoose.model("course", courseSchema);

@@ -11,6 +11,7 @@ import { courseActions } from "../../actions";
 
 import { ExamResultCard } from "./ExamResultCard";
 import { PageComponentProps } from "../../types/PageComponentProps";
+import { ExamResult } from "../../types/ExamState";
 
 function weightedAverage(examResults: any[]) {
   if (examResults) {
@@ -29,14 +30,10 @@ function ExamResults(props: PageComponentProps) {
   const dispatch = useAppDispatch();
   const courses = useAppSelector((state) => state.courses.userCourseList);
   const userExamResults = useAppSelector((state) => state.examResults.examList);
-  const average = useAppSelector((state) => state.examResults.average);
-
-  const page = 0;
-  const size = 20;
 
   const fetchCourses = useCallback(() => {
     dispatch(courseActions.getAllUserCourses());
-  }, [dispatch, page, size]);
+  }, [dispatch]);
 
   useEffect(() => {
     fetchCourses();
@@ -82,7 +79,7 @@ function ExamResults(props: PageComponentProps) {
   }, [fetchExamResultsbyCourse]);
 
   return (
-    <body className="app">
+    <div className="app">
       <MobileMenu />
       <div className="flex px-2 sm:px-10">
         {props.sideMenu}
@@ -119,7 +116,7 @@ function ExamResults(props: PageComponentProps) {
                   <thead>
                     <tr>
                       <th className="border-b-2 whitespace-no-wrap">
-                        DESCRIPTION
+                        EXAM NAME
                       </th>
                       <th className="border-b-2 text-right whitespace-no-wrap">
                         Rank
@@ -136,16 +133,13 @@ function ExamResults(props: PageComponentProps) {
                     </tr>
                   </thead>
                   <tbody>
-                    {userExamResults?.map((elem: any, index: number) => {
-                      console.log(average);
-                      return (
+                    {userExamResults?.map((elem: ExamResult, index: number) => (
                         <ExamResultCard
                           key={index}
                           examInfo={elem}
-                          average={average?.average[elem?.exam_name]}
                         />
-                      );
-                    })}
+                      )
+                    )}
                   </tbody>
                 </table>
               </div>
@@ -169,7 +163,7 @@ function ExamResults(props: PageComponentProps) {
           </div>
         </div>
       </div>
-    </body>
+    </div>
   );
 }
 

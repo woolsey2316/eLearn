@@ -1,16 +1,10 @@
 import React from "react";
 import { uppercaseFirstLetter } from "../../helpers/string";
-type ExamResultCard = {
-  average: number;
-  examInfo: {
-    exam_name: string;
-    dueDate: string;
-    rank: number;
-    score: number;
-    total: number;
-  };
-};
-function ExamResultCard({ average, examInfo }: ExamResultCard) {
+import { ExamResult } from "../../types/ExamState";
+type Props = {
+  examInfo: ExamResult;
+}
+function ExamResultCard({ examInfo }: Props) {
   return (
     <tr>
       <td className="border-b">
@@ -26,9 +20,9 @@ function ExamResultCard({ average, examInfo }: ExamResultCard) {
         {examInfo.score}/{examInfo.total}
       </td>
       <td className="text-right border-b w-32 font-medium">
-        {((examInfo.score / examInfo.total) * 100).toFixed(2)}
+      {(examInfo.score / examInfo.total * 100).toFixed(2)}
       </td>
-      <td className="text-right border-b w-32">{(average * 100).toFixed(2)}</td>
+      <td className="text-right border-b w-32">{(examInfo.average * 100).toFixed(2)}</td>
     </tr>
   );
 }

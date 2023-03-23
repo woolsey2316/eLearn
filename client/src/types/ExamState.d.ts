@@ -1,18 +1,21 @@
-type ExamAnswerSheet = {
+export type ExamAnswerSheet = {
   answerList: Array<Array<IntRange<0, 3>>>;
   examId: string;
   userId: string;
 };
-type ExamState = {
+export type ExamState = {
   submittingExam: boolean;
   examList: Array<any>;
 };
-type QuestionAndAnswerList = {
+export type QuestionAndAnswerList = {
   question: string;
   possibleAnswers: Array<string>;
 };
-type QuizQuestions = Array<Array<QuestionAndAnswerList>>;
-type ExamQuestions = {
+export type QuizParams = {
+  exam_id: string;
+};
+export type QuizQuestions = Array<Array<QuestionAndAnswerList>>;
+export type ExamQuestions = {
   quizQuestions: QuizQuestions;
   _id: string;
   courseId: string;
@@ -21,22 +24,16 @@ type ExamQuestions = {
   examName: string;
   due: string;
 };
-type ExamResult = {
-  examName: string;
-  userId: string;
+export type ExamResult = {
+  exam_name: string;
+  dueDate: Date;
+  rank: number;
   score: number;
   total: number;
-  weight: number;
+  average: number;
 };
-type ExamResultsList = Array<ExamResult>;
-type ExamAverage = {
-  exams: ExamResultsList;
-  average: {
-    [key: sstring]: number;
-  };
-};
-export const ExamState;
-export const ExamAnswerSheet;
-export const ExamQuestions;
-export const ExamAverage;
-export const QuizQuestions;
+
+export type Results = {
+  examResults: Array<ExamResult>
+  weightedAverage: number
+}

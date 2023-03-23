@@ -28,10 +28,11 @@ function CourseDropdown(props: Props) {
               Select a Course
             </div>
             <div className="p-2">
-              {props.courseList?.map((elem) => (
+              {props.courseList?.map((elem, index) => (
                 <button
+                  key={index}
                   onClick={() => chooseCourse(elem.courseName)}
-                  className="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
+                  className="items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
                 >
                   <Icon.Box className="w-4 h-4 text-gray-700 mr-2" />{" "}
                   {elem.courseName}

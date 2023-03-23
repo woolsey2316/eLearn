@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { User } = require("../../models/User");
-const Course = require("../../models/Course");
+const ExamResult = require("../../models/ExamResult");
 
 const { verifyToken } = require("../../utils/verifyToken");
 
@@ -73,46 +73,58 @@ router.get("/:user_id/courses/:course_id/exams", (req, res) => {
   });
 });
 
-// @route GET /courses/:course_id/:user_id/exams
+// @route GET /courses/:course_id/exams
 // @desc Retrieve user exam results for a specific course
 // @access Public
-router.get("/courses/:course_id/:user_id/exams", (req, res) => {
+router.get("/courses/:course_id/exams", (req, res) => {
+  const jwt = req.headers.authorisation.split(" ")[1];
+  const { payload } = verifyToken(jwt, res);
+  const userID = payload?.id;
+
   if (req.params.course_id == "undefined") {
     return res.status(404).json({ idnotfound: "no courseId was given" });
   }
-  Course.findById(req.params.course_id, "examResults").then((examResults) => {
+  ExamResult.find({courseId: req.params.course_id}).then((examResults) => {
     if (!examResults) {
       return res.status(404).json({ idnotfound: "examResults are not found" });
     }
-
+    examResults = examResults.map(examResult => examResult._doc)
+    let userResults = []
+    // Object.keys(curr).forEach((prop)=> console.log(prop))
     // group exams by exam type eg. half yearly, multiple choice
-    const grouped = examResults.examResults.reduce((prev, curr) => {
-      if (prev[curr.exam_name]) {
-        prev[curr.exam_name].push(curr);
-        return prev;
+    let grouped_results = {};
+    examResults.forEach(examResult => {
+      if (grouped_results[examResult.exam_name]) {
+        grouped_results[examResult.exam_name].push(examResult);
       } else {
-        return { ...prev, [curr.exam_name]: [curr] };
+        grouped_results = { ...grouped_results, [examResult.exam_name]: [examResult] };
       }
-    }, []);
+    }, {});
     // sort by exam score
-    Object.keys(grouped).forEach((elem, index) => {
-      grouped[elem].sort((b, a) => a.score - b.score);
+    Object.keys(grouped_results).forEach((elem, index) => {
+      grouped_results[elem].sort((b, a) => a.score - b.score);
     });
     // find examination rank among peers
-    Object.keys(grouped).forEach((elem, index) => {
+    Object.keys(grouped_results).forEach(examType => {
       let rank = 1;
-      grouped[elem].forEach((e, i) => {
-        if (req.params.user_id == e.userId) {
-          e.rank = rank;
+      grouped_results[examType].forEach(examResult => {
+        if (userID == examResult.userId) {
+          examResult.rank = rank;
+          userResults.push(examResult)
         } else {
           rank++;
         }
       });
     });
-    const result = examResults.examResults.filter(
-      (exam) => exam.userId == req.params.user_id
-    );
-    return res.status(200).json({ examResults: result });
+
+    // find the average mark
+    const averages = findAverages(grouped_results);
+
+    userResults = userResults.map((result, index) => {
+      return {...result, average: averages[index]}
+    })
+
+    return res.status(200).json({ examResults: userResults });
   });
 });
 

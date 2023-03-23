@@ -63,7 +63,7 @@ router.get("/exams/:user_id", async (req, res) => {
     );
 });
 
-// @route GET api/courses/:id
+// @route GET api/course/:id
 // @description Get single course by id
 // @access Public
 router.get("/course/:id", (req, res) => {
@@ -74,7 +74,7 @@ router.get("/course/:id", (req, res) => {
     );
 });
 
-// @route PUT api/courses/:course_id/:user_id
+// @route PUT api/course/:course_id/:user_id
 // @description add new user to course
 // @access Public
 router.put("/:course_id/:user_id", (req, res) => {

@@ -1,9 +1,17 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 // Create Schema
-const examResultSchema = new Schema({
+const examResultsSchema = new Schema({
   _id: {
-    type: mongoose.ObjectId,
+    type: Schema.Types.ObjectId,
+    required: true
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    required: true
+  },
+  courseId: {
+    type: Schema.Types.ObjectId,
     required: true
   },
   examName: {
@@ -23,4 +31,4 @@ const examResultSchema = new Schema({
     required: true
   }
 });
-module.exports = examResult = mongoose.model("examResult", examResultSchema);
+module.exports = mongoose.model("exam_result", examResultsSchema);

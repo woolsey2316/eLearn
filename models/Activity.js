@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 // Create Schema
 const activitySchema = new Schema({
   _id: {
-    type: mongoose.ObjectId,
+    type: Schema.Types.ObjectId,
     required: true
   },
   instructor: {
@@ -19,8 +19,8 @@ const activitySchema = new Schema({
     required: true
   },
   courseId: {
-    type: mongoose.ObjectId,
+    type: Schema.Types.ObjectId,
     required: true
   },
 });
-module.exports = activity = mongoose.model("activity", activitySchema);
+module.exports = mongoose.model("activity", activitySchema);

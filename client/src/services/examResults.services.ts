@@ -20,9 +20,8 @@ async function getAllUserExams(courseId: string) {
     method: "GET",
     headers: { ...authHeader(), "Content-Type": "application/json" },
   };
-  const userId = getUserId();
   const response = await fetch(
-    `${API_URL}/users/courses/${courseId}/${userId}/exams`,
+    `${API_URL}/users/courses/${courseId}/exams`,
     requestOptions
   );
   return handleResponse(response);
@@ -38,7 +37,7 @@ async function getExamResultsByCourse(courseId: string) {
   };
 
   const response = await fetch(
-    `${API_URL}/exams/courses/${courseId}`,
+    `${API_URL}/exams/${courseId}`,
     requestOptions
   );
   return handleResponse(response);

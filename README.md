@@ -24,3 +24,9 @@ You can start the server using this command:
 ```bash
 yarn dev
 ```
+
+### 4. Login with test user
+
+| Username   | Password  |  
+|---|---|
+| woolsey2316@gmail.com  | 1234qwer  |
