@@ -15,7 +15,10 @@ Database name: testdb
 | Data files   | Collection Name  |  
 |---|---|
 | db/activities/activities.json  | activities  |   
-| db/courses/courses.json | courses  |   
+| db/courses/courses.json | courses  |
+| db/instructor/instructor.json | instructors  |
+| db/exams/exams.json | exams  |
+| db/examResults/examResults.json | examResults  |   
 
 ### 3. Run the development server
 

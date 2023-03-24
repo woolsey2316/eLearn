@@ -16,8 +16,9 @@ const courseSchema = new Schema({
   category: {
     type: String
   },
-  instructor: {
-    type: String
+  instructorId: {
+    type: Schema.Types.ObjectId,
+    required: true
   },
 });
 module.exports = mongoose.model("course", courseSchema);

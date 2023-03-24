@@ -17,7 +17,7 @@ function CourseDropdown(props: Props) {
     <div className="dropdown relative">
       <button
         onClick={() => showMore(!show)}
-        className="flex items-center justify-center dropdown-toggle button inline-block bg-theme-5 font-semibold text-theme-1 text-3xl"
+        className="items-center justify-center dropdown-toggle button inline-block bg-theme-5 font-semibold text-theme-1 text-3xl"
       >
         {props.course} <Icon.ChevronDown />
       </button>
@@ -28,14 +28,14 @@ function CourseDropdown(props: Props) {
               Select a Course
             </div>
             <div className="p-2">
-              {props.courseList?.map((elem, index) => (
+              {props.courseList?.map((course, index) => (
                 <button
                   key={index}
-                  onClick={() => chooseCourse(elem.courseName)}
+                  onClick={() => chooseCourse(course.courseName)}
                   className="items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
                 >
                   <Icon.Box className="w-4 h-4 text-gray-700 mr-2" />{" "}
-                  {elem.courseName}
+                  {course.courseName}
                 </button>
               ))}
             </div>

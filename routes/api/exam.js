@@ -21,6 +21,7 @@ router.get("/:course_id", (req, res) => {
     if (examResults.length === 0) {
       return res.status(404).json({ examsNotFound: "no exam results found" });
     }
+    examResults = examResults.map(examResults => examResults._doc)
     // group exams by exam type eg. half yearly, multiple choice
     const result = examResults.map(result => {
       return {

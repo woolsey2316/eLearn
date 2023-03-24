@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Morpheus Simulacrum",
+    "address": "260 W. Storm Street New York, NY 10025.",
+    "email": "Morpheous@gmail.com",
+    "building": "Movren Brown",
+    "roomNumber": "319"
+  },
+  {
+    "name": "Trinity Simulacrum",
+    "address": "9583 Buckingham CourtYonkers, NY 10701",
+    "email": "Trinity@gmail.com",
+    "building": "old Main Building",
+    "roomNumber": "113"
+  },
+  {
+    "name": "Trinity Simulacrum",
+    "address": "68 Brewery Street Brooklyn, NY 11203",
+    "email": "Trinity@gmail.com",
+    "building": "old Main Building",
+    "roomNumber": "113"
+  },
+  {
+    "name": "Rick Sanchez",
+    "address": "Smith Residence",
+    "email": "RickC-137@gmail.com",
+    "building": "old Main Building",
+    "roomNumber": "137"
+  }
+]

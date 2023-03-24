@@ -13,3 +13,5 @@ function findAverages(grouped_results) {
 
   });
 }
+
+module.exports =  { findAverages }

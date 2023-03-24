@@ -118,13 +118,12 @@ router.get("/user", (req, res) => {
 
   Course.find({ subscribers: userID })
     .then((courseList) => {
-      // console.log(courseList)
       const courseIds = Object.keys(courseList).map((key) => {
         return {
           _id: courseList[key]._id,
           courseName: courseList[key].CourseName,
           category: courseList[key].category,
-          instructor: courseList[key].instructor,
+          instructorId: courseList[key].instructorId,
         };
       });
       return res.json(courseIds);

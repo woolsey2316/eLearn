@@ -3,7 +3,7 @@
 	  "_id": {"$oid": "61c10eb614fdaabab184244a"},
       "CourseName":"PHYS1121",
       "category":"Physics",
-      "instructor":"Morpheus",
+      "instructorId": {"$oid": "641cf3c2f1736b340c6eba89"},
       "expires":{
          "$date":"2024-11-10T22:26:12.111Z"
       },
@@ -20,7 +20,7 @@
       "_id": {"$oid": "61c10f5814fdaabab184244b"},
       "CourseName":"MATH1131",
       "category":"Mathematics",
-      "instructor":"Trinity",
+      "instructorId": {"$oid": "641cf3c2f1736b340c6eba8a"},
       "expires":{
          "$date":"2024-11-10T22:26:12.111Z"
       },
@@ -37,7 +37,7 @@
       "_id": {"$oid": "61c10f8f14fdaabab184244c"},
       "CourseName":"CHEM1031",
       "category":"Chemistry",
-      "instructor":"Rick Sanchez",
+      "instructorId": {"$oid": "641cf3c2f1736b340c6eba8c"},
       "expires":{
          "$date":"2022-11-10T22:26:12.111Z"
       },
@@ -54,7 +54,7 @@
       "_id": {"$oid": "61d50f9a4e88c2cec2e0d672"},
       "CourseName":"BABS1201",
       "category":"Biology",
-      "instructor":"Neo",
+      "instructorId": {"$oid": "641cf3c2f1736b340c6eba8b"},
       "expires":{
          "$date":"2022-11-10T22:26:12.111Z"
       },

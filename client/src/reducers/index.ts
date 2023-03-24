@@ -9,6 +9,7 @@ import { examResults } from "./examResults.reducer";
 import { registration } from "./registration.reducer";
 import { users } from "./users.reducer";
 import { activity } from "./activity.reducer";
+import { instructor } from "./instructor.reducer";
 
 const reducer = combineReducers({
   users,
@@ -21,6 +22,7 @@ const reducer = combineReducers({
   examResults,
   registration,
   activity,
+  instructor
 });
 
 export default reducer;

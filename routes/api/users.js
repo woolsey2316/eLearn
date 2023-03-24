@@ -5,6 +5,8 @@ const ExamResult = require("../../models/ExamResult");
 
 const { verifyToken } = require("../../utils/verifyToken");
 
+const { findAverages } = require("../../utils/examStats")
+
 // @route PUT api/user/:user_id/profile
 // @desc Retrieve user details
 // @access Public
@@ -90,7 +92,6 @@ router.get("/courses/:course_id/exams", (req, res) => {
     }
     examResults = examResults.map(examResult => examResult._doc)
     let userResults = []
-    // Object.keys(curr).forEach((prop)=> console.log(prop))
     // group exams by exam type eg. half yearly, multiple choice
     let grouped_results = {};
     examResults.forEach(examResult => {
@@ -117,7 +118,7 @@ router.get("/courses/:course_id/exams", (req, res) => {
       });
     });
 
-    // find the average mark
+    // find the average mark for each exam type
     const averages = findAverages(grouped_results);
 
     userResults = userResults.map((result, index) => {

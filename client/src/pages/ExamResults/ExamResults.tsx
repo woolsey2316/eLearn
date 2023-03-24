@@ -6,7 +6,7 @@ import { TopBar } from "../../components";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
-import { examResultActions } from "../../actions";
+import { examResultActions, instructorActions } from "../../actions";
 import { courseActions } from "../../actions";
 
 import { ExamResultCard } from "./ExamResultCard";
@@ -29,6 +29,7 @@ function weightedAverage(examResults: any[]) {
 function ExamResults(props: PageComponentProps) {
   const dispatch = useAppDispatch();
   const courses = useAppSelector((state) => state.courses.userCourseList);
+  const instructor = useAppSelector((state) => state.instructor.instructor);
   const userExamResults = useAppSelector((state) => state.examResults.examList);
 
   const fetchCourses = useCallback(() => {
@@ -41,8 +42,8 @@ function ExamResults(props: PageComponentProps) {
 
   const [course, setCourse] = useState("Select Course");
 
-  const instructor = courses?.filter((elem) => elem.courseName === course)[0]
-    ?.instructor;
+  const instructorId = courses?.filter((elem) => elem.courseName === course)[0]
+    ?.instructorId;
   const category = courses?.filter((elem) => elem.courseName === course)[0]
     ?.category;
   const courseId = courses?.filter((elem) => elem.courseName === course)[0]
@@ -54,9 +55,16 @@ function ExamResults(props: PageComponentProps) {
     }
   }, [courseId, dispatch]);
 
+  const fetchInstructor = useCallback(() => {
+    if (instructorId) {
+      dispatch(instructorActions.getInstructorById(instructorId));
+    }
+  }, [courseId, dispatch]);
+
   useEffect(() => {
     fetchExams();
-  }, [fetchExams]);
+    fetchInstructor()
+  }, [fetchExams, fetchInstructor]);
 
   const fetchExamResults = useCallback(() => {
     if (courseId) {
@@ -100,13 +108,19 @@ function ExamResults(props: PageComponentProps) {
               <div>
                 <div className="text-base text-gray-600">Course Details</div>
                 <div className="text-lg font-medium text-theme-1 mt-2">
-                  Instructor: {instructor}
+                  Instructor: {instructor?.name}
                 </div>
                 {instructor && (
-                  <div className="mt-1">{instructor}@gmail.com</div>
+                  <div className="mt-1">{instructor?.email}</div>
                 )}
                 <div className="mt-1">
-                  260 W. Storm Street New York, NY 10025.
+                  {instructor?.address}
+                </div>
+                <div className="mt-1">
+                  {instructor?.building}
+                </div>
+                <div className="mt-1">
+                  {instructor?.roomNumber}
                 </div>
               </div>
             </div>
@@ -133,10 +147,10 @@ function ExamResults(props: PageComponentProps) {
                     </tr>
                   </thead>
                   <tbody>
-                    {userExamResults?.map((elem: ExamResult, index: number) => (
+                    {userExamResults?.map((result: ExamResult, index: number) => (
                         <ExamResultCard
                           key={index}
-                          examInfo={elem}
+                          examInfo={result}
                         />
                       )
                     )}

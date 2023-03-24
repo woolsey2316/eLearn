@@ -23,7 +23,7 @@ type CourseType = {
   _id: string;
   courseName: string;
   category: string;
-  instructor: string;
+  instructorId: string;
   activeExams: boolean;
 };
 
