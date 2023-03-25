@@ -6,34 +6,24 @@ import { TopBar } from "../../components";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
-import { examResultActions, instructorActions } from "../../actions";
-import { courseActions } from "../../actions";
+import { examResultActions, instructorActions, courseActions, userActions } from "../../actions";
 
 import { ExamResultCard } from "./ExamResultCard";
 import { PageComponentProps } from "../../types/PageComponentProps";
 import { ExamResult } from "../../types/ExamState";
-
-function weightedAverage(examResults: any[]) {
-  if (examResults) {
-    return Object.values(examResults)
-      .reduce(
-        (acc, elem) => acc + (elem?.score / elem?.total) * elem?.weight,
-        0
-      )
-      .toFixed(2);
-  } else {
-    return "";
-  }
-}
+import { weightedAverage } from "../../utils/examStats";
 
 function ExamResults(props: PageComponentProps) {
   const dispatch = useAppDispatch();
   const courses = useAppSelector((state) => state.courses.userCourseList);
+  const userDetails = useAppSelector((state) => state.users.user)
   const instructor = useAppSelector((state) => state.instructor.instructor);
   const userExamResults = useAppSelector((state) => state.examResults.examList);
+  const weightedAverage = useAppSelector((state) => state.examResults.weightedAverage);
 
   const fetchCourses = useCallback(() => {
     dispatch(courseActions.getAllUserCourses());
+    dispatch(userActions.getUserDetails())
   }, [dispatch]);
 
   useEffect(() => {
@@ -111,16 +101,18 @@ function ExamResults(props: PageComponentProps) {
                   Instructor: {instructor?.name}
                 </div>
                 {instructor && (
-                  <div className="mt-1">{instructor?.email}</div>
+                  <div className="mt-1">
+                    Email: {instructor?.email}
+                  </div>
                 )}
                 <div className="mt-1">
-                  {instructor?.address}
+                  Address: {instructor?.address}
                 </div>
                 <div className="mt-1">
-                  {instructor?.building}
+                  Location: {instructor?.building}
                 </div>
                 <div className="mt-1">
-                  {instructor?.roomNumber}
+                  Room Number: {instructor?.roomNumber}
                 </div>
               </div>
             </div>
@@ -161,7 +153,7 @@ function ExamResults(props: PageComponentProps) {
             <div className="px-5 sm:px-20 pb-10 sm:pb-20 flex flex-col-reverse sm:flex-row">
               <div className="text-center sm:text-left mt-10 sm:mt-0">
                 <div className="text-lg text-theme-1 font-medium mt-2">
-                  David Woolsey
+                  {userDetails?.name}
                 </div>
                 <div className="mt-1">Course Name : {course}</div>
                 <div className="mt-1">Category : {category}</div>
@@ -169,9 +161,9 @@ function ExamResults(props: PageComponentProps) {
               <div className="text-center sm:text-right sm:ml-auto">
                 <div className="text-base text-gray-600">Weighted Average</div>
                 <div className="text-xl text-theme-1 font-medium mt-2">
-                  {weightedAverage(userExamResults)}
+                  {weightedAverage?.userAverage.toFixed(2)}
                 </div>
-                <div className="mt-1 tetx-xs">Class Rank: 7</div>
+                <div className="mt-1 tetx-xs">Class Rank: {weightedAverage?.classRank}</div>
               </div>
             </div>
           </div>

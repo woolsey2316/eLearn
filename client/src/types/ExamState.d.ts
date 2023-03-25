@@ -31,9 +31,10 @@ export type ExamResult = {
   score: number;
   total: number;
   average: number;
+  weight: number
 };
 
 export type Results = {
   examResults: Array<ExamResult>
-  weightedAverage: number
+  weightedAverage: {user: number; rank: number}
 }

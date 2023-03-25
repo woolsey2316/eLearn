@@ -14,4 +14,42 @@ function findAverages(grouped_results) {
   });
 }
 
-module.exports =  { findAverages }
+function weightedAverage(examResults) {
+  return Object.values(examResults)
+    .reduce(
+      (acc, elem) => acc + (elem?.score / elem?.total) * elem?.weight,
+      0
+    )
+}
+
+function classAverages(grouped_results) {
+  return Object.keys(grouped_results).map(userId => {
+    return weightedAverage(grouped_results[userId])
+  })
+}
+
+function calculateRank(userAvaerage, total_average) {
+  total_average = total_average.sort((a,b) => b - a)
+  let rank = 0;
+  for (let i = 0; i < total_average.length; i++) {
+    console.log(total_average[i])
+    if (total_average[i] === userAvaerage) {
+      rank = i + 1
+    }
+  }
+  return rank
+}
+
+function groupExamResultsByUser(examResults) {
+  let grouped_results = {};
+    examResults.forEach(examResult => {
+      if (grouped_results[examResult.userId]) {
+        grouped_results[examResult.userId].push(examResult);
+      } else {
+        grouped_results = { ...grouped_results, [examResult.userId]: [examResult] };
+      }
+    }, {});
+    return grouped_results
+}
+
+module.exports =  { findAverages, weightedAverage, classAverages, calculateRank, groupExamResultsByUser }

@@ -63,7 +63,7 @@ function getExamResultsByCourse(courseId: string) {
     return { type: examResultConstants.EXAM_AVERAGES_REQUEST };
   }
   function success(examResultList: Results) {
-    return { type: examResultConstants.EXAM_AVERAGES_SUCCESS, examResultList };
+    return { type: examResultConstants.EXAM_AVERAGES_SUCCESS, payload: examResultList };
   }
   function failure(error: string) {
     return { type: examResultConstants.EXAM_AVERAGES_FAILURE, error };

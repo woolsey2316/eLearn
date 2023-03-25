@@ -1,4 +1,5 @@
 const express = require("express");
+const { weightedAverage, classAverages, calculateRank, groupExamResultsByUser } = require("../../utils/examStats");
 const router = express.Router();
 
 const Exam = require("../../models/Exam");
@@ -22,30 +23,18 @@ router.get("/:course_id", (req, res) => {
       return res.status(404).json({ examsNotFound: "no exam results found" });
     }
     examResults = examResults.map(examResults => examResults._doc)
-    // group exams by exam type eg. half yearly, multiple choice
-    const result = examResults.map(result => {
-      return {
-        examName: result.examName,
-        score: result.score,
-        scorePercent: result.score / result.total * 100,
-      }
-    })
-    // calculate class rank
-    let userScore = 0
-    examResults.forEach(result => {
-      if (result.userId === userID) {
-        userScore = result.score
-      }
-    })
-    result.rank = examResults.reduce((rank, curr) => {
-      if (curr.userId !== userID) {
-        if (curr.score > userScore) {
-          return rank + 1
-        }
-      }
-    },1)
+    const userExamResult = examResults.filter(examResult => examResult.userId == userID)
+    if (!userExamResult) return res.status(404).json({error: "Student not found"});
+    // group exams by user
+    const grouped_results = groupExamResultsByUser(examResults)
 
-    return res.status(200).json({examResults: result});
+    const average = weightedAverage(userExamResult)
+    // array of average total mark for each student
+    const total_average = classAverages(grouped_results)
+
+    const rank = calculateRank(average, total_average)
+
+    return res.status(200).json({userAverage: average, classRank: rank});
   });
 });
 

@@ -1,11 +1,12 @@
 import { examResultConstants } from "../constants";
 import { AnyAction } from "redux";
+import { ExamResult } from "../types/ExamState";
 interface ExamState {
   examQuestions: any;
   submittingExam: boolean;
-  examList: any;
+  examList: ExamResult[];
   examResults: any;
-  average: any;
+  weightedAverage: {userAverage: number; classRank: number};
 }
 export function examResults(
   state: Partial<ExamState> = {
@@ -32,7 +33,7 @@ export function examResults(
       return {
         ...state,
         submittingExam: false,
-        average: action.examResultList,
+        weightedAverage: action.payload,
       };
     default:
       return state;
