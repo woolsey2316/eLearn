@@ -6,3 +6,4 @@ export { examQuestionConstants } from "./examQuestion.constants";
 export { examResultConstants } from "./examResult.constants";
 export { dashboardConstants } from "./dashboard.constants";
 export { activityConstants } from "./activity.constants";
+export { taskConstants } from "./task.constants";

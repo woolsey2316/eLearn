@@ -1,0 +1,57 @@
+import React, { useState } from "react";
+import Task from "../../components/Task/Task";
+
+import * as Icon from "react-feather";
+import { TaskModal } from "../../components/TaskModal";
+
+function TaskMenu() {
+  const [active, setActive] = useState("New")
+  const [modalIsOpen, setIsOpen] = useState(false);
+  function openModal() {
+    console.log("open modal request");
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+  return (
+      <div className="col-span-12 lg:col-span-8 xxl:col-span-9">
+        {/* <!-- BEGIN: Latest Tasks --> */}
+        <TaskModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
+        <div className="intro-y box">
+          <div className="flex items-center px-5 py-5 sm:py-0 border-b border-gray-200">
+            <h2 className="font-medium text-base mr-auto">Latest Tasks</h2>
+            <div className="nav-tabs ml-auto hidden sm:flex">
+              <div
+                className="py-5 ml-6 cursor-pointer"
+                onClick={() => openModal()}
+              >
+                <Icon.Plus/>
+              </div>
+              <div
+                className={`py-5 ml-6 cursor-pointer ${active === "New" ? "active" : ""}`}
+                onClick={() => setActive("New")}
+              >
+                New
+              </div>
+              <div
+                className={`py-5 ml-6 cursor-pointer ${active === "Last Week" ? "active" : ""}`}
+                onClick={() => setActive("Last Week")}
+              >
+                Last Week
+              </div>
+            </div>
+          </div>
+          <div className="p-5">
+            <div className="tab-content">
+              <Task title="Create Campaign" due="10:00 AM" completed={false}></Task>
+              <Task title="Meeting With Client" due="02:00 PM" completed={false}></Task>
+              <Task title="Create New Repository" due="10:00 AM" completed={false}></Task>
+            </div>
+          </div>
+        </div>
+      </div>
+  );
+}
+export { TaskMenu };

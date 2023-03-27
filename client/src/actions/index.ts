@@ -8,3 +8,4 @@ export { examQuestionActions } from "./examQuestion.actions";
 export { dashboardActions } from "./dashboard.actions";
 export { activityActions } from "./activity.actions";
 export { instructorActions } from "./instructor.actions";
+export { taskActions } from "./task.actions";
