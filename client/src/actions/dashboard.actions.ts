@@ -15,6 +15,7 @@ function getUserDashboard() {
   return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
     dashboardService.getUserDashboard().then(
       (dashboard) => {
+        console.log(dashboard)
         dispatch(success(dashboard));
         dispatch(alertActions.success("Successfully fetched Dashboard Info"));
       },

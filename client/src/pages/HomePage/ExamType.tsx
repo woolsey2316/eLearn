@@ -36,12 +36,12 @@ function ExamType() {
                     className="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                     title="Total assignments"
                   >
-                    {dashboard && dashboard.dashboard && dashboard.total.exam}
+                    {dashboard && dashboard.total.exam}
                   </div>
                 </div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard && dashboard.dashboard && dashboard.month.assignment}
+                {dashboard && dashboard.month.assignment}
               </div>
               <div className="text-base text-gray-600 mt-1">Assignments</div>
             </div>

@@ -52,4 +52,11 @@ function groupExamResultsByUser(examResults) {
     return grouped_results
 }
 
-module.exports =  { findAverages, weightedAverage, classAverages, calculateRank, groupExamResultsByUser }
+function notDue(due) {
+  return due > new Date();
+}
+
+function matchesUser(userId1, userId2) {
+  return String(userId1) === String(userId2)
+}
+module.exports =  { findAverages, weightedAverage, classAverages, calculateRank, groupExamResultsByUser, notDue, matchesUser }
