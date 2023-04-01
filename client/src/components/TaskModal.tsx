@@ -2,17 +2,22 @@ import React, { useState } from "react";
 
 import Modal from "react-modal";
 import { taskActions } from "../actions";
+import { useAppDispatch } from "../hooks/hooks";
+
+import DateTimePicker from 'react-datetime-picker';
 
 type Props = {
   modalIsOpen: boolean;
   closeModal: () => void;
 };
 function TaskModal(props: Props) {
+  const dispatch = useAppDispatch();
   const [task, setTask] = useState({
     title: "",
-    due: "",
     completed: false,
   })
+
+  const [due, onChange] = useState(new Date());
 
   function handleChange(e: React.FormEvent<HTMLInputElement>): void {
     const { name, value } = e.currentTarget;
@@ -25,8 +30,8 @@ function TaskModal(props: Props) {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
 
-    if (task.title && task.due ) {
-      dispatch(taskActions.createTask(task));
+    if (task.title && due) {
+      dispatch(taskActions.createTask({...task, due}));
     }
   }
   return (
@@ -73,12 +78,7 @@ function TaskModal(props: Props) {
           </div>
           <div className="mt-3">
             <label>due</label>
-            <input
-              className="input w-full border mt-2"
-              placeholder=""
-              name="due"
-              onChange={handleChange}
-            />
+            <DateTimePicker onChange={(date) => onChange(date)} value={due} />
           </div>
           <button type="submit" className="button bg-theme-1 text-white mt-4">
             Submit
@@ -91,8 +91,4 @@ function TaskModal(props: Props) {
   );
 }
 
-export { TaskModal };
-  function dispatch(arg0: any) {
-    throw new Error("Function not implemented.");
-  }
-
+export { TaskModal }

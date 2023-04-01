@@ -1,5 +1,5 @@
 export type Task = {
   title: string;
-  due: string;
+  due: Date;
   completed: boolean;
 }
