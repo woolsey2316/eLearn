@@ -1,9 +1,6 @@
 import React from "react";
-import { shallow, configure } from "enzyme";
+import { shallow } from "enzyme";
 import FormHeading from "./FormHeading";
-import Adapter from "enzyme-adapter-react-16";
-
-configure({ adapter: new Adapter() });
 
 describe("Login form", () => {
   it("contains a form heading", () => {

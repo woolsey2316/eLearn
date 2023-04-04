@@ -22,7 +22,8 @@
     "routes/**/*",
     "validation/**/*",
     "utils/**/*",
-    "./server.js"
+    "./server.js",
+    "./setupTests.js"
   ],
   "exclude": ["client/build/**/*"]
 }

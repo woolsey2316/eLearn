@@ -1,13 +1,11 @@
 import React from "react";
 import ForgotPassword from "./ForgotPassword";
-import { shallow, configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { shallow } from "enzyme";
 
-configure({ adapter: new Adapter() });
 
 describe("forgot password link", () => {
   it("did not forget password", () => {
-    let forgotPassword = false;
+    const forgotPassword = false;
     const app = shallow(<ForgotPassword forgotPassword={forgotPassword} />);
 
     expect(
@@ -20,7 +18,7 @@ describe("forgot password link", () => {
   });
 
   it("forgot password", () => {
-    let forgotPassword = true;
+    const forgotPassword = true;
     const app = shallow(<ForgotPassword forgotPassword={forgotPassword} />);
     expect(
       app.containsMatchingElement(

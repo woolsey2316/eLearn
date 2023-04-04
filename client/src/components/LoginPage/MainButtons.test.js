@@ -1,9 +1,6 @@
 import React from "react";
-import { shallow, configure } from "enzyme";
+import { shallow } from "enzyme";
 import MainButtons from "./MainButtons";
-import Adapter from "enzyme-adapter-react-16";
-
-configure({ adapter: new Adapter() });
 
 describe("Main Buttons change when user forgets password", () => {
   it("user forgot password", () => {

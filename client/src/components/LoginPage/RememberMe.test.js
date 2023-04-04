@@ -1,9 +1,6 @@
 import React from "react";
-import { shallow, configure } from "enzyme";
+import { shallow } from "enzyme";
 import RememberMe from "./RememberMe";
-import Adapter from "enzyme-adapter-react-16";
-
-configure({ adapter: new Adapter() });
 
 describe("remmeber me checkbox", () => {
   it("rememebr me checkbox shows", () => {
