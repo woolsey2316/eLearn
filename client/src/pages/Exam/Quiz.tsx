@@ -1,5 +1,4 @@
 import React, { ChangeEventHandler } from "react";
-import PropTypes from "prop-types";
 import { Question } from "./Question";
 import { AnswerOption } from "./AnswerOption";
 type Props = {
@@ -17,12 +16,12 @@ function Quiz(props: Props) {
     >
       <Question content={props.question} />
       <ul className="answerOptions">
-        {props.answerOptions.map((elem, index) => {
+        {props.answerOptions.map((answer, index) => {
           return (
             <AnswerOption
               key={index}
               answerIndex={index}
-              answerContent={elem}
+              answerContent={answer}
               getUserAnswer={props.getUserAnswer}
               selectedOption={props.selectedOption}
             />
@@ -32,7 +31,5 @@ function Quiz(props: Props) {
     </div>
   );
 }
-
-Quiz.propTypes = {};
 
 export default Quiz;

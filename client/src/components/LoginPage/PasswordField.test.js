@@ -1,12 +1,15 @@
 import React from "react";
-import { shallow } from "enzyme";
 import PasswordField from "./PasswordField";
+import { shallow, configure } from "enzyme";
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 describe("password input field", () => {
   it('password is actually the text "null"', () => {
-    let password = "null";
-    let submitted = true;
-    let forgotPassword = false;
+    const password = "null";
+    const submitted = true;
+    const forgotPassword = false;
     const app = shallow(
       <PasswordField
         forgotPassword={forgotPassword}
@@ -32,9 +35,9 @@ describe("password input field", () => {
   });
 
   it("password is empty", () => {
-    let password = "";
-    let submitted = true;
-    let forgotPassword = false;
+    const password = "";
+    const submitted = true;
+    const forgotPassword = false;
     const app = shallow(
       <PasswordField
         forgotPassword={forgotPassword}

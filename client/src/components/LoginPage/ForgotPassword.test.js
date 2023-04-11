@@ -1,7 +1,9 @@
 import React from "react";
 import ForgotPassword from "./ForgotPassword";
-import { shallow } from "enzyme";
+import { shallow, configure } from "enzyme";
+import Adapter from 'enzyme-adapter-react-16'
 
+configure({ adapter: new Adapter() })
 
 describe("forgot password link", () => {
   it("did not forget password", () => {

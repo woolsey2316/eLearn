@@ -24,8 +24,8 @@ function ActivityFeed() {
         <h2 className="text-lg font-medium truncate mr-5">Recent Activities</h2>
       </div>
       <div className="report-timeline mt-5 relative">
-        {activities?.map((activity, index) => (
-          <Activity key={index} activity={activity} />
+        {activities?.map(activity => (
+          <Activity key={activity._id} activity={activity} />
         ))}
       </div>
     </div>

@@ -28,9 +28,9 @@ function CourseDropdown(props: Props) {
               Select a Course
             </div>
             <div className="p-2">
-              {props.courseList?.map((course, index) => (
+              {props.courseList?.map(course => (
                 <button
-                  key={index}
+                  key={course._id}
                   onClick={() => chooseCourse(course.courseName)}
                   className="flex w-full p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"
                 >

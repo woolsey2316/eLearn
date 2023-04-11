@@ -19,8 +19,8 @@ function CourseTable({ courses }: CourseTableProps) {
         </tr>
       </thead>
       <tbody>
-        {courses?.map((course: CourseType, index: number) => (
-          <Course key={index} course={course}></Course>
+        {courses?.map((course: CourseType) => (
+          <Course key={course._id} course={course}></Course>
         ))}
       </tbody>
     </table>

@@ -1,11 +1,14 @@
 import React from "react";
-import { shallow } from "enzyme";
 import RememberMe from "./RememberMe";
+import { shallow, configure } from "enzyme";
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 describe("remmeber me checkbox", () => {
   it("rememebr me checkbox shows", () => {
-    let isChecked = true;
-    let forgotPassword = false;
+    const isChecked = true;
+    const forgotPassword = false;
     const app = shallow(
       <RememberMe forgotPassword={forgotPassword} rememberMe={isChecked} />
     );
