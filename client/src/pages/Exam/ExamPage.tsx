@@ -109,7 +109,7 @@ function ExamPage() {
   }
 
   const findSavedAnswers = useCallback(
-    (qId) => {
+    (qId: number) => {
       // default value of answerList[i] = ''
       setSelectedOption(answerList[section][qId]);
     },

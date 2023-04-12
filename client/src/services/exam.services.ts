@@ -21,9 +21,8 @@ async function getAllExams() {
     method: "GET",
     headers: { ...authHeader(), "Content-Type": "application/json" },
   };
-  const userId = getUserId();
   const response = await fetch(
-    `${API_URL}/courses/exams/${userId}`,
+    `${API_URL}/courses/exams/`,
     requestOptions
   );
   return handleResponse(response);

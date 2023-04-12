@@ -32,7 +32,6 @@ function calculateRank(userAvaerage, total_average) {
   total_average = total_average.sort((a,b) => b - a)
   let rank = 0;
   for (let i = 0; i < total_average.length; i++) {
-    console.log(total_average[i])
     if (total_average[i] === userAvaerage) {
       rank = i + 1
     }

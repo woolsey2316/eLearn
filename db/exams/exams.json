@@ -2,23 +2,23 @@
   {
      "examName":"Half Yearly",
      "due":{ "$date":"2021-07-21" },
-     "courseid": {"$oid": "61d50f9a4e88c2cec2e0d672"},
+     "courseId": {"$oid": "61d50f9a4e88c2cec2e0d672"},
      "description":"Half Yearly Exam",
      "sections":2,
      "duration":180
   },
   {
      "examName":"Multiple Choice",
-     "due":{ "$date":"2021-07-21" },
-     "courseid": {"$oid": "61d50f9a4e88c2cec2e0d672"},
+     "due":{ "$date":"2021-08-21" },
+     "courseId": {"$oid": "61d50f9a4e88c2cec2e0d672"},
      "description":"Multiple Choice Exam",
      "sections":2,
      "duration":180
   },
   {
      "examName":"Final Exam",
-     "due":{ "$date":"2021-07-21" },
-     "courseid": {"$oid": "61d50f9a4e88c2cec2e0d672"},
+     "due":{ "$date":"2021-08-21" },
+     "courseId": {"$oid": "61d50f9a4e88c2cec2e0d672"},
      "description":"Final Exam Multiple choice format",
      "sections":2,
      "duration":180
@@ -58,7 +58,7 @@
   {
     "examName": "Half Yearly",
     "courseId": {"$oid": "61c10f8f14fdaabab184244c"},
-    "due":{ "$date":"2021-07-21" },
+    "due":{ "$date":"2021-06-21" },
     "description": "Half yearly exam",
     "sections": 2,
     "duration": 180
@@ -66,7 +66,7 @@
   {
     "examName": "Multiple Choice",
     "courseId": {"$oid": "61c10f8f14fdaabab184244c"},
-    "due":{ "$date":"2021-07-21" },
+    "due":{ "$date":"2021-06-21" },
     "description": "a multiple choice exam",
     "sections": 2,
     "duration": 180

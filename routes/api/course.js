@@ -4,6 +4,9 @@ const router = express.Router();
 const { verifyToken } = require("../../utils/verifyToken");
 
 const Course = require("../../models/Course");
+const Exam = require("../../models/Exam")
+
+const { ObjectId } = require('mongodb');
 
 // @route GET api/courses/
 // @desc Retrieve course all courses
@@ -46,20 +49,25 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/exams/:user_id", async (req, res) => {
-  Course.find({ subscribers: req.params.user_id })
-    .then((courseList) => {
-      const examList = courseList.reduce(
-        (previousValue, currentValue) => [
-          ...previousValue,
-          ...currentValue.exams,
-        ],
-        []
-      );
-      return res.json(examList);
+router.get("/exams", (req, res) => {
+  const jwt = req.headers.authorisation.split(" ")[1];
+  const { payload } = verifyToken(jwt, res);
+  const userID = payload?.id;
+
+  Course.find({ subscribers: ObjectId(userID) })
+    .then((courses) => {
+      const examPromises = []
+      courses.forEach(course => {
+        examPromises.push(Exam.find({courseId: course._id}))
+      })
+      return Promise.all(examPromises);
+    })
+    .then(exams => {
+      const examList = [].concat.apply([], exams);
+      return res.json(examList)
     })
     .catch((err) =>
-      res.status(404).json({ nocoursefound: "error finding exams" })
+      res.status(404).json({ nocoursefound: "something went wrong fetching exams" })
     );
 });
 

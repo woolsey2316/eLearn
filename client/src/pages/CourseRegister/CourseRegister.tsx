@@ -52,7 +52,7 @@ function CourseRegister(props: PageComponentProps) {
   }, [fetchCourses]);
 
   // Reasonable page values: 0 -> max page
-  const navigatePage = useCallback((page) => {
+  const navigatePage = useCallback((page: number) => {
     if (page > 0) {
       setPage(page);
     } else {

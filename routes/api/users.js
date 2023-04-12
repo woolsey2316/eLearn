@@ -5,7 +5,7 @@ const ExamResult = require("../../models/ExamResult");
 
 const { verifyToken } = require("../../utils/verifyToken");
 
-const { findAverages } = require("../../utils/examStats")
+const { findAverages } = require("../../utils/ExamStats")
 
 // @route PUT api/user/:user_id/profile
 // @desc Retrieve user details

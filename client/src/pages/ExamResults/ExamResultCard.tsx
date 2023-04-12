@@ -12,7 +12,7 @@ function ExamResultCard({ examInfo }: Props) {
           {uppercaseFirstLetter(examInfo.exam_name)}
         </div>
         <div className="text-gray-600 text-xs whitespace-no-wrap">
-          {examInfo.dueDate}
+          {examInfo.dueDate?.toString()}
         </div>
       </td>
       <td className="text-right border-b w-32">{examInfo.rank}</td>

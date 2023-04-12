@@ -8,6 +8,7 @@ import { examActions } from "../../actions";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { PageComponentProps } from "../../types/PageComponentProps";
+import { sameMonth } from "../../utils/DateUtils";
 
 const monthNames = [
   "January",
@@ -39,8 +40,8 @@ function ExamList(props: PageComponentProps) {
   useEffect(() => {
     fetchExams();
   }, [fetchExams]);
-
-  if (examData === undefined) return null;
+  console.log(examData)
+  if (examData === undefined || examData.length === 0) return null;
 
   examData.sort((a, b) => Date.parse(a.due) - Date.parse(b.due));
   const months = new Set(
@@ -52,12 +53,12 @@ function ExamList(props: PageComponentProps) {
       // A white box that contains all exams for the month
       <MonthContainer month={month} key={month}>
         {examData
-          .filter((elem) => monthNames[new Date(elem.due).getMonth()] === month)
+          .filter((exam) => sameMonth(monthNames, exam.due, month))
           // Remove last years exams so they don't appear in current month
           // but allow January, February... of next year to show
           // .filter(
-          //   (elem) =>
-          //     new Date(elem.due).getFullYear() >= new Date().getFullYear()
+          //   (exam) =>
+          //     new Date(exam.due).getFullYear() >= new Date().getFullYear()
           // )
           .map((exam, index) => (
             <ExamCard key={index} exam={exam} />

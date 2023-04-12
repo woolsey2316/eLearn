@@ -59,7 +59,7 @@ function MyCourses(props: PageComponentProps) {
   }
   // Reasonable page values: 0 -> max page
   const navigatePage = useCallback(
-    (page_) => {
+    (page_: number) => {
       let max = 0;
       if (courses?.courseList?.length === undefined) {
         max = 0;
