@@ -40,8 +40,8 @@ router.get("/:course_id", (req, res) => {
 
 router.get("/:exam_id/questions", async (req, res) => {
   Exam.findById(req.params.exam_id)
-    .then((examQuestions) => {
-      return res.json(examQuestions);
+    .then((exam) => {
+      return res.json(exam);
     })
     .catch((err) =>
       res

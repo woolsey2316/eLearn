@@ -19,8 +19,8 @@ function getUserExamQuestions(examId: string) {
     dispatch(request());
 
     examQuestionService.getExamQuestions(examId).then(
-      (questionList) => {
-        dispatch(success(questionList));
+      (examInfo) => {
+        dispatch(success(examInfo));
         dispatch(alertActions.success("Successfully fetched exams"));
       },
       (error) => {
@@ -33,8 +33,8 @@ function getUserExamQuestions(examId: string) {
   function request() {
     return { type: examQuestionConstants.EXAM_QUESTIONS_REQUEST };
   }
-  function success(questionList: ExamQuestions) {
-    return { type: examQuestionConstants.EXAM_QUESTIONS_SUCCESS, questionList };
+  function success(examInfo: ExamQuestions) {
+    return { type: examQuestionConstants.EXAM_QUESTIONS_SUCCESS, examInfo };
   }
   function failure(error: string) {
     return { type: examQuestionConstants.EXAM_QUESTIONS_FAILURE, error };

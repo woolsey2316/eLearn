@@ -3,6 +3,7 @@ import { DateIcon } from "./DateIcon";
 import * as Icon from "react-feather";
 type ExamCardProps = {
   exam: {
+    _id: string
     due: string;
     examName: string;
     duration: number;
@@ -82,7 +83,7 @@ function ExamCard({ exam }: ExamCardProps) {
         </div>
         <div className="flex ml-auto mr-5">
           <a
-            href={`/student/exams/61c1652e14fdaabab1842464`}
+            href={`/student/exams/${exam._id}`}
             className={
               "button w-24 inline-block my-auto mr-1 bg-theme-1 text-white" +
               (determineUrgency() === 4 ? " invisible" : "")
@@ -92,7 +93,7 @@ function ExamCard({ exam }: ExamCardProps) {
           </a>
           <a
             href="/student/grades"
-            className="button w-24 inline-block mx-1 border bg-white border border-gray-500 text-gray-700"
+            className="button w-24 inline-block mx-1 bg-white border border-gray-500 text-gray-700"
           >
             See Result
           </a>

@@ -6,7 +6,7 @@ const { verifyToken } = require("../../utils/verifyToken");
 const Exam = require("../../models/Exam");
 const ExamResult = require("../../models/ExamResult");
 
-const { notDue, matchesUser } = require("../../utils/ExamStats")
+const { notDue, matchesUser } = require("../../utils/examStats")
 
 // @route GET /dashboard/
 // @desc Retrieve overview dashboard data

@@ -4,7 +4,6 @@ import React, {
   useCallback,
   ChangeEventHandler,
 } from "react";
-import { QuizData } from "./quizQuestions";
 import Quiz from "./Quiz";
 import SectionCompleteModal from "./SectionCompleteModal";
 import { CourseSection } from "./CourseSection";
@@ -60,8 +59,10 @@ function ExamPage() {
   }, [fetchExamQuestions]);
 
   const quizQuestions = useAppSelector(
-    (state) => state.examQuestion.examQuestions?.quizQuestions
+    (state) => state.examQuestion.examInfo?.quizQuestions
   );
+
+  const examInfo = useAppSelector((state) => state.examQuestion.examInfo);
 
   useEffect(() => {
     setAnswerList(initialiseAnswersList(quizQuestions));
@@ -246,13 +247,13 @@ function ExamPage() {
           <CourseSection
             section={section}
             clicked={setSection}
-            sections={QuizData.sections}
+            sections={examInfo.sections}
             timeLeft={timeLeft}
             setTimeLeft={setTimeLeft}
           />
           <div className="items-center p-5 border-b border-gray-200">
             <h2 className="font-medium text-base mr-auto">
-              Exam Name: {QuizData.title}
+              Exam Name: {examInfo.examName}
             </h2>
             <div className="text-base mr-auto">
               Question <span>{questionId + 1}</span> of
@@ -308,7 +309,7 @@ function ExamPage() {
             answerList={answerList[section]}
             markedQuestions={MarkedQuestionIds[section]}
             currentQuestion={questionId}
-            section={QuizData.sections[section]}
+            section={examInfo.sections[section]}
             submitExam={submitExam}
           />
         )}

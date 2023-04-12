@@ -3,7 +3,10 @@ import { AnyAction } from "redux";
 import { QuizQuestions } from "../types/ExamState";
 interface ExamState {
   submittingExam: boolean;
-  examQuestions: {
+  examInfo: {
+    sections: string[];
+    examName: string;
+    duration: number;
     quizQuestions: QuizQuestions;
   };
 }
@@ -11,7 +14,10 @@ const defaultValues = { question: "", possibleAnswers: ["", "", "", ""] };
 export function examQuestion(
   state: ExamState = {
     submittingExam: false,
-    examQuestions: {
+    examInfo: {
+      sections: [],
+      examName: "exam Name",
+      duration: 60,
       quizQuestions: [[defaultValues], [defaultValues], [defaultValues]],
     },
   },
@@ -22,7 +28,7 @@ export function examQuestion(
       return {
         ...state,
         submittingExam: false,
-        examQuestions: action.questionList,
+        examInfo: action.examInfo,
       };
     default:
       return state;
