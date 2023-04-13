@@ -50,10 +50,9 @@ async function register(courseDTO: CourseDTO) {
     headers: { ...authHeader(), "Content-Type": "application/json" },
     body: JSON.stringify(courseDTO),
   };
-  const userID = getUserId();
 
   const response = await fetch(
-    `${API_URL}/courses/${courseDTO.id}/${userID}`,
+    `${API_URL}/courses/${courseDTO.id}`,
     requestOptions
   );
   const { alreadyRegistered } = await handleResponse(response);

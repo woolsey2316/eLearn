@@ -16,6 +16,7 @@ function Course({ course }: CourseProps) {
         <td className="border-b ">
           <Icon.CheckSquare className="text-theme-9 mr-2 h-5 w-5 inline" />
           <h2 className="text-theme-9 inline">Active exams</h2>
+          {course.activeExams.map(exam => <h2 className="text-gray">{exam.examName}</h2>)}
         </td>
       ) : (
         <td className="border-b ">

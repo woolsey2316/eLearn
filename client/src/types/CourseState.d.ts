@@ -1,3 +1,4 @@
+import { ExamQuestions } from './ExamState'
 export type CourseDTO = {
   category: string;
   expires: Date;
@@ -24,7 +25,7 @@ type CourseType = {
   courseName: string;
   category: string;
   instructorId: string;
-  activeExams: boolean;
+  activeExams: ExamQuestions[];
 };
 
 type CourseState = {

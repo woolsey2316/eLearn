@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { verifyToken } = require("../../utils/verifyToken");
+const { userIsSubscribed } = require("../../utils/course")
 
 const Course = require("../../models/Course");
 const Exam = require("../../models/Exam")
@@ -82,10 +83,10 @@ router.get("/course/:id", (req, res) => {
     );
 });
 
-// @route PUT api/course/:course_id/:user_id
+// @route PUT api/course/:course_id/
 // @description add new user to course
 // @access Public
-router.put("/:course_id/:user_id", (req, res) => {
+router.put("/:course_id", (req, res) => {
   const jwt = req.headers.authorisation.split(" ")[1];
   const { payload } = verifyToken(jwt, res);
   const userID = payload?.id;
@@ -97,12 +98,12 @@ router.put("/:course_id/:user_id", (req, res) => {
     .then((course) => {
       let alreadyRegistered = false;
       course.subscribers.forEach((user) => {
-        if (user == req.params.user_id) {
+        if (user == userID) {
           alreadyRegistered = true;
         }
       });
       if (!alreadyRegistered) {
-        course.subscribers.push(req.params.user_id);
+        course.subscribers.push(userID);
       }
       course.save();
       return res.json({ alreadyRegistered });
@@ -124,19 +125,17 @@ router.get("/user", (req, res) => {
     return res.status(401).json("jwt token needs an 'id' field");
   }
 
-  Course.find({ subscribers: userID })
-    .then((courseList) => {
-      const courseIds = Object.keys(courseList).map((key) => {
-        return {
-          _id: courseList[key]._id,
-          courseName: courseList[key].CourseName,
-          category: courseList[key].category,
-          instructorId: courseList[key].instructorId,
-        };
-      });
-      return res.json(courseIds);
-    })
-    .catch((err) => res.status(404).json({ nocoursefound: "No Course found" }));
+  Course.aggregate([{
+    $lookup: {
+      from: "exams",
+      localField: "_id",
+      foreignField: "courseId",
+      as: "activeExams"
+    }
+  }]).exec(function(err, courses) {
+    courses = courses.filter(course => userIsSubscribed(userID, course.subscribers))
+    return res.json(courses)
+  });
 });
 
 // @route GET api/courses
