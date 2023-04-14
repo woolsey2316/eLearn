@@ -1,20 +1,25 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 
 import * as Icon from "react-feather";
 
 import { QuestionCard } from "./QuestionCard";
 
 import { Pagination } from "../../components/Pagination";
-
-function QuestionList({ questionList, setQuestion, removeItem }) {
+import { Quiz } from "../../types/ExamState";
+interface Props {
+  questionList: Quiz[];
+  setQuestion: React.Dispatch<React.SetStateAction<Quiz>>;
+  removeItem: (qId: number) => void;
+}
+function QuestionList({ questionList, setQuestion, removeItem }: Props) {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(10);
 
-  function handleChange(event) {
-    setResultsPerPage(event.target.value);
+  function handleChange(event: ChangeEvent<HTMLSelectElement>) {
+    setResultsPerPage(parseInt(event.target.value));
   }
-  function handleSearchChange(e) {
+  function handleSearchChange(e: ChangeEvent<HTMLInputElement>) {
     const { value } = e.target;
     setSearch(value);
   }
@@ -25,7 +30,7 @@ function QuestionList({ questionList, setQuestion, removeItem }) {
     navigatePage(page + 1);
   }
   // Reasonable page values: 0 -> max page
-  function navigatePage(page_) {
+  function navigatePage(page_: number) {
     const max = Math.floor(questionList.length / resultsPerPage);
     if (page_ > 0 && page_ <= max) return setPage(page_);
     else return setPage(1);

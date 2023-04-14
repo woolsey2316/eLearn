@@ -226,5 +226,13 @@
       "expires":{
          "$date":"2022-11-10T22:26:12.111Z"
       }
-   }
+   },
+   {
+    "courseName":"Latin Beginners",
+    "instructorId": {"$oid": "61735818bb4f80176c13acf3"},
+    "category":"Foreign Languages",
+    "expires":{
+       "$date":"2024-11-10T22:26:12.111Z"
+    }
+ }
 ]

@@ -1,6 +1,12 @@
 import React from "react";
-
-function InputField({ quiz, changeAnswerOption, number, submitted }) {
+import { Quiz } from "../../types/ExamState";
+interface Props {
+  quiz: Quiz;
+  changeAnswerOption: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  number: number;
+  submitted: boolean;
+}
+function InputField({ quiz, changeAnswerOption, number, submitted }: Props) {
   const index = number - 1;
   return (
     <div>
@@ -10,7 +16,7 @@ function InputField({ quiz, changeAnswerOption, number, submitted }) {
       )}
       <input
         type="text"
-        name={index}
+        name={index.toString()}
         className={
           "intro-x login__input rounded-full input input--lg border border-gray-300 block mb-2 mt-1 w-full" +
           (submitted && quiz && !quiz.option[index] ? " border-theme-6" : "")

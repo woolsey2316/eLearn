@@ -1,0 +1,20 @@
+[
+  {
+    "_id":{"$oid": "61735818bb4f80176c13acf3"},
+    "email":"woolsey2316@gmail.com",
+    "password": "$2a$10$moVdJOiJChOXF0ZNO.KCTenG9XX9attLbnL8TCETEhJFwuUgeRh8.",
+    "date": {"$date": "2022-01-04T13:00:00.000+00:00"},
+    "gender": "male",
+    "area": "Nowra",
+    "className": "Science",
+    "mobile": "0466687607",
+    "pincode": "123456",
+    "name": "David Woolsey",
+    "state": "NSW",
+    "address": "50 Basil Street",
+    "school": "Emu Heights",
+    "admin": "true",
+    "OTP": "AypT",
+    "otpExpireTime": {"$date": "2022-11-22T22:14:11.359+00:00"}
+  }
+]

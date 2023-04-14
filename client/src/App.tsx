@@ -39,7 +39,7 @@ function App() {
     setIsOpen(false);
   }
 
-  const sideMenu = <SideMenu permissions={true} open={openModal} />;
+  const sideMenu = <SideMenu admin={true} open={openModal} />;
   return (
     <Router history={history}>
       <LogoutModal modalIsOpen={modalIsOpen} closeModal={closeModal} />

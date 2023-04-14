@@ -1,15 +1,22 @@
 import React from 'react'
 import * as Icon from 'react-feather'
 import ReactHtmlParser from 'react-html-parser'
-
-function QuestionCard({ question, setQuestion, questionList, removeItem }) {
+import { Quiz } from '../../types/ExamState';
+interface Props {
+  question: Quiz;
+  setQuestion: React.Dispatch<React.SetStateAction<Quiz>>;
+  questionList: Quiz[];
+  removeItem: (qId: number) => void;
+}
+function QuestionCard({ question, setQuestion, questionList, removeItem }: Props) {
   function findQuestion() {
     setQuestion(questionList[question.number - 1])
     window.scroll(0, 100)
   }
   function deleteQuestion() {
     removeItem(question.number - 1)
-    console.log('deleting question: ' + question.number - 1)
+    console.log('deleting question')
+    console.log(question.number - 1)
     console.log('question List')
     console.log({ questionList })
   }

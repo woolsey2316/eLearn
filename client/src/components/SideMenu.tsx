@@ -10,7 +10,7 @@ import CourseSubMenu from "./CourseSubMenu";
 import { SideMenuGroup } from "./SideMenuGroup";
 import { LogoutMenuItem } from "./LogoutMenuItem";
 type SideMenuProps = {
-  permissions: boolean;
+  admin: boolean;
   open: () => void;
 };
 function SideMenu(props: SideMenuProps) {
@@ -58,7 +58,7 @@ function SideMenu(props: SideMenuProps) {
           <Icon.LogOut className="side-menu__icon" />
         </LogoutMenuItem>
       </StudentMenuContainer>
-      {props.permissions && (
+      {props.admin && (
         <AdminMenuContainer>
           <SideMenuItem name="Admin Dashboard" path="/admin/dashboard">
             <Icon.Home className="side-menu__icon" />

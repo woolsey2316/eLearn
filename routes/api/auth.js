@@ -83,7 +83,7 @@ router.post("/login", async (req, res) => {
     {
       payload: {
         email: foundUser.email,
-        roles: foundUser.roles,
+        admin: foundUser.admin,
         id: foundUser.id,
         expires: expireTime,
       },

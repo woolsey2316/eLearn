@@ -1,6 +1,11 @@
 import React from 'react'
-
-function AnswerField({ quiz, handleChange, submitted }) {
+import { Quiz } from '../../types/ExamState';
+interface Props {
+  quiz: Quiz;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  submitted: boolean;
+}
+function AnswerField({ quiz, handleChange, submitted }: Props) {
   return (
     <div>
       <label className="text-gray-700 mt-5">answer</label>

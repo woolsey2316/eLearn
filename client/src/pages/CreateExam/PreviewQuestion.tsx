@@ -1,8 +1,12 @@
 import React from 'react'
 
 import ReactHtmlParser from 'react-html-parser'
+import { Quiz } from '../../types/ExamState';
 
-function PreviewQuestion({ quiz }) {
+interface Props {
+  quiz: Quiz;
+}
+function PreviewQuestion({ quiz }:Props) {
   return (
     <div className="intro-y box lg:col-span-6 mt-5">
       <div style={{ wordWrap: 'break-word' }} className="items-center">

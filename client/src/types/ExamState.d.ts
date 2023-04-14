@@ -38,3 +38,19 @@ export type Results = {
   examResults: Array<ExamResult>
   weightedAverage: {user: number; rank: number}
 }
+
+export type ExamInfo = {
+  examName: string,
+  due: Date,
+  courseId: string,
+  description: string,
+  sections: string[],
+  duration: number,
+}
+
+export type Quiz = {
+  question: string,
+  answer: string,
+  option: string[],
+  number: number,
+}

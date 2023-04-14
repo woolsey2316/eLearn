@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, SetStateAction } from "react";
 
 import { Alert } from "../../components";
 import { InputField } from "./InputField";
@@ -6,7 +6,22 @@ import { InputField } from "./InputField";
 import { AnswerField } from "./AnswerField";
 import { QuestionNumberField } from "./QuestionNumberField";
 import { QuestionField } from "./QuestionField";
+import { Quiz } from "../../types/ExamState";
 
+import { Delta as TypeDelta, Sources } from 'quill';
+
+import { AlertLevel } from "../../enums/Alert";
+interface Props {
+  quiz: Quiz;
+  setQuestion: React.Dispatch<React.SetStateAction<Quiz>>;
+  updateQuestionList: (quiz: Quiz) => void;
+  questionList: Quiz[];
+  success: boolean;
+  setSuccess: React.Dispatch<React.SetStateAction<boolean>>
+  submitted: boolean
+  setSubmitted: React.Dispatch<React.SetStateAction<boolean>>
+
+}
 function ExamCreationForm({
   quiz,
   setQuestion,
@@ -14,10 +29,11 @@ function ExamCreationForm({
   questionList,
   success,
   setSuccess,
-}) {
-  const [submitted, setSubmitted] = useState(false);
+  submitted,
+  setSubmitted
+}: Props) {
   const [alert, setAlert] = useState({
-    type: "",
+    type: AlertLevel.alert_neutral,
     message: "",
   });
 
@@ -59,7 +75,12 @@ function ExamCreationForm({
     );
   }
 
-  function handleQuestionChange(content, delta, source, editor) {
+  function handleQuestionChange(
+    _content: string,
+    _delta: TypeDelta,
+    _source: Sources,
+    editor: any
+  ): void {
     console.log(editor.getHTML());
     setQuestion((quiz) => ({
       ...quiz,
@@ -67,7 +88,7 @@ function ExamCreationForm({
     }));
   }
 
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setQuestion((quiz) => ({
       ...quiz,
@@ -75,13 +96,13 @@ function ExamCreationForm({
     }));
   }
 
-  function changeAnswerOption(e) {
+  function changeAnswerOption(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     console.log(`changing index ${name}, to value ${value}`);
     setQuestion((quiz) => ({
       ...quiz,
       option: [
-        ...quiz.option.slice(0, name),
+        ...quiz.option.slice(0, parseInt(name, 10)),
         value,
         ...quiz.option.slice(parseInt(name, 10) + 1),
       ],
@@ -91,26 +112,26 @@ function ExamCreationForm({
   function handleValidation() {
     if (!allFieldsExist()) {
       setAlert({
-        type: "alert-danger",
+        type: AlertLevel.alert_danger,
         message: "Empty fields present",
       });
       setSuccess(false);
     } else if (!eachAnswerUnique()) {
       setAlert({
-        type: "alert-danger",
+        type: AlertLevel.alert_danger,
         message: "Answer options must be unique",
       });
       setSuccess(false);
     } else if (!answerAmongOptions()) {
       setAlert({
-        type: "alert-danger",
+        type: AlertLevel.alert_danger,
         message: "Correct answer is not among 4 options",
       });
       setSuccess(false);
     }
   }
   // dispatch an action to the redux store, updates 'user' object
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(`%cquiz details: ${JSON.stringify(quiz)}`, "color:green");
     setSubmitted(true);
@@ -120,9 +141,10 @@ function ExamCreationForm({
         question: "",
         answer: "",
         option: ["", "", "", ""],
+        number: questionList.length+1
       });
       setAlert({
-        type: "alert-success",
+        type: AlertLevel.alert_success,
         message: "Question was successfully added to test!",
       });
       setSuccess(true);
@@ -164,7 +186,6 @@ function ExamCreationForm({
                 <InputField
                   key={i}
                   changeAnswerOption={changeAnswerOption}
-                  handleChange={handleChange}
                   submitted={submitted}
                   quiz={quiz}
                   number={i + 1}

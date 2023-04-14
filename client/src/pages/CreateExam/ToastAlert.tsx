@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-
-const ToastAlert = ({ message }) => {
+interface Props {
+  message: string;
+}
+const ToastAlert = ({ message }: Props) => {
   const [show, setShow] = useState(true);
   function close() {
     setShow(false);
@@ -15,8 +17,8 @@ const ToastAlert = ({ message }) => {
           <span
             className="jq-toast-loader jq-toast-loaded transition ease-in duration-300"
             style={{
-              "-webkit-transition": "width 2.6s ease-in",
-              "-o-transition": "width 2.6s ease-in",
+              WebkitTransition: "width 2.6s ease-in",
+              OTransition: "width 2.6s ease-in",
               transition: "width 2.6s ease-in",
               backgroundColor: "#9EC600",
             }}

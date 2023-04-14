@@ -1,6 +1,11 @@
 import React from 'react'
-
-function QuestionNumberField({ quiz, handleChange, submitted }) {
+import { Quiz } from '../../types/ExamState';
+interface Props {
+  quiz: Quiz;
+  handleChange: React.ChangeEventHandler<HTMLInputElement>;
+  submitted: boolean;
+}
+function QuestionNumberField({ quiz, handleChange, submitted }: Props) {
   return (
     <div>
       <label className="text-gray-700 mt-5">Question number</label>
@@ -12,7 +17,7 @@ function QuestionNumberField({ quiz, handleChange, submitted }) {
         name="number"
         className="intro-x login__input input input--lg border border-gray-300 block mb-2 mt-1 w-full"
         placeholder="question number"
-        value={quiz && quiz.number && parseInt(quiz.number, 10)}
+        value={quiz && quiz.number}
         onChange={handleChange}
       />
     </div>

@@ -2,8 +2,14 @@ import React from 'react'
 
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
-
-function QuestionField({ submitted, quiz, handleChange }) {
+import { Quiz } from '../../types/ExamState';
+import { Delta as TypeDelta, Sources } from 'quill';
+interface Props {
+  submitted: boolean;
+  quiz: Quiz;
+  handleChange: (_content: string,_delta: TypeDelta, _source: Sources, editor: any) => void
+}
+function QuestionField({ submitted, quiz, handleChange }: Props) {
   return (
     <div>
       {submitted && quiz && !quiz.question && (

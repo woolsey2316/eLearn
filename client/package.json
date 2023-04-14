@@ -5,6 +5,7 @@
   "dependencies": {
     "@babel/runtime": "^7.21.0",
     "@reach/tooltip": "^0.16.0",
+    "@types/react-html-parser": "^2.0.2",
     "axios": "^0.22.0",
     "history": "4.10.1",
     "moment": "^2.29.1",
