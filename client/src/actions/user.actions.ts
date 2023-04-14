@@ -84,6 +84,9 @@ function setUserDetails(userDTO: UserInfo) {
   function failure(error: string) {
     return { type: userConstants.USER_UPDATE_FAILURE, error };
   }
+  function success(error: string) {
+    return { type: userConstants.USER_UPDATE_SUCCESS, error };
+  }
 }
 
 function getUserDetails() {

@@ -5,7 +5,7 @@ const ExamResult = require("../../models/ExamResult");
 
 const { verifyToken } = require("../../utils/verifyToken");
 
-const { findAverages } = require("../../utils/ExamStats")
+const { findAverages } = require("../../utils/examStats")
 
 // @route PUT api/user/:user_id/profile
 // @desc Retrieve user details
@@ -32,7 +32,8 @@ router.put("/:user_id/profile", (req, res) => {
     password2: req.body.password2,
     mobile: req.body.mobile,
     pincode: req.body.pincode,
-  }).then((user) => res.status(200).json(user));
+  }).then((user) => res.status(200).json(user))
+  .catch(err => res.status(404).json(err));
 });
 
 // @route GET api/user/:user_id/profile
@@ -56,7 +57,6 @@ router.get("/:user_id/courses", (req, res) => {
     if (!course) {
       return res.status(404).json({ idnotfound: "course id not found" });
     }
-
     return res.status(200).json({ courses: course });
   });
 });

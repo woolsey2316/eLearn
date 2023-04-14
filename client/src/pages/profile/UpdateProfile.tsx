@@ -10,7 +10,7 @@ import { PageComponentProps } from "../../types/PageComponentProps";
 
 function UpdateProfile(props: PageComponentProps) {
   return (
-    <body className="app">
+    <div className="app">
       <MobileMenu />
       <div className="flex px-2 sm:px-10">
         {props.sideMenu}
@@ -27,7 +27,7 @@ function UpdateProfile(props: PageComponentProps) {
           </div>
         </div>
       </div>
-    </body>
+    </div>
   );
 }
 

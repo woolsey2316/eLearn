@@ -75,7 +75,7 @@ function PersonalInformation() {
                   type="text"
                   className="input w-full border bg-gray-100 cursor-not-allowed mt-2"
                   placeholder="Email"
-                  value={userDetails?.email}
+                  value={userDetails?.email ?? ""}
                   name="email"
                   disabled
                 />
@@ -87,7 +87,7 @@ function PersonalInformation() {
                   type="text"
                   className="input w-full border mt-2"
                   placeholder="Full Name"
-                  value={userDetails?.name}
+                  value={userDetails?.name ?? ""}
                   name="name"
                   disabled
                 />
@@ -99,7 +99,7 @@ function PersonalInformation() {
                   type="text"
                   className="input w-full border mt-2"
                   placeholder="Class Name"
-                  value={userDetails?.className}
+                  value={userDetails?.className ?? ""}
                   name="className"
                 />
               </div>
@@ -110,7 +110,7 @@ function PersonalInformation() {
                   type="text"
                   className="input w-full border mt-2"
                   placeholder="School"
-                  value={userDetails?.school}
+                  value={userDetails?.school ?? ""}
                   name="school"
                 />
               </div>
@@ -123,7 +123,7 @@ function PersonalInformation() {
                   type="text"
                   className="input w-full border mt-2"
                   placeholder="Mobile Number"
-                  value={userDetails?.mobile}
+                  value={userDetails?.mobile ?? ""}
                   name="mobile"
                 />
               </div>
@@ -134,7 +134,7 @@ function PersonalInformation() {
                   type="text"
                   className="input w-full border mt-2"
                   placeholder="Address"
-                  value={userDetails?.address}
+                  value={userDetails?.address ?? ""}
                   name="address"
                 />
               </div>
@@ -145,7 +145,7 @@ function PersonalInformation() {
                   type="text"
                   className="input w-full border mt-2"
                   placeholder="Area"
-                  value={userDetails?.area}
+                  value={userDetails?.area ?? ""}
                   name="area"
                 />
               </div>
@@ -156,7 +156,7 @@ function PersonalInformation() {
                   type="text"
                   className="input w-32 border mt-2"
                   placeholder="State"
-                  value={userDetails?.state}
+                  value={userDetails?.state ?? ""}
                   name="state"
                 />
               </div>

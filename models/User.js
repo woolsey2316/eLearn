@@ -39,11 +39,11 @@ const UserSchema = new Schema({
     required: true,
   },
   mobile: {
-    type: Number,
+    type: String,
     required: true,
   },
   pincode: {
-    type: Number,
+    type: String,
     required: true,
   },
   school: {
