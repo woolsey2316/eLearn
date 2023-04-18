@@ -9,7 +9,7 @@ function Breadcrumb() {
     return window.location.pathname.substring(0, n + section.length);
   }
   return (
-    <div className="-intro-x breadcrumb mr-auto hidden flex sm:flex">
+    <div className="-intro-x breadcrumb mr-auto flex">
       {path
         .filter((_, index) => index < path.length - 1 && index > 0)
         .map((section, index) => (

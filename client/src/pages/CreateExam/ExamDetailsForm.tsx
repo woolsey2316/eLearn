@@ -1,21 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ExamInfo } from '../../types/ExamState';
 import { Dropdown } from './DropDown';
+import * as Icon from "react-feather";
+import PillButton from '../../components/PillButton';
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { courseActions } from '../../actions';
 interface Props {
   examInfo: ExamInfo;
   setExamInfo: React.Dispatch<React.SetStateAction<ExamInfo>>;
   submitted: boolean;
   handleSectionsChange: (index: number, e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  handleCourseChange: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  removeSection:  (section:string, e: React.MouseEvent<SVGElement, MouseEvent>) => void
   sections: string[];
 }
 function ExamDetailsForm({
   setExamInfo,
   handleSectionsChange,
+  handleCourseChange,
+  removeSection,
   examInfo,
   submitted,
   sections
 }: Props) {
   const [open, setOpen] = React.useState(false);
+  const dispatch = useAppDispatch();
+
+  const courses = useAppSelector((state) => state.courses.userCourseList);
+
+  useEffect(() => {
+    dispatch(courseActions.getAllUserCourses());
+  }, []);
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
     const { name, value } = e.target;
     setExamInfo((examInfo) => ({
@@ -62,15 +78,41 @@ function ExamDetailsForm({
           onChange={handleChange}
         />
       </div>
+      {/* sections dropdown that allows a teacher to choose which sections the test contains */}
       <div>
         <label className="text-gray-700 mt-5">Sections</label>
         {submitted && examInfo.sections.length === 0 && (
           <div className="text-theme-6">Sections are required</div>
         )}
         <Dropdown
-          trigger={<button onClick={handleOpen}>Dropdown</button>}
-          menu={sections.map((section,index) => <button onClick={(e) => handleSectionsChange(index, e)}>{section}</button>)}
+          trigger={<button className="p-3" onClick={handleOpen}>Section Name <Icon.ChevronDown className="inline-block h-4 w-4 mb-0.5"/></button>}
+          menu={sections.map((section,index) => <button className="p-2 w-full text-left" onClick={(e) => handleSectionsChange(index, e)}>{section}</button>)}
           />
+        <div>
+          {examInfo.sections.map((section, index) => <PillButton key={index} removeSection={removeSection}>{section}</PillButton>)}
+        </div>
+      </div>
+      {/* the course the test belongs to */}
+      <div>
+        <label className="text-gray-700 mt-5">Course</label>
+        {submitted && examInfo.courseName !== "" && (
+          <div className="text-theme-6">Course is required</div>
+        )}
+        {courses &&
+        <Dropdown
+          trigger={
+            <button className="p-3" onClick={handleOpen}>
+              {examInfo.courseName ? examInfo.courseName : "Course Name"}
+              <Icon.ChevronDown className="inline-block h-4 w-4 mb-0.5"/>
+            </button>
+          }
+          menu={courses.map((course) =>
+            <button className="p-2 w-full text-left" onClick={handleCourseChange} value={course.courseName}>
+              {course.courseName}
+            </button>
+            )}
+          />
+        }
       </div>
     </div>
   );

@@ -41,6 +41,7 @@ export type Results = {
 
 export type ExamInfo = {
   examName: string,
+  courseName: string,
   due: Date,
   courseId: string,
   description: string,

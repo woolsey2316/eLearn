@@ -41,7 +41,7 @@ function QuestionList({ questionList, setQuestion, removeItem }: Props) {
   }
   return (
     <React.Fragment>
-      <div className="intro-y col-span-12 sm:flex-no-wrap items-center">
+      <div className="col-span-12 sm:flex-no-wrap items-center">
         <h2 className="my-5 font-medium text-base col-span-2">
           Edit Questions
         </h2>

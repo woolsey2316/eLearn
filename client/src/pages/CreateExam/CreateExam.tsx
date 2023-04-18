@@ -14,7 +14,7 @@ import ExamDetailsForm from './ExamDetailsForm'
 
 import { useAppSelector } from "../../hooks/hooks";
 import { PageComponentProps } from "../../types/PageComponentProps";
-import { ExamInfo } from "../../types/ExamState";
+import { ExamInfo, Quiz } from "../../types/ExamState";
 
 import { contains } from '../../utils/utils'
 
@@ -24,12 +24,35 @@ function CreateExam(props: PageComponentProps) {
   const [submitted, setSubmitted] = useState(false);
   const [examInfo, setExamInfo] = useState<ExamInfo>({
     examName: "",
+    courseName: "",
     due: new Date(),
     courseId: "",
     description: "",
     sections: [],
-    duration: 60,
+    duration: 0,
   })
+
+  function handleCourseChange(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    const { value } = e.currentTarget
+    // console.log(e)
+    setExamInfo(examInfo => {
+      return {
+        ...examInfo,
+        courseName: value
+      }
+    })
+  }
+
+  function removeSection(section: string, e: React.MouseEvent<SVGElement, MouseEvent>) {
+    const sections = examInfo.sections.filter(section_ => section !== section_)
+    setExamInfo((examInfo) => {
+      // add section to array
+      return {
+        ...examInfo,
+        sections: sections
+      }
+    })
+  }
 
   function handleSectionsChange(index: number, e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     if (contains(sections[index], examInfo.sections)) {
@@ -45,7 +68,7 @@ function CreateExam(props: PageComponentProps) {
     })
   }
 
-  const [questionList, updateList] = useState<typeof quiz[]>([]);
+  const [questionList, updateList] = useState<Quiz[]>([]);
   const [quiz, setQuestion] = useState({
     question: "",
     answer: "",
@@ -80,13 +103,15 @@ function CreateExam(props: PageComponentProps) {
               <ExamDetailsForm
                 handleSectionsChange={handleSectionsChange}
                 setExamInfo={setExamInfo}
+                removeSection={removeSection}
+                handleCourseChange={handleCourseChange}
                 examInfo={examInfo}
                 submitted={submitted}
                 sections={sections}
                 />
             </div>
             <div className="col-span-12 lg:col-span-6">
-              <div className="intro-y box lg:mt-5">
+              <div className="box lg:mt-5">
                 <div className="flex items-center p-5 border-b border-gray-200">
                   <h2 className="font-medium text-base mr-auto">
                     {examInfo.examName}, course
