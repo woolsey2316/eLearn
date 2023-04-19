@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 const examSchema = new Schema({
   _id: {
     type: Schema.Types.ObjectId,
-    required: true
   },
   examName: {
     type: String,
@@ -13,11 +12,17 @@ const examSchema = new Schema({
   quizQuestions: {
     type: Array(Array(Object))
   },
-  examName: {
+  description: {
     type: String
   },
   instructor: {
     type: String
+  },
+  sections: {
+    type: Array(String)
+  },
+  duration: {
+    type: Number
   },
   due: {
     type: Date

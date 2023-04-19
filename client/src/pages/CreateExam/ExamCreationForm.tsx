@@ -6,7 +6,7 @@ import { InputField } from "./InputField";
 import { AnswerField } from "./AnswerField";
 import { QuestionNumberField } from "./QuestionNumberField";
 import { QuestionField } from "./QuestionField";
-import { Quiz } from "../../types/ExamState";
+import { ExamInfo, Quiz } from "../../types/ExamState";
 
 import { Delta as TypeDelta, Sources } from 'quill';
 
@@ -17,9 +17,9 @@ interface Props {
   updateQuestionList: (quiz: Quiz) => void;
   questionList: Quiz[];
   success: boolean;
-  setSuccess: React.Dispatch<React.SetStateAction<boolean>>
-  submitted: boolean
-  setSubmitted: React.Dispatch<React.SetStateAction<boolean>>
+  setSuccess: React.Dispatch<React.SetStateAction<boolean>>;
+  submitted: boolean;
+  setSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
 
 }
 function ExamCreationForm({
@@ -38,10 +38,17 @@ function ExamCreationForm({
   });
 
   useEffect(() => {
-    setQuestion((quiz) => ({
-      ...quiz,
-      number: questionList.length + 1,
-    }));
+    if (questionList) {
+      setQuestion((quiz) => ({
+        ...quiz,
+        number: questionList.length + 1,
+      }));
+    } else {
+      setQuestion((quiz) => ({
+        ...quiz,
+        number: 1,
+      }));
+    }
   }, [questionList, setQuestion]);
 
   function answerAmongOptions() {
@@ -81,7 +88,6 @@ function ExamCreationForm({
     _source: Sources,
     editor: any
   ): void {
-    console.log(editor.getHTML());
     setQuestion((quiz) => ({
       ...quiz,
       question: editor.getHTML(),
@@ -141,7 +147,7 @@ function ExamCreationForm({
         question: "",
         answer: "",
         option: ["", "", "", ""],
-        number: questionList.length+1
+        number: questionList?.length ? questionList.length + 1 : 1
       });
       setAlert({
         type: AlertLevel.alert_success,
@@ -161,9 +167,9 @@ function ExamCreationForm({
     >
       <div className="">
         <div className="bg-white px-5 py-8 xl:p-0 rounded-md xl:shadow-none w-full xl:w-auto">
-          <div className="intro-x">
+          <div>
             <h2 className="font-medium text-base mx-auto mb-2">
-              Question {quiz && quiz.number} of {questionList.length}
+              Question {quiz && quiz.number} of {questionList?.length ? questionList.length + 1 : 1}
             </h2>
             <QuestionField
               quiz={quiz}
@@ -193,7 +199,7 @@ function ExamCreationForm({
               ))}
             </div>
           </div>
-          <div className="intro-x mt-5 xl:mt-8 text-center xl:text-left">
+          <div className="mt-5 xl:mt-8 text-center xl:text-left">
             <button
               type="submit"
               className="button xl:mr-3 border border-theme-1 text-theme-1"

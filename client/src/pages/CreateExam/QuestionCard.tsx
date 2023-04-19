@@ -11,7 +11,7 @@ interface Props {
 function QuestionCard({ question, setQuestion, questionList, removeItem }: Props) {
   function findQuestion() {
     setQuestion(questionList[question.number - 1])
-    window.scroll(0, 100)
+    window.scroll(0, 600)
   }
   function deleteQuestion() {
     removeItem(question.number - 1)
@@ -22,31 +22,6 @@ function QuestionCard({ question, setQuestion, questionList, removeItem }: Props
   }
   return (
     <tr className="intro-x">
-      <td className="w-40">
-        <div className="flex">
-          <div className="w-10 h-10 image-fit zoom-in">
-            <img
-              alt="Midone Tailwind HTML Admin Template"
-              className="tooltip rounded-full tooltipstered"
-              src='/images/preview-11.jpg'
-            />
-          </div>
-          <div className="w-10 h-10 image-fit zoom-in -ml-5">
-            <img
-              alt="Midone Tailwind HTML Admin Template"
-              className="tooltip rounded-full tooltipstered"
-              src='/images/preview-3.jpg'
-            />
-          </div>
-          <div className="w-10 h-10 image-fit zoom-in -ml-5">
-            <img
-              alt="Midone Tailwind HTML Admin Template"
-              className="tooltip rounded-full tooltipstered"
-              src='/images/preview-3.jpg'
-            />
-          </div>
-        </div>
-      </td>
       <td>
         <h2
           className="font-medium overflow-hidden"

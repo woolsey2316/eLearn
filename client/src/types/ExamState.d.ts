@@ -55,3 +55,14 @@ export type Quiz = {
   option: string[],
   number: number,
 }
+
+export type Exam = {
+  examName: string,
+  courseName: string,
+  due: Date,
+  courseId: string,
+  description: string,
+  sections: string[],
+  duration: number,
+  questionList: Quiz[][]
+}

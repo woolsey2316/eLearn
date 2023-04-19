@@ -3,8 +3,11 @@ const { weightedAverage, classAverages, calculateRank, groupExamResultsByUser } 
 const router = express.Router();
 
 const Exam = require("../../models/Exam");
-const ExamResult = require("../../models/ExamResult")
+const Course = require("../../models/Course");
+const ExamResult = require("../../models/ExamResult");
 const { verifyToken } = require("../../utils/verifyToken");
+const mongoose = require('mongoose');
+
 
 
 // @route GET /exam/:course_id
@@ -45,9 +48,31 @@ router.get("/:exam_id/questions", async (req, res) => {
     })
     .catch((err) =>
       res
-        .status(404)
+        .status(500)
         .json({ noExamFound: "Failed fetching questions for exam" })
     );
+});
+
+router.post("/create", async (req, res) => {
+  const course = await Course.find({courseName: req.body.courseName })
+    .then(course => course)
+    .catch(err => res.status(500).json("no course found"))
+
+  const id = mongoose.Types.ObjectId();
+  const exam = new Exam({
+    _id: id,
+    examName : req.body.examName,
+    duration : parseInt(req.body.duration),
+    due : req.body.due,
+    description : req.body.description,
+    sections : req.body.sections,
+    quizQuestions : req.body.questionList,
+    courseId: course[0]._id
+  })
+  exam
+    .save()
+    .then((user) => res.json(user))
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;

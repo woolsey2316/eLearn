@@ -16,7 +16,7 @@ const Dropdown = ({ trigger, menu }: Props) => {
         onClick: handleOpen,
       })}
       {open ? (
-        <ul className="absolute list-none my-[5px] w-[150px] border border-gray-200">
+        <ul className="absolute list-none my-[5px] w-[150px] border border-gray-200 z-20">
           {menu.map((menuItem, index) => (
             <li key={index} className="bg-white hover:bg-gray-100 ">
               {React.cloneElement(menuItem, {

@@ -9,11 +9,12 @@ import { alertActions } from ".";
 
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
-import { ExamAnswerSheet } from "../types/ExamState";
+import { Exam, ExamAnswerSheet, ExamState } from "../types/ExamState";
 
 export const examActions = {
   submit,
   getUserExams,
+  createExam
 };
 
 function submit(examAnswerSheet: ExamAnswerSheet) {
@@ -67,5 +68,32 @@ function getUserExams() {
   }
   function failure(error: string) {
     return { type: examConstants.EXAM_SUMMARY_FAILURE, error };
+  }
+}
+
+function createExam(exam: Exam) {
+  return (dispatch: ThunkDispatch<{}, void, AnyAction>) => {
+    dispatch(request());
+
+    examService.createExam(exam).then(
+      (exam) => {
+        dispatch(success());
+        dispatch(alertActions.success("Successfully created exam"));
+      },
+      (error) => {
+        dispatch(failure(error.toString()));
+        dispatch(alertActions.error(error.toString()));
+      }
+    );
+  };
+
+  function request() {
+    return { type: examConstants.CREATE_EXAM_REQUEST };
+  }
+  function success() {
+    return { type: examConstants.CREATE_EXAM_SUCCESS };
+  }
+  function failure(error: string) {
+    return { type: examConstants.CREATE_EXAM_FAILURE, error };
   }
 }

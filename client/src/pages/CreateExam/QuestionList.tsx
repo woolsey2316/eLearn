@@ -7,11 +7,12 @@ import { QuestionCard } from "./QuestionCard";
 import { Pagination } from "../../components/Pagination";
 import { Quiz } from "../../types/ExamState";
 interface Props {
-  questionList: Quiz[];
+  questionList: Quiz[][];
+  sectionId: number;
   setQuestion: React.Dispatch<React.SetStateAction<Quiz>>;
   removeItem: (qId: number) => void;
 }
-function QuestionList({ questionList, setQuestion, removeItem }: Props) {
+function QuestionList({ questionList, setQuestion, removeItem, sectionId }: Props) {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(10);
@@ -80,15 +81,14 @@ function QuestionList({ questionList, setQuestion, removeItem }: Props) {
           <table className="table table-report -mt-2">
             <thead>
               <tr>
-                <th className="whitespace-no-wrap">IMAGES</th>
                 <th className="whitespace-no-wrap">QUESTION</th>
                 <th className="text-center whitespace-no-wrap">ANSWER</th>
                 <th className="text-center whitespace-no-wrap">ACTIONS</th>
               </tr>
             </thead>
             <tbody>
-              {questionList &&
-                questionList
+              {questionList[sectionId] &&
+                questionList[sectionId]
                   .sort((a, b) => a.number - b.number)
                   .filter(
                     (elem, index) =>
@@ -100,7 +100,7 @@ function QuestionList({ questionList, setQuestion, removeItem }: Props) {
                     <QuestionCard
                       key={ind}
                       removeItem={removeItem}
-                      questionList={questionList}
+                      questionList={questionList[sectionId]}
                       question={elem}
                       setQuestion={setQuestion}
                     />
