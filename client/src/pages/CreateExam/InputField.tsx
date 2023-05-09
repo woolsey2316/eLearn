@@ -11,7 +11,7 @@ function InputField({ quiz, changeAnswerOption, number, submitted }: Props) {
   return (
     <div>
       <label className="text-gray-700 mt-5">{"option " + number}</label>
-      {submitted && quiz && !quiz.option[index] && (
+      {submitted && quiz && !quiz.possibleAnswers[index] && (
         <div className="text-theme-6">{"option " + number} is required</div>
       )}
       <input
@@ -19,10 +19,10 @@ function InputField({ quiz, changeAnswerOption, number, submitted }: Props) {
         name={index.toString()}
         className={
           "intro-x login__input rounded-full input input--lg border border-gray-300 block mb-2 mt-1 w-full" +
-          (submitted && quiz && !quiz.option[index] ? " border-theme-6" : "")
+          (submitted && quiz && !quiz.possibleAnswers[index] ? " border-theme-6" : "")
         }
-        placeholder={quiz && quiz.option[index]}
-        value={(quiz && quiz.option[index]) || ""}
+        placeholder={quiz && quiz.possibleAnswers[index]}
+        value={(quiz && quiz.possibleAnswers[index]) || ""}
         onChange={changeAnswerOption}
       />
     </div>

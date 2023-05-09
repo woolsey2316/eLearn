@@ -41,7 +41,7 @@ function CreateExam(props: PageComponentProps) {
   const [quiz, setQuestion] = useState({
     question: "",
     answer: "",
-    option: ["", "", "", ""],
+    possibleAnswers: ["", "", "", ""],
     number: 1,
   });
   const [success, setSuccess] = useState(false);
@@ -156,13 +156,15 @@ function CreateExam(props: PageComponentProps) {
                   </h2>
                 </div>
                 {/* exam section button, toggle section button to view questions underneath chosen section */}
-                {examInfo.sections.map((section, index) =>
-                  <SectionButton
-                    index={index}
-                    currentSection={sectionId}
-                    name={section}
-                    onClick={setSectionId}/>
-                  )}
+                <div className="p-5">
+                  {examInfo.sections.map((section, index) =>
+                    <SectionButton
+                      index={index}
+                      currentSection={sectionId}
+                      name={section}
+                      onClick={setSectionId}/>
+                    )}
+                </div>
                 <div className="p-5">
                   <ExamCreationForm
                     setQuestion={setQuestion}

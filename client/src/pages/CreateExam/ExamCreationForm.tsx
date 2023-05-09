@@ -53,10 +53,10 @@ function ExamCreationForm({
 
   function answerAmongOptions() {
     return (
-      quiz.answer === quiz.option[0] ||
-      quiz.answer === quiz.option[1] ||
-      quiz.answer === quiz.option[2] ||
-      quiz.answer === quiz.option[3]
+      quiz.answer === quiz.possibleAnswers[0] ||
+      quiz.answer === quiz.possibleAnswers[1] ||
+      quiz.answer === quiz.possibleAnswers[2] ||
+      quiz.answer === quiz.possibleAnswers[3]
     );
   }
 
@@ -64,21 +64,21 @@ function ExamCreationForm({
     return (
       quiz.question &&
       quiz.answer &&
-      quiz.option[0] &&
-      quiz.option[1] &&
-      quiz.option[2] &&
-      quiz.option[3]
+      quiz.possibleAnswers[0] &&
+      quiz.possibleAnswers[1] &&
+      quiz.possibleAnswers[2] &&
+      quiz.possibleAnswers[3]
     );
   }
 
   function eachAnswerUnique() {
     return (
-      quiz.option[0] !== quiz.option[1] &&
-      quiz.option[0] !== quiz.option[2] &&
-      quiz.option[0] !== quiz.option[3] &&
-      quiz.option[1] !== quiz.option[2] &&
-      quiz.option[1] !== quiz.option[3] &&
-      quiz.option[2] !== quiz.option[3]
+      quiz.possibleAnswers[0] !== quiz.possibleAnswers[1] &&
+      quiz.possibleAnswers[0] !== quiz.possibleAnswers[2] &&
+      quiz.possibleAnswers[0] !== quiz.possibleAnswers[3] &&
+      quiz.possibleAnswers[1] !== quiz.possibleAnswers[2] &&
+      quiz.possibleAnswers[1] !== quiz.possibleAnswers[3] &&
+      quiz.possibleAnswers[2] !== quiz.possibleAnswers[3]
     );
   }
 
@@ -108,9 +108,9 @@ function ExamCreationForm({
     setQuestion((quiz) => ({
       ...quiz,
       option: [
-        ...quiz.option.slice(0, parseInt(name, 10)),
+        ...quiz.possibleAnswers.slice(0, parseInt(name, 10)),
         value,
-        ...quiz.option.slice(parseInt(name, 10) + 1),
+        ...quiz.possibleAnswers.slice(parseInt(name, 10) + 1),
       ],
     }));
   }
@@ -146,7 +146,7 @@ function ExamCreationForm({
       setQuestion({
         question: "",
         answer: "",
-        option: ["", "", "", ""],
+        possibleAnswers: ["", "", "", ""],
         number: questionList?.length ? questionList.length + 1 : 1
       });
       setAlert({

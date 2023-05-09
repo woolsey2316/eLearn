@@ -7,7 +7,7 @@ type ExamCardProps = {
     due: string;
     examName: string;
     duration: number;
-    sections: number;
+    sections: string[];
     description: string;
   };
 };
@@ -56,7 +56,7 @@ function ExamCard({ exam }: ExamCardProps) {
             {urgencyDot()}
           </div>
           <h2 className="leading-none ml-5 my-2">
-            {`exam duration: ${exam.duration} · number of sections: ${exam.sections}`}
+            {`exam duration: ${exam.duration} · number of sections: ${exam.sections.length}`}
           </h2>
           <div className="flex px-5 py-1">
             <h2 className="font-medium text-gray-700 leading-none mr-2">

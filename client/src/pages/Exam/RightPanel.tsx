@@ -92,7 +92,7 @@ function RightPanel({
       <div className="border-t border-theme-3 mt-2 text-white">
         <button
           onClick={submitExam}
-          className="button flex items-center justify-center inline-block py-5 bg-theme-2 text-gray-700 my-3 mx-auto w-full"
+          className="button flex items-center justify-center py-5 bg-theme-2 text-gray-700 my-3 mx-auto w-full"
         >
           <Icon.CheckCircle className="my-auto mx-2" />
           Submit Exam

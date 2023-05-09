@@ -20,6 +20,7 @@
     "lint": "eslint -c .eslintrc.js --ext [js,ts,tsx]"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "concurrently": "^4.0.1",

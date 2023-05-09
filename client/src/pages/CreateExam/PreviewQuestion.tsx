@@ -25,8 +25,8 @@ function PreviewQuestion({ quiz }:Props) {
           </div>
           <ul className="answerOptions">
             {quiz &&
-              quiz.option &&
-              quiz.option.map((elem, index) => (
+              quiz.possibleAnswers &&
+              quiz.possibleAnswers.map((elem, index) => (
                 <li key={index} className="flex items-center m-2">
                   <h2 className="text-gray-700 font-medium text-md mr-1">
                     {index + 1}.

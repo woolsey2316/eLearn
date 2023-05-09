@@ -52,7 +52,7 @@ export type ExamInfo = {
 export type Quiz = {
   question: string,
   answer: string,
-  option: string[],
+  possibleAnswers: string[],
   number: number,
 }
 

@@ -2,14 +2,22 @@ import { activityConstants } from "../constants";
 import { activityService } from "../services";
 import { alertActions } from ".";
 
-import { AnyAction } from "redux";
-import { ThunkDispatch } from "redux-thunk";
+import {
+  Action,
+  Dispatch,
+} from 'redux'
+
+interface ActivityListAction extends Action {
+  activityList?: string[]
+  error?: boolean;
+}
+
 export const activityActions = {
   getActivityFeed,
 };
 
 function getActivityFeed() {
-  return (dispatch: ThunkDispatch<{}, undefined, AnyAction>) => {
+  return (dispatch: Dispatch<ActivityListAction>) => {
     dispatch(request());
     activityService.getActivityFeed().then(
       (activityList) => {

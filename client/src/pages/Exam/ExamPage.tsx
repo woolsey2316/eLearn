@@ -85,7 +85,7 @@ function ExamPage() {
   const [MarkedQuestionIds, setMarkedQuestionIds] = useState(
     initialiseQuestionsArray(quizQuestions)
   );
-  const [finished, setFinished] = useState(false);
+  const [userAnsweredAllQs, setUserAnsweredAllQs] = useState(false);
   const [section, setActive] = React.useState(0);
   const [show, setShow] = React.useState(true);
   const [showSubmitModal, setShowSubmitModal] = React.useState(false);
@@ -106,7 +106,7 @@ function ExamPage() {
   }
 
   function closeModal() {
-    setFinished(false);
+    setUserAnsweredAllQs(false);
   }
 
   const findSavedAnswers = useCallback(
@@ -119,16 +119,12 @@ function ExamPage() {
 
   const loadNextQuestionIfAny = useCallback(() => {
     if (MarkedQuestionIds[section].length) {
-      setTimeout(() => {
-        setQuestionId(MarkedQuestionIds[section][0]);
-        findSavedAnswers(MarkedQuestionIds[section][0]);
-      }, 300);
+      setQuestionId(MarkedQuestionIds[section][0]);
+      findSavedAnswers(MarkedQuestionIds[section][0]);
     } else {
-      setFinished(true);
-      setTimeout(() => {
-        setQuestionId(0);
-        findSavedAnswers(0);
-      }, 300);
+      setUserAnsweredAllQs(true);
+      setQuestionId(0);
+      findSavedAnswers(0);
     }
   }, [MarkedQuestionIds, findSavedAnswers, section]);
 
@@ -230,7 +226,7 @@ function ExamPage() {
 
   function showSectionCompleteModal() {
     return (
-      <SectionCompleteModal modalIsOpen={finished} closeModal={closeModal} />
+      <SectionCompleteModal modalIsOpen={userAnsweredAllQs} closeModal={closeModal} />
     );
   }
 
@@ -240,7 +236,7 @@ function ExamPage() {
         <div className="flex flex-col flex-grow">
           {showSubmitModal && (
             <SubmitModal
-              modalIsOpen={finished}
+              modalIsOpen={showSubmitModal}
               closeModal={closeModal}
             ></SubmitModal>
           )}
@@ -260,7 +256,7 @@ function ExamPage() {
               <span>{" " + answerList[section].length}</span>
             </div>
           </div>
-          {finished ? showSectionCompleteModal() : renderQuiz()}
+          {userAnsweredAllQs ? showSectionCompleteModal() : renderQuiz()}
           <div className="intro-y mt-5">
             <div className="items-center p-5 border-b border-gray-200">
               <button
