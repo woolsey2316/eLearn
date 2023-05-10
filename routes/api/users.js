@@ -10,7 +10,7 @@ const { findAverages } = require("../../utils/examStats")
 // @route PUT api/user/:user_id/profile
 // @desc Retrieve user details
 // @access Public
-router.put("/:user_id/profile", (req, res) => {
+router.put("/profile", (req, res) => {
   const jwt = req.headers.authorisation.split(" ")[1];
   const { payload } = verifyToken(jwt, res);
   const userID = payload?.id;

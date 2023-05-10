@@ -8,4 +8,4 @@ export { activityService } from "./activity.services";
 export { authService } from "./auth.services";
 export { taskService } from "./task.services";
 
-export const API_URL = "http://localhost:5000/api";
+export const API_URL = "http://localhost:5000/api/";

@@ -27,7 +27,7 @@ router.get("/", (req, res) => {
     .then((activityLists) => {
       // Flatten the array of arrays into a single array
       const activities = [].concat.apply([], activityLists);
-      return res.json({ activities });
+      return res.json(activities);
     })
     .catch((err) =>
       res

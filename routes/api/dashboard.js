@@ -8,7 +8,7 @@ const ExamResult = require("../../models/ExamResult");
 
 const { notDue, matchesUser } = require("../../utils/examStats")
 
-// @route GET /dashboard/
+// @route GET /dashboard
 // @desc Retrieve overview dashboard data
 // @access Public
 router.get("/", async (req, res, next) => {

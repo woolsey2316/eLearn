@@ -2,35 +2,13 @@ import React, { useEffect, useCallback } from "react";
 
 import { Activity, AlertCircle, Monitor, Grid } from "react-feather";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-
-import { dashboardActions } from "../../actions";
-
-import { courseActions } from "../../actions";
+import { useGetDashboardQuery } from "../../features/dashboard/dashboard-slice-api";
+import { useGetUserCoursesQuery } from "../../features/course/course-slice-api";
 
 function Overview() {
-  const dispatch = useAppDispatch();
-  const courses = useAppSelector((state) => state.courses.userCourseList);
-  const dashboard = useAppSelector((state) => state.dashboard);
-  const page = 0;
-  const size = 20;
 
-  const fetchCourses = useCallback(() => {
-    dispatch(courseActions.getAllUserCourses());
-  }, [dispatch]);
-
-  const fetchDashboard = useCallback(() => {
-    dispatch(dashboardActions.getUserDashboard());
-  }, [page, size, dispatch]);
-
-  useEffect(() => {
-    fetchCourses();
-  }, [fetchCourses]);
-
-  useEffect(() => {
-    fetchDashboard();
-  }, [fetchDashboard]);
-
+  const { data: courses } = useGetUserCoursesQuery()
+  const { data: dashboard } = useGetDashboardQuery()
   return (
     <div className="col-span-12 mt-8">
       <div className="intro-y flex items-center h-10">
@@ -47,14 +25,14 @@ function Overview() {
                     className="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                     title="Total tests"
                   >
-                    {dashboard && dashboard?.dashboard?.total + " total exams"}
+                    {dashboard?.total + " total exams"}
                   </div>
                 </div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard?.dashboard?.total !== 0
-                  ? dashboard?.dashboard?.completed /
-                    dashboard?.dashboard?.total * 100 + "%"
+                {dashboard && dashboard?.total !== 0
+                  ? dashboard?.completed /
+                    dashboard?.total * 100 + "%"
                   : 0}
               </div>
               <div className="text-base text-gray-600 mt-1">

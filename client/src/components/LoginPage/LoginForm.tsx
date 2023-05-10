@@ -14,8 +14,11 @@ import RememberMe from "./RememberMe";
 import ForgotPassword from "./ForgotPassword";
 import MainButtons from "./MainButtons";
 import FormHeading from "./FormHeading";
+import { useLoginUserMutation } from "../../features/auth/auth-slice-api";
 
 const LoginForm = () => {
+  const [loginUser, { isLoading, isError, error, isSuccess }] =
+    useLoginUserMutation();
   const dispatch = useAppDispatch();
   const alert = useAppSelector((state) => state.alert);
   const [form, setForm] = useState(1);
@@ -66,7 +69,7 @@ const LoginForm = () => {
     if (email && password && !forgotPassword) {
       // Dispatches a login action, if successful redirects current URL
       // to Home page.
-      dispatch(authActions.login(email, password, rememberMe));
+      loginUser({email, password, rememberMe});
     } else if (email && forgotPassword) {
       dispatch(authActions.sendOtp(email));
       setForm(2);

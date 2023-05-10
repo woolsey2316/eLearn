@@ -1,24 +1,11 @@
-import React, { useEffect, useCallback } from "react";
+import React from "react";
 
 import * as Icon from "react-feather";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-
-import { dashboardActions } from "../../actions";
+import { useGetDashboardQuery } from "../../features/dashboard/dashboard-slice-api";
 
 function ExamType() {
-  const dispatch = useAppDispatch();
-  const dashboard = useAppSelector((state) => state.dashboard);
-  const page = 0;
-  const size = 20;
-
-  const fetchDashboard = useCallback(() => {
-    dispatch(dashboardActions.getUserDashboard());
-  }, [page, size, dispatch]);
-
-  useEffect(() => {
-    fetchDashboard();
-  }, [fetchDashboard]);
+  const { data: dashboard } = useGetDashboardQuery()
 
   return (
     <div className="col-span-12 mt-8">
