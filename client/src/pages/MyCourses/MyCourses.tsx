@@ -16,10 +16,10 @@ import { Pagination } from "../../components";
 import { CourseExams } from "./CourseExams";
 import { PageComponentProps } from "../../types/PageComponentProps";
 import { CourseDTO } from "../../types/CourseState";
+import { useGetCoursesQuery } from "../../features/course/course-slice-api";
 
 function MyCourses(props: PageComponentProps) {
   const dispatch = useAppDispatch();
-  const courses = useAppSelector((state) => state.courses);
 
   const [search, setSearch] = useState("");
   const [chosenCourse, setCourse] = useState<CourseDTO>({
@@ -32,9 +32,12 @@ function MyCourses(props: PageComponentProps) {
   });
   const [courseName] = useState("");
   const [page, setPage] = useState(1);
-  const [resultsPerPage, setResultsPerPage] = useState(10);
+  const [size, setSize] = useState(10);
 
   const [modalIsOpen, setIsOpen] = useState(false);
+
+  const { data: courses } = useGetCoursesQuery({page, size})
+
   function openModal() {
     setIsOpen(true);
   }
@@ -44,8 +47,8 @@ function MyCourses(props: PageComponentProps) {
   }
 
   const fetchCourses = useCallback(() => {
-    dispatch(courseActions.getAllCourses(page - 1, resultsPerPage));
-  }, [dispatch, page, resultsPerPage]);
+    dispatch(courseActions.getAllCourses(page - 1, size));
+  }, [dispatch, page, size]);
 
   useEffect(() => {
     fetchCourses();
@@ -61,23 +64,23 @@ function MyCourses(props: PageComponentProps) {
   const navigatePage = useCallback(
     (page_: number) => {
       let max = 0;
-      if (courses?.courseList?.length === undefined) {
+      if (courses?.length === undefined) {
         max = 0;
       } else {
-        max = Math.ceil(courses.courseList.length / resultsPerPage);
+        max = Math.ceil(courses.length / size);
       }
       if (page_ > 0 && page_ <= max) return setPage(page_);
       else return setPage(1);
     },
-    [courses, resultsPerPage]
+    [courses, size]
   );
 
   useEffect(() => {
     navigatePage(page);
-  }, [navigatePage, page, resultsPerPage]);
+  }, [navigatePage, page, size]);
 
   const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
-    setResultsPerPage(parseInt(event.target.value, 10));
+    setSize(parseInt(event.target.value, 10));
   };
 
   function registerCourse() {
@@ -116,15 +119,15 @@ function MyCourses(props: PageComponentProps) {
           <div className="grid grid-cols-12 gap-6 mt-5">
             <div className="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap justify-between items-center mt-2">
               <ShowingFirstToLast
-                resultsPerPage={resultsPerPage}
+                resultsPerPage={size}
                 page={page}
-                collection={courses?.courseList
+                collection={courses
                   ?.filter((elem) => elem?.CourseName?.includes(search))
                   ?.filter(
                     (_, index) =>
                       // Navigate pages
-                      index < resultsPerPage * page &&
-                      index >= resultsPerPage * (page - 1)
+                      index < size * page &&
+                      index >= size * (page - 1)
                   )}
               />
               <div className="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
@@ -139,14 +142,13 @@ function MyCourses(props: PageComponentProps) {
                 </div>
               </div>
             </div>
-            {courses.courseList &&
-              courses?.courseList
+            {courses
                 ?.filter((elem) => elem?.CourseName?.includes(search))
                 ?.filter(
                   (_, index) =>
                     // Navigate pages
-                    index < resultsPerPage * page &&
-                    index >= resultsPerPage * (page - 1)
+                    index < size * page &&
+                    index >= size * (page - 1)
                 )
                 .map((course) => (
                   <CourseItem
@@ -162,8 +164,8 @@ function MyCourses(props: PageComponentProps) {
                 incrementPage={incrementPage}
                 navigatePage={navigatePage}
                 page={page}
-                list={courses && courses.courseList && courses.courseList}
-                resultsPerPage={resultsPerPage}
+                list={courses}
+                resultsPerPage={size}
                 handleChange={handleChange}
               />
             </div>

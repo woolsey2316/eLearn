@@ -14,7 +14,18 @@ export const dashboardApi = createApi({
     >({
       query: () => {
         return {
-          url: `dashboards/user`,
+          url: 'dashboard',
+          headers: authHeader()
+        }
+      },
+    }),
+    getMonthlyDashboard: builder.query<
+      {total: number, active: number, completed: number},
+      void
+    >({
+      query: () => {
+        return {
+          url: 'dashboard/month',
           headers: authHeader()
         }
       },
@@ -24,4 +35,4 @@ export const dashboardApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetDashboardQuery } = dashboardApi
+export const { useGetDashboardQuery, useGetMonthlyDashboardQuery } = dashboardApi

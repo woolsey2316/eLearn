@@ -3,27 +3,30 @@ import { Question } from "./Question";
 import { AnswerOption } from "./AnswerOption";
 type Props = {
   selectedOption: number;
-  answerOptions: string[];
-  question: string;
-  questionId: number;
+  answerOptions: string[] | undefined;
+  question: string | undefined;
   getUserAnswer: ChangeEventHandler<HTMLInputElement>;
 };
-function Quiz(props: Props) {
+function Quiz({
+  selectedOption,
+  answerOptions = [],
+  question = '',
+  getUserAnswer}: Props) {
   return (
     <div
       style={{ height: "calc(100vh - 272px)" }}
       className="items-center p-5 border-b border-gray-200 overflow-auto"
     >
-      <Question content={props.question} />
+      <Question content={question} />
       <ul className="answerOptions">
-        {props.answerOptions.map((answer, index) => {
+        {answerOptions.map((answer, index) => {
           return (
             <AnswerOption
               key={index}
               answerIndex={index}
               answerContent={answer}
-              getUserAnswer={props.getUserAnswer}
-              selectedOption={props.selectedOption}
+              getUserAnswer={getUserAnswer}
+              selectedOption={selectedOption}
             />
           );
         })}

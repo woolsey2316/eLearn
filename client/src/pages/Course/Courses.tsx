@@ -1,31 +1,17 @@
-import React, { useEffect, useCallback } from "react";
+import React from "react";
 
 import * as Icon from "react-feather";
 
 import { MobileMenu } from "../../components";
 import { TopBar } from "../../components";
 
-import { courseActions } from "../../actions";
-
 import { CourseTable } from "./CourseTable";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-
 import { PageComponentProps } from "../../types/PageComponentProps";
+import { useGetUserCoursesQuery } from "../../features/course/course-slice-api";
 
 function Courses(props: PageComponentProps) {
-  const dispatch = useAppDispatch();
-  const courses = useAppSelector((state) => state.courses.userCourseList);
-  const page = 0;
-  const size = 20;
-
-  const fetchCourses = useCallback(() => {
-    dispatch(courseActions.getAllUserCourses());
-  }, [page, size, dispatch]);
-
-  useEffect(() => {
-    fetchCourses();
-  }, [fetchCourses]);
+  const {data: courses} = useGetUserCoursesQuery()
 
   return (
     <div className="app">

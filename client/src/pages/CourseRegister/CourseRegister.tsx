@@ -7,20 +7,21 @@ import { CourseCard } from "./CourseCard";
 
 import { CourseSubscribeModal } from "./CourseSubscribeModal";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-
-import { courseActions } from "../../actions";
-
 import { Pagination } from "../../components";
 import { ShowingFirstToLast } from "./ShowingFirstToLast";
 
 import { PageComponentProps } from "../../types/PageComponentProps";
 
 import { CourseDTO } from "../../types/CourseState";
+import { useGetCoursesQuery, useRegisterMutation } from "../../features/course/course-slice-api";
 
 function CourseRegister(props: PageComponentProps) {
-  const dispatch = useAppDispatch();
-  const courses = useAppSelector((state) => state.courses);
+  const [page, setPage] = useState(1);
+  const [size, setSize] = useState(10);
+
+  const [register, result] = useRegisterMutation();
+
+  const {data: courses} = useGetCoursesQuery({page, size})
 
   const [search, setSearch] = useState("");
   const [chosenCourse, setCourse] = useState<CourseDTO>({
@@ -31,8 +32,6 @@ function CourseRegister(props: PageComponentProps) {
     name: "",
     status: false,
   });
-  const [page, setPage] = useState(1);
-  const [resultsPerPage, setResultsPerPage] = useState(10);
 
   const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
@@ -43,13 +42,6 @@ function CourseRegister(props: PageComponentProps) {
     setIsOpen(false);
   }
 
-  const fetchCourses = useCallback(() => {
-    dispatch(courseActions.getAllCourses(page, resultsPerPage));
-  }, [page, resultsPerPage, dispatch]);
-
-  useEffect(() => {
-    fetchCourses();
-  }, [fetchCourses]);
 
   // Reasonable page values: 0 -> max page
   const navigatePage = useCallback((page: number) => {
@@ -62,10 +54,10 @@ function CourseRegister(props: PageComponentProps) {
 
   useEffect(() => {
     navigatePage(page);
-  }, [navigatePage, page, resultsPerPage]);
+  }, [navigatePage, page, size]);
 
   const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
-    setResultsPerPage(parseInt(event.currentTarget.value, 10));
+    setSize(parseInt(event.currentTarget.value, 10));
   };
 
   function registerCourse() {
@@ -77,7 +69,7 @@ function CourseRegister(props: PageComponentProps) {
       chosenCourse.name &&
       chosenCourse.status
     ) {
-      dispatch(courseActions.register(chosenCourse));
+      register(chosenCourse)
     }
   }
 
@@ -112,9 +104,9 @@ function CourseRegister(props: PageComponentProps) {
           <div className="grid grid-cols-12 gap-6 mt-5">
             <div className="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap justify-between items-center mt-2">
               <ShowingFirstToLast
-                resultsPerPage={resultsPerPage}
+                resultsPerPage={size}
                 page={page}
-                collection={courses.courseList}
+                collection={courses}
               />
               <div className="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div className="w-56 relative text-gray-700">
@@ -128,12 +120,11 @@ function CourseRegister(props: PageComponentProps) {
                 </div>
               </div>
             </div>
-            {courses.courseList &&
-              courses.courseList
+            {courses &&
+              courses
                 .filter(
                   (elem) =>
-                    elem.CourseName.includes(search) ||
-                    elem.CourseName.toLowerCase().includes(search)
+                    elem.CourseName.toUpperCase().includes(search.toUpperCase())
                 )
                 .map((course, index) => (
                   <CourseCard
@@ -150,8 +141,8 @@ function CourseRegister(props: PageComponentProps) {
                 incrementPage={incrementPage}
                 navigatePage={navigatePage}
                 page={page}
-                list={courses && courses.courseList && courses.courseList}
-                resultsPerPage={resultsPerPage}
+                list={courses}
+                resultsPerPage={size}
                 handleChange={handleChange}
               />
             </div>

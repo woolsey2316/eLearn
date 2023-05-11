@@ -1,14 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { API_URL } from '../../services'
-import { Course, CourseDTO } from '../../types/CourseState'
+import { Course, CourseDTO, CourseType } from '../../types/CourseState'
 import { authHeader } from '../../helpers'
 
 // Define a service using a base URL and expected endpoints
 export const courseApi = createApi({
-  reducerPath: 'courses',
+  reducerPath: 'coursesApi',
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   endpoints: (builder) => ({
-    register: builder.mutation<void, CourseDTO>({
+    register: builder.mutation<boolean, CourseDTO>({
       query: (courseDTO) => {
         return {
           method: 'PUT',
@@ -17,11 +17,16 @@ export const courseApi = createApi({
         }
       },
     }),
-    getCourses: builder.query<void, {page: number, size: number}>({
+    getCourses: builder.query<Course[], {page: number, size: number}>({
       query: ({page, size}) => `courses?page=${page}&size=${size}`,
     }),
-    getUserCourses: builder.query<Course[], void>({
-      query: () => `courses/user`,
+    getUserCourses: builder.query<CourseType[], void>({
+      query: () => {
+        return {
+          url: 'courses/user',
+          headers: authHeader()
+        }
+      },
     }),
   }),
 })

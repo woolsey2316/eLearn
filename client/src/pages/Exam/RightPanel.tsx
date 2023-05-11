@@ -9,7 +9,7 @@ type Props = {
   markedQuestions: number[];
   currentQuestion: number;
   answerList: number[];
-  section: string;
+  section: string | undefined;
   submitExam: () => void;
 };
 function RightPanel({

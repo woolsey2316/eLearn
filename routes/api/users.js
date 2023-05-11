@@ -39,9 +39,11 @@ router.put("/profile", (req, res) => {
 // @route GET api/user/:user_id/profile
 // @desc Retrieve user details
 // @access Public
-router.get("/:user_id/profile", (req, res) => {
-  const userId = req.params.user_id;
-  User.findById(userId).then((user) => {
+router.get("/profile", (req, res) => {
+  const jwt = req.headers.authorisation.split(" ")[1];
+  const { payload } = verifyToken(jwt, res);
+  const userID = payload?.id;
+  User.findById(userID).then((user) => {
     if (!user) {
       return res.status(404).json({ userNotFound: "User not found!" });
     }

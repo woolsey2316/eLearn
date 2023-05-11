@@ -7,6 +7,7 @@ import { alertActions } from "../actions";
 import { authActions } from "../actions";
 
 import { Alert } from ".";
+import { useUpdatePasswordMutation } from "../features/auth/auth-slice-api";
 
 function ChangePasswordForm() {
   const [user, setUser] = useState({
@@ -14,6 +15,7 @@ function ChangePasswordForm() {
     oldPassword: "",
     password: "",
   });
+  const [updatePassword] = useUpdatePasswordMutation()
 
   const alert = useAppSelector((state) => state.alert);
   const dispatch = useAppDispatch();
@@ -42,7 +44,7 @@ function ChangePasswordForm() {
       } else if (user.password === user.oldPassword) {
         console.log("passwords are the same");
       }
-      dispatch(authActions.updatePassword(user.oldPassword, user.password));
+      updatePassword({oldPassword: user.oldPassword, password: user.password});
     }
   }
 
@@ -97,4 +99,4 @@ function ChangePasswordForm() {
   );
 }
 
-export { ChangePasswordForm };
+export { ChangePasswordForm }

@@ -9,6 +9,7 @@ import { examActions } from "../../actions";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { PageComponentProps } from "../../types/PageComponentProps";
 import { sameMonth } from "../../utils/DateUtils";
+import { useGetUserExamsQuery } from "../../features/exam/exam-slice-api";
 
 const monthNames = [
   "January",
@@ -30,16 +31,7 @@ const monthNames = [
   and take it.
 */
 function ExamList(props: PageComponentProps) {
-  const dispatch = useAppDispatch();
-  const examData = useAppSelector((state) => state.exams.examList);
-
-  const fetchExams = useCallback(() => {
-    dispatch(examActions.getUserExams());
-  }, [dispatch]);
-
-  useEffect(() => {
-    fetchExams();
-  }, [fetchExams]);
+  const { data: examData } = useGetUserExamsQuery()
   console.log(examData)
   if (examData === undefined || examData.length === 0) return null;
 

@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react'
 import * as Icon from "react-feather";
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { useAppDispatch } from "../../hooks/hooks";
 import { userActions } from "../../actions";
+import { useGetMeQuery } from '../../features/user/user-api';
 
 function UserOutline() {
   const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.users.user);
+  const { data: user } = useGetMeQuery();
   const role = ["Student", "Admin"];
 
   useEffect(() => {

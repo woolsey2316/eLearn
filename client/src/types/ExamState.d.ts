@@ -22,6 +22,9 @@ export type ExamQuestions = {
   instructor: string;
   courseName: string;
   examName: string;
+  duration: number;
+  description: string;
+  sections: string[];
   due: string;
 };
 export type ExamResult = {
@@ -36,7 +39,7 @@ export type ExamResult = {
 
 export type Results = {
   examResults: Array<ExamResult>
-  weightedAverage: {user: number; rank: number}
+  weightedAverage: {userAverage: number; classRank: number}
 }
 
 export type ExamInfo = {

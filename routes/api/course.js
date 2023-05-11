@@ -138,7 +138,7 @@ router.get("/user", (req, res) => {
   });
 });
 
-// @route GET api/courses
+// @route POST api/courses
 // @description add/save course
 // @access Public
 router.post("/", (req, res) => {

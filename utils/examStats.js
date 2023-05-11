@@ -58,4 +58,24 @@ function notDue(due) {
 function matchesUser(userId1, userId2) {
   return String(userId1) === String(userId2)
 }
-module.exports =  { findAverages, weightedAverage, classAverages, calculateRank, groupExamResultsByUser, notDue, matchesUser }
+
+function sameYearAndSameMonth(date) {
+  const year = new Date(date).getFullYear();
+  const month = new Date(date).getMonth()
+
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date(date).getMonth();
+
+  return year === currentYear && month === currentMonth
+}
+
+module.exports =  {
+  findAverages,
+  weightedAverage,
+  classAverages,
+  calculateRank,
+  groupExamResultsByUser,
+  notDue,
+  matchesUser,
+  sameYearAndSameMonth
+}

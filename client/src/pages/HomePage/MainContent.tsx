@@ -2,7 +2,7 @@ import React from 'react'
 import { CalendarContainer } from '../../components'
 import { ActivityFeed } from '../../components'
 import { Overview } from './Overview'
-import { ExamType } from './ExamType'
+import { ThisMonth } from './ThisMonth'
 
 function MainContent() {
   return (
@@ -11,7 +11,7 @@ function MainContent() {
         <Overview />
       </div>
       <div className="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
-        <ExamType />
+        <ThisMonth />
       </div>
       <div className="col-span-12 xxl:col-span-12 xxl:border-l border-theme-5 -mb-10 pb-10">
         <div className="grid grid-cols-12 sm:col-span-6 gap-6 mt-5">

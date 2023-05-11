@@ -6,17 +6,22 @@ import { history } from "../../helpers";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
-import { userActions } from "../../actions";
 import { alertActions } from "../../actions";
 
 import { Alert } from "../../components";
+import { useGetMeQuery, useSetUserDetailsMutation } from "../../features/user/user-api";
 
 function PersonalInformation() {
   const alert = useAppSelector((state) => state.alert);
-  const user = useAppSelector((state) => state.users.user);
+  const { data: user } = useGetMeQuery()
+
+  const [setUser, result] = useSetUserDetailsMutation()
+
   const dispatch = useAppDispatch();
 
   const [userDetails, setDetails] = useState<UserInfo>({
+    _id: "",
+    roleId: 0,
     address: "",
     area: "",
     className: "",
@@ -27,8 +32,6 @@ function PersonalInformation() {
     pincode: "",
     school: "",
     state: "",
-    _id: "",
-    roleId: 0,
   });
 
   useEffect(() => {
@@ -39,12 +42,8 @@ function PersonalInformation() {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(userActions.getUserDetails());
-  }, [dispatch]);
-
-  useEffect(() => {
     setDetails(user as UserInfo);
-  }, [user]);
+  },[user])
 
   const handleChange: React.FormEventHandler<HTMLInputElement> = (event) => {
     const { name, value } = event.currentTarget;
@@ -56,8 +55,7 @@ function PersonalInformation() {
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    console.log("submitted user", userDetails);
-    dispatch(userActions.setUserDetails(userDetails));
+    setUser(userDetails);
   };
   return (
     <div className="intro-y box lg:mt-5">

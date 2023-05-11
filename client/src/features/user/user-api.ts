@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { setUser } from './user-slice';
-import { EditableUserInfo, UserInfo } from '../../types/UserForm';
+import { UserInfo } from '../../types/UserForm';
 
 import { API_URL } from '../../services'
 import { authHeader } from '../../helpers';
@@ -12,28 +12,20 @@ export const userApi = createApi({
   }),
   tagTypes: ['User'],
   endpoints: (builder) => ({
-    getMe: builder.query<EditableUserInfo, null>({
-      query() {
+    getMe: builder.query<UserInfo, void>({
+      query: () => {
         return {
-          url: `users/profile`,
+          url: 'profile',
           headers: authHeader(),
           credentials: 'include',
         };
-      },
-      transformResponse: (result: { data: { user: EditableUserInfo } }) =>
-        result.data.user,
-      async onQueryStarted(args, { dispatch, queryFulfilled }) {
-        try {
-          const { data } = await queryFulfilled;
-          dispatch(setUser(data));
-        } catch (error) {}
       },
     }),
     setUserDetails: builder.mutation<void, UserInfo>({
       query(data) {
         return {
-          method: 'POST',
-          url: 'users/profile',
+          method: 'PUT',
+          url: 'profile',
           headers: authHeader(),
           credentials: 'include',
           body: data

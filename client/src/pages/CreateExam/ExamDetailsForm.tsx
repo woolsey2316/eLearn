@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { ExamInfo } from '../../types/ExamState';
 import { Dropdown } from './DropDown';
 import * as Icon from "react-feather";
 import PillButton from '../../components/PillButton';
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { courseActions } from '../../actions';
 import { DateTimePicker } from 'react-datetime-picker';
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
+import { useGetUserCoursesQuery } from '../../features/course/course-slice-api';
 interface Props {
   examInfo: ExamInfo;
   setExamInfo: React.Dispatch<React.SetStateAction<ExamInfo>>;
@@ -30,13 +29,8 @@ function ExamDetailsForm({
   setDate
 }: Props) {
   const [open, setOpen] = React.useState(false);
-  const dispatch = useAppDispatch();
 
-  const courses = useAppSelector((state) => state.courses.userCourseList);
-
-  useEffect(() => {
-    dispatch(courseActions.getAllUserCourses());
-  }, []);
+  const {data: courses} = useGetUserCoursesQuery()
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
     const { name, value } = e.target;

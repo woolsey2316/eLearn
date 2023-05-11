@@ -14,6 +14,7 @@ import { FailRegister } from "./FailRegister";
 import { history } from "../../helpers";
 
 import { CourseDTO } from "../../types/CourseState";
+import { useRegisterMutation } from "../../features/course/course-slice-api";
 
 type CourseSubscribeModalProps = {
   modalIsOpen: boolean;
@@ -27,25 +28,17 @@ function CourseSubscribeModal({
   closeModal,
   chosenCourse,
 }: CourseSubscribeModalProps) {
-  const registering = useAppSelector(
-    (state) => state.courses.courseRegistering
-  );
-  const registerOutcome = useAppSelector(
-    (state) => state.courses.registerOutcome
-  );
+
+  const [register, {isLoading, isSuccess, isError}] = useRegisterMutation();
   // made an attempt to register for a course
   const [request, setRequest] = useState(false);
-  const dispatch = useAppDispatch();
 
-  function attemptRegister() {
-    const apiCall = new Promise<void>((resolve, reject) => {
-      dispatch(courseActions.register(chosenCourse));
-      resolve();
-    });
-
-    apiCall.then(() => {
-      setRequest(true);
-    });
+  async function attemptRegister() {
+    try {
+      const registerOutcome = await register(chosenCourse).unwrap()
+    } catch(error) {
+      console.log(error)
+    }
   }
 
   function closeAndExit() {
@@ -66,10 +59,10 @@ function CourseSubscribeModal({
       }}
     >
       <div className="modal__content text-center">
-        {request && registerOutcome ? (
+        {request && isSuccess ? (
           <SuccessRegister course={chosenCourse} />
         ) : null}
-        {request && !registerOutcome ? (
+        {request && !isError ? (
           <FailRegister course={chosenCourse} />
         ) : null}
         {!request && (
@@ -101,11 +94,11 @@ function CourseSubscribeModal({
                 className="flex mt-2 sm:mt-0 button bg-theme-7 text-white md:text-lg sm:text-medium"
               >
                 Register&nbsp;
-                {registering && (
+                {isLoading && (
                   <Loading.PulseLoader
                     size={5}
                     color={"#ffffff"}
-                    loading={registering}
+                    loading={isLoading}
                     // className="ml-5"
                   />
                 )}

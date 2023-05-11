@@ -1,37 +1,20 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 
 import { CourseDropdown } from "../../components";
 import { MobileMenu } from "../../components";
 import { TopBar } from "../../components";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-
-import { examResultActions, instructorActions, courseActions, userActions } from "../../actions";
-
 import { ExamResultCard } from "./ExamResultCard";
 import { PageComponentProps } from "../../types/PageComponentProps";
 import { ExamResult } from "../../types/ExamState";
-import { weightedAverage } from "../../utils/examStats";
+import { useGetUserCoursesQuery } from "../../features/course/course-slice-api";
+import { useGetInstructorByIdQuery } from "../../features/instructor/instructor-slice-api";
+import { useGetMeQuery } from "../../features/user/user-api";
+import { useGetUserExamResultsByCourseQuery } from "../../features/results/results-slice-api";
 
 function ExamResults(props: PageComponentProps) {
-  const dispatch = useAppDispatch();
-  const courses = useAppSelector((state) => state.courses.userCourseList);
-  const userDetails = useAppSelector((state) => state.users.user)
-  const instructor = useAppSelector((state) => state.instructor.instructor);
-  const userExamResults = useAppSelector((state) => state.examResults.examList);
-  const weightedAverage = useAppSelector((state) => state.examResults.weightedAverage);
-
-  const fetchCourses = useCallback(() => {
-    dispatch(courseActions.getAllUserCourses());
-    dispatch(userActions.getUserDetails())
-  }, [dispatch]);
-
-  useEffect(() => {
-    fetchCourses();
-  }, [fetchCourses]);
-
-  const [course, setCourse] = useState("Select Course");
-
+  const { data: courses } = useGetUserCoursesQuery()
+  const { data: userDetails } = useGetMeQuery()
   const instructorId = courses?.filter((elem) => elem.courseName === course)[0]
     ?.instructorId;
   const category = courses?.filter((elem) => elem.courseName === course)[0]
@@ -39,42 +22,11 @@ function ExamResults(props: PageComponentProps) {
   const courseId = courses?.filter((elem) => elem.courseName === course)[0]
     ?._id;
 
-  const fetchExams = useCallback(() => {
-    if (courseId) {
-      dispatch(examResultActions.getUserExamResultsByCourse(courseId));
-    }
-  }, [courseId, dispatch]);
+  const { data: instructor } = useGetInstructorByIdQuery(instructorId!)
 
-  const fetchInstructor = useCallback(() => {
-    if (instructorId) {
-      dispatch(instructorActions.getInstructorById(instructorId));
-    }
-  }, [courseId, dispatch]);
+  const {data: results} = useGetUserExamResultsByCourseQuery(courseId!)
 
-  useEffect(() => {
-    fetchExams();
-    fetchInstructor()
-  }, [fetchExams, fetchInstructor]);
-
-  const fetchExamResults = useCallback(() => {
-    if (courseId) {
-      dispatch(examResultActions.getAllExamResults(courseId));
-    }
-  }, [courseId, dispatch]);
-
-  const fetchExamResultsbyCourse = useCallback(() => {
-    if (courseId) {
-      dispatch(examResultActions.getExamResultsByCourse(courseId));
-    }
-  }, [courseId, dispatch]);
-
-  useEffect(() => {
-    fetchExamResults();
-  }, [fetchExamResults]);
-
-  useEffect(() => {
-    fetchExamResultsbyCourse();
-  }, [fetchExamResultsbyCourse]);
+  const [course, setCourse] = useState("Select Course");
 
   return (
     <div className="app">
@@ -139,7 +91,7 @@ function ExamResults(props: PageComponentProps) {
                     </tr>
                   </thead>
                   <tbody>
-                    {userExamResults?.map((result: ExamResult, index: number) => (
+                    {results?.examResults?.map((result: ExamResult, index: number) => (
                         <ExamResultCard
                           key={index}
                           examInfo={result}
@@ -161,9 +113,9 @@ function ExamResults(props: PageComponentProps) {
               <div className="text-center sm:text-right sm:ml-auto">
                 <div className="text-base text-gray-600">Weighted Average</div>
                 <div className="text-xl text-theme-1 font-medium mt-2">
-                  {weightedAverage?.userAverage.toFixed(2)}
+                  {results?.weightedAverage?.userAverage.toFixed(2)}
                 </div>
-                <div className="mt-1 tetx-xs">Class Rank: {weightedAverage?.classRank}</div>
+                <div className="mt-1 tetx-xs">Class Rank: {results?.weightedAverage?.classRank}</div>
               </div>
             </div>
           </div>

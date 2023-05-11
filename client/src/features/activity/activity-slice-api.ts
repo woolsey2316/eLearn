@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type { ActivityProps } from '../../types/Activity'
 import { API_URL } from '../../services'
+import { authHeader } from '../../helpers'
 
 // Define a service using a base URL and expected endpoints
 export const activityApi = createApi({
@@ -8,7 +9,12 @@ export const activityApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   endpoints: (builder) => ({
     getActivities: builder.query<ActivityProps[], void>({
-      query: () => `activities`,
+      query: () => {
+        return {
+          url: 'activities',
+          headers: authHeader()
+        }
+      }
     }),
   }),
 })

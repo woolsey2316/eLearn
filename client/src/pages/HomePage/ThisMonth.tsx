@@ -2,10 +2,10 @@ import React from "react";
 
 import * as Icon from "react-feather";
 
-import { useGetDashboardQuery } from "../../features/dashboard/dashboard-slice-api";
+import { useGetMonthlyDashboardQuery } from "../../features/dashboard/dashboard-slice-api";
 
-function ExamType() {
-  const { data: dashboard } = useGetDashboardQuery()
+function ThisMonth() {
+  const { data: monthlyDashboardData } = useGetMonthlyDashboardQuery()
 
   return (
     <div className="col-span-12 mt-8">
@@ -23,14 +23,17 @@ function ExamType() {
                     className="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                     title="Total assignments"
                   >
-                    {dashboard && dashboard.total.exam}
+                    {monthlyDashboardData?.total + " total exams"}
                   </div>
                 </div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard && dashboard.month.assignment}
+                {monthlyDashboardData && monthlyDashboardData?.total !== 0
+                    ? monthlyDashboardData?.completed /
+                    monthlyDashboardData?.total * 100 + "%"
+                    : 0}
               </div>
-              <div className="text-base text-gray-600 mt-1">Assignments</div>
+              <div className="text-base text-gray-600 mt-1">Total completion rate</div>
             </div>
           </div>
         </div>
@@ -44,19 +47,15 @@ function ExamType() {
                     className="report-box__indicator bg-theme-12 tooltip cursor-pointer"
                     title="Total Multiple Choice Tests"
                   >
-                    {dashboard &&
-                      dashboard.dashboard &&
-                      dashboard.total.multiChoiceQuestion}
+                    {monthlyDashboardData?.total}
                   </div>
                 </div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard &&
-                  dashboard.dashboard &&
-                  dashboard.month.multiChoiceQuestion}
+                {monthlyDashboardData?.active}
               </div>
               <div className="text-base text-gray-600 mt-1">
-                Multiple Choice Exams
+                Active tests
               </div>
             </div>
           </div>
@@ -71,14 +70,14 @@ function ExamType() {
                     className="report-box__indicator bg-theme-9 tooltip cursor-pointer text-center"
                     title="Total exams"
                   >
-                    {dashboard && dashboard.dashboard && dashboard.total.exam}
+                    {monthlyDashboardData?.total}
                   </div>
                 </div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard && dashboard.dashboard && dashboard.month.exam}
+                {monthlyDashboardData?.completed}
               </div>
-              <div className="text-base text-gray-600 mt-1">Exams</div>
+              <div className="text-base text-gray-600 mt-1">Completed</div>
             </div>
           </div>
         </div>
@@ -89,9 +88,7 @@ function ExamType() {
                 <Icon.Grid className="report-box__icon text-theme-11" />
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard.month.exam +
-                  dashboard.month.multiChoiceQuestion +
-                  dashboard.month.assignment}
+                {monthlyDashboardData?.total}
               </div>
               <div className="text-base text-gray-600 mt-1">Monthly Total</div>
             </div>
@@ -102,4 +99,4 @@ function ExamType() {
   );
 }
 
-export { ExamType };
+export { ThisMonth };

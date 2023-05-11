@@ -49,9 +49,7 @@ function Overview() {
                 <div className="ml-auto"></div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard &&
-                  dashboard.dashboard &&
-                  dashboard?.dashboard?.active}
+                {dashboard?.active}
               </div>
               <div className="text-base text-gray-600 mt-1">Active Tests</div>
             </div>
@@ -65,9 +63,7 @@ function Overview() {
                 <div className="ml-auto"></div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard &&
-                  dashboard.dashboard &&
-                  dashboard?.dashboard?.completed}
+                {dashboard?.completed}
               </div>
               <div className="text-base text-gray-600 mt-1">
                 Completed Tests

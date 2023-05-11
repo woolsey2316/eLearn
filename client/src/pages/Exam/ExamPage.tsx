@@ -12,16 +12,13 @@ import { calculateTimeLeft } from "../../utils/CountdownTimer";
 import * as Icon from "react-feather";
 import { SubmitModal } from "../../components";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-
-import { examQuestionActions } from "../../actions";
-
 import { useParams } from "react-router";
 
 import { getUserId } from "../../helpers";
 import { QuizParams, QuizQuestions } from "../../types/ExamState";
+import { useGetExamQuestionsQuery } from "../../features/exam/exam-slice-api";
 
-function initialiseQuestionsArray(quizQuestions: QuizQuestions) {
+function initialiseQuestionsArray(quizQuestions: QuizQuestions = [[]]) {
   // [
   //   [0,1,2,3],
   //   [0,1,2,3,4],
@@ -36,7 +33,7 @@ function initialiseQuestionsArray(quizQuestions: QuizQuestions) {
     );
 }
 
-function initialiseAnswersList(quizQuestions: QuizQuestions) {
+function initialiseAnswersList(quizQuestions: QuizQuestions = [[]]) {
   // [
   //   [-1,-1,-1,-1],
   //   [-1,-1,-1,-1,-1],
@@ -47,27 +44,16 @@ function initialiseAnswersList(quizQuestions: QuizQuestions) {
     .map((_, index) => Array(quizQuestions[index].length).fill(-1));
 }
 function ExamPage() {
-  const dispatch = useAppDispatch();
   const { exam_id } = useParams<QuizParams>();
 
-  const fetchExamQuestions = useCallback(() => {
-    dispatch(examQuestionActions.getUserExamQuestions(exam_id));
-  }, [dispatch, exam_id]);
+  const {data: examInfo} = useGetExamQuestionsQuery(exam_id)
 
   useEffect(() => {
-    fetchExamQuestions();
-  }, [fetchExamQuestions]);
-
-  const quizQuestions = useAppSelector(
-    (state) => state.examQuestion.examInfo?.quizQuestions
-  );
-
-  const examInfo = useAppSelector((state) => state.examQuestion.examInfo);
-
-  useEffect(() => {
-    setAnswerList(initialiseAnswersList(quizQuestions));
-    setMarkedQuestionIds(initialiseQuestionsArray(quizQuestions));
-  }, [quizQuestions]);
+    if (examInfo && examInfo.quizQuestions) {
+      setAnswerList(initialiseAnswersList(examInfo.quizQuestions));
+      setMarkedQuestionIds(initialiseQuestionsArray(examInfo.quizQuestions));
+    }
+  }, [examInfo?.quizQuestions]);
 
   const [questionId, setQuestionId] = useState(0);
   const [selectedOption, setSelectedOption] = useState(-1);
@@ -76,14 +62,14 @@ function ExamPage() {
   // dim2 -> question number
   // value -> answer -1 -> not answered, 0,1,2,3 -> a,b,c,d
   const [answerList, setAnswerList] = useState(
-    initialiseAnswersList(quizQuestions)
+    initialiseAnswersList(examInfo?.quizQuestions)
   );
   // 2-D array
   // dim1 -> section eg. science, chemistry
   // dim2 -> question number
   // value -> question number
   const [MarkedQuestionIds, setMarkedQuestionIds] = useState(
-    initialiseQuestionsArray(quizQuestions)
+    initialiseQuestionsArray(examInfo?.quizQuestions)
   );
   const [userAnsweredAllQs, setUserAnsweredAllQs] = useState(false);
   const [section, setActive] = React.useState(0);
@@ -216,9 +202,8 @@ function ExamPage() {
     return (
       <Quiz
         selectedOption={selectedOption}
-        answerOptions={quizQuestions[section][questionId].possibleAnswers}
-        questionId={questionId}
-        question={quizQuestions[section][questionId].question}
+        answerOptions={examInfo?.quizQuestions[section][questionId].possibleAnswers}
+        question={examInfo?.quizQuestions[section][questionId].question}
         getUserAnswer={handleChange}
       />
     );
@@ -243,13 +228,13 @@ function ExamPage() {
           <CourseSection
             section={section}
             clicked={setSection}
-            sections={examInfo.sections}
+            sections={examInfo?.sections}
             timeLeft={timeLeft}
             setTimeLeft={setTimeLeft}
           />
           <div className="items-center p-5 border-b border-gray-200">
             <h2 className="font-medium text-base mr-auto">
-              Exam Name: {examInfo.examName}
+              Exam Name: {examInfo?.examName}
             </h2>
             <div className="text-base mr-auto">
               Question <span>{questionId + 1}</span> of
@@ -305,7 +290,7 @@ function ExamPage() {
             answerList={answerList[section]}
             markedQuestions={MarkedQuestionIds[section]}
             currentQuestion={questionId}
-            section={examInfo.sections[section]}
+            section={examInfo?.sections[section]}
             submitExam={submitExam}
           />
         )}

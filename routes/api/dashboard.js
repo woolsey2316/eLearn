@@ -6,7 +6,7 @@ const { verifyToken } = require("../../utils/verifyToken");
 const Exam = require("../../models/Exam");
 const ExamResult = require("../../models/ExamResult");
 
-const { notDue, matchesUser } = require("../../utils/examStats")
+const { notDue, matchesUser, sameYearAndSameMonth } = require("../../utils/examStats")
 
 // @route GET /dashboard
 // @desc Retrieve overview dashboard data
@@ -57,5 +57,58 @@ router.get("/", async (req, res, next) => {
     completed: numberCompletedExams
   })
 });
+
+// @route GET /dashboard
+// @desc Retrieve overview dashboard data
+// @access Public
+router.get("/month", async (req, res, next) => {
+  let userID
+  try {
+    const jwt = req.headers.authorisation.split(" ")[1];
+    const { payload } = verifyToken(jwt, res);
+    userID = payload?.id;
+  } catch (err) {
+    next(err)
+  }
+
+  let numberCompletedExams
+  try {
+    numberCompletedExams = await ExamResult.find()
+    .then(examResults =>
+      // find the total number of completed exams belonging to a particular student
+      examResults.reduce((acc, examResult) => {
+        if (matchesUser(examResult.userId, userID) && sameYearAndSameMonth(examResult.completed)) {
+          return acc + 1
+        }
+        return acc
+      },0)
+    )
+  } catch (err) {
+    next(err)
+  }
+
+  let numberActiveExams
+  try {
+    numberActiveExams = await Exam.find()
+      .then(exams =>
+        // find the total number of active exams belonging to a particular student
+        exams.reduce((acc, exam) => {
+          if (sameYearAndSameMonth(exam.due) && notDue(exam.due)) {
+            return acc + 1
+          }
+          return acc
+        },0)
+      )
+  } catch (err) {
+    next(err)
+  }
+
+  return res.status(200).json({
+    total: numberCompletedExams + numberActiveExams,
+    active: numberActiveExams,
+    completed: numberCompletedExams
+  })
+
+})
 
 module.exports = router;

@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { IGenericResponse, LoginResponse } from '../../types/HTTP';
-import { userApi } from '../user/user-api';
 
 import { API_URL } from '../../services'
 import { EditableUserInfo } from '../../types/UserForm';
@@ -98,6 +97,7 @@ export const authApi = createApi({
     updatePassword: builder.mutation<void,{oldPassword: string, password: string}>({
       query(data) {
         return {
+          method: 'PUT',
           url: 'auth/password/update',
           headers: authHeader(),
           body: data
@@ -123,8 +123,9 @@ export const authApi = createApi({
 });
 
 export const {
-  useLoginUserMutation,
   useRegisterUserMutation,
+  useLoginUserMutation,
   useLogoutUserMutation,
   useVerifyEmailMutation,
+  useUpdatePasswordMutation
 } = authApi;

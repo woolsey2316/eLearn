@@ -1,23 +1,8 @@
-import React, { useCallback, useEffect } from "react";
-
-import { useAppDispatch, useAppSelector } from "../hooks/hooks";
-
-import { activityActions } from "../actions";
-
 import Activity from "./Activity";
 import { useGetActivitiesQuery } from "../features/activity/activity-slice-api";
 
 function ActivityFeed() {
-  const dispatch = useAppDispatch();
   const { data: activities, error, isLoading } = useGetActivitiesQuery()
-
-  const fetchActivityFeed = useCallback(() => {
-    dispatch(activityActions.getActivityFeed());
-  }, [dispatch]);
-
-  useEffect(() => {
-    fetchActivityFeed();
-  }, [fetchActivityFeed]);
 
   return (
     <div className="col-span-12 sm:col-span-6">

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { API_URL } from '../../services'
 import { authHeader } from '../../helpers'
-import { Exam, ExamAnswerSheet } from '../../types/ExamState'
+import { Exam, ExamAnswerSheet, ExamQuestions } from '../../types/ExamState'
 
 // Define a service using a base URL and expected endpoints
 export const examApi = createApi({
@@ -22,19 +22,19 @@ export const examApi = createApi({
       query: (data) => {
         return {
           method: 'POST',
-          url: `exams/create`,
+          url: 'exams/create',
           headers: authHeader(),
           body: data
         }
       }
     }),
-    getUserExams: builder.query<void, void>({
-      query: () => `exams/user`,
+    getUserExams: builder.query<ExamQuestions[], void>({
+      query: () => 'courses/exams',
     }),
-    getExamQuestions: builder.query<void, {examId: string}>({
-      query: (data) => {
+    getExamQuestions: builder.query<ExamQuestions, string>({
+      query: (examId) => {
         return {
-          url: `exams/${data.examId}/questions`,
+          url: `exams/${examId}/questions`,
           headers: authHeader()
         }
       }
