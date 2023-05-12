@@ -9,4 +9,5 @@ export interface LoginResponse {
   id: string;
   success: boolean;
   token: string;
+  message?: string;
 }

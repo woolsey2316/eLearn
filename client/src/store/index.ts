@@ -10,7 +10,7 @@ import { resultsApi } from '../features/results/results-slice-api';
 import { taskApi } from '../features/task/task-slice-api';
 import { userApi } from '../features/user/user-api';
 import userReducer from '../features/user/user-slice';
-import { alert } from '../reducers/alert.reducer';
+import { alertReducer } from '../reducers/alert.reducer';
 
 const store = configureStore({
   reducer: {
@@ -24,7 +24,7 @@ const store = configureStore({
     [resultsApi.reducerPath]: resultsApi.reducer,
     [taskApi.reducerPath]: taskApi.reducer,
     userState: userReducer,
-    alert: alert
+    alert: alertReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({}).concat([

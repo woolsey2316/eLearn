@@ -232,7 +232,7 @@ router.post("/password/reset", (req, res, next) => {
     });
 });
 
-router.get("/sendotp", (req, res, next) => {
+router.get("/sendotp", (req, res) => {
   const invalid = validationErrorResponse(res, validationResult(req));
   if (invalid) {
     return invalid;

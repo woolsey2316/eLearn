@@ -5,7 +5,7 @@ interface Alert {
   type: AlertLevel;
   message: string;
 }
-export function alert(
+export function alertReducer(
   state: Partial<Alert> = {},
   action: AnyAction
 ): Partial<Alert> {

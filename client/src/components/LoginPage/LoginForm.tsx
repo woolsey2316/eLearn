@@ -14,13 +14,12 @@ import RememberMe from "./RememberMe";
 import ForgotPassword from "./ForgotPassword";
 import MainButtons from "./MainButtons";
 import FormHeading from "./FormHeading";
-import { useLoginUserMutation } from "../../features/auth/auth-slice-api";
+import { authApi, useLoginUserMutation, useSendOTPQuery } from "../../features/auth/auth-slice-api";
 
 const LoginForm = () => {
   const [loginUser, { isLoading, isError, error, isSuccess }] =
     useLoginUserMutation();
   const dispatch = useAppDispatch();
-  const alert = useAppSelector((state) => state.alert);
   const [form, setForm] = useState(1);
   const [inputs, setInputs] = useState({
     email:
@@ -71,7 +70,7 @@ const LoginForm = () => {
       // to Home page.
       loginUser({email, password, rememberMe});
     } else if (email && forgotPassword) {
-      dispatch(authActions.sendOtp(email));
+      dispatch(authApi.endpoints.sendOTP.initiate(email))
       setForm(2);
     }
     if (rememberMe && email != "" && password != "") {
@@ -127,9 +126,7 @@ const LoginForm = () => {
               />
             </div>
             <MainButtons forgotPassword={forgotPassword} />
-            {alert && alert.message ? (
-              <Alert type={alert.type} message={alert.message} />
-            ) : null}
+            <Alert />
           </form>
         )}
         {/* reset password form using OTP */}

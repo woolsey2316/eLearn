@@ -4,6 +4,7 @@ import { IGenericResponse, LoginResponse } from '../../types/HTTP';
 import { API_URL } from '../../services'
 import { EditableUserInfo } from '../../types/UserForm';
 import { authHeader, history, removeJWTToken, setEmail, setJWT, setRefreshTokenExpiryTime, setUserId } from '../../helpers';
+import { alertActions } from '../../actions';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -32,22 +33,21 @@ export const authApi = createApi({
           credentials: 'include',
         };
       },
-      async onQueryStarted(args, { queryFulfilled }) {
+      async onQueryStarted(args, { queryFulfilled, dispatch }) {
         try {
           const {data} = await queryFulfilled;
-          if (data.success !== true) {
-            removeJWTToken();
-            return new Error("toast.user.general_error");
-          }
 
           setUserId(data.id);
           setEmail(data.email);
           setJWT(data.token);
           setRefreshTokenExpiryTime(data.expires);
 
+          dispatch(alertActions.success(data.message ?? "successfully logged in"))
+
           history.push("/student/dashboard");
-        } catch (error: any) {
-          return error
+        } catch ({error}: any) {
+          removeJWTToken();
+          dispatch(alertActions.error(error.data.message))
         }
       },
     }),
@@ -86,10 +86,10 @@ export const authApi = createApi({
         }
       }
     }),
-    sendOTP: builder.query<void, void>({
-      query() {
+    sendOTP: builder.query<void, string>({
+      query(email) {
         return {
-          url: 'auth/sendotp?email=${email}',
+          url: `sendotp?email=${email}`,
           headers: authHeader()
         }
       }
@@ -97,8 +97,8 @@ export const authApi = createApi({
     updatePassword: builder.mutation<void,{oldPassword: string, password: string}>({
       query(data) {
         return {
-          method: 'PUT',
-          url: 'auth/password/update',
+          method: 'POST',
+          url: 'password/update',
           headers: authHeader(),
           body: data
         }
@@ -114,7 +114,7 @@ export const authApi = createApi({
     >({
       query(data) {
         return {
-          url: 'auth/password/reset',
+          url: 'password/reset',
           body: data
         }
       }
@@ -127,5 +127,7 @@ export const {
   useLoginUserMutation,
   useLogoutUserMutation,
   useVerifyEmailMutation,
-  useUpdatePasswordMutation
+  useSendOTPQuery,
+  useUpdatePasswordMutation,
+  useResetPasswordMutation,
 } = authApi;

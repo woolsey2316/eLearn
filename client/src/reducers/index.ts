@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { alert } from "./alert.reducer";
+import { alertReducer } from "./alert.reducer";
 import { authentication } from "./authentication.reducer";
 import { courses } from "./course.reducer";
 import { dashboard } from "./dashboard.reducer";
@@ -13,7 +13,7 @@ import { instructor } from "./instructor.reducer";
 
 const reducer = combineReducers({
   users,
-  alert,
+  alertReducer,
   authentication,
   courses,
   dashboard,
