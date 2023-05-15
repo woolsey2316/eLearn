@@ -3,8 +3,10 @@ import Task from "../../components/Task/Task";
 
 import * as Icon from "react-feather";
 import { TaskModal } from "../../components/TaskModal";
+import { useGetTasksQuery } from "../../features/task/task-slice-api";
 
 function TaskMenu() {
+  const { data: tasks} =  useGetTasksQuery()
   const [active, setActive] = useState("New")
   const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
@@ -45,9 +47,7 @@ function TaskMenu() {
           </div>
           <div className="p-5">
             <div className="tab-content">
-              <Task title="Create Campaign" due="10:00 AM" completed={false}></Task>
-              <Task title="Meeting With Client" due="02:00 PM" completed={false}></Task>
-              <Task title="Create New Repository" due="10:00 AM" completed={false}></Task>
+              {tasks?.map(task => <Task title={task.title} due={task.due.toString().slice(0,10)} completed={task.completed}></Task>)}
             </div>
           </div>
         </div>

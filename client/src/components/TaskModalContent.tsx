@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 
-import { taskActions } from "../actions";
-import { useAppDispatch } from "../hooks/hooks";
-
 import DateTimePicker from 'react-datetime-picker';
-
-function TaskModalContent() {
-  const dispatch = useAppDispatch();
+import { useCreateTaskMutation } from '../features/task/task-slice-api';
+interface Props {
+  setClose: () => void
+}
+function TaskModalContent({setClose}: Props) {
+  const [createTask] = useCreateTaskMutation()
   const [task, setTask] = useState({
     title: "",
     completed: false,
@@ -26,7 +26,7 @@ function TaskModalContent() {
     e.preventDefault();
 
     if (task.title && due) {
-      dispatch(taskActions.createTask({...task, due}));
+      createTask({...task, due});
     }
   }
   return (
@@ -45,9 +45,9 @@ function TaskModalContent() {
         >
           <div className="p-5">
             <div>
-              <label htmlFor="title">title</label>
+              <label className="font-medium" htmlFor="title">title</label>
               <input
-                className="input w-full border mt-2"
+                className="input w-full border border-theme-13"
                 placeholder=""
                 id="title"
                 name="title"
@@ -55,9 +55,17 @@ function TaskModalContent() {
               />
             </div>
             <div className="mt-3">
-              <label>due</label>
-              <DateTimePicker onChange={(date) => date ? onChange(date) : ""} value={due} />
+              <label className="block font-medium">due</label>
+              <DateTimePicker calendarClassName="border border-theme-13 p-5" onChange={(date) => date ? onChange(date) : ""} value={due} />
             </div>
+            <button
+              onClick={setClose}
+              type="button"
+              data-dismiss="modal"
+              className="button w-28 mr-5 border border-theme-7 text-gray-700"
+            >
+              Back To Questions
+            </button>
             <button type="submit" className="button bg-theme-1 text-white mt-4">
               Submit
             </button>

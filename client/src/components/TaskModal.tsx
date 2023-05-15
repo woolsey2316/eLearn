@@ -27,7 +27,7 @@ function TaskModal(props: Props) {
         },
       }}
     >
-      <TaskModalContent />
+      <TaskModalContent setClose={props.closeModal} />
     </Modal>
   );
 }

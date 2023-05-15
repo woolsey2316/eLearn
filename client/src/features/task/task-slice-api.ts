@@ -8,13 +8,21 @@ export const taskApi = createApi({
   reducerPath: 'taskApi',
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   endpoints: (builder) => ({
-    getInstructorById: builder.mutation<void, {task: Task}>({
+    getTasks: builder.query<Task[], void>({
+      query: () => {
+        return {
+          url: 'tasks',
+          headers: authHeader()
+        }
+      }
+    }),
+    createTask: builder.mutation<void, {title: string, completed: boolean, due: Date}>({
       query: (data) => {
         return {
           method: 'POST',
-          url: `task`,
+          url: 'tasks',
           headers: authHeader(),
-          body: data.task
+          body: data
         }
       },
     }),
@@ -23,4 +31,4 @@ export const taskApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetInstructorByIdMutation } = taskApi
+export const { useGetTasksQuery, useCreateTaskMutation  } = taskApi

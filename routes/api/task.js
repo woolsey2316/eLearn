@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
   const { payload } = verifyToken(jwt, res);
   const userID = payload?.id;
 
-  Task.find({userID: userID})
+  Task.find({userId: userID})
     .then((tasks) => res.json(tasks))
     .catch((err) =>
       res.status(404).json({ notasksFound: "failed to fetch tasks" })
