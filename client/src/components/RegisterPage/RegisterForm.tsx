@@ -33,7 +33,6 @@ const RegisterForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [passwordAdvice, showPasswordAdvice] = useState(false);
   const dispatch = useAppDispatch();
-  const alert = useAppSelector((state) => state.alert);
 
   useEffect(() => {
     history.listen((location, action) => {
@@ -363,9 +362,7 @@ const RegisterForm = () => {
               Register
             </button>
           </div>
-          {alert && alert.message ? (
-            <Alert type={alert.type} message={alert.message} />
-          ) : null}
+          <Alert />
         </div>
       </div>
     </form>

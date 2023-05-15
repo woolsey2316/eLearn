@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 
 import { history } from "../../helpers";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { useAppDispatch } from "../../hooks/hooks";
 
 import { alertActions } from "../../actions";
 
@@ -12,7 +12,6 @@ import { Alert } from "../../components";
 import { useGetMeQuery, useSetUserDetailsMutation } from "../../features/user/user-api";
 
 function PersonalInformation() {
-  const alert = useAppSelector((state) => state.alert);
   const { data: user } = useGetMeQuery()
 
   const [setUser, result] = useSetUserDetailsMutation()
@@ -166,9 +165,7 @@ function PersonalInformation() {
               >
                 Update Details
               </button>
-              {alert.message ? (
-                <Alert type={alert.type} message={alert.message} />
-              ) : null}
+              <Alert />
             </div>
           </div>
         </form>

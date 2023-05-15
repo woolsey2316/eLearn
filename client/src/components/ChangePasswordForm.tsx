@@ -17,7 +17,6 @@ function ChangePasswordForm() {
   });
   const [updatePassword] = useUpdatePasswordMutation()
 
-  const alert = useAppSelector((state) => state.alert);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -90,9 +89,7 @@ function ChangePasswordForm() {
           <button type="submit" className="button bg-theme-1 text-white mt-4">
             Change Password
           </button>
-          {alert.message ? (
-            <Alert type={alert.type} message={alert.message} />
-          ) : null}
+          <Alert />
         </div>
       </form>
     </div>

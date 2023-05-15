@@ -6,11 +6,12 @@ import { InputField } from "./InputField";
 import { AnswerField } from "./AnswerField";
 import { QuestionNumberField } from "./QuestionNumberField";
 import { QuestionField } from "./QuestionField";
-import { ExamInfo, Quiz } from "../../types/ExamState";
+import { Quiz } from "../../types/ExamState";
 
 import { Delta as TypeDelta, Sources } from 'quill';
 
-import { AlertLevel } from "../../enums/Alert";
+import { useAppDispatch } from "../../hooks/hooks";
+import { alertActions } from "../../actions";
 interface Props {
   quiz: Quiz;
   setQuestion: React.Dispatch<React.SetStateAction<Quiz>>;
@@ -32,11 +33,7 @@ function ExamCreationForm({
   submitted,
   setSubmitted
 }: Props) {
-  const [alert, setAlert] = useState({
-    type: AlertLevel.alert_neutral,
-    message: "",
-  });
-
+  const dispatch = useAppDispatch()
   useEffect(() => {
     if (questionList) {
       setQuestion((quiz) => ({
@@ -117,22 +114,13 @@ function ExamCreationForm({
 
   function handleValidation() {
     if (!allFieldsExist()) {
-      setAlert({
-        type: AlertLevel.alert_danger,
-        message: "Empty fields present",
-      });
+      dispatch(alertActions.error("Empty fields present"))
       setSuccess(false);
     } else if (!eachAnswerUnique()) {
-      setAlert({
-        type: AlertLevel.alert_danger,
-        message: "Answer options must be unique",
-      });
+      dispatch(alertActions.error("Answer options must be unique"))
       setSuccess(false);
     } else if (!answerAmongOptions()) {
-      setAlert({
-        type: AlertLevel.alert_danger,
-        message: "Correct answer is not among 4 options",
-      });
+      dispatch(alertActions.error("Correct answer is not among 4 options"))
       setSuccess(false);
     }
   }
@@ -149,10 +137,7 @@ function ExamCreationForm({
         possibleAnswers: ["", "", "", ""],
         number: questionList?.length ? questionList.length + 1 : 1
       });
-      setAlert({
-        type: AlertLevel.alert_success,
-        message: "Question was successfully added to test!",
-      });
+      dispatch(alertActions.success("Question was successfully added to test!"));
       setSuccess(true);
       setSubmitted(false);
     } else {
@@ -206,12 +191,7 @@ function ExamCreationForm({
             >
               Save and Next Question
             </button>
-            {submitted && alert.message ? (
-              <Alert type={alert.type} message={alert.message} />
-            ) : null}
-            {success && alert.message ? (
-              <Alert type={alert.type} message={alert.message} />
-            ) : null}
+            <Alert/>
           </div>
         </div>
       </div>

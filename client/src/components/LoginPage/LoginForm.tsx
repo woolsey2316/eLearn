@@ -14,11 +14,12 @@ import RememberMe from "./RememberMe";
 import ForgotPassword from "./ForgotPassword";
 import MainButtons from "./MainButtons";
 import FormHeading from "./FormHeading";
-import { authApi, useLoginUserMutation, useSendOTPQuery } from "../../features/auth/auth-slice-api";
+import { authApi, useLoginUserMutation, useResetPasswordMutation, useSendOTPQuery } from "../../features/auth/auth-slice-api";
 
 const LoginForm = () => {
   const [loginUser, { isLoading, isError, error, isSuccess }] =
     useLoginUserMutation();
+  const [resetPassword, {}] = useResetPasswordMutation()
   const dispatch = useAppDispatch();
   const [form, setForm] = useState(1);
   const [inputs, setInputs] = useState({
@@ -84,9 +85,7 @@ const LoginForm = () => {
     if (email && otp && newPassword && confirmPassword) {
       // Dispatches a login action, if successful redirects current URL
       // to Home page.
-      dispatch(
-        authActions.resetPassword(email, otp, newPassword, confirmPassword)
-      );
+      resetPassword({email, OTP: otp, password: newPassword, confirmPassword})
     }
   }
   return (

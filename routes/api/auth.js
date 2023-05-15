@@ -212,7 +212,6 @@ router.post("/password/reset", (req, res, next) => {
   User.findOne({ email: req.body.email, OTP: req.body.OTP })
     .exec()
     .then((user) => {
-      console.log({ user });
       if (!user) {
         return Promise.reject(res.sendStatus(404));
       }

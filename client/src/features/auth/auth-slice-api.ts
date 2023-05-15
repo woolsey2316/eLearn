@@ -45,7 +45,7 @@ export const authApi = createApi({
           dispatch(alertActions.success(data.message ?? "successfully logged in"))
 
           history.push("/student/dashboard");
-        } catch ({error}: any) {
+        } catch (error: any) {
           removeJWTToken();
           dispatch(alertActions.error(error.data.message))
         }
