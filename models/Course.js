@@ -6,7 +6,7 @@ const courseSchema = new Schema({
     type: Schema.Types.ObjectId,
     required: true
   },
-  CourseName: {
+  courseName: {
     type: String,
     required: true
   },

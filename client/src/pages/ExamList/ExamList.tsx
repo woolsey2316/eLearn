@@ -4,9 +4,6 @@ import { TopBar } from "../../components";
 import { ExamCard } from "./ExamCard";
 import { MonthContainer } from "./MonthContainer";
 
-import { examActions } from "../../actions";
-
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { PageComponentProps } from "../../types/PageComponentProps";
 import { sameMonth } from "../../utils/DateUtils";
 import { useGetUserExamsQuery } from "../../features/exam/exam-slice-api";

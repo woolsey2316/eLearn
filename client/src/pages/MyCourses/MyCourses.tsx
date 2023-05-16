@@ -7,19 +7,15 @@ import { CourseItem } from "./CourseItem";
 
 import { ShowingFirstToLast, CourseSubscribeModal } from "../CourseRegister";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-
-import { courseActions } from "../../actions";
-
 import { Pagination } from "../../components";
 
 import { CourseExams } from "./CourseExams";
 import { PageComponentProps } from "../../types/PageComponentProps";
 import { CourseDTO } from "../../types/CourseState";
-import { useGetCoursesQuery } from "../../features/course/course-slice-api";
+import { useGetCoursesQuery, useRegisterMutation } from "../../features/course/course-slice-api";
 
 function MyCourses(props: PageComponentProps) {
-  const dispatch = useAppDispatch();
+  const [register] = useRegisterMutation()
 
   const [search, setSearch] = useState("");
   const [chosenCourse, setCourse] = useState<CourseDTO>({
@@ -47,8 +43,8 @@ function MyCourses(props: PageComponentProps) {
   }
 
   const fetchCourses = useCallback(() => {
-    dispatch(courseActions.getAllCourses(page - 1, size));
-  }, [dispatch, page, size]);
+    useGetCoursesQuery({page: page - 1, size});
+  }, [page, size]);
 
   useEffect(() => {
     fetchCourses();
@@ -64,10 +60,10 @@ function MyCourses(props: PageComponentProps) {
   const navigatePage = useCallback(
     (page_: number) => {
       let max = 0;
-      if (courses?.length === undefined) {
+      if (courses?.data?.length === undefined) {
         max = 0;
       } else {
-        max = Math.ceil(courses.length / size);
+        max = Math.ceil(courses?.data.length / size);
       }
       if (page_ > 0 && page_ <= max) return setPage(page_);
       else return setPage(1);
@@ -92,7 +88,7 @@ function MyCourses(props: PageComponentProps) {
       chosenCourse.instructor !== undefined &&
       chosenCourse.status !== undefined
     ) {
-      dispatch(courseActions.register(chosenCourse));
+      register(chosenCourse);
     }
   }
 
@@ -122,7 +118,7 @@ function MyCourses(props: PageComponentProps) {
                 resultsPerPage={size}
                 page={page}
                 collection={courses
-                  ?.filter((elem) => elem?.CourseName?.includes(search))
+                  ?.data?.filter((elem) => elem?.courseName?.includes(search))
                   ?.filter(
                     (_, index) =>
                       // Navigate pages
@@ -142,8 +138,8 @@ function MyCourses(props: PageComponentProps) {
                 </div>
               </div>
             </div>
-            {courses
-                ?.filter((elem) => elem?.CourseName?.includes(search))
+            {courses?.data
+                ?.filter((elem) => elem?.courseName?.includes(search))
                 ?.filter(
                   (_, index) =>
                     // Navigate pages
@@ -164,7 +160,7 @@ function MyCourses(props: PageComponentProps) {
                 incrementPage={incrementPage}
                 navigatePage={navigatePage}
                 page={page}
-                list={courses}
+                list={courses?.data}
                 resultsPerPage={size}
                 handleChange={handleChange}
               />

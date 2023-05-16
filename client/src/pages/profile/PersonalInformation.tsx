@@ -6,7 +6,7 @@ import { history } from "../../helpers";
 
 import { useAppDispatch } from "../../hooks/hooks";
 
-import { alertActions } from "../../actions";
+import { alertActions } from "../../actions/alert.actions";
 
 import { Alert } from "../../components";
 import { useGetMeQuery, useSetUserDetailsMutation } from "../../features/user/user-api";

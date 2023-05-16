@@ -18,13 +18,13 @@ export const examApi = createApi({
         }
       },
     }),
-    createExam: builder.mutation<void, {exam: Exam}>({
-      query: (data) => {
+    createExam: builder.mutation<void, Exam>({
+      query: (exam) => {
         return {
           method: 'POST',
           url: 'exams/create',
           headers: authHeader(),
-          body: data
+          body: exam
         }
       }
     }),

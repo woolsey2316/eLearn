@@ -11,7 +11,7 @@ import { Quiz } from "../../types/ExamState";
 import { Delta as TypeDelta, Sources } from 'quill';
 
 import { useAppDispatch } from "../../hooks/hooks";
-import { alertActions } from "../../actions";
+import { alertActions } from "../../actions/alert.actions";
 interface Props {
   quiz: Quiz;
   setQuestion: React.Dispatch<React.SetStateAction<Quiz>>;

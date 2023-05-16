@@ -17,7 +17,14 @@ export const courseApi = createApi({
         }
       },
     }),
-    getCourses: builder.query<Course[], {page: number, size: number}>({
+    getCourses: builder.query<{
+      status: string,
+      message?: string,
+      count?: number,
+      page?: number,
+      pages?: number,
+      data?: Course[]
+    }, {page: number, size: number}>({
       query: ({page, size}) => `courses?page=${page}&size=${size}`,
     }),
     getUserCourses: builder.query<CourseType[], void>({

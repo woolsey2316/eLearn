@@ -1,6 +1,3 @@
-import React from "react";
-import { userActions } from "../../actions";
-import { useAppDispatch } from "../../hooks/hooks";
 type Props = {
   forgotPassword: boolean;
 };

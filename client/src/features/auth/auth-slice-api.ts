@@ -4,7 +4,7 @@ import { IGenericResponse, LoginResponse } from '../../types/HTTP';
 import { API_URL } from '../../services'
 import { EditableUserInfo } from '../../types/UserForm';
 import { authHeader, history, removeJWTToken, setEmail, setJWT, setRefreshTokenExpiryTime, setUserId } from '../../helpers';
-import { alertActions } from '../../actions';
+import { alertActions } from '../../actions/alert.actions';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -12,7 +12,7 @@ export const authApi = createApi({
     baseUrl: `${API_URL}auth/`,
   }),
   endpoints: (builder) => ({
-    registerUser: builder.mutation<IGenericResponse, EditableUserInfo>({
+    registerUser: builder.mutation<{message: string}, EditableUserInfo>({
       query(data) {
         return {
           url: 'register',
@@ -65,6 +65,7 @@ export const authApi = createApi({
     logoutUser: builder.mutation<void, void>({
       query() {
         return {
+          method: 'POST',
           url: 'logout',
           credentials: 'include',
         };

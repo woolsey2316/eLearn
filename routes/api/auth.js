@@ -27,7 +27,7 @@ router.post("/register", (req, res) => {
   }
   User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
-      return res.status(400).json({ email: "Email already exists" });
+      return res.status(400).json({ message: "Email already exists" });
     }
     const newUser = new User({
       email: req.body.email,
@@ -50,7 +50,7 @@ router.post("/register", (req, res) => {
         newUser.password = hash;
         newUser
           .save()
-          .then((user) => res.json(user))
+          .then((user) => res.json({ message: "successfully registered"}))
           .catch((err) => console.log(err));
       });
     });
@@ -241,7 +241,7 @@ router.get("/sendotp", (req, res) => {
     .then((user) => {
       if (!user) {
         return Promise.reject(
-          res.status(404).json({ message: "toast.user.account_not_found" })
+          res.status(404).json({ message: "user not found" })
         );
       }
       return refreshOtpThenSendToUser(user.email);
@@ -284,7 +284,7 @@ router.get("/verifyotp", [
         return verifyOtpInternal(res, next, user, req.query.OTP, false);
       });
   },
-  (req, res, next) => {
+  (req, res) => {
     res.sendStatus(200);
   },
 ]);

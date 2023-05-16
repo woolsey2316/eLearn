@@ -106,7 +106,7 @@ function CourseRegister(props: PageComponentProps) {
               <ShowingFirstToLast
                 resultsPerPage={size}
                 page={page}
-                collection={courses}
+                collection={courses?.data}
               />
               <div className="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div className="w-56 relative text-gray-700">
@@ -121,10 +121,10 @@ function CourseRegister(props: PageComponentProps) {
               </div>
             </div>
             {courses &&
-              courses
-                .filter(
+              courses?.data
+                ?.filter(
                   (elem) =>
-                    elem.CourseName.toUpperCase().includes(search.toUpperCase())
+                    elem.courseName.toUpperCase().includes(search.toUpperCase())
                 )
                 .map((course, index) => (
                   <CourseCard
@@ -141,7 +141,7 @@ function CourseRegister(props: PageComponentProps) {
                 incrementPage={incrementPage}
                 navigatePage={navigatePage}
                 page={page}
-                list={courses}
+                list={courses?.data}
                 resultsPerPage={size}
                 handleChange={handleChange}
               />

@@ -13,7 +13,7 @@ type Course = {
   subscriber: Array<string>;
   exams: Array<>;
   _id: string;
-  CourseName: string;
+  courseName: string;
   instructor: string;
   category: string;
   expires: Date;

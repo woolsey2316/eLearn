@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { useAppDispatch } from "../../hooks/hooks";
 
-import { authActions } from "../../actions";
-import { alertActions } from "../../actions";
+import { alertActions } from "../../actions/alert.actions";
 
 import { Alert } from "..";
 
@@ -13,6 +12,7 @@ import {
   passwordQuality,
 } from "../PasswordQuality";
 import ErrorMessage from "./ErrorMessage";
+import { useLogoutUserMutation, useRegisterUserMutation } from "../../features/auth/auth-slice-api";
 
 const RegisterForm = () => {
   const [user, setUser] = useState({
@@ -33,6 +33,8 @@ const RegisterForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [passwordAdvice, showPasswordAdvice] = useState(false);
   const dispatch = useAppDispatch();
+  const [logout] = useLogoutUserMutation()
+  const [registerUser] = useRegisterUserMutation()
 
   useEffect(() => {
     history.listen((location, action) => {
@@ -43,8 +45,8 @@ const RegisterForm = () => {
 
   // Always logs out current user before loading signup form page
   useEffect(() => {
-    dispatch(authActions.logout());
-  }, [dispatch]);
+    logout();
+  }, []);
   function isValidEmail() {
     return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(user.email);
   }
@@ -64,10 +66,15 @@ const RegisterForm = () => {
     return allFieldsExist;
   }
   // dispatch an action to the redux store, updates 'user' object
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void> {
     setSubmitted(true);
     if (allFieldsExist()) {
-      dispatch(authActions.registerUser(user));
+      try {
+        const response = await registerUser(user).unwrap();
+        dispatch(alertActions.success(response.message))
+      } catch (error: any) {
+        dispatch(alertActions.error(error))
+      }
     }
     event.preventDefault();
   }

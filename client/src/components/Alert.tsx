@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import * as Icon from "react-feather";
 import { AlertLevel } from "../enums/Alert";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
-import { alertActions } from "../actions";
+import { alertActions } from "../actions/alert.actions";
 
 function Alert() {
   const alerts = useAppSelector((state) => state.alert);

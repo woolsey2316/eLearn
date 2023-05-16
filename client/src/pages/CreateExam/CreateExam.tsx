@@ -12,19 +12,18 @@ import { ToastAlert } from "./ToastAlert";
 
 import ExamDetailsForm from './ExamDetailsForm'
 
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { useAppSelector } from "../../hooks/hooks";
 import { PageComponentProps } from "../../types/PageComponentProps";
 import { ExamInfo, Quiz } from "../../types/ExamState";
 
 import { contains } from '../../utils/utils'
 import { SectionButton } from "./SectionButton";
-import { examService } from "../../services";
-import { examActions } from "../../actions";
+import { useCreateExamMutation } from "../../features/exam/exam-slice-api";
 
 const sections = ["Chemistry", "Physics", "Mathematics", "Latin"]
 
 function CreateExam(props: PageComponentProps) {
-  const dispatch = useAppDispatch();
+  const [createExam] = useCreateExamMutation()
   const [submitted, setSubmitted] = useState(false);
   const [examInfo, setExamInfo] = useState<ExamInfo>({
     examName: "",
@@ -122,10 +121,10 @@ function CreateExam(props: PageComponentProps) {
   }
 
   function submitExam() {
-    dispatch(examActions.createExam({
+    createExam({
       ...examInfo,
       questionList: questionList
-    }))
+    })
   }
 
   return (

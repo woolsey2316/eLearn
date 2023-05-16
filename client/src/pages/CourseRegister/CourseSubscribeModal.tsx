@@ -4,10 +4,6 @@ import Modal from "react-modal";
 import * as Icon from "react-feather";
 import * as Loading from "react-spinners";
 
-import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
-
-import { courseActions } from "../../actions";
-
 import { SuccessRegister } from "./SuccessRegister";
 import { FailRegister } from "./FailRegister";
 

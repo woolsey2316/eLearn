@@ -1,21 +1,10 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import * as Icon from "react-feather";
-import { useAppDispatch } from "../../hooks/hooks";
-import { userActions } from "../../actions";
 import { useGetMeQuery } from '../../features/user/user-api';
 
 function UserOutline() {
-  const dispatch = useAppDispatch();
   const { data: user } = useGetMeQuery();
   const role = ["Student", "Admin"];
-
-  useEffect(() => {
-    dispatch(userActions.verifyEmail());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(userActions.getUserDetails());
-  }, [dispatch]);
 
   return (
     <div className="intro-y box col-span-8 lg:col-span-9 px-5 pt-5">

@@ -1,18 +1,17 @@
-import React, { useEffect } from "react";
-import { useAppDispatch } from "../../hooks/hooks";
+import React, { useEffect } from 'react'
 
 import LoginForm from "./LoginForm";
 import { SplashPage } from "../RegisterPage";
 
-import { authActions } from "../../actions";
+import { useLogoutUserMutation } from "../../features/auth/auth-slice-api";
 
 function LoginPage() {
   // reset login status
-  const dispatch = useAppDispatch();
+  const [logout] = useLogoutUserMutation()
 
   useEffect(() => {
-    dispatch(authActions.logout());
-  }, [dispatch]);
+    logout()
+  },[])
 
   return (
     <div className="login">

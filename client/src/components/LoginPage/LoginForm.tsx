@@ -3,8 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
 import { history } from "../../helpers";
 
-import { alertActions } from "../../actions";
-import { authActions } from "../../actions";
+import { alertActions } from "../../actions/alert.actions";
 
 import { Alert } from "..";
 

@@ -15,6 +15,7 @@ import { useGetUserExamResultsByCourseQuery } from "../../features/results/resul
 function ExamResults(props: PageComponentProps) {
   const { data: courses } = useGetUserCoursesQuery()
   const { data: userDetails } = useGetMeQuery()
+  const [course, setCourse] = useState("Select Course");
   const instructorId = courses?.filter((elem) => elem.courseName === course)[0]
     ?.instructorId;
   const category = courses?.filter((elem) => elem.courseName === course)[0]
@@ -22,11 +23,8 @@ function ExamResults(props: PageComponentProps) {
   const courseId = courses?.filter((elem) => elem.courseName === course)[0]
     ?._id;
 
-  const { data: instructor } = useGetInstructorByIdQuery(instructorId!)
-
-  const {data: results} = useGetUserExamResultsByCourseQuery(courseId!)
-
-  const [course, setCourse] = useState("Select Course");
+  const { data: instructor } = useGetInstructorByIdQuery(instructorId ?? "")
+  const { data: results } = useGetUserExamResultsByCourseQuery(courseId ?? "")
 
   return (
     <div className="app">
