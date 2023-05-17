@@ -2,13 +2,25 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { API_URL } from '../../services'
 import { Course, CourseDTO, CourseType } from '../../types/CourseState'
 import { authHeader } from '../../helpers'
+import { IGenericResponse } from '../../types/HTTP'
 
+export function HTTPResopnse(this: any, message: string) {
+  this.message = message
+  return {
+    message: message
+  }
+}
+export interface RegisterResp extends IGenericResponse {
+  data: {
+    msg?: string
+  }
+}
 // Define a service using a base URL and expected endpoints
 export const courseApi = createApi({
   reducerPath: 'coursesApi',
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   endpoints: (builder) => ({
-    register: builder.mutation<boolean, CourseDTO>({
+    register: builder.mutation<RegisterResp, CourseDTO>({
       query: (courseDTO) => {
         return {
           method: 'PUT',

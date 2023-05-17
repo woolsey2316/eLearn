@@ -42,7 +42,6 @@ function CourseRegister(props: PageComponentProps) {
     setIsOpen(false);
   }
 
-
   // Reasonable page values: 0 -> max page
   const navigatePage = useCallback((page: number) => {
     if (page > 0) {

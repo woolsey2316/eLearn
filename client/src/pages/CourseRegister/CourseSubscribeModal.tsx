@@ -11,7 +11,7 @@ import { history } from "../../helpers";
 
 import { CourseDTO } from "../../types/CourseState";
 import { useRegisterMutation } from "../../features/course/course-slice-api";
-
+import { isErrorWithMessage } from "../../types/Error";
 type CourseSubscribeModalProps = {
   modalIsOpen: boolean;
   closeModal: () => void;
@@ -25,15 +25,21 @@ function CourseSubscribeModal({
   chosenCourse,
 }: CourseSubscribeModalProps) {
 
-  const [register, {isLoading, isSuccess, isError}] = useRegisterMutation();
+  const [register, {isLoading, isSuccess, isError, data}] = useRegisterMutation();
   // made an attempt to register for a course
   const [request, setRequest] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("error")
 
   async function attemptRegister() {
+    setRequest(true)
     try {
       const registerOutcome = await register(chosenCourse).unwrap()
     } catch(error) {
-      console.log(error)
+      let message = 'Unknown Error'
+      if (isErrorWithMessage(error)) {
+        message = error.data.msg
+      }
+      setErrorMsg(message)
     }
   }
 
@@ -42,7 +48,6 @@ function CourseSubscribeModal({
     closeModal();
     history.push("/student/courses/CourseRegister");
   }
-
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -58,8 +63,8 @@ function CourseSubscribeModal({
         {request && isSuccess ? (
           <SuccessRegister course={chosenCourse} />
         ) : null}
-        {request && !isError ? (
-          <FailRegister course={chosenCourse} />
+        {request && isError ? (
+          <FailRegister msg={errorMsg} course={chosenCourse} />
         ) : null}
         {!request && (
           <div className="text-center">

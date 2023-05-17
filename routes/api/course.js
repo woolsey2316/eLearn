@@ -92,7 +92,7 @@ router.put("/:course_id", (req, res) => {
   const userID = payload?.id;
 
   if (typeof userID !== "string") {
-    return res.status(401).json("jwt token needs an 'id' field");
+    return res.status(401).json({msg: "jwt token needs an 'id' field"});
   }
   Course.findById(req.params.course_id)
     .then((course) => {
@@ -106,11 +106,15 @@ router.put("/:course_id", (req, res) => {
         course.subscribers.push(userID);
       }
       course.save();
-      return res.json({ alreadyRegistered });
+      if (alreadyRegistered) {
+        res.status(500).json({ msg: "Already registered for course" });
+      } else {
+        res.json({ msg: "Successfully registered for course" })
+      }
     })
-    .catch((err) =>
-      res.status(404).json({ nocoursefound: "failed to add user to course" })
-    );
+    .catch((err) => {
+      console.log(err)
+    });
 });
 
 // @route GET api/courses/user
