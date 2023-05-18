@@ -16,19 +16,15 @@ function ShowingFirstToLast({
   function first() {
     return resultsPerPage * (page - 1) + 1;
   }
-  function last() {
-    let length = 0;
+  function total() {
     if (collection && collection.length) {
       length = collection.length;
     }
-    return Math.min(resultsPerPage * page, length);
-  }
-  function total() {
-    return resultsPerPage;
+    return Math.min(resultsPerPage, length);
   }
   return (
     <div className="text-gray-600">
-      {`Showing ${first()} to ${last()} of ${total()} entries`}
+      {`Showing ${first()} to ${first() + total()-1} of ${total()} entries`}
     </div>
   );
 }

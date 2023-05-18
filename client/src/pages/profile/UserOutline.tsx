@@ -7,8 +7,8 @@ function UserOutline() {
   const role = ["Student", "Admin"];
 
   return (
-    <div className="intro-y box col-span-8 lg:col-span-9 px-5 pt-5">
-      <div className="flex flex-col lg:flex-row border-b border-gray-200 pb-5 -mx-5">
+    <div className="intro-y box col-span-4 lg:col-span-5 px-5 pt-5">
+      <div className="flex flex-col lg:flex-row pb-5 -mx-5">
         <div className="flex flex-1 px-5 items-center justify-center lg:justify-start">
           <div className="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative">
             <img
@@ -18,7 +18,7 @@ function UserOutline() {
             />
           </div>
           <div className="ml-5">
-            <div className="sm:whitespace-normal font-medium text-lg break-all">
+            <div className="sm:whitespace-normal font-medium text-lg break-word">
               {user?.name}
             </div>
             <div className="text-gray-600">

@@ -20,6 +20,7 @@ export const userApi = createApi({
           credentials: 'include',
         };
       },
+      providesTags: ['User']
     }),
     setUserDetails: builder.mutation<void, UserInfo>({
       query(data) {
@@ -30,7 +31,8 @@ export const userApi = createApi({
           credentials: 'include',
           body: data
         };
-      }
+      },
+      invalidatesTags: ['User']
     }),
     verifyEmail: builder.query<void, void>({
       query: () => {

@@ -7,6 +7,7 @@ import { Task } from '../../types/Task'
 export const taskApi = createApi({
   reducerPath: 'taskApi',
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
+  tagTypes: ['Task'],
   endpoints: (builder) => ({
     getTasks: builder.query<Task[], void>({
       query: () => {
@@ -14,7 +15,15 @@ export const taskApi = createApi({
           url: 'tasks',
           headers: authHeader()
         }
-      }
+      },
+      providesTags: result =>
+        result
+        ? [
+            ...result.map(({ _id }) => ({ type: 'Task' as const, id: _id})),
+            { type: 'Task', id: 'LIST' }
+          ]
+        : [{ type: 'Task', id: 'LIST'}]
+
     }),
     createTask: builder.mutation<void, {title: string, completed: boolean, due: Date}>({
       query: (data) => {
@@ -25,6 +34,7 @@ export const taskApi = createApi({
           body: data
         }
       },
+      invalidatesTags: [{type: 'Task', id: 'LIST'}]
     }),
   }),
 })

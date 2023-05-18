@@ -32,12 +32,13 @@ function ExamList(props: PageComponentProps) {
   console.log(examData)
   if (examData === undefined || examData.length === 0) return null;
 
-  examData.sort((a, b) => Date.parse(a.due) - Date.parse(b.due));
+  const exams = [...examData]
+  exams.sort((a, b) => Date.parse(a.due) - Date.parse(b.due));
   const months = new Set(
     examData.map((elem) => monthNames[new Date(elem.due).getMonth()])
   );
   const ExamList = [];
-  for (const month of months.values()) {
+  for (const month of monthNames) {
     ExamList.push(
       // A white box that contains all exams for the month
       <MonthContainer month={month} key={month}>

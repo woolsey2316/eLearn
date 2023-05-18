@@ -10,7 +10,7 @@ function UsefulLinks() {
             </div>
           </div>
           <div className="p-5 border-t border-gray-200">
-            <a className="flex items-center mt-5" href="/student/exam_list">
+            <a className="flex items-center" href="/student/exam_list">
               <Icon.Box className="w-4 h-4 mr-2" /> Exam List
             </a>
             <a className="flex items-center mt-5" href="/student/grades">

@@ -111,9 +111,8 @@ function ExamResults(props: PageComponentProps) {
               <div className="text-center sm:text-right sm:ml-auto">
                 <div className="text-base text-gray-600">Weighted Average</div>
                 <div className="text-xl text-theme-1 font-medium mt-2">
-                  {results?.weightedAverage?.userAverage.toFixed(2)}
+                  {results?.weightedAverage?.toFixed(2)}
                 </div>
-                <div className="mt-1 tetx-xs">Class Rank: {results?.weightedAverage?.classRank}</div>
               </div>
             </div>
           </div>

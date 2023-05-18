@@ -18,7 +18,7 @@ router.get("/", (req, res) => {
   Task.find({userId: userID})
     .then((tasks) => res.json(tasks))
     .catch((err) =>
-      res.status(404).json({ notasksFound: "failed to fetch tasks" })
+      res.status(404).json({ message: "failed to fetch tasks" })
     );
 });
 

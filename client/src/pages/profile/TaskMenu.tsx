@@ -18,7 +18,7 @@ function TaskMenu() {
     setIsOpen(false);
   }
   return (
-      <div className="col-span-12 lg:col-span-8 xxl:col-span-9">
+      <div className="col-span-12 lg:col-span-3 xxl:col-span-4">
         {/* <!-- BEGIN: Latest Tasks --> */}
         <TaskModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
         <div className="intro-y box">

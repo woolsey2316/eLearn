@@ -65,7 +65,19 @@ router.get("/exams", (req, res) => {
     })
     .then(exams => {
       const examList = [].concat.apply([], exams);
-      return res.json(examList)
+      const modifiedExamList = examList.map(exam => {
+        return {
+          examName: exam._doc.examName,
+          _id: exam._doc._id,
+          description: exam._doc.description,
+          instructor: exam._doc.instructor,
+          sections: exam._doc.sections,
+          duration: exam._doc.duration,
+          due: exam._doc.due,
+          courseId: exam._doc.courseId
+        }
+      })
+      return res.json(modifiedExamList)
     })
     .catch((err) =>
       res.status(404).json({ nocoursefound: "something went wrong fetching exams" })

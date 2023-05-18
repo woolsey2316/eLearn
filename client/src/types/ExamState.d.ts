@@ -27,6 +27,17 @@ export type ExamQuestions = {
   sections: string[];
   due: string;
 };
+export type ExamQuestionsOverview = {
+  _id: string;
+  courseId: string;
+  instructor: string;
+  courseName: string;
+  examName: string;
+  duration: number;
+  description: string;
+  sections: string[];
+  due: string;
+};
 export type ExamResult = {
   exam_name: string;
   dueDate: Date;
@@ -38,8 +49,9 @@ export type ExamResult = {
 };
 
 export type Results = {
-  examResults: Array<ExamResult>
-  weightedAverage: {userAverage: number; classRank: number}
+  examResults: Array<ExamResult>;
+  weightedAverage: number;
+  classRank: number;
 }
 
 export type ExamInfo = {

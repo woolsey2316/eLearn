@@ -80,7 +80,7 @@ router.get("/:user_id/courses/:course_id/exams", (req, res) => {
 // @route GET /courses/:course_id/exams
 // @desc Retrieve user exam results for a specific course
 // @access Public
-router.get("/courses/:course_id/exams", (req, res) => {
+router.get("/courses/:course_id/exam-results", (req, res) => {
   const jwt = req.headers.authorisation.split(" ")[1];
   const { payload } = verifyToken(jwt, res);
   const userID = payload?.id;
@@ -90,7 +90,7 @@ router.get("/courses/:course_id/exams", (req, res) => {
   }
   ExamResult.find({courseId: req.params.course_id}).then((examResults) => {
     if (!examResults) {
-      return res.status(404).json({ idnotfound: "examResults are not found" });
+      return res.status(404).json({ message: "examResults are not found" });
     }
     examResults = examResults.map(examResult => examResult._doc)
     let userResults = []
@@ -127,7 +127,9 @@ router.get("/courses/:course_id/exams", (req, res) => {
       return {...result, average: averages[index]}
     })
 
-    return res.status(200).json({ examResults: userResults });
+    const weightedAverage = userResults.reduce((acc, curr) => acc + curr.average * curr.weight,0)
+
+    return res.status(200).json({ examResults: userResults, weightedAverage });
   });
 });
 
