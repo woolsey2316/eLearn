@@ -1,3 +1,4 @@
+import React from 'react'
 import Activity from "./Activity";
 import { useGetActivitiesQuery } from "../features/activity/activity-slice-api";
 

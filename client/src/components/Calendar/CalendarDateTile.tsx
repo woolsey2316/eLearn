@@ -11,6 +11,8 @@ const CalendarDateTile = ({ today }: Props) => {
 
   return (
     <React.Fragment>
+      {/* a calendar displays days before current month at the top of the calendar
+      to fill in empty days not covered by the current month*/}
       {Calendar.daysBeforeCurrentMonth(today).map((day, i) => (
         <CalendarDay key={i} month={month_ - 1} day={day} disabled={true} />
       ))}

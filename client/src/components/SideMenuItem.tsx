@@ -14,7 +14,7 @@ const SideMenuItem = ({ children, name, path, subMenu }: SideMenuItemProps) => {
     <Icon.ChevronDown className="h-10 w-10 mr-10" />
   );
   return (
-    <li>
+    <li className="cursor-pointer">
       <a
         onClick={() => history.push(path)}
         className={

@@ -18,7 +18,10 @@ import { getUserId } from "../../helpers";
 import { QuizParams, QuizQuestions } from "../../types/ExamState";
 import { useGetExamQuestionsQuery } from "../../features/exam/exam-slice-api";
 
-function initialiseQuestionsArray(quizQuestions: QuizQuestions = [[]]) {
+function initialiseQuestionsArray(quizQuestions: QuizQuestions = [[{
+  question: 'loading...',
+  possibleAnswers: ['loading','loading','loading','loading']
+}]]) {
   // [
   //   [0,1,2,3],
   //   [0,1,2,3,4],
@@ -33,7 +36,10 @@ function initialiseQuestionsArray(quizQuestions: QuizQuestions = [[]]) {
     );
 }
 
-function initialiseAnswersList(quizQuestions: QuizQuestions = [[]]) {
+function initialiseAnswersList(quizQuestions: QuizQuestions = [[{
+  question: 'loading...',
+  possibleAnswers: ['loading','loading','loading','loading']
+}]]) {
   // [
   //   [-1,-1,-1,-1],
   //   [-1,-1,-1,-1,-1],
@@ -104,7 +110,7 @@ function ExamPage() {
   );
 
   const loadNextQuestionIfAny = useCallback(() => {
-    if (MarkedQuestionIds[section].length) {
+    if (MarkedQuestionIds[section].length > 0) {
       setQuestionId(MarkedQuestionIds[section][0]);
       findSavedAnswers(MarkedQuestionIds[section][0]);
     } else {
@@ -116,7 +122,7 @@ function ExamPage() {
 
   React.useEffect(() => {
     loadNextQuestionIfAny();
-  }, [MarkedQuestionIds, loadNextQuestionIfAny, section]);
+  }, [loadNextQuestionIfAny]);
 
   function setSection(sectionId: number) {
     setActive(sectionId);

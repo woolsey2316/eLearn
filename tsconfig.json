@@ -23,6 +23,8 @@
     "validation/**/*",
     "utils/**/*",
     "./server.js",
+    "./start-client.js",
+    "./.eslintrc.js"
   ],
   "exclude": ["client/build/**/*"]
 }

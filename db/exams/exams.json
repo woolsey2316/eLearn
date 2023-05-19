@@ -5,7 +5,7 @@
       [{"question":"what is 1 + 1?", "possibleAnswers":["1","2","3","4"]},{"question":"What is 2 x 2", "possibleAnswers":["2","4","6","8"]},{"question":"What is 2^4?","possibleAnswers":["16","32","8","4"]}]
     ],
      "examName":"Half Yearly",
-     "due":{ "$date":"2021-07-21" },
+     "due":{ "$date":"2023-07-21" },
      "courseId": {"$oid": "61d50f9a4e88c2cec2e0d672"},
      "description":"Half Yearly Exam",
      "sections":["Chemistry", "Mathematics"],
@@ -17,7 +17,7 @@
       [{"question":"what is 1 + 1?", "possibleAnswers":["1","2","3","4"]},{"question":"What is 2 x 2", "possibleAnswers":["2","4","6","8"]},{"question":"What is 2^4?","possibleAnswers":["16","32","8","4"]}]
     ],
      "examName":"Multiple Choice",
-     "due":{ "$date":"2021-08-21" },
+     "due":{ "$date":"2023-08-21" },
      "courseId": {"$oid": "61d50f9a4e88c2cec2e0d672"},
      "description":"Multiple Choice Exam",
      "sections":["Chemistry", "Mathematics"],
@@ -29,7 +29,7 @@
       [{"question":"what is 1 + 1?", "possibleAnswers":["1","2","3","4"]},{"question":"What is 2 x 2", "possibleAnswers":["2","4","6","8"]},{"question":"What is 2^4?","possibleAnswers":["16","32","8","4"]}]
     ],
      "examName":"Final Exam",
-     "due":{ "$date":"2021-08-21" },
+     "due":{ "$date":"2023-08-21" },
      "courseId": {"$oid": "61d50f9a4e88c2cec2e0d672"},
      "description":"Final Exam Multiple choice format",
      "sections":["Chemistry", "Mathematics"],
@@ -42,7 +42,7 @@
     ],
     "examName": "Astronomy103",
     "courseId": {"$oid": "61c10eb614fdaabab184244a"},
-    "due":{ "$date":"2021-07-21" },
+    "due":{ "$date":"2023-07-21" },
     "description": "a Astronomy103 exam",
     "sections":["Chemistry", "Mathematics"],
     "duration": 180
@@ -54,7 +54,7 @@
     ],
     "examName": "Astronomy104",
     "courseId": {"$oid": "61c10eb614fdaabab184244a"},
-    "due":{ "$date":"2021-07-21" },
+    "due":{ "$date":"2023-07-21" },
     "description": "a Astronomy104 exam",
     "sections":["Chemistry", "Mathematics"],
     "duration": 180
@@ -66,7 +66,7 @@
     ],
     "examName": "Astronomy101",
     "courseId": {"$oid": "61c10eb614fdaabab184244a"},
-    "due":{ "$date":"2021-07-21" },
+    "due":{ "$date":"2023-07-21" },
     "description": "a Astronomy101 exam",
     "sections":["Chemistry", "Mathematics"],
     "duration": 180
@@ -78,7 +78,7 @@
     ],
     "examName": "Maths101",
     "courseId": {"$oid":"61c10f5814fdaabab184244b"},
-    "due":{ "$date":"2021-07-21" },
+    "due":{ "$date":"2023-07-21" },
     "description": "a Maths101 exam",
     "sections":["Chemistry", "Mathematics"],
     "duration": 120
@@ -90,7 +90,7 @@
     ],
     "examName": "Half Yearly",
     "courseId": {"$oid": "61c10f8f14fdaabab184244c"},
-    "due":{ "$date":"2021-06-21" },
+    "due":{ "$date":"2023-06-21" },
     "description": "Half yearly exam",
     "sections":["Chemistry", "Mathematics"],
     "duration": 180
@@ -102,7 +102,7 @@
     ],
     "examName": "Multiple Choice",
     "courseId": {"$oid": "61c10f8f14fdaabab184244c"},
-    "due":{ "$date":"2021-06-21" },
+    "due":{ "$date":"2023-06-21" },
     "description": "a multiple choice exam",
     "sections":["Chemistry", "Mathematics"],
     "duration": 180
@@ -114,7 +114,7 @@
     ],
     "examName": "Final Exam",
     "courseId": {"$oid": "61c10f8f14fdaabab184244c"},
-    "due":{ "$date":"2021-07-21" },
+    "due":{ "$date":"2023-07-21" },
     "description": "The final exam",
     "sections":["Chemistry", "Mathematics"],
     "duration": 180

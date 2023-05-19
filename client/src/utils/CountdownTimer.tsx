@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Tooltip from "@reach/tooltip";
 import { CountdownTimerProps, TimeLeft } from "../types/Utils";
 

@@ -45,10 +45,10 @@ function ExamCard({ exam }: ExamCardProps) {
     }
   }
   return (
-    <div className="inbox__item inbox__item--active mb-4">
+    <div className="mb-4">
       <div className="intro-x flex items-center rounded bg-gray-200 cursor-default">
         <DateIcon due={exam.due} />
-        <div className=" inbox__item--active inline-block sm:block text-gray-700">
+        <div className="inline-block sm:block text-gray-700">
           <div className="flex px-5 py-1">
             <h2 className="text-xl mt-2 font-medium leading-none">
               {exam.examName}
