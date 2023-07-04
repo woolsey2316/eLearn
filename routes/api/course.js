@@ -4,6 +4,8 @@ const router = express.Router();
 const { verifyToken } = require("../../utils/verifyToken");
 const { userIsSubscribed } = require("../../utils/course")
 
+const { validateToken } = require("../../middleware/validateToken");
+
 const Course = require("../../models/Course");
 const Exam = require("../../models/Exam")
 
@@ -12,7 +14,7 @@ const { ObjectId } = require('mongodb');
 // @route GET api/courses/
 // @desc Retrieve course all courses
 // @access Public
-router.get("/", async (req, res) => {
+router.get("/", validateToken, async (req, res) => {
   try {
     let query = Course.find();
 
@@ -50,7 +52,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/exams", (req, res) => {
+router.get("/exams", validateToken, (req, res) => {
   const jwt = req.headers.authorisation.split(" ")[1];
   const { payload } = verifyToken(jwt, res);
   const userID = payload?.id;
@@ -87,7 +89,7 @@ router.get("/exams", (req, res) => {
 // @route GET api/course/:id
 // @description Get single course by id
 // @access Public
-router.get("/course/:id", (req, res) => {
+router.get("/course/:id", validateToken, (req, res) => {
   Course.findById(req.params.id)
     .then((course) => res.json(course))
     .catch((err) =>
@@ -98,7 +100,7 @@ router.get("/course/:id", (req, res) => {
 // @route PUT api/course/:course_id/
 // @description add new user to course
 // @access Public
-router.put("/:course_id", (req, res) => {
+router.put("/:course_id", validateToken, (req, res) => {
   const jwt = req.headers.authorisation.split(" ")[1];
   const { payload } = verifyToken(jwt, res);
   const userID = payload?.id;
@@ -132,7 +134,7 @@ router.put("/:course_id", (req, res) => {
 // @route GET api/courses/user
 // @description Get all courses a user is subscribed to
 // @access Public
-router.get("/user", (req, res) => {
+router.get("/user", validateToken, (req, res) => {
   const jwt = req.headers.authorisation.split(" ")[1];
   const { payload } = verifyToken(jwt, res);
   const userID = payload?.id;
@@ -157,7 +159,7 @@ router.get("/user", (req, res) => {
 // @route POST api/courses
 // @description add/save course
 // @access Public
-router.post("/", (req, res) => {
+router.post("/", validateToken, (req, res) => {
   Course.create(req.body)
     .then((course) => res.json({ msg: "course added successfully" }))
     .catch((err) =>

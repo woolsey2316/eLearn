@@ -7,6 +7,8 @@ const keys = require("../../config/keys");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
+const { validateToken } = require("../../middleware/validateToken");
+
 const { validationResult } = require("express-validator");
 const { validationErrorResponse } = require("./utils");
 const { verifyToken } = require("../../utils/verifyToken");
@@ -160,7 +162,7 @@ router.post("/refresh", (req, res) => {
 // @desc Logout
 // @route POST /auth/logout
 // @access Public - just to clear cookie if exists
-router.post("/logout", (req, res) => {
+router.post("/logout", validateToken, (req, res) => {
   const cookies = req.cookies;
   if (!cookies?.token) return res.sendStatus(204);
   res.clearCookie("token", { httpOnly: true, secure: true });

@@ -3,6 +3,7 @@ const router = express.Router();
 
 const { verifyToken } = require("../../utils/verifyToken");
 
+const { validateToken } = require("../../middleware/validateToken");
 const Exam = require("../../models/Exam");
 const ExamResult = require("../../models/ExamResult");
 
@@ -11,15 +12,10 @@ const { notDue, matchesUser, sameYearAndSameMonth } = require("../../utils/examS
 // @route GET /dashboard
 // @desc Retrieve overview dashboard data
 // @access Public
-router.get("/", async (req, res, next) => {
-  let userID
-  try {
-    const jwt = req.headers.authorisation.split(" ")[1];
-    const { payload } = verifyToken(jwt, res);
-    userID = payload?.id;
-  } catch (err) {
-    next(err)
-  }
+router.get("/", validateToken, async (req, res, next) => {
+  const jwt = req.headers.authorisation.split(" ")[1];
+  const { payload } = verifyToken(jwt, res);
+  const userID = payload?.id;
 
   let numberCompletedExams
   try {
@@ -61,15 +57,10 @@ router.get("/", async (req, res, next) => {
 // @route GET /dashboard
 // @desc Retrieve overview dashboard data
 // @access Public
-router.get("/month", async (req, res, next) => {
-  let userID
-  try {
-    const jwt = req.headers.authorisation.split(" ")[1];
-    const { payload } = verifyToken(jwt, res);
-    userID = payload?.id;
-  } catch (err) {
-    next(err)
-  }
+router.get("/month", validateToken, async (req, res, next) => {
+  const jwt = req.headers.authorisation.split(" ")[1];
+  const { payload } = verifyToken(jwt, res);
+  const userID = payload?.id;
 
   let numberCompletedExams
   try {

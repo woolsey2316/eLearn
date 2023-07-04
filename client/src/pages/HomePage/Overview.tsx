@@ -31,8 +31,8 @@ function Overview() {
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
                 {dashboard && dashboard?.total !== 0
-                  ? dashboard?.completed /
-                    dashboard?.total * 100 + "%"
+                  ? (dashboard?.completed /
+                    dashboard?.total * 100).toPrecision(3) + "%"
                   : 0}
               </div>
               <div className="text-base text-gray-600 mt-1">

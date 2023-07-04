@@ -8,12 +8,12 @@ const ExamResult = require("../../models/ExamResult");
 const { verifyToken } = require("../../utils/verifyToken");
 const mongoose = require('mongoose');
 
-
+const { validateToken } = require("../../middleware/validateToken");
 
 // @route GET /exam/:course_id
 // @desc Retrieve user courses
 // @access Public
-router.get("/:course_id", (req, res) => {
+router.get("/:course_id", validateToken, (req, res) => {
   const jwt = req.headers.authorisation.split(" ")[1];
   const { payload } = verifyToken(jwt, res);
   const userID = payload?.id;
@@ -41,7 +41,7 @@ router.get("/:course_id", (req, res) => {
   });
 });
 
-router.get("/:exam_id/questions", async (req, res) => {
+router.get("/:exam_id/questions", validateToken, async (req, res) => {
   Exam.findById(req.params.exam_id)
     .then((exam) => {
       return res.json(exam);
@@ -53,7 +53,7 @@ router.get("/:exam_id/questions", async (req, res) => {
     );
 });
 
-router.post("/create", async (req, res) => {
+router.post("/create", validateToken, async (req, res) => {
   const course = await Course.find({courseName: req.body.courseName })
     .then(course => course)
     .catch(err => res.status(500).json("no course found"))

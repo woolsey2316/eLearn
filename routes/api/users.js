@@ -5,12 +5,14 @@ const ExamResult = require("../../models/ExamResult");
 
 const { verifyToken } = require("../../utils/verifyToken");
 
-const { findAverages } = require("../../utils/examStats")
+const { findAverages } = require("../../utils/examStats");
+
+const { validateToken } = require("../../middleware/validateToken");
 
 // @route PUT api/user/:user_id/profile
 // @desc Retrieve user details
 // @access Public
-router.put("/profile", (req, res) => {
+router.put("/profile", validateToken, (req, res) => {
   const jwt = req.headers.authorisation.split(" ")[1];
   const { payload } = verifyToken(jwt, res);
   const userID = payload?.id;
@@ -39,7 +41,7 @@ router.put("/profile", (req, res) => {
 // @route GET api/user/:user_id/profile
 // @desc Retrieve user details
 // @access Public
-router.get("/profile", (req, res) => {
+router.get("/profile", validateToken, (req, res) => {
   const jwt = req.headers.authorisation.split(" ")[1];
   const { payload } = verifyToken(jwt, res);
   const userID = payload?.id;
@@ -54,7 +56,7 @@ router.get("/profile", (req, res) => {
 // @route GET /users/:id/courses
 // @desc Retrieve user courses
 // @access Public
-router.get("/:user_id/courses", (req, res) => {
+router.get("/:user_id/courses", validateToken, (req, res) => {
   User.findById(req.params.user_id, "courses").then((course) => {
     if (!course) {
       return res.status(404).json({ idnotfound: "course id not found" });
@@ -66,7 +68,7 @@ router.get("/:user_id/courses", (req, res) => {
 // @route GET /users/:id/courses/:courseId/exams
 // @desc Retrieve user courses
 // @access Public
-router.get("/:user_id/courses/:course_id/exams", (req, res) => {
+router.get("/:user_id/courses/:course_id/exams", validateToken, (req, res) => {
   User.findById(req.params.user_id, "courses").then((courses) => {
     if (!courses) {
       return res.status(404).json({ idnotfound: "courses id not found" });
@@ -80,7 +82,7 @@ router.get("/:user_id/courses/:course_id/exams", (req, res) => {
 // @route GET /courses/:course_id/exams
 // @desc Retrieve user exam results for a specific course
 // @access Public
-router.get("/courses/:course_id/exam-results", (req, res) => {
+router.get("/courses/:course_id/exam-results", validateToken, (req, res) => {
   const jwt = req.headers.authorisation.split(" ")[1];
   const { payload } = verifyToken(jwt, res);
   const userID = payload?.id;

@@ -29,8 +29,8 @@ function ThisMonth() {
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
                 {monthlyDashboardData && monthlyDashboardData?.total !== 0
-                    ? monthlyDashboardData?.completed /
-                    monthlyDashboardData?.total * 100 + "%"
+                    ? (monthlyDashboardData?.completed /
+                    monthlyDashboardData?.total * 100).toPrecision(3) + "%"
                     : 0}
               </div>
               <div className="text-base text-gray-600 mt-1">Total completion rate</div>

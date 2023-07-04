@@ -22,6 +22,7 @@
     "routes/**/*",
     "validation/**/*",
     "utils/**/*",
+    "middleware/**/*",
     "./server.js",
     "./start-client.js",
     "./.eslintrc.js"
