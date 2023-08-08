@@ -20,6 +20,10 @@ export const authApi = createApi({
           body: data,
         };
       },
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        await queryFulfilled
+        history.push("/login");
+      },
     }),
     loginUser: builder.mutation<
       LoginResponse,

@@ -20,6 +20,7 @@ const PasswordField = ({
           className="intro-x login__input input input--lg border border-gray-300 block mt-4"
           placeholder="Password"
           name="password"
+          data-qa="password"
           value={password}
           onChange={handleChange}
         />

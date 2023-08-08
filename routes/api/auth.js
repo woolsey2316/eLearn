@@ -15,6 +15,8 @@ const { verifyToken } = require("../../utils/verifyToken");
 
 const { User, refreshOtpThenSendToUser } = require("../../models/User");
 
+const mongoose = require('mongoose')
+
 const jwtExpirySeconds = 900;
 const jwtRefreshExpirySeconds = 3600;
 // @route POST api/users/register
@@ -29,9 +31,10 @@ router.post("/register", (req, res) => {
   }
   User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
-      return res.status(400).json({ message: "Email already exists" });
+      return res.status(400).json({ msg: "Email already exists" });
     }
     const newUser = new User({
+      _id: new mongoose.Types.ObjectId(),
       email: req.body.email,
       password: req.body.password,
       name: req.body.name,
@@ -162,7 +165,7 @@ router.post("/refresh", (req, res) => {
 // @desc Logout
 // @route POST /auth/logout
 // @access Public - just to clear cookie if exists
-router.post("/logout", validateToken, (req, res) => {
+router.post("/logout", (req, res) => {
   const cookies = req.cookies;
   if (!cookies?.token) return res.sendStatus(204);
   res.clearCookie("token", { httpOnly: true, secure: true });

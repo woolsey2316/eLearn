@@ -19,7 +19,7 @@ function ChangePasswordForm() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    history.listen((location, action) => {
+    history.listen((location_: any, action_: any) => {
       // clear alert on location change
       dispatch(alertActions.clear());
     });

@@ -44,6 +44,7 @@ function LogoutModal(props: Props) {
           </button>
           <a
             href="/login"
+            data-qa="sign-out-btn"
             className="mt-2 sm:mt-0 button bg-theme-6 text-white md:text-xl sm:text-lg text-medium"
           >
             Log Out

@@ -5,7 +5,7 @@ import { history } from "../../helpers";
 
 import { alertActions } from "../../actions/alert.actions";
 
-import { Alert } from "..";
+import { Alert } from "../../components";
 
 import EmailField from "./EmailField";
 import PasswordField from "./PasswordField";

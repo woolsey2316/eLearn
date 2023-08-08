@@ -13,6 +13,7 @@ const EmailField = ({ submitted, email, handleChange }: Props) => {
         className="intro-x login__input input input--lg border border-gray-300 block"
         placeholder="Email"
         name="email"
+        data-qa="email"
         id="email-field"
         value={email}
         onChange={handleChange}

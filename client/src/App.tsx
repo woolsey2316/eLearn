@@ -7,8 +7,8 @@ import "./index.css";
 
 import { history } from "./helpers/history";
 
-import { RegisterPage } from "./components/RegisterPage";
-import { LoginPage } from "./components/LoginPage";
+import { RegisterPage } from "./pages/RegisterPage";
+import { LoginPage } from "./pages/LoginPage";
 import { Dashboard } from "./pages/HomePage";
 import { AdminDashboard } from "./pages/AdminDashboard";
 import { CreateExam } from "./pages/CreateExam";

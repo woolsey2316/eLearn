@@ -3,16 +3,17 @@ import { useAppDispatch } from "../../hooks/hooks";
 
 import { alertActions } from "../../actions/alert.actions";
 
-import { Alert } from "..";
+import { Alert } from "../../components";
 
 import { history } from "../../helpers";
 import {
   evaluatePasswordScore,
   passwordStrengthColour,
   passwordQuality,
-} from "../PasswordQuality";
+} from "../../components/PasswordQuality";
 import ErrorMessage from "./ErrorMessage";
 import { useLogoutUserMutation, useRegisterUserMutation } from "../../features/auth/auth-slice-api";
+import { isErrorWithMessage } from "../../types/Error";
 
 const RegisterForm = () => {
   const [user, setUser] = useState({
@@ -37,7 +38,7 @@ const RegisterForm = () => {
   const [registerUser] = useRegisterUserMutation()
 
   useEffect(() => {
-    history.listen((location, action) => {
+    history.listen((location_: any, action_: any) => {
       // clear alert on location change
       dispatch(alertActions.clear());
     });
@@ -67,16 +68,18 @@ const RegisterForm = () => {
   }
   // dispatch an action to the redux store, updates 'user' object
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void> {
+    event.preventDefault();
     setSubmitted(true);
     if (allFieldsExist()) {
       try {
         const response = await registerUser(user).unwrap();
         dispatch(alertActions.success(response.message))
-      } catch (error: any) {
-        dispatch(alertActions.error(error))
+      } catch (error) {
+        if (isErrorWithMessage(error)) {
+          dispatch(alertActions.error(error.data.msg))
+        }
       }
     }
-    event.preventDefault();
   }
   return (
     <form name="form" onSubmit={handleSubmit}>
@@ -93,6 +96,7 @@ const RegisterForm = () => {
             <input
               type="text"
               name="email"
+              data-cy="email"
               className="intro-x login__input input input--lg border border-gray-300 block"
               style={{
                 borderColor: isValidEmail() || !submitted ? "" : "#D32929",
@@ -103,11 +107,13 @@ const RegisterForm = () => {
             />
             <ErrorMessage
               message="Email is required"
+              name="email"
               show={submitted && user.email == ""}
             ></ErrorMessage>
             <input
               type="text"
               name="name"
+              data-cy="name"
               style={{ borderColor: user.name || !submitted ? "" : "#D32929" }}
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
               placeholder="Full Name"
@@ -116,11 +122,13 @@ const RegisterForm = () => {
             />
             <ErrorMessage
               message="Full Name is required"
+              name="name"
               show={submitted && user.name == ""}
             ></ErrorMessage>
             <input
               type="text"
               name="address"
+              data-cy="address"
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
               style={{
                 borderColor: user.address || !submitted ? "" : "#D32929",
@@ -131,11 +139,13 @@ const RegisterForm = () => {
             />
             <ErrorMessage
               message="Address is required"
+              name="address"
               show={submitted && user.address == ""}
             ></ErrorMessage>
             <input
               type="text"
               name="gender"
+              data-cy="gender"
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
               style={{
                 borderColor: user.gender || !submitted ? "" : "#D32929",
@@ -146,11 +156,13 @@ const RegisterForm = () => {
             />
             <ErrorMessage
               message="Gender is required"
+              name="gender"
               show={submitted && user.gender == ""}
             ></ErrorMessage>
             <input
               type="text"
               name="area"
+              data-cy="area"
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
               style={{ borderColor: user.area || !submitted ? "" : "#D32929" }}
               placeholder="Area"
@@ -159,11 +171,13 @@ const RegisterForm = () => {
             />
             <ErrorMessage
               message="Area is required"
+              name="area"
               show={submitted && user.area == ""}
             ></ErrorMessage>
             <input
               type="text"
               name="state"
+              data-cy="state"
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
               style={{ borderColor: user.state || !submitted ? "" : "#D32929" }}
               placeholder="State"
@@ -172,11 +186,13 @@ const RegisterForm = () => {
             />
             <ErrorMessage
               message="State is required"
+              name="state"
               show={submitted && user.state == ""}
             ></ErrorMessage>
             <input
               type="text"
               name="className"
+              data-cy="className"
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
               style={{
                 borderColor: user.className || !submitted ? "" : "#D32929",
@@ -187,11 +203,13 @@ const RegisterForm = () => {
             />
             <ErrorMessage
               message="ClassName is required"
+              name="class"
               show={submitted && user.className == ""}
             ></ErrorMessage>
             <input
               type="text"
               name="mobile"
+              data-cy="mobile"
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
               style={{
                 borderColor: user.mobile || !submitted ? "" : "#D32929",
@@ -202,11 +220,13 @@ const RegisterForm = () => {
             />
             <ErrorMessage
               message="Mobile is required"
+              name="mobile"
               show={submitted && user.mobile == ""}
             ></ErrorMessage>
             <input
               type="text"
               name="pincode"
+              data-cy="pincode"
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
               style={{
                 borderColor: user.pincode || !submitted ? "" : "#D32929",
@@ -217,14 +237,17 @@ const RegisterForm = () => {
             />
             <ErrorMessage
               message="Pincode is required"
+              name="pincode"
               show={submitted && user.pincode == ""}
             ></ErrorMessage>
             <ErrorMessage
               message="Pincode must be 6 digits long"
+              name="pincode-length"
               show={submitted && user.pincode.length != 6}
             ></ErrorMessage>
             <ErrorMessage
               message="Pincode must be only composed of digits"
+              name="pincode-type"
               show={
                 submitted &&
                 !user.pincode
@@ -241,6 +264,7 @@ const RegisterForm = () => {
             <input
               type="text"
               name="school"
+              data-cy="school"
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
               style={{
                 borderColor: user.school || !submitted ? "" : "#D32929",
@@ -251,11 +275,13 @@ const RegisterForm = () => {
             />
             <ErrorMessage
               message="School is required"
+              name="school"
               show={submitted && user.school == ""}
             ></ErrorMessage>
             <input
               type="password"
               name="password"
+              data-cy="password"
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
               style={{
                 borderColor: user.password || !submitted ? "" : "#D32929",
@@ -266,6 +292,7 @@ const RegisterForm = () => {
             />
             <ErrorMessage
               message="Password is required"
+              name="password"
               show={submitted && user.password == ""}
             ></ErrorMessage>
             <div className="intro-x w-full grid grid-cols-12 gap-4 h-1 mt-3">
@@ -309,6 +336,7 @@ const RegisterForm = () => {
             <input
               type="password"
               name="password2"
+              data-cy="password2"
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
               style={{
                 borderColor: user.password2 || !submitted ? "" : "#D32929",
@@ -364,6 +392,7 @@ const RegisterForm = () => {
             </a>
             <button
               type="submit"
+              data-cy="submit"
               className="button button--lg sm:w-32 text-white bg-theme-1 xl:mr-3 py-0 sm:float-right"
             >
               Register

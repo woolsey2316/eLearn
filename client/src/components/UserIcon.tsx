@@ -9,6 +9,7 @@ function UserIcon(props: Props) {
     <div className="intro-x dropdown w-8 h-8 relative">
       <div
         onClick={() => setPressed(!isPressed)}
+        data-qa="user-profile"
         className="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in"
       >
         <img
@@ -31,13 +32,13 @@ function UserIcon(props: Props) {
           <div className="p-2">
             <a
               href="/student/profile/update_profile"
-              className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
+              className="block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
             >
               <Icon.User className="w-4 h-4 mr-2" /> Update Profile
             </a>
             <a
               href="/student/profile/change_password"
-              className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
+              className="block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
             >
               <Icon.Lock className="w-4 h-4 mr-2" /> Reset Password
             </a>
@@ -45,7 +46,8 @@ function UserIcon(props: Props) {
           <div className="p-2 border-t border-theme-40">
             <button
               onClick={props.open}
-              className="w-full flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
+              data-qa="log-out-btn"
+              className="w-full block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
             >
               <Icon.ToggleRight className="w-4 h-4 mr-2" /> Logout
             </button>

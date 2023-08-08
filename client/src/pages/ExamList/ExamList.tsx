@@ -57,7 +57,7 @@ function ExamList(props: PageComponentProps) {
     );
   }
   return (
-    <div className="app">
+    <div className="app" data-qa="protected-page">
       <MobileMenu />
       <div className="flex px-2 sm:px-10">
         {props.sideMenu}

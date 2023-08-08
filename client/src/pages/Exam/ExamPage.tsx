@@ -222,7 +222,7 @@ function ExamPage() {
   }
 
   return (
-    <div className="content rounded-none p-2">
+    <div className="content rounded-none p-2" data-qa="protected-page">
       <div className="box flex justify-between">
         <div className="flex flex-col flex-grow">
           {showSubmitModal && (

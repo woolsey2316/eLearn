@@ -12,6 +12,7 @@ module.exports = {
 		'**/*.test.(ts|js)'
 	],
 	testEnvironment: 'node',
+  testURL: "http://localhost:5000",
   setupFilesAfterEnv: [
     "<rootDir>/setupTests.js"
   ]

@@ -14,7 +14,7 @@ function LoginPage() {
   },[])
 
   return (
-    <div className="login">
+    <div className="login" data-qa="not-logged">
       <div className="container sm:px-10">
         <div className="block xl:grid grid-cols-2 gap-4">
           <SplashPage />
