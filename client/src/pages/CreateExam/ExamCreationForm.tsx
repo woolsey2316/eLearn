@@ -105,7 +105,7 @@ function ExamCreationForm({
     console.log(`changing index ${name}, to value ${value}`);
     setQuestion((quiz) => ({
       ...quiz,
-      option: [
+      possibleAnswers: [
         ...quiz.possibleAnswers.slice(0, parseInt(name, 10)),
         value,
         ...quiz.possibleAnswers.slice(parseInt(name, 10) + 1),
@@ -161,7 +161,6 @@ function ExamCreationForm({
             handleChange={handleQuestionChange}
             submitted={submitted}
           />
-
           <div className="grid grid-cols-2 gap-5">
             <AnswerField
               quiz={quiz}
