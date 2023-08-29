@@ -13,16 +13,16 @@ import { ToastAlert } from "./ToastAlert";
 import ExamDetailsForm from './ExamDetailsForm'
 
 import { useAppSelector } from "../../hooks/hooks";
-import { PageComponentProps } from "../../types/PageComponentProps";
 import { ExamInfo, Quiz } from "../../types/ExamState";
 
 import { contains } from '../../utils/utils'
 import { SectionButton } from "./SectionButton";
 import { useCreateExamMutation } from "../../features/exam/exam-slice-api";
+import PageWithSideMenu from "../PageWithSideMenu/PageWithSideMenu";
 
 const sections = ["Chemistry", "Physics", "Mathematics", "Latin"]
 
-function CreateExam(props: PageComponentProps) {
+function CreateExam() {
   const [createExam] = useCreateExamMutation()
   const [submitted, setSubmitted] = useState(false);
   const [examInfo, setExamInfo] = useState<ExamInfo>({
@@ -128,77 +128,70 @@ function CreateExam(props: PageComponentProps) {
   }
 
   return (
-    <div className="app" data-qa="admin-page">
-      <MobileMenu />
-      <div className="flex px-2 sm:px-10">
-        {props.sideMenu}
-        <div className="content">
-          <TopBar open={props.openModal} />
-          <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-5">
-            <div className="col-span-12">
-              <ExamDetailsForm
-                addSection={addSection}
-                setExamInfo={setExamInfo}
-                removeSection={removeSection}
-                handleCourseChange={handleCourseChange}
-                examInfo={examInfo}
-                submitted={submitted}
-                sections={sections}
-                setDate={setDate}
-                />
+    <PageWithSideMenu>
+      <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-5">
+        <div className="col-span-12">
+          <ExamDetailsForm
+            addSection={addSection}
+            setExamInfo={setExamInfo}
+            removeSection={removeSection}
+            handleCourseChange={handleCourseChange}
+            examInfo={examInfo}
+            submitted={submitted}
+            sections={sections}
+            setDate={setDate}
+            />
+        </div>
+        <div className="col-span-12 lg:col-span-6">
+          <div className="box lg:mt-5">
+            <div className="flex items-center p-5 border-b border-gray-200">
+              <h2 className="font-medium text-base mr-auto">
+                {examInfo.examName}, {examInfo.courseName}
+              </h2>
             </div>
-            <div className="col-span-12 lg:col-span-6">
-              <div className="box lg:mt-5">
-                <div className="flex items-center p-5 border-b border-gray-200">
-                  <h2 className="font-medium text-base mr-auto">
-                    {examInfo.examName}, {examInfo.courseName}
-                  </h2>
-                </div>
-                {/* exam section button, toggle section button to view questions underneath chosen section */}
-                <div className="p-5">
-                  {examInfo.sections.map((section, index) =>
-                    <SectionButton
-                      index={index}
-                      currentSection={sectionId}
-                      name={section}
-                      onClick={setSectionId}/>
-                    )}
-                </div>
-                <div className="p-5">
-                  <ExamCreationForm
-                    setQuestion={setQuestion}
-                    quiz={quiz}
-                    updateQuestionList={updateQuestionList}
-                    questionList={questionList[sectionId]}
-                    success={success}
-                    setSuccess={setSuccess}
-                    submitted={submitted}
-                    setSubmitted={setSubmitted}
-                  />
-                  <div className="flex justify-start mt-4">
-                    <button
-                      type="button"
-                      onClick={submitExam}
-                      className="button bg-theme-1 text-white"
-                    >
-                      Submit Exam
-                    </button>
-                  </div>
-                </div>
+            {/* exam section button, toggle section button to view questions underneath chosen section */}
+            <div className="p-5">
+              {examInfo.sections.map((section, index) =>
+                <SectionButton
+                  index={index}
+                  currentSection={sectionId}
+                  name={section}
+                  onClick={setSectionId}/>
+                )}
+            </div>
+            <div className="p-5">
+              <ExamCreationForm
+                setQuestion={setQuestion}
+                quiz={quiz}
+                updateQuestionList={updateQuestionList}
+                questionList={questionList[sectionId]}
+                success={success}
+                setSuccess={setSuccess}
+                submitted={submitted}
+                setSubmitted={setSubmitted}
+              />
+              <div className="flex justify-start mt-4">
+                <button
+                  type="button"
+                  onClick={submitExam}
+                  className="button bg-theme-1 text-white"
+                >
+                  Submit Exam
+                </button>
               </div>
             </div>
-            <PreviewQuestion quiz={quiz} />
-            <QuestionList
-              removeItem={removeItem}
-              questionList={questionList}
-              sectionId={sectionId}
-              setQuestion={setQuestion}
-            />
-            {success && <ToastAlert message={alert.message ?? ""} />}
           </div>
         </div>
+        <PreviewQuestion quiz={quiz} />
+        <QuestionList
+          removeItem={removeItem}
+          questionList={questionList}
+          sectionId={sectionId}
+          setQuestion={setQuestion}
+        />
+        {success && <ToastAlert message={alert.message ?? ""} />}
       </div>
-    </div>
+    </PageWithSideMenu>
   );
 }
 

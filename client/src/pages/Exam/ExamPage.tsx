@@ -12,7 +12,7 @@ import { calculateTimeLeft } from "../../utils/CountdownTimer";
 import * as Icon from "react-feather";
 import { SubmitModal } from "../../components";
 
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 
 import { getUserId } from "../../helpers";
 import { QuizParams, QuizQuestions } from "../../types/ExamState";

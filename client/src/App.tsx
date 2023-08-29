@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Switch, Route, Router } from "react-router-dom";
+import { Switch, Route, Router } from "react-router-dom";
 
 // midOne html + css template file provided
 import "./midone-assets/dist/css/app.css";
@@ -22,77 +21,64 @@ import { MyCourses } from "./pages/MyCourses";
 import { CourseRegister } from "./pages/CourseRegister";
 import { PageNotFound } from "./pages/NotFound";
 
-import { SideMenu } from "./components";
-
 import { LogoutModal } from "./components";
 
 import { PrivateRoute } from "./components";
 
 function App() {
-  const [modalIsOpen, setIsOpen] = useState(false);
-  function openModal() {
-    console.log("open modal request");
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  const sideMenu = <SideMenu admin={true} open={openModal} />;
   return (
     <Router history={history}>
-      <LogoutModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
+      <LogoutModal />
       <Switch>
         <PrivateRoute exact path="/dashboard">
-          <Dashboard openModal={openModal} sideMenu={sideMenu} />
+          <Dashboard />
         </PrivateRoute>
         <PrivateRoute exact path="/admin/dashboard">
-          <AdminDashboard openModal={openModal} sideMenu={sideMenu} />
+          <AdminDashboard />
         </PrivateRoute>
         <PrivateRoute exact path="/admin/home">
-          <AdminDashboard openModal={openModal} sideMenu={sideMenu} />
+          <AdminDashboard />
         </PrivateRoute>
         <PrivateRoute exact path="/admin/create_exam">
-          <CreateExam openModal={openModal} sideMenu={sideMenu} />
+          <CreateExam />
         </PrivateRoute>
         <PrivateRoute exact path="/admin/my_courses">
-          <MyCourses openModal={openModal} sideMenu={sideMenu} />
+          <MyCourses />
         </PrivateRoute>
         <PrivateRoute exact path="/student/dashboard">
-          <Dashboard openModal={openModal} sideMenu={sideMenu} />
+          <Dashboard />
         </PrivateRoute>
         <PrivateRoute exact path="/">
-          <Dashboard openModal={openModal} sideMenu={sideMenu} />
+          <Dashboard />
         </PrivateRoute>
         <PrivateRoute exact path="/student/profile">
-          <Profile openModal={openModal} sideMenu={sideMenu} />
+          <Profile />
         </PrivateRoute>
         <PrivateRoute exact path="/student/courses">
-          <Courses openModal={openModal} sideMenu={sideMenu} />
+          <Courses />
         </PrivateRoute>
         <PrivateRoute exact path="/student/courses/CourseRegister">
-          <CourseRegister openModal={openModal} sideMenu={sideMenu} />
+          <CourseRegister />
         </PrivateRoute>
         <PrivateRoute exact path="/student/profile/change_password">
-          <ChangePassword openModal={openModal} sideMenu={sideMenu} />
+          <ChangePassword />
         </PrivateRoute>
         <PrivateRoute exact path="/student/Profile/update_profile">
-          <UpdateProfile openModal={openModal} sideMenu={sideMenu} />
+          <UpdateProfile />
         </PrivateRoute>
         <PrivateRoute exact path="/student/grades">
-          <ExamResults openModal={openModal} sideMenu={sideMenu} />
-        </PrivateRoute>
-        <PrivateRoute exact path="/student/exams/:exam_id">
-          <ExamPage />
+          <ExamResults />
         </PrivateRoute>
         <PrivateRoute exact path="/student/exam_list">
-          <ExamList openModal={openModal} sideMenu={sideMenu} />
+          <ExamList />
         </PrivateRoute>
-        <Route exact path="/signup" component={RegisterPage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route path="*" exact component={PageNotFound} />
       </Switch>
+      <PrivateRoute exact path="/student/exams/:exam_id">
+        <ExamPage />
+      </PrivateRoute>
+      <Route exact path="/signup" component={RegisterPage} />
+      <Route exact path="/login" component={LoginPage} />
+      <Route path="*" exact component={PageNotFound} />
     </Router>
   );
 }

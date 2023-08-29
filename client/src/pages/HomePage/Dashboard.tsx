@@ -1,25 +1,29 @@
-import React from "react";
+import React from 'react'
+import { CalendarContainer } from '../../components'
+import { ActivityFeed } from '../../components'
+import { Overview } from './Overview'
+import { ThisMonth } from './ThisMonth'
+import PageWithSideMenu from '../PageWithSideMenu/PageWithSideMenu'
 
-import { MobileMenu } from "../../components";
-
-import { MainContent } from "./MainContent";
-
-import { TopBar } from "../../components";
-import { PageComponentProps } from "../../types/PageComponentProps";
-
-function Dashboard(props: PageComponentProps) {
+function Dashboard() {
   return (
-    <div className="app" data-qa="protected-page">
-      <MobileMenu />
-      <div className="flex px-2 sm:px-10">
-        {props.sideMenu}
-        <div className="content">
-          <TopBar open={props.openModal} />
-          <MainContent />
+    <PageWithSideMenu>
+      <div className="grid grid-cols-12 gap-6">
+        <div className="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
+          <Overview />
+        </div>
+        <div className="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
+          <ThisMonth />
+        </div>
+        <div className="col-span-12 xxl:col-span-12 xxl:border-l border-theme-5 -mb-10 pb-10">
+          <div className="grid grid-cols-12 sm:col-span-6 gap-6 mt-5">
+            <ActivityFeed />
+            <CalendarContainer />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    </PageWithSideMenu>
+  )
 }
 
-export { Dashboard };
+export { Dashboard }

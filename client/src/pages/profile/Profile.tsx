@@ -3,31 +3,24 @@ import { MobileMenu } from "../../components/MobileMenu";
 import { TopBar } from "../../components/TopBar";
 
 import { TaskMenu }  from "./TaskMenu";
-import { PageComponentProps } from "../../types/PageComponentProps";
 import UserOutline from "./UserOutline";
 import ProfileSettings from "./ProfileSettings";
 import UsefulLinks from "./UsefulLinks";
+import PageWithSideMenu from "../PageWithSideMenu/PageWithSideMenu";
 
-function Profile(props: PageComponentProps) {
+function Profile() {
   return (
-    <div className="app" data-qa="protected-page">
-      <MobileMenu />
-      <div className="flex px-2 sm:px-10">
-        {props.sideMenu}
-        <div className="content">
-          <TopBar open={props.openModal} />
-          <div className="intro-y flex items-center mt-8 mb-5">
-            <h2 className="text-lg font-medium mr-auto">Profile</h2>
-          </div>
-          <div className="grid grid-cols-12 gap-5">
-            <UserOutline />
-            <ProfileSettings />
-            <UsefulLinks />
-            <TaskMenu />
-          </div>
-        </div>
+    <PageWithSideMenu>
+      <div className="intro-y flex items-center mt-8 mb-5">
+        <h2 className="text-lg font-medium mr-auto">Profile</h2>
       </div>
-    </div>
+      <div className="grid grid-cols-12 gap-5">
+        <UserOutline />
+        <ProfileSettings />
+        <UsefulLinks />
+        <TaskMenu />
+      </div>
+    </PageWithSideMenu>
   );
 }
 

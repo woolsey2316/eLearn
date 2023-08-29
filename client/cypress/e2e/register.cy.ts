@@ -46,6 +46,10 @@ describe('template spec', () => {
     cy.get('[data-cy="submit"]')
       .click()
 
+    // successful register alert appears
+    cy.get('[data-cy="alert"]')
+      .contains("Succesfully registered")
+
     // Verify the app remained on signup
     cy.location('pathname').should('eq', '/login');
 

@@ -4,9 +4,9 @@ import { TopBar } from "../../components";
 import { ExamCard } from "./ExamCard";
 import { MonthContainer } from "./MonthContainer";
 
-import { PageComponentProps } from "../../types/PageComponentProps";
 import { sameMonth } from "../../utils/DateUtils";
 import { useGetUserExamsQuery } from "../../features/exam/exam-slice-api";
+import PageWithSideMenu from "../PageWithSideMenu/PageWithSideMenu";
 
 const monthNames = [
   "January",
@@ -27,7 +27,7 @@ const monthNames = [
   A web page that shows all exams grouped by month, Users go here to select an exam
   and take it.
 */
-function ExamList(props: PageComponentProps) {
+function ExamList() {
   const { data: examData } = useGetUserExamsQuery()
   console.log(examData)
   if (examData === undefined || examData.length === 0) return null;
@@ -57,21 +57,14 @@ function ExamList(props: PageComponentProps) {
     );
   }
   return (
-    <div className="app" data-qa="protected-page">
-      <MobileMenu />
-      <div className="flex px-2 sm:px-10">
-        {props.sideMenu}
-        <div className="content">
-          <TopBar open={props.openModal} />
-          <h2 className="intro-y text-lg font-medium mt-10"> Exams </h2>
-          <div className="grid grid-cols-12 gap-6 mt-8">
-            <div className="col-span-12 lg:col-span-9 xxl:col-span-10">
-              <div className="intro-y inbox">{ExamList}</div>
-            </div>
-          </div>
+    <PageWithSideMenu>
+      <h2 className="intro-y text-lg font-medium mt-10"> Exams </h2>
+      <div className="grid grid-cols-12 gap-6 mt-8">
+        <div className="col-span-12 lg:col-span-9 xxl:col-span-10">
+          <div className="intro-y inbox">{ExamList}</div>
         </div>
       </div>
-    </div>
+    </PageWithSideMenu>
   );
 }
 

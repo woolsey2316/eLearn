@@ -11,7 +11,6 @@ import { SideMenuGroup } from "./SideMenuGroup";
 import { LogoutMenuItem } from "./LogoutMenuItem";
 type SideMenuProps = {
   admin: boolean;
-  open: () => void;
 };
 function SideMenu(props: SideMenuProps) {
   const profileSubMenu = <ProfileSubMenu />;
@@ -54,7 +53,7 @@ function SideMenu(props: SideMenuProps) {
         <SideMenuItem name="Exam List" path="/student/exam_list">
           <Icon.Layers className="side-menu__icon" />
         </SideMenuItem>
-        <LogoutMenuItem name="Logout" onClick={props.open}>
+        <LogoutMenuItem name="Logout">
           <Icon.LogOut className="side-menu__icon" />
         </LogoutMenuItem>
       </StudentMenuContainer>

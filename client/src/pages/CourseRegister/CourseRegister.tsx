@@ -10,12 +10,11 @@ import { CourseSubscribeModal } from "./CourseSubscribeModal";
 import { Pagination } from "../../components";
 import { ShowingFirstToLast } from "./ShowingFirstToLast";
 
-import { PageComponentProps } from "../../types/PageComponentProps";
-
 import { CourseDTO } from "../../types/CourseState";
 import { useGetCoursesQuery, useRegisterMutation } from "../../features/course/course-slice-api";
+import PageWithSideMenu from "../PageWithSideMenu/PageWithSideMenu";
 
-function CourseRegister(props: PageComponentProps) {
+function CourseRegister() {
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(10);
 
@@ -84,71 +83,64 @@ function CourseRegister(props: PageComponentProps) {
   }
 
   return (
-    <div className="app" data-qa="protected-page">
-      <MobileMenu />
-      <div className="flex px-2 sm:px-10">
-        {props.sideMenu}
-        <div className="content">
-          <TopBar open={props.openModal} />
-          <h2 className="intro-y text-lg font-medium mt-10">
-            Course Catalogue
-          </h2>
-          <CourseSubscribeModal
-            modalIsOpen={modalIsOpen}
-            closeModal={closeModal}
-            openModal={openModal}
-            register={registerCourse}
-            chosenCourse={chosenCourse}
+    <PageWithSideMenu>
+      <h2 className="intro-y text-lg font-medium mt-10">
+        Course Catalogue
+      </h2>
+      <CourseSubscribeModal
+        modalIsOpen={modalIsOpen}
+        closeModal={closeModal}
+        openModal={openModal}
+        register={registerCourse}
+        chosenCourse={chosenCourse}
+      />
+      <div className="grid grid-cols-12 gap-6 mt-5">
+        <div className="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap justify-between items-center mt-2">
+          <ShowingFirstToLast
+            resultsPerPage={size}
+            page={page}
+            collection={courses?.data}
           />
-          <div className="grid grid-cols-12 gap-6 mt-5">
-            <div className="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap justify-between items-center mt-2">
-              <ShowingFirstToLast
-                resultsPerPage={size}
-                page={page}
-                collection={courses?.data}
+          <div className="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+            <div className="w-56 relative text-gray-700">
+              <input
+                type="text"
+                className="input w-56 box pr-10 placeholder-theme-13"
+                onChange={handleSearchChange}
+                placeholder="Search Courses..."
               />
-              <div className="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                <div className="w-56 relative text-gray-700">
-                  <input
-                    type="text"
-                    className="input w-56 box pr-10 placeholder-theme-13"
-                    onChange={handleSearchChange}
-                    placeholder="Search Courses..."
-                  />
-                  <Icon.Search className="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" />
-                </div>
-              </div>
-            </div>
-            {courses &&
-              courses?.data
-                ?.filter(
-                  (elem) =>
-                    elem.courseName.toUpperCase().includes(search.toUpperCase())
-                )
-                .map((course, index) => (
-                  <CourseCard
-                    openModal={openModal}
-                    setCourse={setCourse}
-                    course={course}
-                    key={index}
-                  />
-                ))}
-            <div className="intro-y col-span-9 col-start-4">
-              <Pagination
-                setPage={setPage}
-                decrementPage={decrementPage}
-                incrementPage={incrementPage}
-                navigatePage={navigatePage}
-                page={page}
-                list={courses?.data}
-                resultsPerPage={size}
-                handleChange={handleChange}
-              />
+              <Icon.Search className="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" />
             </div>
           </div>
         </div>
+        {courses &&
+          courses?.data
+            ?.filter(
+              (elem) =>
+                elem.courseName.toUpperCase().includes(search.toUpperCase())
+            )
+            .map((course, index) => (
+              <CourseCard
+                openModal={openModal}
+                setCourse={setCourse}
+                course={course}
+                key={index}
+              />
+            ))}
+        <div className="intro-y col-span-9 col-start-4">
+          <Pagination
+            setPage={setPage}
+            decrementPage={decrementPage}
+            incrementPage={incrementPage}
+            navigatePage={navigatePage}
+            page={page}
+            list={courses?.data}
+            resultsPerPage={size}
+            handleChange={handleChange}
+          />
+        </div>
       </div>
-    </div>
+    </PageWithSideMenu>
   );
 }
 export { CourseRegister };

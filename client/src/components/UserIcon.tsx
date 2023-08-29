@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as Icon from "react-feather";
-type Props = {
-  open: () => void;
-};
-function UserIcon(props: Props) {
+import { ModalContext } from "../context/ModalContext";
+
+function UserIcon() {
   const [isPressed, setPressed] = React.useState(false);
+  const { openLogoutModal } = useContext(ModalContext)
   return (
     <div className="intro-x dropdown w-8 h-8 relative">
       <div
@@ -45,7 +45,7 @@ function UserIcon(props: Props) {
           </div>
           <div className="p-2 border-t border-theme-40">
             <button
-              onClick={props.open}
+              onClick={openLogoutModal}
               data-qa="log-out-btn"
               className="w-full block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"
             >

@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import Modal from "react-modal";
 import * as Icon from "react-feather";
-type Props = {
-  modalIsOpen: boolean;
-  closeModal: () => void;
-};
-function LogoutModal(props: Props) {
+import { ModalContext } from "../context/ModalContext";
+
+function LogoutModal() {
+  const modalContext = useContext(ModalContext)
   return (
     <Modal
-      isOpen={props.modalIsOpen}
-      onRequestClose={props.closeModal}
+      isOpen={modalContext.logoutModalIsOpen}
+      onRequestClose={modalContext.closeLogoutModal}
       appElement={document.getElementById("root") ?? undefined}
       contentLabel="Example Modal"
       style={{
@@ -36,7 +35,7 @@ function LogoutModal(props: Props) {
         <div className="flex flex-col sm:flex-row items-center justify-center text-center mt-5">
           <button
             type="button"
-            onClick={props.closeModal}
+            onClick={modalContext.closeLogoutModal}
             data-dismiss="modal"
             className="button border text-gray-700 sm:mr-2 md:text-xl sm:text-lg text-medium"
           >
