@@ -83,8 +83,9 @@ function ExamCreationForm({
     _content: string,
     _delta: TypeDelta,
     _source: Sources,
-    editor: any
+    editor: {getHTML: () => string}
   ): void {
+    console.log(editor.getHTML())
     setQuestion((quiz) => ({
       ...quiz,
       question: editor.getHTML(),
@@ -150,49 +151,47 @@ function ExamCreationForm({
       className="validate-form"
       onSubmit={handleSubmit}
     >
-      <div className="">
-        <div className="bg-white px-5 py-8 xl:p-0 rounded-md xl:shadow-none w-full xl:w-auto">
-          <div>
-            <h2 className="font-medium text-base mx-auto mb-2">
-              Question {quiz && quiz.number} of {questionList?.length ? questionList.length + 1 : 1}
-            </h2>
-            <QuestionField
+      <div className="bg-white px-5 py-8 xl:p-0 rounded-md xl:shadow-none w-full xl:w-auto">
+        <div>
+          <h2 className="font-medium text-base mx-auto mb-2">
+            Question {quiz && quiz.number} of {questionList?.length ? questionList.length + 1 : 1}
+          </h2>
+          <QuestionField
+            quiz={quiz}
+            handleChange={handleQuestionChange}
+            submitted={submitted}
+          />
+
+          <div className="grid grid-cols-2 gap-5">
+            <AnswerField
               quiz={quiz}
-              handleChange={handleQuestionChange}
+              handleChange={handleChange}
               submitted={submitted}
             />
-
-            <div className="grid grid-cols-2 gap-5">
-              <AnswerField
-                quiz={quiz}
-                handleChange={handleChange}
+            <QuestionNumberField
+              quiz={quiz}
+              handleChange={handleChange}
+              submitted={submitted}
+            />
+            {new Array(4).fill("").map((elem, i) => (
+              <InputField
+                key={i}
+                changeAnswerOption={changeAnswerOption}
                 submitted={submitted}
-              />
-              <QuestionNumberField
                 quiz={quiz}
-                handleChange={handleChange}
-                submitted={submitted}
+                number={i + 1}
               />
-              {new Array(4).fill("").map((elem, i) => (
-                <InputField
-                  key={i}
-                  changeAnswerOption={changeAnswerOption}
-                  submitted={submitted}
-                  quiz={quiz}
-                  number={i + 1}
-                />
-              ))}
-            </div>
+            ))}
           </div>
-          <div className="mt-5 xl:mt-8 text-center xl:text-left">
-            <button
-              type="submit"
-              className="button xl:mr-3 border border-theme-1 text-theme-1"
-            >
-              Save and Next Question
-            </button>
-            <Alert/>
-          </div>
+        </div>
+        <div className="mt-5 xl:mt-8 text-center xl:text-left">
+          <button
+            type="submit"
+            className="button xl:mr-3 border border-theme-1 text-theme-1"
+          >
+            Save and Next Question
+          </button>
+          <Alert/>
         </div>
       </div>
     </form>

@@ -21,6 +21,7 @@ function QuestionField({ submitted, quiz, handleChange }: Props) {
         placeholder="enter question..."
         value={(quiz && quiz.question) || ''}
         onChange={handleChange}
+        preserveWhitespace
       ></ReactQuill>
     </div>
   )

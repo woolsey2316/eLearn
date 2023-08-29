@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 
-import { MobileMenu } from "../../components";
-import { TopBar } from "../../components";
-
 import { ExamCreationForm } from "./ExamCreationForm";
 import { PreviewQuestion } from "./PreviewQuestion";
 
