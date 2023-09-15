@@ -1,3 +1,4 @@
+import React from 'react'
 import { Switch, Route, Router } from "react-router-dom";
 
 // midOne html + css template file provided

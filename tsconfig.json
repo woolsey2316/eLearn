@@ -27,5 +27,10 @@
     "./start-client.js",
     "./.eslintrc.js"
   ],
-  "exclude": ["client/build/**/*"]
+  "exclude": [
+    "client/build/**/*",
+    "client/cypress.config.ts",
+    "node_modules",
+    "client/cypress"
+  ]
 }

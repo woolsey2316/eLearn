@@ -16,6 +16,8 @@ function InputField({ quiz, changeAnswerOption, number, submitted }: Props) {
       )}
       <input
         type="text"
+        id={`input ${index}`}
+        aria-label={`input ${index}`}
         name={index.toString()}
         className={
           "intro-x login__input rounded-full input input--lg border border-gray-300 block mb-2 mt-1 w-full" +

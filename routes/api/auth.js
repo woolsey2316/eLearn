@@ -7,8 +7,6 @@ const keys = require("../../config/keys");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
-const { validateToken } = require("../../middleware/validateToken");
-
 const { validationResult } = require("express-validator");
 const { validationErrorResponse } = require("./utils");
 const { verifyToken } = require("../../utils/verifyToken");

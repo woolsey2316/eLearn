@@ -31,7 +31,7 @@
     "build": "react-scripts build",
     "cy:open": "npx cypress open",
     "cy": "npx cypress run",
-    "test": "react-scripts test --no-cache",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -53,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
@@ -65,9 +66,12 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/react-router-redux": "^5.0.19",
     "@types/zxcvbn": "^4.4.1",
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0",
+    "cross-fetch": "^4.0.0",
     "cypress": "^12.17.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-canvas-mock": "^2.5.2",
     "redux-devtools-extension": "^2.13.9",
+    "ts-jest": "26",
     "tslint": "^6.1.3"
   }
 }

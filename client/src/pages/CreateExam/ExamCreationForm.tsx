@@ -102,7 +102,6 @@ function ExamCreationForm({
 
   function changeAnswerOption(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
-    console.log(`changing index ${name}, to value ${value}`);
     setQuestion((quiz) => ({
       ...quiz,
       possibleAnswers: [
@@ -150,6 +149,7 @@ function ExamCreationForm({
       style={{ margin: "auto" }}
       className="validate-form"
       onSubmit={handleSubmit}
+      aria-label="Edit an exam form"
     >
       <div className="bg-white px-5 py-8 xl:p-0 rounded-md xl:shadow-none w-full xl:w-auto">
         <div>

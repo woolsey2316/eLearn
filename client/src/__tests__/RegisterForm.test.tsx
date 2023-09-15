@@ -1,3 +1,4 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import RegisterForm from '../pages/RegisterPage/RegisterForm';
 import userEvent from '@testing-library/user-event';
@@ -5,11 +6,10 @@ import { Provider } from 'react-redux';
 import store from '../store';
 
 describe('<RegisterForm />', () => {
-  let submitButton
+  let submitButton: Element
   let emailTextBox
-  let nameTextBox
+  let nameTextBox: Element
   let addressTextBox
-  let emailErrorMessage
   const setup = () => {
     render(
       <Provider store={store}>
@@ -28,9 +28,6 @@ describe('<RegisterForm />', () => {
     addressTextBox = screen.getByRole('textbox', {
       name: /address/i,
     });
-    emailErrorMessage= screen.getByRole('alert', {
-      name: /email/i
-    })
   };
 
   test('should accept input', async () => {
@@ -39,6 +36,7 @@ describe('<RegisterForm />', () => {
     await user.clear(nameTextBox);
     await user.type(nameTextBox, 'fake person');
     userEvent.click(submitButton)
+    const emailErrorMessage = screen.getByText('Email is required')
     expect(emailErrorMessage).toHaveValue('Email is required');
 
   });

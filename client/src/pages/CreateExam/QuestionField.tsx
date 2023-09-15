@@ -16,6 +16,7 @@ function QuestionField({ submitted, quiz, handleChange }: Props) {
         <div className="text-theme-6">Question is required</div>
       )}
       <ReactQuill
+        id="question input"
         className="mb-12 w-full h-32"
         theme="snow"
         placeholder="enter question..."

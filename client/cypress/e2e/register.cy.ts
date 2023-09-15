@@ -50,7 +50,7 @@ describe('template spec', () => {
     cy.get('[data-cy="alert"]')
       .contains("Succesfully registered")
 
-    // Verify the app remained on signup
+    // Verify the app switched to login
     cy.location('pathname').should('eq', '/login');
 
   });

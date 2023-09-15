@@ -96,6 +96,7 @@ const RegisterForm = () => {
             <input
               type="text"
               name="email"
+              aria-label="email"
               data-cy="email"
               className="intro-x login__input input input--lg border border-gray-300 block"
               style={{
@@ -107,12 +108,14 @@ const RegisterForm = () => {
             />
             <ErrorMessage
               message="Email is required"
+              aria-label="emailErrorMsg"
               name="email"
               show={submitted && user.email == ""}
             ></ErrorMessage>
             <input
               type="text"
               name="name"
+              aria-label="name"
               data-cy="name"
               style={{ borderColor: user.name || !submitted ? "" : "#D32929" }}
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
@@ -128,6 +131,7 @@ const RegisterForm = () => {
             <input
               type="text"
               name="address"
+              aria-label="address"
               data-cy="address"
               className="intro-x login__input input input--lg border border-gray-300 block mt-4"
               style={{
@@ -392,6 +396,7 @@ const RegisterForm = () => {
             </a>
             <button
               type="submit"
+              aria-label="submit"
               data-cy="submit"
               className="button button--lg sm:w-32 text-white bg-theme-1 xl:mr-3 py-0 sm:float-right"
             >

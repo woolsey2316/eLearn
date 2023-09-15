@@ -15,6 +15,8 @@ function QuestionNumberField({ quiz, handleChange, submitted }: Props) {
       <input
         type="text"
         name="number"
+        id="question number"
+        aria-label="question number"
         className="intro-x login__input input input--lg border border-gray-300 block mb-2 mt-1 w-full"
         placeholder="question number"
         value={quiz && quiz.number}

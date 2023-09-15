@@ -1,4 +1,4 @@
-import { useState, createContext, SetStateAction, Dispatch } from "react";
+import React, { useState, createContext, SetStateAction, Dispatch } from "react";
 import ReactDOM from "react-dom/client";
 
 interface ModalCtx {
