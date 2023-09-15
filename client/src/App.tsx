@@ -73,13 +73,13 @@ function App() {
         <PrivateRoute exact path="/student/exam_list">
           <ExamList />
         </PrivateRoute>
+        <PrivateRoute exact path="/student/exams/:exam_id">
+          <ExamPage />
+        </PrivateRoute>
+        <Route exact path="/signup" component={RegisterPage} />
+        <Route exact path="/login" component={LoginPage} />
+        <Route path="*" exact component={PageNotFound} />
       </Switch>
-      <PrivateRoute exact path="/student/exams/:exam_id">
-        <ExamPage />
-      </PrivateRoute>
-      <Route exact path="/signup" component={RegisterPage} />
-      <Route exact path="/login" component={LoginPage} />
-      <Route path="*" exact component={PageNotFound} />
     </Router>
   );
 }
