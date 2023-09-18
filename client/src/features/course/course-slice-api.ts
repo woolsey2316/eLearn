@@ -37,7 +37,12 @@ export const courseApi = createApi({
       pages?: number,
       data?: Course[]
     }, {page: number, size: number}>({
-      query: ({page, size}) => `courses?page=${page}&size=${size}`,
+      query: ({page, size}) => {
+        return {
+          url: `courses?page=${page}&size=${size}`,
+          headers: authHeader()
+        }
+      },
     }),
     getUserCourses: builder.query<CourseType[], void>({
       query: () => {

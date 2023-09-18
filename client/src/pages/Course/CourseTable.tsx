@@ -15,7 +15,7 @@ function CourseTable({ courses }: CourseTableProps) {
         <tr className="bg-gray-700 text-white">
           <th className="whitespace-no-wrap">Course Name</th>
           <th className="whitespace-no-wrap">Category</th>
-          <th className="whitespace-no-wrap">Exam Status</th>
+          <th className="whitespace-no-wrap">Active Exams</th>
         </tr>
       </thead>
       <tbody>
