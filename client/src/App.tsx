@@ -1,9 +1,8 @@
 import React from 'react'
 import { Switch, Route, Router } from "react-router-dom";
 
-// midOne html + css template file provided
-import "./midone-assets/dist/css/app.css";
 import "./index.css";
+import "./tailwind.css";
 
 import { history } from "./helpers/history";
 
