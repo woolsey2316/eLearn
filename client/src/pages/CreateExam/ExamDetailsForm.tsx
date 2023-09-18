@@ -2,7 +2,7 @@ import React from 'react'
 import { ExamInfo } from '../../types/ExamState';
 import { Dropdown } from './DropDown';
 import * as Icon from "react-feather";
-import PillButton from '../../components/PillButton';
+import PillButton from '../../components/button/PillButton';
 import { DateTimePicker } from 'react-datetime-picker';
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';

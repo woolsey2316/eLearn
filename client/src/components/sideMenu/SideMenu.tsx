@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import * as Icon from "react-feather";
 
-import { SiteNameAndLogo } from "./SiteNameAndLogo";
+import { SiteNameAndLogo } from "../SiteNameAndLogo";
 import { SideMenuItem } from "./SideMenuItem";
-import { AdminMenuContainer } from "./AdminMenuContainer";
-import { StudentMenuContainer } from "./StudentMenuContainer";
-import ProfileSubMenu from "./ProfileSubMenu";
-import CourseSubMenu from "./CourseSubMenu";
+import { AdminMenuContainer } from "../../pages/AdminDashboard/AdminMenuContainer";
+import { StudentMenuContainer } from "../StudentMenuContainer";
+import ProfileSubMenu from "../ProfileSubMenu";
+import CourseSubMenu from "../CourseSubMenu";
 import { SideMenuGroup } from "./SideMenuGroup";
-import { LogoutMenuItem } from "./LogoutMenuItem";
+import { LogoutMenuItem } from "../LogoutMenuItem";
 type SideMenuProps = {
   admin: boolean;
 };

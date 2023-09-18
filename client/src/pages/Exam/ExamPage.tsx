@@ -10,7 +10,7 @@ import { CourseSection } from "./CourseSection";
 import { RightPanel } from "./RightPanel";
 import { calculateTimeLeft } from "../../utils/CountdownTimer";
 import * as Icon from "react-feather";
-import { SubmitModal } from "../../components";
+import { SubmitModal } from "../../components/modal";
 
 import { useParams } from "react-router-dom";
 

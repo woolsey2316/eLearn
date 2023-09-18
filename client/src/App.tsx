@@ -22,7 +22,7 @@ import { MyCourses } from "./pages/MyCourses";
 import { CourseRegister } from "./pages/CourseRegister";
 import { PageNotFound } from "./pages/NotFound";
 
-import { LogoutModal } from "./components";
+import { LogoutModal } from "./components/modal";
 
 import { PrivateRoute } from "./components";
 

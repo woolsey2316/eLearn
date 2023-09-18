@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import Modal from "react-modal";
 import * as Icon from "react-feather";
-import { ModalContext } from "../context/ModalContext";
+import { ModalContext } from "../../context/ModalContext";
 
 function LogoutModal() {
   const modalContext = useContext(ModalContext)

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import DateTimePicker from 'react-datetime-picker';
-import { useCreateTaskMutation } from '../features/task/task-slice-api';
+import { useCreateTaskMutation } from '../../features/task/task-slice-api';
 interface Props {
   setClose: () => void
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import * as Icon from "react-feather";
-import { history } from "../helpers";
+import { history } from "../../helpers";
 type SideMenuItemProps = {
   children: JSX.Element;
   name: string;

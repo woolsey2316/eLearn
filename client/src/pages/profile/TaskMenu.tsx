@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Task from "../../components/Task/Task";
+import Task from "../../components/task/Task";
 
 import * as Icon from "react-feather";
-import { TaskModal } from "../../components/TaskModal";
+import { TaskModal } from "../../components/modal/TaskModal";
 import { useGetTasksQuery } from "../../features/task/task-slice-api";
 
 function TaskMenu() {
