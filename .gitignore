@@ -25,7 +25,12 @@ coverage
 # Dependency directory
 node_modules
 client/node_modules
-bower_components
+
+# package.lock/yarn.lock
+package-lock.json
+client/package-lock.json
+yarn.lock
+client/yarn.lock
 
 # Editors
 .idea

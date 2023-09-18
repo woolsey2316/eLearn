@@ -9,6 +9,7 @@
     "@types/history": "4.7.11",
     "@types/react-html-parser": "^2.0.2",
     "axios": "^0.22.0",
+    "elearn": "file:..",
     "history": "4.10.1",
     "moment": "^2.29.1",
     "react": "^18.2.0",
