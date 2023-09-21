@@ -9,7 +9,7 @@
 yarn install
 ```
 
-### 2. Seed Database
+### 2. Seed MongoDb Database
 Database name: testdb 
 
 | Data files   | Collection Name  |  

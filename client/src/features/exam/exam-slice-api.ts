@@ -43,7 +43,7 @@ export const examApi = createApi({
           headers: authHeader()
         }
       }
-    })
+    }),
   }),
 })
 

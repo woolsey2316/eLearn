@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Task from "../../components/task/Task";
+import Task from "../../components/Task/Task";
 
 import * as Icon from "react-feather";
 import { TaskModal } from "../../components/modal/TaskModal";

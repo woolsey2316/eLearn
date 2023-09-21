@@ -10,6 +10,7 @@
     "build-ts": "tsc",
     "install-client": "cd client && yarn",
     "install-server": "yarn install --ignore-scripts",
+    "postinstall": "yarn install-client",
     "client": "node start-client.js",
     "debug": "yarn build-server && yarn watch-debug",
     "dev": "concurrently \"yarn run server\" \"yarn run client\"",
