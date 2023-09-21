@@ -1,0 +1,98 @@
+// Fonts
+@import 'fonts/roboto';
+
+// Breakpoint
+@import 'breakpoint';
+
+// 3rd Parties
+@import '~slick-carousel/slick/slick';
+@import '~slick-carousel/slick/slick-theme';
+@import '~highlight.js/scss/github';
+@import '~tooltipster/dist/css/tooltipster.bundle.min';
+@import '~tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min';
+@import '~tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-borderless.min';
+@import '~daterangepicker/daterangepicker';
+@import '~select2/src/scss/core';
+@import '~dropzone/dist/dropzone';
+
+// Animations
+@import 'typing-dots';
+@import 'zoom-in';
+@import 'intro';
+
+// Components
+@import 'login';
+@import 'top-bar';
+@import 'mini-chat-box';
+@import 'mini-chat-list';
+@import 'mini-chat';
+@import 'table';
+@import 'table-report';
+@import 'report-timeline';
+@import 'report-chart';
+@import 'search';
+@import 'input';
+@import 'button';
+@import 'notification';
+@import 'image-fit';
+@import 'box';
+@import 'report-box';
+@import 'global';
+@import 'content';
+@import 'top-nav';
+@import 'side-nav';
+@import 'breadcrumb';
+@import 'tailwind';
+@import 'top-bar-boxed';
+@import 'mobile-menu';
+@import 'pagination';
+@import 'dropdown';
+@import 'modal';
+@import 'tab';
+@import 'checkbox';
+@import 'file';
+@import 'inbox-filter';
+@import 'inbox';
+@import 'scrollbar';
+@import 'chat';
+@import 'boxed-tabs';
+@import 'chat-dropdown';
+@import 'wizard';
+@import 'blog';
+@import 'news';
+@import 'pricing-tabs';
+@import 'accordion';
+@import 'error-page';
+@import 'tooltip';
+@import 'datatable-wrapper';
+@import 'datepicker';
+@import 'select2';
+@import 'slick';
+@import 'jquery-validation';
+@import 'slick';
+@import 'search-result';
+@import 'mini-report-chart';
+@import 'notification-content';
+@import 'report-maps';
+@import 'pos-dropdown';
+@import 'pos';
+@import 'toast';
+@import 'post';
+
+.app {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  @apply py-5;
+}
+
+.body {
+  padding: 0;
+}
+
+.shadow-outline{
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+.whitespace-no-wrap{
+  white-space: nowrap;
+}

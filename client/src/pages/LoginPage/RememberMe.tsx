@@ -12,7 +12,7 @@ const RememberMe = ({
   return (
     <div className="flex items-center mr-auto">
       {!forgotPassword && (
-        <div>
+        <>
           <input
             type="checkbox"
             className="input border mr-2"
@@ -23,7 +23,7 @@ const RememberMe = ({
           <label className="cursor-pointer select-none" htmlFor="remember-me">
             Remember me
           </label>
-        </div>
+        </>
       )}
     </div>
   );

@@ -1,9 +1,6 @@
 import React from 'react'
 import { Switch, Route, Router } from "react-router-dom";
 
-import "./index.css";
-import "./tailwind.css";
-
 import { history } from "./helpers/history";
 
 import { RegisterPage } from "./pages/RegisterPage";
@@ -24,6 +21,8 @@ import { PageNotFound } from "./pages/NotFound";
 import { LogoutModal } from "./components/modal";
 
 import { PrivateRoute } from "./components";
+
+import "./sass/app.scss";
 
 function App() {
   return (

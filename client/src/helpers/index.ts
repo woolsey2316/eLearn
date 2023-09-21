@@ -12,4 +12,3 @@ export {
   getRefreshTokenExpiryTime,
   setRefreshTokenExpiryTime,
 } from "./session-storage";
-export { decodeToken } from "./jwt";
