@@ -7,3 +7,7 @@ export function contains<T>(elem: T, arr: T[]) {
   })
   return res
 }
+
+export function toPercentage(numratr: number, denomtr: number): string {
+  return (numratr / denomtr * 100).toPrecision(3) + "%"
+}

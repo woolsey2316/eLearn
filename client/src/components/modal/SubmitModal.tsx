@@ -23,18 +23,17 @@ function SubmitModal(props: Props) {
           <div className="text-3xl mt-5">Good job!</div>
           <div className="text-gray-600 mt-2">
             You completed the test! <br />
-            Make sure all other sections are completed
           </div>
         </div>
         <div className="px-5 pb-8 text-center">
-          <button
+          <a
             onClick={props.closeModal}
-            type="button"
+            href="/"
             data-dismiss="modal"
-            className="button w-24 bg-theme-1 text-white"
+            className="button w-24 cursor-pointer bg-theme-1 text-white"
           >
-            Back To Questions
-          </button>
+            Back To homepage
+          </a>
         </div>
       </div>
     </Modal>

@@ -12,7 +12,7 @@ const Exam = require("../../models/Exam")
 const { ObjectId } = require('mongodb');
 
 // @route GET api/courses/
-// @desc Retrieve course all courses
+// @desc Retrieve all courses
 // @access Public
 router.get("/", validateToken, async (req, res) => {
   try {
@@ -52,6 +52,9 @@ router.get("/", validateToken, async (req, res) => {
   }
 });
 
+// @route GET api/courses/exams
+// @desc Retrieve all exams
+// @access Public
 router.get("/exams", validateToken, (req, res) => {
   const jwt = req.headers.authorisation.split(" ")[1];
   const { payload } = verifyToken(jwt, res);

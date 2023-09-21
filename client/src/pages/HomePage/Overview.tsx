@@ -4,11 +4,13 @@ import { Activity, AlertCircle, Monitor, Grid } from "react-feather";
 
 import { useGetDashboardQuery } from "../../features/dashboard/dashboard-slice-api";
 import { useGetUserCoursesQuery } from "../../features/course/course-slice-api";
+import { toPercentage } from "../../utils/utils";
 
 function Overview() {
 
   const { data: courses } = useGetUserCoursesQuery()
   const { data: dashboard } = useGetDashboardQuery()
+
   return (
     <div className="col-span-12 mt-8">
       <div className="intro-y flex items-center h-10">
@@ -25,15 +27,17 @@ function Overview() {
                     className="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                     title="Total tests"
                   >
-                    {dashboard?.total + " total exams"}
+                    {dashboard === undefined ? 'loading...'
+                      :
+                    dashboard.total + " total exams"}
                   </div>
                 </div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {dashboard && dashboard?.total !== 0
-                  ? (dashboard?.completed /
-                    dashboard?.total * 100).toPrecision(3) + "%"
-                  : 0}
+                {dashboard === undefined ? 'loading...' :
+                  dashboard.total !== 0
+                    ? toPercentage(dashboard.completed, dashboard.total)
+                    : 0}
               </div>
               <div className="text-base text-gray-600 mt-1">
                 Total completion rate

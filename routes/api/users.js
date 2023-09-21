@@ -80,7 +80,7 @@ router.get("/:user_id/courses/:course_id/exams", validateToken, (req, res) => {
 });
 
 // @route GET /courses/:course_id/exams
-// @desc Retrieve user exam results for a specific course
+// @desc Retrieve a user's exam result for a specific course
 // @access Public
 router.get("/courses/:course_id/exam-results", validateToken, (req, res) => {
   const jwt = req.headers.authorisation.split(" ")[1];

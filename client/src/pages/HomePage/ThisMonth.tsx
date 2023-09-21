@@ -3,6 +3,7 @@ import React from "react";
 import * as Icon from "react-feather";
 
 import { useGetMonthlyDashboardQuery } from "../../features/dashboard/dashboard-slice-api";
+import { toPercentage } from "../../utils/utils";
 
 function ThisMonth() {
   const { data: monthlyDashboardData } = useGetMonthlyDashboardQuery()
@@ -23,14 +24,17 @@ function ThisMonth() {
                     className="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                     title="Total assignments"
                   >
-                    {monthlyDashboardData?.total + " total exams"}
+                    {monthlyDashboardData === undefined ?
+                      'loading...'
+                        :
+                      monthlyDashboardData.total + " total exams"}
                   </div>
                 </div>
               </div>
               <div className="text-3xl font-bold leading-8 mt-6">
-                {monthlyDashboardData && monthlyDashboardData?.total !== 0
-                    ? (monthlyDashboardData?.completed /
-                    monthlyDashboardData?.total * 100).toPrecision(3) + "%"
+                {monthlyDashboardData === undefined ? 'loading...'
+                : monthlyDashboardData?.total !== 0
+                    ? toPercentage(monthlyDashboardData?.completed, monthlyDashboardData?.total)
                     : 0}
               </div>
               <div className="text-base text-gray-600 mt-1">Total completion rate</div>

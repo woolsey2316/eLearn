@@ -14,7 +14,6 @@ import { ExamResults } from "./pages/ExamResults";
 import { ExamPage } from "./pages/Exam";
 import { ExamList } from "./pages/ExamList";
 import { Courses } from "./pages/Course";
-import { MyCourses } from "./pages/MyCourses";
 import { CourseRegister } from "./pages/CourseRegister";
 import { PageNotFound } from "./pages/NotFound";
 
@@ -40,9 +39,6 @@ function App() {
         </PrivateRoute>
         <PrivateRoute exact path="/admin/create_exam">
           <CreateExam />
-        </PrivateRoute>
-        <PrivateRoute exact path="/admin/my_courses">
-          <MyCourses />
         </PrivateRoute>
         <PrivateRoute exact path="/student/dashboard">
           <Dashboard />

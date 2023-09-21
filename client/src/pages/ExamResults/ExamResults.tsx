@@ -23,8 +23,8 @@ function ExamResults() {
   const courseId = courses?.filter((elem) => elem.courseName === course)[0]
     ?._id;
 
-  const { data: instructor } = useGetInstructorByIdQuery(instructorId ?? "")
-  const { data: results } = useGetUserExamResultsByCourseQuery(courseId ?? "")
+  const { data: instructor } = useGetInstructorByIdQuery(instructorId ?? "", {skip: instructorId === undefined})
+  const { data: results } = useGetUserExamResultsByCourseQuery(courseId ?? "", {skip: courseId === undefined})
 
   return (
     <PageWithSideMenu>
