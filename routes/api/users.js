@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { ObjectId } = require("mongodb");
 const { User } = require("../../models/User");
 const ExamResult = require("../../models/ExamResult");
 
@@ -90,6 +91,7 @@ router.get("/courses/:course_id/exam-results", validateToken, (req, res) => {
   if (req.params.course_id == "undefined") {
     return res.status(404).json({ idnotfound: "no courseId was given" });
   }
+
   ExamResult.find({courseId: req.params.course_id}).then((examResults) => {
     if (!examResults) {
       return res.status(404).json({ message: "examResults are not found" });
@@ -105,7 +107,7 @@ router.get("/courses/:course_id/exam-results", validateToken, (req, res) => {
         grouped_results = { ...grouped_results, [examResult.exam_name]: [examResult] };
       }
     }, {});
-    // sort by exam score
+    // sort by exam score to determine rank among peers
     Object.keys(grouped_results).forEach((elem, index) => {
       grouped_results[elem].sort((b, a) => a.score - b.score);
     });

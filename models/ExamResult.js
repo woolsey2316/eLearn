@@ -31,4 +31,4 @@ const examResultsSchema = new Schema({
     required: true
   }
 });
-module.exports = mongoose.model("exam_result", examResultsSchema);
+module.exports = mongoose.model("exam_results", examResultsSchema);

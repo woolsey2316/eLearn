@@ -10,7 +10,7 @@ yarn install
 ```
 
 ### 2. Seed MongoDb Database
-Database name: testdb 
+Database name: elearn 
 
 | Data files   | Collection Name  |  
 |---|---|
@@ -18,7 +18,7 @@ Database name: testdb
 | db/courses/courses.json | courses  |
 | db/instructor/instructor.json | instructors  |
 | db/exams/exams.json | exams  |
-| db/examResults/examResults.json | examResults  | 
+| db/examResults/examResults.json | exam_results  | 
 | db/users/users.json | users  |   
 
 ### 3. Run the development server
