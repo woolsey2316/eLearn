@@ -23,7 +23,7 @@ Database name: testdb
 
 ### 3. Run the development server
 
-You can start the server using this command:
+You can start the server and client using this command:
 
 ```bash
 yarn dev

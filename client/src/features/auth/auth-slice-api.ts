@@ -46,12 +46,12 @@ export const authApi = createApi({
           setJWT(data.token);
           setRefreshTokenExpiryTime(data.expires);
 
-          dispatch(alertActions.success(data.message ?? "successfully logged in"))
+          dispatch(alertActions.success(data.message ?? "successfully logged in"));
 
           history.push("/student/dashboard");
         } catch (error: any) {
           removeJWTToken();
-          dispatch(alertActions.error(error.data.message))
+          dispatch(alertActions.error(error.error.data.message));
         }
       },
     }),

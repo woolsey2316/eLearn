@@ -26,7 +26,7 @@ const ModalContext = createContext<ModalCtx | InitialState>({
 interface Props {
   children: JSX.Element | JSX.Element[]
 }
-const MovieContextProvider = ({children}: Props) => {
+const ModalContextProvider = ({children}: Props) => {
 
   const [logoutModalIsOpen, setLogoutModalOpen] = useState(false);
 
@@ -52,4 +52,4 @@ const MovieContextProvider = ({children}: Props) => {
   )
 }
 
-export { MovieContextProvider, ModalContext }
+export { ModalContextProvider, ModalContext }

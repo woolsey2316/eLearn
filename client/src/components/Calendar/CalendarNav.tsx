@@ -24,7 +24,7 @@ const CalendarNav = ({ today, setDate }: Props) => {
         {" "}
         <Icon.Calendar
           onClick={() => Calendar.todayDate(setDate)}
-          className="w-3 h-3 mt-1 mr-1 cursor-pointer"
+          className="w-3 h-3 mt-[6px] mr-1 cursor-pointer"
         />
         {`${month}, ${year}`}
       </div>
