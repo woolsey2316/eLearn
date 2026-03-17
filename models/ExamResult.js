@@ -14,7 +14,7 @@ const examResultsSchema = new Schema({
     type: Schema.Types.ObjectId,
     required: true
   },
-  examName: {
+  exam_name: {
     type: String,
     required: true
   },
@@ -31,4 +31,4 @@ const examResultsSchema = new Schema({
     required: true
   }
 });
-module.exports = mongoose.model("exam_results", examResultsSchema);
+module.exports = mongoose.model("exam_results", examResultsSchema, "examResults");

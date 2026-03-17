@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
 import { CourseDropdown } from "../../components";
-import { MobileMenu } from "../../components";
-import { TopBar } from "../../components";
 
 import { ExamResultCard } from "./ExamResultCard";
 import { ExamResult } from "../../types/ExamState";
@@ -23,8 +21,8 @@ function ExamResults() {
   const courseId = courses?.filter((elem) => elem.courseName === course)[0]
     ?._id;
 
-  const { data: instructor } = useGetInstructorByIdQuery(instructorId ?? "", {skip: instructorId === undefined})
-  const { data: results } = useGetUserExamResultsByCourseQuery(courseId ?? "", {skip: courseId === undefined})
+  const { data: instructor } = useGetInstructorByIdQuery(instructorId ?? "", { skip: instructorId === undefined })
+  const { data: results } = useGetUserExamResultsByCourseQuery(courseId ?? "", { skip: courseId === undefined })
 
   return (
     <PageWithSideMenu>
@@ -85,11 +83,11 @@ function ExamResults() {
               </thead>
               <tbody>
                 {results?.examResults?.map((result: ExamResult, index: number) => (
-                    <ExamResultCard
-                      key={index}
-                      examInfo={result}
-                    />
-                  )
+                  <ExamResultCard
+                    key={index}
+                    examInfo={result}
+                  />
+                )
                 )}
               </tbody>
             </table>

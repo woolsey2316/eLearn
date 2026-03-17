@@ -18,7 +18,7 @@ import { authApi, useLoginUserMutation, useResetPasswordMutation, useSendOTPQuer
 const LoginForm = () => {
   const [loginUser, { isLoading, isError, error, isSuccess }] =
     useLoginUserMutation();
-  const [resetPassword, {}] = useResetPasswordMutation()
+  const [resetPassword, { }] = useResetPasswordMutation()
   const dispatch = useAppDispatch();
   const [form, setForm] = useState(1);
   const [inputs, setInputs] = useState({
@@ -41,7 +41,7 @@ const LoginForm = () => {
     inputs;
 
   useEffect(() => {
-    history.listen(({}) => {
+    history.listen(({ }) => {
       // clear alert on location change
       dispatch(alertActions.clear());
     });
@@ -54,21 +54,16 @@ const LoginForm = () => {
 
   function onChangeCheckbox(event: React.ChangeEvent<HTMLInputElement>) {
     setInputs({ ...inputs, rememberMe: event.target.checked });
-    console.log(event.target.checked);
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
-    console.log(
-      `%cemail : ${email}, password: ${password}`,
-      "color: blue,font-weight:bold"
-    );
 
     setSubmitted(true);
     if (email && password && !forgotPassword) {
       // Dispatches a login action, if successful redirects current URL
       // to Home page.
-      loginUser({email, password, rememberMe});
+      loginUser({ email, password, rememberMe });
     } else if (email && forgotPassword) {
       dispatch(authApi.endpoints.sendOTP.initiate(email))
       setForm(2);
@@ -84,7 +79,7 @@ const LoginForm = () => {
     if (email && otp && newPassword && confirmPassword) {
       // Dispatches a login action, if successful redirects current URL
       // to Home page.
-      resetPassword({email, OTP: otp, password: newPassword, confirmPassword})
+      resetPassword({ email, OTP: otp, password: newPassword, confirmPassword })
     }
   }
   return (

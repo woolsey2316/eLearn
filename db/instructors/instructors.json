@@ -1,5 +1,6 @@
 [
   {
+    "_id": {"$oid": "641cf3c2f1736b340c6eba89"},
     "name": "Morpheus Simulacrum",
     "address": "260 W. Storm Street New York, NY 10025.",
     "email": "Morpheous@gmail.com",
@@ -7,6 +8,7 @@
     "roomNumber": "319"
   },
   {
+    "_id": {"$oid": "641cf3c2f1736b340c6eba8a"},
     "name": "Trinity Simulacrum",
     "address": "9583 Buckingham CourtYonkers, NY 10701",
     "email": "Trinity@gmail.com",
@@ -14,6 +16,7 @@
     "roomNumber": "113"
   },
   {
+    "_id": {"$oid": "641cf3c2f1736b340c6eba8b"},
     "name": "Neo Simulacrum",
     "address": "68 Brewery Street Brooklyn, NY 11203",
     "email": "Neo@gmail.com",
@@ -21,10 +24,19 @@
     "roomNumber": "1"
   },
   {
+    "_id": {"$oid": "641cf3c2f1736b340c6eba8c"},
     "name": "Rick Sanchez",
     "address": "Smith Residence",
     "email": "RickC-137@gmail.com",
     "building": "old Main Building",
     "roomNumber": "137"
+  },
+  {
+    "_id": {"$oid": "61735818bb4f80176c13acf3"},
+    "name": "Agent Smith",
+    "address": "Matrix Headquarters",
+    "email": "smith@matrix.net",
+    "building": "old Main Building",
+    "roomNumber": "101"
   }
 ]

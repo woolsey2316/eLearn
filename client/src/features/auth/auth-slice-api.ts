@@ -1,18 +1,16 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 import { IGenericResponse, LoginResponse } from '../../types/HTTP';
 
 import { API_URL } from '../../services'
 import { EditableUserInfo } from '../../types/UserForm';
-import { authHeader, history, removeJWTToken, setEmail, setJWT, setRefreshTokenExpiryTime, setUserId } from '../../helpers';
+import { authHeader, createBaseQueryWithReauth, history, removeJWTToken, setEmail, setJWT, setRefreshTokenExpiryTime, setUserId } from '../../helpers';
 import { alertActions } from '../../actions/alert.actions';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${API_URL}auth/`,
-  }),
+  baseQuery: createBaseQueryWithReauth(`${API_URL}auth/`),
   endpoints: (builder) => ({
-    registerUser: builder.mutation<{message: string}, EditableUserInfo>({
+    registerUser: builder.mutation<{ message: string }, EditableUserInfo>({
       query(data) {
         return {
           url: 'register',
@@ -39,7 +37,7 @@ export const authApi = createApi({
       },
       async onQueryStarted(args, { queryFulfilled, dispatch }) {
         try {
-          const {data} = await queryFulfilled;
+          const { data } = await queryFulfilled;
 
           setUserId(data.id);
           setEmail(data.email);
@@ -50,8 +48,13 @@ export const authApi = createApi({
 
           history.push("/student/dashboard");
         } catch (error: any) {
+          console.log(error)
           removeJWTToken();
-          dispatch(alertActions.error(error.error.data.message));
+          if (error instanceof Error) {
+            dispatch(alertActions.error(error.message));
+          } else {
+            dispatch(alertActions.error(error.data.message));
+          }
         }
       },
     }),
@@ -99,7 +102,7 @@ export const authApi = createApi({
         }
       }
     }),
-    updatePassword: builder.mutation<void,{oldPassword: string, password: string}>({
+    updatePassword: builder.mutation<void, { oldPassword: string, password: string }>({
       query(data) {
         return {
           method: 'POST',

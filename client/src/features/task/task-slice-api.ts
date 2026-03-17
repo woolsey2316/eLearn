@@ -1,12 +1,12 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi } from '@reduxjs/toolkit/query/react'
 import { API_URL } from '../../services'
-import { authHeader } from '../../helpers'
+import { authHeader, createBaseQueryWithReauth } from '../../helpers'
 import { Task } from '../../types/Task'
 
 // Define a service using a base URL and expected endpoints
 export const taskApi = createApi({
   reducerPath: 'taskApi',
-  baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
+  baseQuery: createBaseQueryWithReauth(API_URL),
   tagTypes: ['Task'],
   endpoints: (builder) => ({
     getTasks: builder.query<Task[], void>({

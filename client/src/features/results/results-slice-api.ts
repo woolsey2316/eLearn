@@ -1,12 +1,12 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi } from '@reduxjs/toolkit/query/react'
 import { API_URL } from '../../services'
-import { authHeader } from '../../helpers'
+import { authHeader, createBaseQueryWithReauth } from '../../helpers'
 import { Exam, ExamAnswerSheet, ExamQuestions, ExamQuestionsOverview } from '../../types/ExamState'
 
 // Define a service using a base URL and expected endpoints
 export const resultsApi = createApi({
   reducerPath: 'resultsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
+  baseQuery: createBaseQueryWithReauth(API_URL),
   endpoints: (builder) => ({
     getUserExamResultsByCourse: builder.query({
       query: (courseId) => {

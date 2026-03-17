@@ -1,4 +1,5 @@
 export { authHeader } from "./auth-header";
+export { createBaseQueryWithReauth } from "./baseQueryWithReauth";
 export { history } from "./history";
 export { IsValidJSONString } from "./validJSON";
 export {

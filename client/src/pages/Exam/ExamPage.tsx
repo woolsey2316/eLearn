@@ -20,7 +20,7 @@ import { useGetExamQuestionsQuery } from "../../features/exam/exam-slice-api";
 
 function initialiseQuestionsArray(quizQuestions: QuizQuestions = [[{
   question: 'loading...',
-  possibleAnswers: ['loading','loading','loading','loading']
+  possibleAnswers: ['loading', 'loading', 'loading', 'loading']
 }]]) {
   // [
   //   [0,1,2,3],
@@ -38,7 +38,7 @@ function initialiseQuestionsArray(quizQuestions: QuizQuestions = [[{
 
 function initialiseAnswersList(quizQuestions: QuizQuestions = [[{
   question: 'loading...',
-  possibleAnswers: ['loading','loading','loading','loading']
+  possibleAnswers: ['loading', 'loading', 'loading', 'loading']
 }]]) {
   // [
   //   [-1,-1,-1,-1],
@@ -52,7 +52,7 @@ function initialiseAnswersList(quizQuestions: QuizQuestions = [[{
 function ExamPage() {
   const { exam_id } = useParams<QuizParams>();
 
-  const {data: examInfo} = useGetExamQuestionsQuery(exam_id)
+  const { data: examInfo } = useGetExamQuestionsQuery(exam_id)
 
   useEffect(() => {
     if (examInfo && examInfo.quizQuestions) {
@@ -126,7 +126,6 @@ function ExamPage() {
 
   function setSection(sectionId: number) {
     setActive(sectionId);
-    console.log(sectionId);
   }
 
   function onClickQuestion(qid: number) {
@@ -135,11 +134,9 @@ function ExamPage() {
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSelectedOption(parseInt(event.target.value));
-    console.log(parseInt(event.target.value));
   };
 
   function confirmAnswer() {
-    console.log("confirmed answer: " + selectedOption);
     // don't load next question if user did not select an answer to current question!
     if (selectedOption !== -1) {
       setUserAnswer();

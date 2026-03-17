@@ -15,10 +15,6 @@ function QuestionCard({ question, setQuestion, questionList, removeItem }: Props
   }
   function deleteQuestion() {
     removeItem(question.number - 1)
-    console.log('deleting question')
-    console.log(question.number - 1)
-    console.log('question List')
-    console.log({ questionList })
   }
   return (
     <tr className="intro-x">

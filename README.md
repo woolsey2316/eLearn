@@ -11,7 +11,13 @@ yarn install
 
 ### 2. Seed MongoDb Database
 Database name: elearn 
-
+insert .env.development file in root directory with the following content:
+```MONGODB_URI=mongodb://localhost:27017/elearn
+```
+seed the database with the following command:
+```bash
+yarn seed 
+```
 | Data files   | Collection Name  |  
 |---|---|
 | db/activities/activities.json  | activities  |   
@@ -26,7 +32,8 @@ Database name: elearn
 You can start the server and client using this command:
 
 ```bash
-yarn dev
+yarn run client
+yarn run server
 ```
 
 ### 4. Login with test user
