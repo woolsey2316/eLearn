@@ -1,10 +1,11 @@
-import { createApi, fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
 import { IGenericResponse, LoginResponse } from '../../types/HTTP';
 
 import { API_URL } from '../../services'
 import { EditableUserInfo } from '../../types/UserForm';
 import { authHeader, createBaseQueryWithReauth, history, removeJWTToken, setEmail, setJWT, setRefreshTokenExpiryTime, setUserId } from '../../helpers';
 import { alertActions } from '../../actions/alert.actions';
+import { getErrorMessage } from '../../types/Error';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -19,8 +20,13 @@ export const authApi = createApi({
         };
       },
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
-        await queryFulfilled
-        history.push("/login");
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(alertActions.success(data.message ?? "Successfully registered"));
+          history.push("/login");
+        } catch (error) {
+          dispatch(alertActions.error(getErrorMessage(error, "Registration failed")));
+        }
       },
     }),
     loginUser: builder.mutation<
@@ -47,14 +53,9 @@ export const authApi = createApi({
           dispatch(alertActions.success(data.message ?? "successfully logged in"));
 
           history.push("/student/dashboard");
-        } catch (error: any) {
-          console.log(error)
+        } catch (error) {
           removeJWTToken();
-          if (error instanceof Error) {
-            dispatch(alertActions.error(error.message));
-          } else {
-            dispatch(alertActions.error(error.data.message));
-          }
+          dispatch(alertActions.error(getErrorMessage(error, "Login failed")));
         }
       },
     }),

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { useAppDispatch } from "../../hooks/hooks";
 
 import { history } from "../../helpers";
 
@@ -13,12 +13,11 @@ import RememberMe from "./RememberMe";
 import ForgotPassword from "./ForgotPassword";
 import MainButtons from "./MainButtons";
 import FormHeading from "./FormHeading";
-import { authApi, useLoginUserMutation, useResetPasswordMutation, useSendOTPQuery } from "../../features/auth/auth-slice-api";
+import { authApi, useLoginUserMutation, useResetPasswordMutation } from "../../features/auth/auth-slice-api";
 
 const LoginForm = () => {
-  const [loginUser, { isLoading, isError, error, isSuccess }] =
-    useLoginUserMutation();
-  const [resetPassword, { }] = useResetPasswordMutation()
+  const [loginUser] = useLoginUserMutation();
+  const [resetPassword] = useResetPasswordMutation()
   const dispatch = useAppDispatch();
   const [form, setForm] = useState(1);
   const [inputs, setInputs] = useState({
@@ -41,10 +40,15 @@ const LoginForm = () => {
     inputs;
 
   useEffect(() => {
-    history.listen(({ }) => {
-      // clear alert on location change
-      dispatch(alertActions.clear());
+    let previousPath = history.location.pathname;
+    const unlisten = history.listen((location) => {
+      // Only clear when navigating away so failed-login banners are not wiped
+      if (location.pathname !== previousPath) {
+        dispatch(alertActions.clear());
+        previousPath = location.pathname;
+      }
     });
+    return unlisten;
   }, [dispatch]);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {

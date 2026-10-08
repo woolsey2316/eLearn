@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useAppDispatch } from "../../hooks/hooks";
-
-import { alertActions } from "../../actions/alert.actions";
 
 import { Alert } from "../../components";
 
-import { history } from "../../helpers";
 import {
   evaluatePasswordScore,
   passwordStrengthColour,
@@ -13,7 +9,6 @@ import {
 } from "../../components/PasswordQuality";
 import ErrorMessage from "./ErrorMessage";
 import { useLogoutUserMutation, useRegisterUserMutation } from "../../features/auth/auth-slice-api";
-import { isErrorWithMessage } from "../../types/Error";
 
 const RegisterForm = () => {
   const [user, setUser] = useState({
@@ -33,16 +28,8 @@ const RegisterForm = () => {
 
   const [submitted, setSubmitted] = useState(false);
   const [passwordAdvice, showPasswordAdvice] = useState(false);
-  const dispatch = useAppDispatch();
   const [logout] = useLogoutUserMutation()
   const [registerUser] = useRegisterUserMutation()
-
-  useEffect(() => {
-    history.listen((location_: any, action_: any) => {
-      // clear alert on location change
-      dispatch(alertActions.clear());
-    });
-  }, [dispatch]);
 
   // Always logs out current user before loading signup form page
   useEffect(() => {
@@ -72,12 +59,9 @@ const RegisterForm = () => {
     setSubmitted(true);
     if (allFieldsExist()) {
       try {
-        const response = await registerUser(user).unwrap();
-        dispatch(alertActions.success(response.message))
-      } catch (error) {
-        if (isErrorWithMessage(error)) {
-          dispatch(alertActions.error(error.data.msg))
-        }
+        await registerUser(user).unwrap();
+      } catch {
+        // Inline error banner is dispatched from the auth mutation
       }
     }
   }

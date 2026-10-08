@@ -26,7 +26,7 @@ async function validateToken(req, res, next) {
     }
 
 
-    if (!user._id === result.id) {
+    if (user._id !== result.id) {
       result = {
         error: true,
         message: `Invalid token`,

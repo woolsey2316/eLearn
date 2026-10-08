@@ -253,7 +253,7 @@ router.get("/sendotp", (req, res) => {
       return res.sendStatus(200);
     })
     .catch((reason) => {
-      return res.status(500).json({ message: reason });
+      return res.status(500).json({ message: reason.message });
     });
 });
 
